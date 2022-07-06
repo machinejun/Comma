@@ -27,6 +27,7 @@ public class Host extends User {
 	@JsonIgnoreProperties({"hostId"})
 	private List<House> houses;
 	
-	@Transient
+	@OneToMany(mappedBy = "hostId", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hostId"})
 	private List<Reservation> reservations;
 }

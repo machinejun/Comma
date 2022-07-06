@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
@@ -29,8 +30,13 @@ public class Reservation {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Transient
-	private List<Guest> guests;
+	@ManyToOne
+	@JoinColumn(name = "guestId")
+	private Guest guestId;
+	
+	@ManyToOne
+	@JoinColumn(name = "hostId")
+	private Host hostId;
 	
 	@ManyToOne
 	@JoinColumn(name = "houseId")

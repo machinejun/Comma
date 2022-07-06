@@ -6,8 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,15 +18,10 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Guest extends User {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Transient // 해당 변수는 매핑하지 않음
+	private List<House> likes; // 찜 목록
 	
-	@OneToMany
-	@JoinColumn(name="house")
-	private List<House> myHouseList;
-	
-	@OneToMany
-	@JoinColumn(name="reservation")
-	private Reservation reservation;
+	@Transient
+	private List<Reservation> reservations;
+
 }

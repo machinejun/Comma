@@ -16,7 +16,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,16 +43,15 @@ public class House {
 	
 	@ManyToOne
 	@JoinColumn(name="hostId")
-	private Host host;
+	private Host hostId;
 	
+	@ColumnDefault("0.0")
 	private double starScore;
 	
-	// 하루 숙박 가격
-	private int oneDayPrice;
+	private int oneDayPrice; // 하루 숙박 가격
 	
-	// 숙소 유형
 	@Column(nullable = false)
-	private String type;
+	private String type; // 숙소 유형
 	
 	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "imageId")
@@ -61,7 +63,12 @@ public class House {
 	@CreationTimestamp
 	private Timestamp creationDate;
 	
-	@OneToMany(mappedBy = "house", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "houseId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({"houseId"})
+	private List<Reservation> reservations;
+	
+	@OneToMany(mappedBy = "houseId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({"houseId"})
 	private List<Review> reviews;
 
 }

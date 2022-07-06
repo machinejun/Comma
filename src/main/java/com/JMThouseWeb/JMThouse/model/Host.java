@@ -1,11 +1,17 @@
 package com.JMThouseWeb.JMThouse.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,15 +23,10 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Host extends User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@OneToMany(mappedBy = "hostId", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hostId"})
+	private List<House> houses;
 	
-	@OneToMany
-	@JoinColumn(name="house")
-	private House house;
-	
-	@OneToMany
-	@JoinColumn(name="reservation")
-	private Reservation reservation;
+	@Transient
+	private List<Reservation> reservations;
 }

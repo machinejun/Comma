@@ -3,6 +3,7 @@ package com.JMThouseWeb.JMThouse.model;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
@@ -27,7 +28,7 @@ public class Reply implements Serializable {
 	@Id
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "reviewId")
-	private Review review;
+	private Review reviewId;
 
 	@Lob
 	private String content;

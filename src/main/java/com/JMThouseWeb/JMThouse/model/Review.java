@@ -1,18 +1,21 @@
 package com.JMThouseWeb.JMThouse.model;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.ColumnDefault;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +25,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Review implements Serializable {
+public class Review {
 	
 	/**
 	 * 
@@ -30,9 +33,12 @@ public class Review implements Serializable {
 	 */
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
 	@ManyToOne
 	@JoinColumn(name = "houseId")
-	private House house;
+	private House houseId;
 	
 	@Column(nullable = false, length = 100)
 	private String title;
@@ -44,9 +50,10 @@ public class Review implements Serializable {
 	@Lob
 	private String content;
 	
+	@ColumnDefault("0.0")
 	private double starScore;
 	
-	@OneToMany(mappedBy = "review", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "reviewId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Reply> replies;
 	
 }

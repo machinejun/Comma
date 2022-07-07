@@ -70,5 +70,9 @@ public class House {
 	@OneToMany(mappedBy = "houseId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"houseId"})
 	private List<Review> reviews;
+	
+	@OneToMany(mappedBy ="house", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnoreProperties({"house"})
+	private List<BookedDate> bookedDates;
 
 }

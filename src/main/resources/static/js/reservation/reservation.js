@@ -13,12 +13,14 @@ $( function() {
 		    dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
 		    dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
 		    showMonthAfterYear: true,
-		    yearSuffix: '년'
+		    yearSuffix: '년',
+		    beforeShowDay: alreadyBookDates
 		  });
 	  
     $( "#checkinDate, #checkoutDate" ).datepicker({
     	maxDate:30,
-  		minDate:0
+  		minDate:0,
+
     });
 });
 
@@ -45,4 +47,19 @@ function checkDate(){
 	});
 
 } 
+
+
+
+function alreadyBookDates(date) {
+	let bookedDays = ["2022-7-8", "2022-7-10","2022-07-25"];
+    let m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
+
+    for (i = 0; i < bookedDays.length; i++) {
+        if($.inArray(y + '-' +(m+1) + '-' + d,bookedDays) != -1) {
+			
+            return [false];
+        }
+    }
+    return [true];
+}
 

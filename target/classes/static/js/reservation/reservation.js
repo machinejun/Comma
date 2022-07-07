@@ -1,3 +1,6 @@
+let userid = $("meta[name='userid']").attr("id");
+let hostid = $("meta[name='hostid']").attr("id");
+let houseid = $("meta[name='houseid']").attr("id");
 
 $( function() {
 	  $.datepicker.setDefaults({  	
@@ -20,10 +23,26 @@ $( function() {
 });
 
 function checkDate(){
-	let a1 = $("#checkinDate").val();
-	let a2 = $("#checkoutDate").val();
-	
-	console.log(a1);
-	console.log(a2);
+
+	let tempBox = [userid, hostid, houseid];
+	let data ={
+		checkInDate: $("#checkinDate").val(),
+		checkOutDate: $("#checkoutDate").val(),
+		tempIdBox: tempBox
+	}
+
+	$.ajax({
+		type: "post",
+		url: "/api/house/reserve",
+		contentType: "application/json; charset=utf-8",
+		data: JSON.stringify(data),
+		dataType: "json"
+	}).done(function(response){
+		console.log(response)
+		
+	}).fail(function(err){
+		console.log(response)
+	});
+
 } 
 

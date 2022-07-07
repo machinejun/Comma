@@ -34,14 +34,14 @@
     </footer>
     <!-- Search -->
 
-    <script src="js/vendor/jquery-3.3.1.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/vendor/aos.js"></script>
-    <script src="js/vendor/jquery.lettering.js"></script>
-    <script src="js/vendor/jquery.sticky.js"></script>
-    <script src="js/vendor/TweenMax.min.js"></script>
-    <script src="js/vendor/ScrollMagic.min.js"></script>
-    <script src="js/vendor/scrollmagic.animation.gsap.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="../js/vendor/jquery-3.3.1.min.js"></script>
+    <script src="../js/vendor/bootstrap.min.js"></script>
+    <script src="../js/vendor/aos.js"></script>
+    <script src="../js/vendor/jquery.lettering.js"></script>
+    <script src="../js/vendor/jquery.sticky.js"></script>
+    <script src="../js/vendor/TweenMax.min.js"></script>
+    <script src="../js/vendor/ScrollMagic.min.js"></script>
+    <script src="../js/vendor/scrollmagic.animation.gsap.min.js"></script>
+    <script src="../js/main.js"></script>
   </body>
 </html>

@@ -24,7 +24,7 @@ public class HouseController {
 		return "house/list_form";
 	}
 	
-	// 숙소 상세정보 조회
+	// 숙소 상세정보 페이지 호출
 	@GetMapping("/detail/{houseId}")
 	public String getHouseDetail(@PathVariable int houseId, Model model) {
 		model.addAttribute("house", houseService.getHouseDetail(houseId));
@@ -41,6 +41,18 @@ public class HouseController {
 	@GetMapping("/update_form")
 	public String getUpdateForm() {
 		return "house/update_form";
+	}
+	
+	// 숙소 글 수정 페이지 호출
+	@GetMapping("/index")
+	public String index() {
+		return "index";
+	}
+	
+	// test
+	@GetMapping("/detail")
+	public String detail() {
+		return "house/detail_form";
 	}
 	
 }

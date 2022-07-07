@@ -1,6 +1,8 @@
 package com.JMThouseWeb.JMThouse.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,9 +31,17 @@ public class HouseApiController {
 		return house;
 	}
 	
-	@PutMapping("/update")
-	public void updateHouse(@RequestBody House house) {
+	@PutMapping("/update/{houseId}")
+	public House updateHouse(@PathVariable int houseId, @RequestBody House house) {
 		// 숙소 정보 수정 기능
+		houseService.updateHouse(houseId, house);
+		return house;
+	}
+	
+	@DeleteMapping("/delete/{houseId}")
+	public void deleteHouse(@PathVariable int houseId) {
+		// 숙소 삭제 기능
+		houseService.deleteHouse(houseId);
 	}
 
 }

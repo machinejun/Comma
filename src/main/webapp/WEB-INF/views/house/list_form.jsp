@@ -6,22 +6,27 @@
 <link rel="stylesheet" type="text/css" href="/css/house/demo.css" />
 <link rel="stylesheet" type="text/css" href="/css/house/component.css" />
 <script src="/js/house/modernizr.custom.js"></script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../layout/header.jsp"%>
 </head>
 <body>
+	<br />
+	<br />
 	<div class="container">
 		<section class="grid-wrap">
 			<ul class="grid swipe-right" id="grid">
 				<li class="title-box">
 					<h2>
-						Illustrations by <a href="http://ryotakemasa.com/">Ryo Takemasa</a>
+						Everywhere, Whenever <a href="/">JMT HOUSE</a>
 					</h2>
 				</li>
 				<!-- 숙소 사진 리스트 -->
 				<c:forEach var="house" items="housePage">
-					<li><a href="/house/detail/${house.id}"><img src="/images/house/dummy.png" alt="dummy" />
-							<h3>A fantastic title</h3></a></li>
 				</c:forEach>
+				<!--  
+					<li><a href="/house/detail/"><img src="http://localhost:9090/upload/${house.image.imageUrl}"/>
+							<h3>${house.name}</h3></a></li>
+							-->
 				<li><a href="#"><img src="/images/house/dummy.png" alt="dummy" />
 						<h3>A fantastic title</h3></a></li>
 				<li><a href="#"><img src="/images/house/dummy.png" alt="dummy" />
@@ -38,7 +43,9 @@
 						<h3>A fantastic title</h3></a></li>
 				<li><a href="#"><img src="/images/house/dummy.png" alt="dummy" />
 						<h3>A fantastic title</h3></a></li>
-				<li><a href="#"><img src="/images/house/dummy.png" alt="dummy" />
+				<li><a href="#"><img src="/images/house/dummy.png" />
+						<h3>A fantastic title</h3></a></li>
+				<li><a href="#"><img src="/images/house/dummy.png"/>
 						<h3>A fantastic title</h3></a></li>
 			</ul>
 		</section>
@@ -56,3 +63,4 @@
 	</script>
 </body>
 </html>
+<%@ include file="../layout/footer.jsp"%>

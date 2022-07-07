@@ -42,8 +42,8 @@
 	display: block;
 	margin: 7px;
 	padding: 20px;
-	background: #2E3444;
-	color: #D3EEE2;
+	background: #ff896b;
+	color: #fff;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-weight: 300;
@@ -130,7 +130,7 @@
 	margin: 0;
 	padding: 20px;
 	width: 100%;
-	background: #2E3444;
+	background: #ff896b;
 	color: 	#fff;
 	text-align: right;
 	text-transform: uppercase;
@@ -164,7 +164,7 @@
 
 .grid li.shown:hover > a::before {
 	border-width: 14px;
-	border-color: #2E3444;
+	border-color: #ff896b;
 }
 
 /* Animations */

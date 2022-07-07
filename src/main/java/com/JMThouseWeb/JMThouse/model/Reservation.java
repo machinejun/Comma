@@ -50,4 +50,7 @@ public class Reservation {
 	
 	@Enumerated(EnumType.STRING)
 	private ReservationType approvalStatus; // 예약 승인 상태
+	
+	@Transient
+	private int[] tempIdBox = new int[3];
 }

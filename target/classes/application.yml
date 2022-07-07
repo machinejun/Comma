@@ -35,5 +35,5 @@ spring:
       fail-on-empty-beans: false
       
 file:
-  path: C:/houseImgDir/upload
+  path: C:/houseImgDir/upload/
   

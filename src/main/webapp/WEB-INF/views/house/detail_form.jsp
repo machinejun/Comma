@@ -4,106 +4,267 @@
 * Tempalte URI: https://untree.co/
 * License: https://creativecommons.org/licenses/by/3.0/
 */ -->
-<!doctype html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
-<main class="untree_co--site-main">
+<!--
+	Future Imperfect by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+<title>Future Imperfect by HTML5 UP</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="/js/house/ie/html5shiv.js"></script>
+<link rel="stylesheet" href="/css/house/main.css" />
+<link rel="stylesheet" href="assets/css/ie9.css" />
+<link rel="stylesheet" href="assets/css/ie8.css" />
+</head>
+<body>
 
+	<!-- Wrapper -->
+	<div id="wrapper">
 
-	<div class="untree_co--site-hero inner-page bg-light" style="background-color: #fff;">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-md-9">
-					<div class="site-hero-contents" data-aos="fade-up">
-						<h1 class="hero-heading">About Luxury Hotel</h1>
-						<div class="sub-text w-75">
-							<p>Facilities provided may range from a modest-quality mattress in a small room to large suites with bigger.</p>
-						</div>
+		<!-- Menu -->
+		<section id="menu">
+
+			<!-- Search -->
+			<section>
+				<form class="search" method="get" action="#">
+					<input type="text" name="query" placeholder="Search" />
+				</form>
+			</section>
+
+			<!-- Links -->
+			<section>
+				<ul class="links">
+					<li><a href="#">
+							<h3>Lorem ipsum</h3>
+							<p>Feugiat tempus veroeros dolor</p>
+					</a></li>
+					<li><a href="#">
+							<h3>Dolor sit amet</h3>
+							<p>Sed vitae justo condimentum</p>
+					</a></li>
+					<li><a href="#">
+							<h3>Feugiat veroeros</h3>
+							<p>Phasellus sed ultricies mi congue</p>
+					</a></li>
+					<li><a href="#">
+							<h3>Etiam sed consequat</h3>
+							<p>Porta lectus amet ultricies</p>
+					</a></li>
+				</ul>
+			</section>
+
+			<!-- Actions -->
+			<section>
+				<ul class="actions vertical">
+					<li><a href="#" class="button big fit">Log In</a></li>
+				</ul>
+			</section>
+
+		</section>
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Post -->
+			<article class="post">
+				<header>
+					<div class="title">
+						<h2>
+							<a href="#">${house.name}</a>
+						</h2>
+						<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
 					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="untree_co--site-section">
-
-		<div class="container-fluid px-md-0">
-
-			<div class="row justify-content-center text-center pt-0 pb-5">
-				<div class="col-lg-6 section-heading" data-aos="fade-up">
-					<h3 class="text-center">The Management</h3>
-				</div>
-			</div>
-
-			<div class="row no-gutters">
-				<div class="col-md-4" data-aos="fade-up">
-					<img src="/images/house/dummy.png" alt="Image" class="img-fluid" data-jarallax-element="-140">
-				</div>
-				<div class="col-md-8">
-					<div class="row justify-content-center">
-						<div class="col-md-10">
-							<h3 class="mb-4" data-aos="fade-up">Philosophy</h3>
-							<div class="row">
-								<div class="col-md-6" data-aos="fade-up">
-
-									<p>A hotel is an establishment that provides paid lodging on a short-term basis. Facilities provided may range from a modest-quality mattress in a small room to large suites with bigger.</p>
-
-									<p>Higher-quality beds, a dresser, a refrigerator and other kitchen facilities, upholstered chairs, a flat screen television, and en-suite bathrooms. Small, lower-priced hotels may offer only the most basic
-										guest services and facilities.</p>
-
-								</div>
-								<div class="col-md-6" data-aos="fade-up">
-									<p>Larger, higher-priced hotels may provide additional guest facilities such as a swimming pool, business centre (with computers, printers, and other office equipment), childcare, conference and event
-										facilities, tennis or basketball courts, gymnasium, restaurants, day spa, and social function services.</p>
-								</div>
-							</div>
-						</div>
+					<div class="meta">
+						<time class="published" datetime="2015-11-01">November 1,
+							2015</time>
+						<a href="#" class="author"><span class="name">Jane Doe</span><img
+							src="/images/house/avatar.jpg" alt="" /></a>
 					</div>
+				</header>
+				<a href="#" class="image featured"><img
+					src="/images/house/pic01.jpg" alt="" /></a>
+				<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus
+					nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor
+					magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies
+					mi non congue ullam corper. Praesent tincidunt sed tellus ut
+					rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies
+					congue gravida diam non fringilla.</p>
+				<footer>
+					<ul class="actions">
+						<li><a href="#" class="button big">예약하기</a></li>
+					</ul>
+					<ul class="stats">
+						<li><a href="#">General</a></li>
+						<li><a href="#" class="icon fa-heart">28</a></li>
+						<li><a href="#" class="icon fa-comment">128</a></li>
+					</ul>
+				</footer>
+			</article>
 
-				</div>
-			</div>
 
 		</div>
 
+		<!-- Sidebar -->
+		<section id="sidebar">
+
+			<!-- Intro -->
+			<section id="intro">
+				<a href="#" class="logo"><img src="/images/house/logo.jpg"
+					alt="" /></a>
+				<header>
+					<h2>Future Imperfect</h2>
+					<p>
+						Another fine responsive site template by <a
+							href="http://html5up.net">HTML5 UP</a>
+					</p>
+				</header>
+			</section>
+
+			<!-- Mini Posts -->
+			<section>
+				<div class="mini-posts">
+
+					<!-- Mini Post -->
+					<article class="mini-post">
+						<header>
+							<h3>
+								<a href="#">Vitae sed condimentum</a>
+							</h3>
+							<time class="published" datetime="2015-10-20">October 20,
+								2015</time>
+							<a href="#" class="author"><img
+								src="/images/house/avatar.jpg" alt="" /></a>
+						</header>
+						<a href="#" class="image"><img src="/images/house/pic04.jpg"
+							alt="" /></a>
+					</article>
+
+					<!-- Mini Post -->
+					<article class="mini-post">
+						<header>
+							<h3>
+								<a href="#">Rutrum neque accumsan</a>
+							</h3>
+							<time class="published" datetime="2015-10-19">October 19,
+								2015</time>
+							<a href="#" class="author"><img src="/images/avatar.jpg"
+								alt="" /></a>
+						</header>
+						<a href="#" class="image"><img src="/images/pic05.jpg" alt="" /></a>
+					</article>
+
+					<!-- Mini Post -->
+					<article class="mini-post">
+						<header>
+							<h3>
+								<a href="#">Odio congue mattis</a>
+							</h3>
+							<time class="published" datetime="2015-10-18">October 18,
+								2015</time>
+							<a href="#" class="author"><img src="/images/avatar.jpg"
+								alt="" /></a>
+						</header>
+						<a href="#" class="image"><img src="images/pic06.jpg" alt="" /></a>
+					</article>
+
+					<!-- Mini Post -->
+					<article class="mini-post">
+						<header>
+							<h3>
+								<a href="#">Enim nisl veroeros</a>
+							</h3>
+							<time class="published" datetime="2015-10-17">October 17,
+								2015</time>
+							<a href="#" class="author"><img src="images/avatar.jpg"
+								alt="" /></a>
+						</header>
+						<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
+					</article>
+
+				</div>
+			</section>
+
+			<!-- Posts List -->
+			<section>
+				<ul class="posts">
+					<li>
+						<article>
+							<header>
+								<h3>
+									<a href="#">Lorem ipsum fermentum ut nisl vitae</a>
+								</h3>
+								<time class="published" datetime="2015-10-20">October 20,
+									2015</time>
+							</header>
+							<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
+						</article>
+					</li>
+					<li>
+						<article>
+							<header>
+								<h3>
+									<a href="#">Convallis maximus nisl mattis nunc id lorem</a>
+								</h3>
+								<time class="published" datetime="2015-10-15">October 15,
+									2015</time>
+							</header>
+							<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
+						</article>
+					</li>
+					<li>
+						<article>
+							<header>
+								<h3>
+									<a href="#">Euismod amet placerat vivamus porttitor</a>
+								</h3>
+								<time class="published" datetime="2015-10-10">October 10,
+									2015</time>
+							</header>
+							<a href="#" class="image"><img src="images/pic10.jpg" alt="" /></a>
+						</article>
+					</li>
+					<li>
+						<article>
+							<header>
+								<h3>
+									<a href="#">Magna enim accumsan tortor cursus ultricies</a>
+								</h3>
+								<time class="published" datetime="2015-10-08">October 8,
+									2015</time>
+							</header>
+							<a href="#" class="image"><img src="images/pic11.jpg" alt="" /></a>
+						</article>
+					</li>
+					<li>
+						<article>
+							<header>
+								<h3>
+									<a href="#">Congue ullam corper lorem ipsum dolor</a>
+								</h3>
+								<time class="published" datetime="2015-10-06">October 7,
+									2015</time>
+							</header>
+							<a href="#" class="image"><img src="images/pic12.jpg" alt="" /></a>
+						</article>
+					</li>
+				</ul>
+			</section>
+
 	</div>
 
-	<div class="untree_co--site-section pt-0">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-md-9">
-					<div class="row mb-5 align-items-center">
-						<div class="col-md-5 mr-auto">
-							<h2 class="display-4">Watch LuxuryHotel Video</h2>
-						</div>
-						<div class="col-md-7 ml-auto">
-							<p>Higher-quality beds, a dresser, a refrigerator and other kitchen facilities, upholstered chairs, a flat screen television, and en-suite bathrooms. Small, lower-priced hotels may offer only the most basic
-								guest services and facilities.</p>
-							<p>A hotel is an establishment that provides paid lodging on a short-term basis. Facilities provided may range from a modest-quality mattress in a small room to large suites with bigger.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12">
-					<img src="/images/house/dummy.png" alt="Image" class="img-fluid">
-				</div>
-			</div>
-		</div>
-	</div>
+	<!-- Scripts -->
+	<script src="/js/house/jquery.min.js"></script>
+	<script src="/js/house/skel.min.js"></script>
+	<script src="/js/house/util.js"></script>
+	<script src="assets/js/ie/respond.min.js"></script>
+	<script src="/js/house/main.js"></script>
 
-	<div class="untree_co--site-section py-5 bg-body-darker cta">
-		<div class="container">
-			<div class="row">
-				<div class="col-12 text-center">
-					<h3 class="m-0 p-0">
-						If you have any special requests, please feel free to call us. <a href="tel://+123456789012">+12.345.678.9012</a>
-					</h3>
-				</div>
-			</div>
-		</div>
-	</div>
-
-</main>
 </body>
 </html>
 <%@ include file="../layout/footer.jsp"%>

@@ -11,7 +11,7 @@
 	<form action="#">
 		<div class="form-group">
 			<div class="form-group">
-				<label for="username">이름</label> <input type="text" class="form-control" id="username">
+				<label for="username">이름</label> <input type="text" class="form-control" value="${house.name}" id="name">
 			</div>
 			<div class="form-group">
 				<label for="sel1">지역</label> <select class="form-control" id="sel1">
@@ -44,10 +44,10 @@
 			</div>
 			<div class="form-group">
 				<br /> <label for="infoText"><b>숙소 소개</b></label>
-				<textarea class="form-control" rows="10" name="infoText" id="infoText"></textarea>
+				<textarea class="form-control" rows="10" name="infoText" id="infoText">${house.infoText}</textarea>
 			</div>
 		</div>
-		<button type="submit" class="btn btn-primary" id="btn-register">수정</button>
+		<button type="submit" class="btn btn-primary" id="btn-update">수정</button>
 	</form>
 </div>
 

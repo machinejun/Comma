@@ -6,8 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.JMThouseWeb.JMThouse.dto.ImageFileDto;
 import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.service.HouseService;
 
@@ -43,16 +45,17 @@ public class HouseController {
 		return "house/update_form";
 	}
 	
-	// 숙소 글 수정 페이지 호출
-	@GetMapping("/index")
-	public String index() {
-		return "index";
-	}
-	
-	// test
+	// test 중
 	@GetMapping("/detail")
 	public String detail() {
 		return "house/detail_form";
+	}
+	
+	@PostMapping("/image/upload")
+	public String uploadImage(ImageFileDto fileDto) {
+		houseService.uploadImage(fileDto);
+		System.out.println("컨트롤러 fileDto 확인 : " + fileDto.toString());
+		return "redirect:/house/list";
 	}
 	
 }

@@ -1741,7 +1741,7 @@
 			input[type="button"]:hover:active,
 			button:hover:active,
 			.button:hover:active {
-				background-color: rgba(46, 186, 174, 0.05);
+				background-color: #fff;
 			}
 
 		input[type="submit"]:before, input[type="submit"]:after,
@@ -1999,7 +1999,7 @@
 
 			input[type="checkbox"] + label:before,
 			input[type="radio"] + label:before {
-				background: rgba(160, 160, 160, 0.075);
+				background: #fff;
 				border: solid 1px rgba(160, 160, 160, 0.3);
 				content: '';
 				display: inline-block;
@@ -2895,7 +2895,7 @@
 		}
 
 			table tbody tr:nth-child(2n + 1) {
-				background-color: rgba(160, 160, 160, 0.075);
+				background-color: #fff;
 			}
 
 		table td {
@@ -2960,7 +2960,7 @@
 		-ms-justify-content: space-between;
 		justify-content: space-between;
 		background-color: #ffffff;
-		border-bottom: solid 1px rgba(160, 160, 160, 0.3);
+		border-bottom: solid 1px #ffffff;
 		height: 3.5em;
 		left: 0;
 		line-height: 3.5em;
@@ -3002,7 +3002,7 @@
 			-webkit-flex: 1;
 			-ms-flex: 1;
 			flex: 1;
-			border-left: solid 1px rgba(160, 160, 160, 0.3);
+			border-left: solid 1px #fff;
 			height: inherit;
 			line-height: inherit;
 			margin-left: 1.5em;
@@ -3011,7 +3011,7 @@
 		}
 
 			#header .links ul li {
-				border-left: solid 1px rgba(160, 160, 160, 0.3);
+				border-left: solid 1px #fff;
 				line-height: 1;
 				margin-left: 1em;
 				padding-left: 1em;
@@ -3044,7 +3044,7 @@
 			}
 
 				#header .main ul li {
-					border-left: solid 1px rgba(160, 160, 160, 0.3);
+					border-left: solid 1px #fff;
 					height: inherit;
 					line-height: inherit;
 					white-space: nowrap;
@@ -3219,7 +3219,7 @@
 	}
 
 		#sidebar > * {
-			border-top: solid 1px rgba(160, 160, 160, 0.3);
+			border-top: solid 1px #fff;
 			margin: 3em 0 0 0;
 			padding: 3em 0 0 0;
 		}
@@ -3233,7 +3233,7 @@
 		@media screen and (max-width: 1280px) {
 
 			#sidebar {
-				border-top: solid 1px rgba(160, 160, 160, 0.3);
+				border-top: solid 1px #fff;
 				margin: 3em 0 0 0;
 				min-width: 0;
 				padding: 3em 0 0 0;
@@ -3356,7 +3356,7 @@
 		transition: transform 0.5s ease, visibility 0.5s;
 		-webkit-overflow-scrolling: touch;
 		background: #ffffff;
-		border-left: solid 1px rgba(160, 160, 160, 0.3);
+		border-left: solid 1px #fff;
 		box-shadow: none;
 		height: 100%;
 		max-width: 80%;
@@ -3389,7 +3389,7 @@
 
 			#menu .links > li {
 				border: 0;
-				border-top: dotted 1px rgba(160, 160, 160, 0.3);
+				border-top: dotted 1px #fff;
 				margin: 1.5em 0 0 0;
 				padding: 1.5em 0 0 0;
 			}

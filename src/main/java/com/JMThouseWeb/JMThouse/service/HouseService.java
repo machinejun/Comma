@@ -1,20 +1,36 @@
 package com.JMThouseWeb.JMThouse.service;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.JMThouseWeb.JMThouse.dto.ImageFileDto;
 import com.JMThouseWeb.JMThouse.model.House;
+import com.JMThouseWeb.JMThouse.model.Image;
 import com.JMThouseWeb.JMThouse.repository.HouseRepository;
+import com.JMThouseWeb.JMThouse.repository.ImageRepository;
 
 @Service
 public class HouseService {
 	
+	@Value("${file.path}")
+	private String uploadFolder;
+	
 	@Autowired
 	private HouseRepository houseRepository;
+	
+	@Autowired
+	private ImageRepository imageRepository;
 
 	@Transactional
-	public void addHouse(House house) {
+	public void registerHouse(House house) {
 		houseRepository.save(house);
 	}
 
@@ -43,6 +59,26 @@ public class HouseService {
 	@Transactional
 	public void deleteHouse(int houseId) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Transactional
+	public void uploadImage(ImageFileDto fileDto) {
+
+		String imageFileName = UUID.randomUUID() + "_" + "image"; // 한글이름 파일 저장시 오류 방지
+		String newFileName = (imageFileName.trim()).replaceAll("\\s", "");
+		
+		Path imageFilePath = Paths.get(uploadFolder + newFileName);
+		
+		try {
+			Files.write(imageFilePath, fileDto.getFile().getBytes());
+			
+			Image imageEntity = fileDto.toEntity(newFileName);
+			imageRepository.save(imageEntity);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

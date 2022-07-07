@@ -24,10 +24,11 @@ public class HouseApiController {
 	@Autowired
 	private HouseService houseService;
 	
-	@PostMapping("/add")
-	public House addHouse(@RequestBody House house) {
+	@PostMapping("/register")
+	public House registerHouse(@RequestBody House house) {
 		// 숙소 등록 기능
-		houseService.addHouse(house);
+		houseService.registerHouse(house);
+		System.out.println("숙소 등록 컨트롤러 동작 !!");
 		return house;
 	}
 	

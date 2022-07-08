@@ -5,7 +5,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,10 +22,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Guest extends User {
+public class Guest {
 	
-	@Transient // 해당 변수는 매핑하지 않음
-	private List<House> likes; // 찜 목록
+	@Id
+	@OneToOne
+	@JoinColumn(name="userId")
+	private User user;
+	
+	@OneToOne
+	@JoinColumn(name="houseId")
+	private LikeHouse likeHouse; // 찜 목록
 	
 	@OneToMany(mappedBy = "guestId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({"guestId"})

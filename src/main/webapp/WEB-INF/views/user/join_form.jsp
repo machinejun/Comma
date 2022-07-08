@@ -66,6 +66,6 @@
     </div>
   </div>
   
-  <script src="/js/user.js"></script>
+  <script src="/js/guest.js"></script>
   
   <%@ include file="../layout/footer.jsp"%>

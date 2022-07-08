@@ -1,67 +1,48 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html lang="en">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<html>
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="author" content="Untree.co" />
-<link rel="shortcut icon" href="favicon.jpg" />
-<meta name="description" content="" />
-<meta name="keywords" content="" />
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,500i,700|Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../css/vendor/icomoon/style.css" />
+  <title>Shop Homepage - Start Bootstrap Template</title>
 
-<link rel="stylesheet" href="../css/vendor/aos.css" />
-<link rel="stylesheet" href="../css/vendor/animate.min.css" />
-<link rel="stylesheet" href="../css/vendor/bootstrap.css" />
-<link rel="stylesheet" href="../css/style.css" />
-
-<title>JMT HOUSE</title>
+  <!-- Bootstrap core CSS -->
+  <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="/css/shop-homepage.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+	
+<link href="css/main.550dcf66.css" rel="stylesheet"></head>
 </head>
+
 <body>
-	<div id="untree_co--overlayer"></div>
-	<div class="loader">
-		<div class="spinner-border text-primary" role="status">
-			<span class="sr-only">Loading...</span>
-		</div>
-	</div>
 
-	<nav class="untree_co--site-mobile-menu">
-		<div class="close-wrap d-flex">
-			<a href="#" class="d-flex ml-auto js-menu-toggle"> <span class="close-label">Close</span>
-				<div class="close-times">
-					<span class="bar1"></span> <span class="bar2"></span>
-				</div>
-			</a>
-		</div>
-		<div class="site-mobile-inner"></div>
-	</nav>
-
-	<div class="untree_co--site-wrap">
-		<nav class="untree_co--site-nav js-sticky-nav">
-			<div class="container d-flex align-items-center">
-				<div class="logo-wrap">
-					<a href="index.html" class="untree_co--site-logo">JMT HOUSE</a>
-				</div>
-				<div class="site-nav-ul-wrap text-center d-none d-lg-block">
-					<ul class="site-nav-ul js-clone-nav">
-						<li class="active"><a href="index.html">Main</a></li>
-						<li class="has-children"><a href="/house/list">List</a></li>
-
-						<li class="has-children float-right"><a><span class="icon-user-circle"></span>User</a>
-							<ul class="dropdown">
-								<li><a class="user-btn" href="#">로그인</a></li>
-								<li><a class="user-btn" href="#">회원가입</a></li>
-								<li><a class="user-btn" href="#">호스트 되기</a></li>
-								<li><a class="user-btn" href="#">예약 보기</a></li>
-							</ul></li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark 
+   fixed-top" style="background-color: #1763e9; height: 20px;">
+    <div class="container">
+      <a class="navbar-brand text-warning" href="#" >JMT HOUSE</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

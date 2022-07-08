@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,12 +16,12 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
 <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,500i,700|Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../css/vendor/icomoon/style.css" />
+<link rel="stylesheet" href="/css/vendor/icomoon/style.css" />
 
-<link rel="stylesheet" href="../css/vendor/aos.css" />
-<link rel="stylesheet" href="../css/vendor/animate.min.css" />
-<link rel="stylesheet" href="../css/vendor/bootstrap.css" />
-<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="/css/vendor/aos.css" />
+<link rel="stylesheet" href="/css/vendor/animate.min.css" />
+<link rel="stylesheet" href="/css/vendor/bootstrap.css" />
+<link rel="stylesheet" href="/css/style.css" />
 
 <title>JMT HOUSE</title>
 </head>
@@ -51,9 +52,8 @@
 				</div>
 				<div class="site-nav-ul-wrap text-center d-none d-lg-block">
 					<ul class="site-nav-ul js-clone-nav">
-						<li class="active"><a href="index.html">Main</a></li>
+						<li class="active"><a href="index.html">HOME</a></li>
 						<li class="has-children"><a href="/house/list">List</a></li>
-
 						<li class="has-children float-right"><a><span class="icon-user-circle"></span>User</a>
 							<ul class="dropdown">
 								<li><a class="user-btn" href="#">로그인</a></li>
@@ -65,3 +65,5 @@
 				</div>
 			</div>
 		</nav>
+	</div>
+</body>

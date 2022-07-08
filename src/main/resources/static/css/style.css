@@ -1660,12 +1660,15 @@ footer .form-subscribe .form-control:active, footer .form-subscribe .form-contro
 }
 
 .form-control, .btn {
-  height: 45px;
-  border-radius: 0;
+  height: 40px;
+  border-radius: 5%;
 }
 
 .btn {
   font-size: 16px;
+  color: #fff;
+  border: none;
+  background: #FF896B;
   font-weight: 700;
 }
 

@@ -11,9 +11,15 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ImageFileDto {
+public class RequestPostDto {
 	
 	private MultipartFile file;
+	private String name;
+	private String address;
+	private String type;
+	private int OneDayPrice;
+	private String infoText;
+	
 	
 	public Image toEntity(String imageUrl) {
 		return Image.builder()

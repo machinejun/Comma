@@ -13,10 +13,10 @@
 		<div class="form-group">
 			<div class="form-group">
 				<label for="name"><b>이름</b></label> <input type="text"
-					class="form-control" id="name" />
+					class="form-control" id="name" name="name"/>
 			</div>
 			<div class="form-group">
-				<label><b>지역</b></label> <select class="form-control" id="address">
+				<label><b>지역</b></label> <select class="form-control" id="address" name="address">
 					<option>서울</option>
 					<option>부산</option>
 					<option>대구</option>
@@ -30,7 +30,7 @@
 				</select>
 			</div>
 			<div class="form-group">
-				<label><b>숙소 유형</b></label> <select class="form-control" id="type">
+				<label><b>숙소 유형</b></label> <select class="form-control" id="type" name="type">
 					<option>호텔</option>
 					<option>모텔</option>
 					<option>펜션</option>
@@ -39,7 +39,7 @@
 			</div>
 			<div class="form-group">
 				<label for="price"><b>숙박 가격 (1인 / 1박 기준)</b></label> <input
-					type="text" class="form-control" id="oneDayPrice" />
+					type="text" class="form-control" id="oneDayPrice" name="oneDayPrice"/>
 			</div>
 			<label><b>사진 등록</b></label>
 			<div class="custom-file">
@@ -66,5 +66,4 @@
 						.html(fileName);
 			});
 </script>
-<script src="/js/house/house.js"></script>
 <%@ include file="../layout/footer.jsp"%>

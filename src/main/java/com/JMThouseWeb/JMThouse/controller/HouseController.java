@@ -48,8 +48,9 @@ public class HouseController {
 		return "house/update_form";
 	}
 	
-	@PostMapping("/image/upload")
+	@PostMapping("/post")
 	public String postHouse(RequestPostDto requestPostDto) {
+		// TODO User와 함께 보내기
 		houseService.postHouse(requestPostDto);
 		return "redirect:/house/list";
 	}

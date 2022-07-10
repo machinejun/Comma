@@ -13,10 +13,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.JMThouseWeb.JMThouse.dto.RequestPostDto;
+import com.JMThouseWeb.JMThouse.dto.RequestWishListDto;
 import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.model.Image;
+import com.JMThouseWeb.JMThouse.model.LikeHouse;
+import com.JMThouseWeb.JMThouse.model.User;
 import com.JMThouseWeb.JMThouse.repository.HouseRepository;
 import com.JMThouseWeb.JMThouse.repository.ImageRepository;
+import com.JMThouseWeb.JMThouse.repository.LikeHouseRepository;
 
 @Service
 public class HouseService {
@@ -30,10 +34,8 @@ public class HouseService {
 	@Autowired
 	private ImageRepository imageRepository;
 
-	@Transactional
-	public void registerHouse(House house) {
-		houseRepository.save(house);
-	}
+	@Autowired
+	private LikeHouseRepository likeHouseRepository;
 
 	@Transactional
 	public House getHouseDetail(int houseId) {
@@ -70,7 +72,7 @@ public class HouseService {
 		houseEntity.setInfoText(requestPostDto.getInfoText());
 		houseEntity.setType(requestPostDto.getType());
 		houseEntity.setOneDayPrice(requestPostDto.getOneDayPrice());
-		
+
 		String imageFileName = UUID.randomUUID() + "_" + "image"; // 한글이름 파일 저장시 오류 방지
 		String newFileName = (imageFileName.trim()).replaceAll("\\s", "");
 
@@ -95,6 +97,16 @@ public class HouseService {
 		List<House> houseList = houseRepository.findAll();
 		return houseList;
 
+	}
+
+	@Transactional
+	public void addWishList(RequestWishListDto dto) {
+		// TODO id로 house, guest 찾아서 likehouse 엔티티에 넣어서 디비에 저장하기
+		LikeHouse likeHouseEntity = new LikeHouse();
+		System.out.println(dto.getGuestId());
+		likeHouseEntity.setGuestId(dto.getGuestId());
+		likeHouseEntity.setHouseId(dto.getHouseId());
+		likeHouseRepository.save(likeHouseEntity);
 	}
 
 }

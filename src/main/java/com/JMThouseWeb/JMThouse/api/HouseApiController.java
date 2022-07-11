@@ -1,6 +1,7 @@
 package com.JMThouseWeb.JMThouse.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,9 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.JMThouseWeb.JMThouse.dto.RequestWishListDto;
+import com.JMThouseWeb.JMThouse.auth.PrincipalDetail;
 import com.JMThouseWeb.JMThouse.model.House;
-import com.JMThouseWeb.JMThouse.model.LikeHouse;
 import com.JMThouseWeb.JMThouse.service.HouseService;
 
 @RestController
@@ -39,10 +39,15 @@ public class HouseApiController {
 	}
 
 	@PostMapping("/wishList")
-	public void addWishList(@RequestBody RequestWishListDto dto) {
+	public void addWishList(@RequestBody House house, @AuthenticationPrincipal PrincipalDetail principalDetail) {
 		// 위시리스트 추가 기능
-		// TODO 게스트 객체랑 함께 보내기
-		houseService.addWishList(dto);
+		System.out.println("위시리스트 추가 확인");
+		houseService.addWishList(house.getId(), principalDetail.getUser());
 	}
-
+	
+	@DeleteMapping("/wishList/{houseId}")
+	public void deleteItemOfWishList(@PathVariable int houseId, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+		System.out.println("위시리스트 삭제 확인");
+		houseService.deleteItemOfWishList(houseId, principalDetail.getUser().getId());
+	}
 }

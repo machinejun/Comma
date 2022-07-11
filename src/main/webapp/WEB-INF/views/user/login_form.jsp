@@ -48,14 +48,14 @@
 
 				<div class="text-center p-t-115">
 					<span class="txt1"> 계정이 없으신가요? </span> <a class="txt2"
-						href="#"> 가입하기 </a>
+						href="/auth/join_form"> 가입하기 </a>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
 
-<div id="dropDownSelect1"></div>
+<div ></div>
 
 <script src="/vendor/login/jquery/jquery-3.2.1.min.js"></script>
 <script src="/vendor/login/animsition/js/animsition.min.js"></script>

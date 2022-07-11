@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.JMThouseWeb.JMThouse.dto.RequestPostDto;
-import com.JMThouseWeb.JMThouse.dto.RequestWishListDto;
 import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.model.Image;
 import com.JMThouseWeb.JMThouse.model.LikeHouse;
@@ -65,13 +64,14 @@ public class HouseService {
 	}
 
 	@Transactional
-	public void postHouse(RequestPostDto requestPostDto) {
+	public void postHouse(RequestPostDto requestPostDto, User user) {
 		House houseEntity = new House();
 		houseEntity.setName(requestPostDto.getName());
 		houseEntity.setAddress(requestPostDto.getAddress());
 		houseEntity.setInfoText(requestPostDto.getInfoText());
 		houseEntity.setType(requestPostDto.getType());
 		houseEntity.setOneDayPrice(requestPostDto.getOneDayPrice());
+		houseEntity.setHostId(user);
 
 		String imageFileName = UUID.randomUUID() + "_" + "image"; // 한글이름 파일 저장시 오류 방지
 		String newFileName = (imageFileName.trim()).replaceAll("\\s", "");
@@ -100,18 +100,27 @@ public class HouseService {
 	}
 
 	@Transactional
-	public void addWishList(RequestWishListDto dto) {
-		// TODO id로 house, guest 찾아서 likehouse 엔티티에 넣어서 디비에 저장하기
+	public void addWishList(int houseId, User user) {
 		LikeHouse likeHouseEntity = new LikeHouse();
-		System.out.println(dto.getGuestId());
-		likeHouseEntity.setGuestId(dto.getGuestId());
-		likeHouseEntity.setHouseId(dto.getHouseId());
+		House selectedHouse = houseRepository.findById(houseId).orElseThrow(() -> {
+			return new IllegalArgumentException("해당하는 숙소를 찾을 수 없습니다.");
+		});
+		
+		likeHouseEntity.setGuest(user);
+		likeHouseEntity.setGuestId(user.getId());
+		likeHouseEntity.setHouse(selectedHouse);
+		likeHouseEntity.setHouseId(houseId);
 		likeHouseRepository.save(likeHouseEntity);
 	}
 
 	@Transactional
 	public List<House> getHouseListByAddress(String address) {
 		return houseRepository.findAllByAddress(address);
+	}
+
+	@Transactional
+	public void deleteItemOfWishList(int houseId, int guestId) {
+		likeHouseRepository.deleteByHouseIdAndGuestId(houseId, guestId);	
 	}
 
 }

@@ -1,60 +1,58 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../layout/header.jsp"%>
+<head>
+<title>로그인 페이지</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/js/vendor/login/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+<link rel="stylesheet" type="text/css" href="/js/vendor/login/animate/animate.css">
+<link rel="stylesheet" type="text/css" href="/js/vendor/login/css-hamburgers/hamburgers.min.css">
+<link rel="stylesheet" type="text/css" href="/js/vendor/login/animsition/css/animsition.min.css">
+<link rel="stylesheet" type="text/css" href="/js/vendor/login/select2/select2.min.css">
+<link rel="stylesheet" type="text/css" href="/js/vendor/login/daterangepicker/daterangepicker.css">
+<link rel="stylesheet" type="text/css" href="/css/login/util.css">
+<link rel="stylesheet" type="text/css" href="/css/login/main.css">
+</head>
 
-<div class="d-lg-flex half">
-    <div class="bg order-1 order-md-2" style="background-image: url('images/bg_1.jpg');"></div>
-    <div class="contents order-2 order-md-1">
+<div class="container">
+	<form action="/auth/loginProc" method="post">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<span class="login100-form-title p-b-26"> Welcome </span> <span class="login100-form-title p-b-48"> <i class="zmdi zmdi-font"></i>
+				</span>
 
-      <div class="container">
-        <div class="row align-items-center justify-content-center">
-          <div class="col-md-7">
-            <div class="mb-4">
-              <h3>Sign In</h3>
-              
-            </div>
-            <form action="#" method="post">
-              <div class="form-group first">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username">
+				<div class="wrap-input100 validate-input" data-validate="Valid username is: a@b.c">
+					<input class="input100" type="text" name="username"> <span class="focus-input100" data-placeholder="username"></span>
+				</div>
 
-              </div>
-              <div class="form-group last mb-3">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password">
-                
-              </div>
-              
-              <div class="d-flex mb-5 align-items-center">
-                <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
-                  <input type="checkbox" checked="checked"/>
-                  <div class="control__indicator"></div>
-                </label>
-                <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
-              </div>
+				<div class="wrap-input100 validate-input" data-validate="Enter password">
+					<span class="btn-show-pass"> <i class="zmdi zmdi-eye"></i>
+					</span> <input class="input100" type="password" name="password"> <span class="focus-input100" data-placeholder="Password"></span>
+				</div>
 
-              <input type="submit" id="btn-login" value="Log In" class="btn btn-block btn-primary">
+			</div>
+		</div>
 
-              <span class="d-block text-center my-4 text-muted">&mdash; or &mdash;</span>
-              
-              <div class="social-login">
-                <a href="#" class="facebook btn d-flex justify-content-center align-items-center">
-                  <span class="icon-facebook mr-3"></span> Login with Facebook
-                </a>
-                <a href="#" class="twitter btn d-flex justify-content-center align-items-center">
-                  <span class="icon-twitter mr-3"></span> Login with  Twitter
-                </a>
-                <a href="#" class="google btn d-flex justify-content-center align-items-center">
-                  <span class="icon-google mr-3"></span> Login with  Google
-                </a>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+	</form>
+	<div class="container-login100-form-btn">
+		<div class="wrap-login100-form-btn">
+			<div class="login100-form-bgbtn"></div>
+			<button type="submit" class="login100-form-btn">Login</button>
+		</div>
+	</div>
 
-    
-  </div>
-  <script src="/js/user.js"></script>
-  <%@ include file="../layout/footer.jsp"%>
+	<div class="text-center p-t-115">
+		<span class="txt1"> Don’t have an account? </span> <a class="txt2" href="/auth/join_form"> Sign Up </a>
+	</div>
+</div>
+
+
+<script src="/js/vendor/login/jquery/jquery-3.2.1.min.js"></script>
+<script src="/js/vendor/login/animsition/js/animsition.min.js"></script>
+<script src="/js/vendor/login/bootstrap/js/popper.js"></script>
+<script src="/js/vendor/login/bootstrap/js/bootstrap.min.js"></script>
+<script src="/js/vendor/login/select2/select2.min.js"></script>
+<script src="/js/vendor/login/daterangepicker/moment.min.js"></script>
+<script src="/js/vendor/login/daterangepicker/daterangepicker.js"></script>
+<script src="/js/vendor/login/countdowntime/countdowntime.js"></script>
+<script src="/js/login/main.js"></script>

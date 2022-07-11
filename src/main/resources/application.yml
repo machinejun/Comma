@@ -34,6 +34,15 @@ spring:
     serialization:
       fail-on-empty-beans: false
       
+  security:
+    user:
+      name: test
+      password: 1234
+      
+  servlet:
+    multipart:
+      max-file-size: 20MB # 파일 하나의 최대 용량
+      max-request-size: 200MB # 한 번에 동시에 보낼 수 있는 파일 용량
+      
 file:
   path: C:/houseImgDir/upload/
-  

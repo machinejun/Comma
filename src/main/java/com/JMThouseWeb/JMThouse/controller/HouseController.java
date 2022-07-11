@@ -24,6 +24,7 @@ public class HouseController {
 	// 숙소 리스트 페이지 호출
 	@GetMapping("/list")
 	public String getHouseList(Model model) {
+		// TODO 리뷰 houseId로 찾아서 평균내서 들고오기
 		List<House> houseList = houseService.getHouseList();
 		model.addAttribute("houseList", houseList);
 		return "house/list_form";
@@ -53,6 +54,13 @@ public class HouseController {
 		// TODO User와 함께 보내기
 		houseService.postHouse(requestPostDto);
 		return "redirect:/house/list";
+	}
+	
+	// 숙소 정렬 필터
+	@GetMapping("/{address}")
+	public void getHouseListByAddress(@PathVariable String address, Model model) {
+		List<House> houseList = houseService.getHouseListByAddress(address);
+		model.addAttribute("houseList", houseList);
 	}
 	
 }

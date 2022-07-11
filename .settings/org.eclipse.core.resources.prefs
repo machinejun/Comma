@@ -4,5 +4,7 @@ encoding//src/main/resources=UTF-8
 encoding//src/main/webapp/WEB-INF/views/house/detail_form.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/house/list_form.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/house/update_form.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/user/join_form.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/user/login_form.jsp=UTF-8
 encoding//src/test/java=UTF-8
 encoding/<project>=UTF-8

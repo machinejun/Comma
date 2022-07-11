@@ -1,13 +1,13 @@
 let userid = $("meta[name='userid']").attr("id");
 let hostid = $("meta[name='hostid']").attr("id");
 let houseid = $("meta[name='houseid']").attr("id");
+let count= 1;
+
 $( function(){
 	let istableShow = 0;
-	let count= 0;
-	$("#check-table").hide();
 	
 	$("#count-minus").bind("click",() => {
-		if(count == 0){
+		if(count == 1){
 			return;
 		}
 		count--;
@@ -23,16 +23,18 @@ $( function(){
 	
 	$("#calender-btn").bind("click",() => {
 		if(istableShow == 0){
-			$("#check-table").show();
-			istableShow = 1;
-			disableScrolling()
+			showModal();
 		}else{
-			$("#check-table").hide();
-			istableShow = 0;
-			enableScrolling()
+			closeModal();
 		}
 	})
+	
+	$("#check-default-btn").bind("click", () => {
+		closeModal()
+	})
 });
+
+
 function disableScrolling(){
     var x=window.scrollX;
     var y=window.scrollY;
@@ -44,13 +46,31 @@ function enableScrolling(){
 }
 
 function inputCalender(){
-	let checkInDate = $("#checkinDate").val();
+	let checkInDate = $("#checkInDate").val();
 	let checkOutDate = $("#checkOutDate").val();
+	if(checkInDate == "" || checkOutDate == ""){
+		alert("데이터를 다시 확인해 주세요");
+		return;
+	}
 	$("#bookingDate").text(`예약일 : ${checkInDate} ~ ${checkOutDate}`);
-	$("#check-table").hide();
+	closeModal();
+}
+
+
+function showModal(){
+	istableShow = 1;
+	disableScrolling();
+	$(".detail").fadeIn();
+	$("#isNaviFocus").attr('value',1);
+}
+
+function closeModal(){
+	$(".detail").fadeOut();
 	istableShow = 0;
 	enableScrolling()
+	$("#isNaviFocus").attr('value',0);
 }
+
 
 $( function() {
 	  $.datepicker.setDefaults({  	
@@ -67,22 +87,24 @@ $( function() {
 		    beforeShowDay: alreadyBookDates
 		  });
 	  
-    $( "#checkinDate, #checkoutDate" ).datepicker({
+    $( "#checkInDate, #checkOutDate" ).datepicker({
     	maxDate:30,
   		minDate:0,
 
     });
 });
 
-function checkDate(){
+function reserveHouse(){
 
 	let tempBox = [userid, hostid, houseid];
 	let data ={
-		checkInDate: $("#checkinDate").val(),
-		checkOutDate: $("#checkoutDate").val(),
+		checkInDate: $("#checkInDate").val(),
+		checkOutDate: $("#checkOutDate").val(),
+		headCount: count,
+		request: $("#request").val(),
 		tempIdBox: tempBox
 	}
-
+	console.log(data);
 	$.ajax({
 		type: "post",
 		url: "/api/house/reserve",
@@ -90,17 +112,19 @@ function checkDate(){
 		data: JSON.stringify(data),
 		dataType: "json"
 	}).done(function(response){
-		console.log(response)
-		
-	}).fail(function(err){
-		console.log(response)
-	});
+		if(reponse == 1){
+			alsert("예약완료")
+			//location.href="/user/reservation";
+		}
+	}).fail(function(){
+		alert("예약에 실패하였습니다.")
+	})
 
 } 
 
 function alreadyBookDates(date) {
-	let bookedDays = ["2022-7-12", "2022-7-15","2022-7-25","2022-07-26"];
-	let checkIndate = $("#checkinDate").val();
+	let bookedDays = ["2022-07-12", "2022-07-15","2022-07-25","2022-07-26"];
+	let checkIndate = $("#checkInDate").val();
 	checkIndate = checkIndate.replace(/(^0+)/, "");
 	if(checkIndate != null){
 		bookedDays.push(checkIndate);
@@ -122,4 +146,5 @@ function alreadyBookDates(date) {
     }
     return [true];
 }
+
 

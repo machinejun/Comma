@@ -3,7 +3,7 @@
 <link href="../css/reservationStyle/reservationStyle.css" rel="stylesheet">
 <%@ include file="layout/header.jsp" %>
 <div class="section-container contact-container">
-    <div class="container">
+    <div id="inputPage" class="container">
       <div class="row">
         <div class="col-xs-12 col-md-12">
           <div class="section-container-spacer">
@@ -17,10 +17,10 @@
                   <div class="col-md-7">
                     <ul class="list-group">
 					  <li  class="list-group-item d-flex justify-content-between align-items-center">
-					    <p id="count" class="align-items-center" style="transform: translate(0%,30%);">예약자 : XXX</p>				   
+					    <p id="booker" class="align-items-center" style="transform: translate(0%,30%);">예약자 : XXX</p>				   
 					  </li>
 					  <li class="list-group-item d-flex justify-content-between align-items-center">					  	
-					    <p id="count" class="align-items-center" style="transform: translate(0%,30%);">인원수 : 0</p> 
+					    <p id="count" class="align-items-center" style="transform: translate(0%,30%);">인원수 : 1</p> 
 						 <div style="transform: translate(0%,10%);">
 						    <a id="count-minus" type="button" class="m-1"><span class="icon-minus-circle"></span></a>			    
 						    <a id="count-plus" type="button" class="m-1"><span class="icon-plus-circle"></span></a>							    
@@ -30,19 +30,12 @@
 					    <p id="bookingDate" class="align-items-center" style="transform: translate(0%,30%);">예약일 : </p> 
 						<div>   
 						    <a id="calender-btn" type="button" class="m-1"><span class="icon-calendar-o"></span></a>
-						    <div id="check-table" 
-						    style="font-size: 20px; position: fixed; z-index:3; left: 50%; top: 43%; border: 1px solid; background-color: white;">
-							    <ul class="list-group list-group-flush">
-								  <li class="list-group-item">Checkin: <input type="date" id="checkinDate" style="width: 120px"/></li>
-								  <li class="list-group-item">CheckOut: <input type="date"  id="checkOutDate" style="width: 120px" type=""/></li>
-								</ul>
-								<a id="write-calender" onclick="inputCalender()" class="float-right m-2" type="btn"><span class="icon-pencil-square"></span></a>	    
-						    </div>						    
+						    						    
 						</div>
 					  </li>
 					  <li class="list-group-item d-flex justify-content-between align-items-center">요청사항
 					   	<div class="form-group">
-                      		<textarea style="margin-top: 10px" class="form-control" rows="3" placeholder="Enter your message"></textarea>
+                      		<textarea id="request" style="margin-top: 10px" class="form-control" rows="3" placeholder="Enter your message"></textarea>
                     	</div>
 					  </li>
 					</ul>
@@ -68,7 +61,7 @@
                         42 rue Moulbert 75016 Paris
                       </li>
                     </ul>
-                    <button type="submit" class="btn btn-primary float-right float-bottom">Send message</button>
+                    <button onclick="reserveHouse()" class="btn btn-primary float-right float-bottom">예약하기</button>
                   </div>
                 </div>
               </form>
@@ -80,7 +73,20 @@
       </div>
     </div>
  </div>
- 
+
+ 	
+ <div class="detail">
+ 	<div id="check-table" >
+ 		<a id="check-default-btn" class="m-2" type="button"><span class="icon-times-circle-o"></span></a>
+
+		<ul class="list-group">
+			<li class="list-group-item list-group-item-action">Checkin: <input type="date" id="checkInDate" style="width: 120px"/></li>
+			<li class="list-group-item list-group-item-action">CheckOut: <input type="date"  id="checkOutDate" style="width: 120px"/></li>
+		</ul>
+
+		<a id="write-calender" onclick="inputCalender()" class="float-right m-2" type="btn"><span class="icon-pencil-square"></span></a>	    
+	</div>	
+ </div>
  
 
 <script src="../js/reservation/reservation.js"></script>

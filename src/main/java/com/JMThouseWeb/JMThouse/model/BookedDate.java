@@ -4,9 +4,15 @@ package com.JMThouseWeb.JMThouse.model;
 
 
 
+import java.time.LocalDate;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,12 +29,13 @@ import lombok.NoArgsConstructor;
 @Entity
 public class BookedDate {
 	@Id
-	int id;
-	
-	@ManyToOne
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+
+	@ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "houseId")
 	private House house;
 	
-	@Temporal(TemporalType.DATE)
-	private Date bookedDate;
+	@Column(name = "bookdedDate", columnDefinition = "DATE")
+	private LocalDate bookedDate;
 }

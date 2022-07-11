@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(){
   $("#user-table").hide();
 		
@@ -9,7 +11,7 @@ $(document).ready(function(){
 		setTimeout(function() {
   			$("#user-table").hide();
 			$("#isUserTable").attr('value',0);
-		}, 2000);
+		}, 3000);
 	}else{
 		$("#user-table").hide();
 		$("#isUserTable").attr('value',0);
@@ -23,27 +25,26 @@ function upnav () {
 	var last = 0;
 	const nav = document.querySelector('nav');
 	const headerheight = document.querySelector('nav').clientHeight;
-		function onScroll()
-		{
-		  
+		function onScroll(){
 			const scrollposition = pageYOffset;
-			console.log(scrollposition);
-			if (scrollposition < 500){
+			isShow = $("#isNaviFocus").val();
+			if (scrollposition < headerheight + 100){
 				$("#naviBar").show();
 				return;
 			}
-			
-			else if (scrollposition > last || scrollposition<= headerheight) 
-			{
-				console.log("hello");
+			else if (scrollposition > last || scrollposition<= headerheight) {
+				if(isShow != 0){
+					return;
+				}
 				$("#naviBar").hide();
-			}
-			else if (scrollposition<last) 
-			{	
-				console.log("hellossssss");
+			}else if (scrollposition<last) {	
+				if(isShow != 0){
+					return;
+				}
 				$("#naviBar").show();
 			}
 			last = scrollposition; 
 		}
 }
 upnav();
+

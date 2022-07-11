@@ -57,6 +57,9 @@ public class House {
 	@JoinColumn(name = "imageId")
 	private Image image;
 	
+	@ColumnDefault("1")
+	private int capacity;
+	
 	@Lob
 	private String infoText;
 	
@@ -74,5 +77,8 @@ public class House {
 	@OneToMany(mappedBy ="house", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnoreProperties({"house"})
 	private List<BookedDate> bookedDates;
+	
+	
+	
 
 }

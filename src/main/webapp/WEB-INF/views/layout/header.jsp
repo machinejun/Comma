@@ -23,10 +23,17 @@
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 
+	<!-- 테스트 -->
+  <meta name="userid" id="1" />
+  <meta name="hostid" id="2" />
+  <meta name="houseid" id="3" />
+
+
+
 </head>
 
 <body>
-
+	<input id="isNaviFocus" type="hidden" value=0 />
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fiexed-top" >
     <div id="naviBar"class="container fixed-top" style="background-color: #1763e9; width: 100%;">
@@ -44,13 +51,14 @@
           </li>
           <li id="user-content" class="nav-item" style="position: relative; left: 700px;">
             <a  class="btn nav-link" ><span class="icon-user-circle"></span>&nbsp;&nbsp;user</a>
-			<div id="user-table" class="list-group" style="width: 180px; font-size: 20px; position: fixed; left: 70%; top: 6%;">
+			<div id="user-table" class="list-group" style="width: 180px; font-size: 20px; position: fixed; left: 75%; top: 7%;">
 			  	<input id="isUserTable" type="hidden" value =0 />
 				<button type="button" class="list-group-item list-group-item-action"><span class="icon-drivers-license-o"></span>&nbsp;&nbsp;로그인</button>
 				<button type="button" class="list-group-item list-group-item-action"><span class="icon-user-plus"></span>&nbsp;&nbsp;회원가입</button>
 				<button type="button" class="list-group-item list-group-item-action"><span class="icon-black-tie"></span>&nbsp;&nbsp;호스트 되기</button>
-				<button type="button" class="list-group-item list-group-item-action"><span class="icon-suitcase"></span>&nbsp;&nbsp;예약 확인</button>
+				<button type="button" class="list-group-item list-group-item-action"><span class="icon-shopping-bag"></span>&nbsp;&nbsp;예약 확인</button>
 				<button type="button" class="list-group-item list-group-item-action"><span class="icon-users"></span>&nbsp;&nbsp;예약자 확인</button>
+				<button type="button" class="list-group-item list-group-item-action"><span class="icon-handshake-o"></span>&nbsp;&nbsp;숙소 등록</button>
 			</div>
           </li>
         </ul>

@@ -14,7 +14,7 @@
 	flex-direction: row-reverse;
 	font-size: 1.5em;
 	justify-content: space-around;
-	padding: 0 .2em;
+	margin-left: 20px;
 	text-align: center;
 	width: 5em;
 }
@@ -41,7 +41,7 @@
 <br />
 <div class="container">
 	<h2>리뷰 등록</h2>
-	<p>숙소가 어땠는지 알려주세요 !</p>
+	<p>즐거운 여행 되셨나요?</p>
 	<form>
 		<!-- TODO 예약내역 뿌리기  -->
 		<div class="form-group">
@@ -71,7 +71,7 @@
 
 			<div class="form-group">
 				<br /> <label for="content"><b></b></label>
-				<textarea class="form-control" rows="10" id="content"></textarea>
+				<textarea class="form-control" rows="10" id="content" placeHolder="숙소의 청결도, 위치, 호스트와의 의사소통에 대한 솔직한 후기를 남겨주세요."></textarea>
 			</div>
 
 		</div>
@@ -104,14 +104,9 @@ function postReview() {
 		},
 		body: JSON.stringify(data)
 	})
-	.then(res => res.text())
 	.then(res => {
-		if(res == "ok") {
 			alert("리뷰 등록이 완료되었습니다.");
 			location.href = "/";
-		} else {
-			alert("리뷰가 등록되지 않았습니다.");
-		}
 	});
 }
 </script>

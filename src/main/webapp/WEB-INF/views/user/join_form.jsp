@@ -1,78 +1,84 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
+
 <head>
-	<title>회원가입 페이지</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="/fonts/iconic/css/material-design-iconic-font.min.css">
-	<link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
-	<link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css">
-	<link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css">
-	<link rel="stylesheet" type="text/css" href="/css/login/util.css">
-	<link rel="stylesheet" type="text/css" href="/css/login/main.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원가입 페이지</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<style>
+body {
+	min-height: 100vh;
+}
+
+.input-form {
+	max-width: 680px;
+	margin-top: 80px;
+	padding: 32px;
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+}
+</style>
 </head>
 
-<div class="limiter">
-	<div class="container-login100">
-		<div class="wrap-login100">
-			<form action="/auth/joinProc" method="post"
-				class="login100-form validate-form">
-				<span class="login100-form-title p-b-26"> 회원가입 </span> <span
-					class="login100-form-title p-b-48"> <i
-					class="zmdi zmdi-font"></i>
-				</span>
-
-				<div class="wrap-input100 validate-input"
-					data-validate="Valid email is: a@b.c">
-					<input class="input100" type="text" name="username"> <span
-						class="focus-input100" data-placeholder="Username"></span>
-				</div>
-
-				<div class="wrap-input100 validate-input"
-					data-validate="Enter password">
-					<span class="btn-show-pass"> <i class="zmdi zmdi-eye"></i>
-					</span> <input class="input100" type="password" name="password"> <span
-						class="focus-input100" data-placeholder="Password"></span>
-				</div>
-				
-				<div class="wrap-input100 validate-input"
-					data-validate="Enter password">
-					<span class="btn-show-pass"> <i class="zmdi zmdi-eye"></i>
-					</span> <input class="input100" type="email" name="email"> <span
-						class="focus-input100" data-placeholder="Email"></span>
-				</div>
-				
-				<div class="wrap-input100 validate-input"
-					data-validate="Enter password">
-					<span class="btn-show-pass"> <i class="zmdi zmdi-eye"></i>
-					</span> <input class="input100" type="text" name="phoneNumber"> <span
-						class="focus-input100" data-placeholder="Phone Number"></span>
-				</div>
-
-				<div class="container-login100-form-btn">
-					<div class="wrap-login100-form-btn">
-						<div class="login100-form-bgbtn"></div>
-						<button class="login100-form-btn">Join</button>
+<body>
+	<div class="container">
+		<div class="input-form-backgroud row">
+			<div class="input-form col-md-12 mx-auto">
+				<h4 class="mb-3">회원가입</h4>
+				<form action="/auth/joinProc" method="post" class="validation-form"
+					novalidate>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="name">Username</label> <input type="text"
+								class="form-control" id="name" name="username" required>
+							<div class="invalid-feedback">아이디를 입력하세요.</div>
+						</div>
 					</div>
-				</div>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="name">Password</label> <input type="password"
+								class="form-control" id="password" name="password" required>
+							<div class="invalid-feedback">비밀번호를 입력하세요.</div>
+						</div>
+					</div>
 
-			</form>
+					<div class="mb-3">
+						<label for="email">Email</label> <input type="email"
+							class="form-control" id="email" placeholder="you@example.com"
+							required>
+						<div class="invalid-feedback">이메일을 입력하세요.</div>
+					</div>
+
+					<div class="mb-3">
+						<label for="phoneNumber">Phone Number</label> <input type="number"
+							class="form-control" id="phoneNumber"
+							placeholder="하이픈(-)을 제외하고 입력하세요." name="phoneNumber" required>
+						<div class="invalid-feedback">전화번호를 입력하세요.</div>
+					</div>
+					<br>
+					<hr class="mb-4">
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="aggrement"
+							required> <label class="custom-control-label"
+							for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+					</div>
+					<div class="mb-4"></div>
+					<button class="btn btn-primary btn-lg btn-block" type="submit">가입
+						하기</button>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
-
-<div id="dropDownSelect1"></div>
-
-<script src="/vendor/login/jquery/jquery-3.2.1.min.js"></script>
-<script src="/vendor/login/animsition/js/animsition.min.js"></script>
-<script src="/vendor/login/bootstrap/js/popper.js"></script>
-<script src="/vendor/login/bootstrap/js/bootstrap.min.js"></script>
-<script src="/vendor/login/select2/select2.min.js"></script>
-<script src="/vendor/login/daterangepicker/moment.min.js"></script>
-<script src="/vendor/login/daterangepicker/daterangepicker.js"></script>
-<script src="/vendor/login/countdowntime/countdowntime.js"></script>
-<script src="/js/login/main.js"></script>

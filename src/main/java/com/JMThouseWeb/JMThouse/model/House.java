@@ -43,7 +43,7 @@ public class House {
 	
 	@ManyToOne
 	@JoinColumn(name="hostId")
-	private Host hostId;
+	private User hostId;
 	
 	@ColumnDefault("0.0")
 	private double starScore;

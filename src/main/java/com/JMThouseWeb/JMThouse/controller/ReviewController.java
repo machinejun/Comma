@@ -23,7 +23,7 @@ public class ReviewController {
 	// 리뷰 작성 폼 호출
 	@GetMapping("/post_form")
 	public String getReviewForm() {
-		return "review/post_review_form";
+		return "review/review_form";
 	}
 
 	// 리뷰 관리 폼 호출

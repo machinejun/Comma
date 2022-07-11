@@ -43,10 +43,6 @@ public class PrincipalDetail implements UserDetails {
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-<<<<<<< HEAD
-		
-=======
->>>>>>> feature_login
 		return true;
 	}
 

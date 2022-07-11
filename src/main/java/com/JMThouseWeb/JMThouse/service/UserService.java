@@ -1,17 +1,10 @@
 package com.JMThouseWeb.JMThouse.service;
 
-<<<<<<< HEAD
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-=======
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
->>>>>>> feature_login
 
 import com.JMThouseWeb.JMThouse.model.RoleType;
 import com.JMThouseWeb.JMThouse.model.User;
@@ -41,14 +34,6 @@ public class UserService {
 		return 1;
 	}
 
-<<<<<<< HEAD
-	@Transactional(readOnly = true)
-	public User login(User user) {
-		// repository select 요청
-		return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
-	}
-}
-=======
 	@Transactional
 	public void updateUserInfo(User user) {
 
@@ -66,4 +51,3 @@ public class UserService {
 	}
 
 }
->>>>>>> feature_login

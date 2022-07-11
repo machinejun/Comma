@@ -43,45 +43,6 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-	<div id="untree_co--overlayer"></div>
-	<div class="loader">
-		<div class="spinner-border text-primary" role="status">
-			<span class="sr-only">Loading...</span>
-		</div>
-	</div>
-
-	<nav class="untree_co--site-mobile-menu">
-		<div class="close-wrap d-flex">
-			<a href="#" class="d-flex ml-auto js-menu-toggle"> <span class="close-label">Close</span>
-				<div class="close-times">
-					<span class="bar1"></span> <span class="bar2"></span>
-				</div>
-			</a>
-		</div>
-		<div class="site-mobile-inner"></div>
-	</nav>
-
-	<div class="untree_co--site-wrap">
-		<nav class="untree_co--site-nav js-sticky-nav">
-			<div class="container d-flex align-items-center">
-				<div class="logo-wrap">
-					<a href="index.html" class="untree_co--site-logo">JMT HOUSE</a>
-				</div>
-				<div class="site-nav-ul-wrap text-center d-none d-lg-block">
-					<ul class="site-nav-ul js-clone-nav">
-						<li class="active"><a href="index.html">HOME</a></li>
-						<li class="has-children"><a href="/house/list">List</a></li>
-						<li class="has-children float-right"><a><span class="icon-user-circle"></span>User</a>
-							<ul class="dropdown">
-								<li><a class="user-btn" href="/auth/login_form">로그인</a></li>
-								<li><a class="user-btn" href="/auth/join_form">회원가입</a></li>
-								<li><a class="user-btn" href="#">호스트 되기</a></li>
-								<li><a class="user-btn" href="#">예약 보기</a></li>
-							</ul></li>
-					</ul>
-				</div>
-=======
 	<input id="isNaviFocus" type="hidden" value=0 />
 	<!-- Navigation -->
 	<nav class="navbar navbar-expand-lg navbar-dark fiexed-top">
@@ -132,7 +93,6 @@
 							</button>
 						</div></li>
 				</ul>
->>>>>>> feature_login
 			</div>
 		</div>
 	</nav>

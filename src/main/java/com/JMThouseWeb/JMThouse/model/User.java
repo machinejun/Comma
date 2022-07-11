@@ -13,12 +13,6 @@ import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-<<<<<<< HEAD
-import lombok.Data;
-
-@Entity
-@Data
-=======
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +21,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
->>>>>>> feature_login
 public class User {
 	
 	@Id

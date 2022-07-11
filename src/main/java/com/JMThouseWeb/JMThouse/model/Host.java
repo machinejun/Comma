@@ -28,11 +28,7 @@ public class Host implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-<<<<<<< HEAD
-
-=======
 	
->>>>>>> feature_login
 	@OneToOne
 	@JoinColumn(name="userId")
 	private User user;

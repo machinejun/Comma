@@ -13,28 +13,16 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-<<<<<<< HEAD
-	
-=======
 
 	@GetMapping({"", "/"})
 	public String index() {
 		return "index";
 	}
 
->>>>>>> feature_login
 	@GetMapping("/auth/login_form")
 	public String loginForm() {
 		return "user/login_form";
 	}
-<<<<<<< HEAD
-	
-	@GetMapping("/auth/join_form")
-	public String save(User user) {
-		return "user/join_form";
-	}
-	
-=======
 
 	@GetMapping("/auth/join_form")
 	public String joinForm(User user) {
@@ -46,23 +34,14 @@ public class UserController {
 		return "user/update_form";
 	}
 
->>>>>>> feature_login
 	@GetMapping("/logout")
 	public String logout() {
 		return "redirect:/";
 	}
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> feature_login
 	@PostMapping("/auth/joinProc")
 	public String saveUser(User user) {
 		userService.saveUser(user);
 		return "redirect:/";
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> feature_login
 }

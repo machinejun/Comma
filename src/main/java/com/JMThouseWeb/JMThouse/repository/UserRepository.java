@@ -6,17 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.JMThouseWeb.JMThouse.model.User;
 
-<<<<<<< HEAD
-public interface UserRepository extends JpaRepository<User, Integer>{
-
-	Optional<User> findByUsername(String username);
-
-	User findByUsernameAndPassword(String username, String password);
-	
-=======
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 	Optional<User> findByUsername(String username);
 
->>>>>>> feature_login
 }

@@ -26,34 +26,35 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class Review {
-	
+
 	/**
 	 * 
 	 * 게스트가 올리는 숙소 리뷰
 	 */
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "houseId")
 	private House houseId;
-	
-	@Column(nullable = false, length = 100)
-	private String title;
-	
-	@OneToOne
+
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "imageId")
 	private Image image;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "guestId")
+	private User guestId;
+
 	@Lob
 	private String content;
-	
+
 	@ColumnDefault("0.0")
 	private double starScore;
-	
+
 	@OneToMany(mappedBy = "reviewId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Reply> replies;
-	
+
 }

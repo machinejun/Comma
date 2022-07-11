@@ -24,7 +24,6 @@
                 
               </div>
 
-              <button type="submit" id="btn-login" class="btn btn-primary">log in</button>
 
 </div>
 </div>
@@ -32,3 +31,6 @@
               </div>
               </div>
   </form>
+              <button type="submit" id="btn-login" class="btn btn-primary">log in</button>
+  
+   <script src="/js/user.js"></script>

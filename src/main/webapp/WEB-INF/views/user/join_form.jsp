@@ -23,10 +23,9 @@
     <input class="form-control"  id="phoneNumber" name="phoneNumber">
   </div>
   
-  <button id="btn-save"  type="submit" class="btn btn-primary">회원가입</button>
+  <button id="btn-save"  type="submit" class="btn btn-primary" >회원가입</button>
 </form>
 	</div>
 	<br/>
-<!-- 
-<script src="/js/user.js"></script>
- -->
+
+<!-- <script src="/js/user.js"></script> -->

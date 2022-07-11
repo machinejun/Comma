@@ -11,4 +11,5 @@ public class ReservationController {
 		
 		return "/reservation/bookForm";
 	}
+
 }

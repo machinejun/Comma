@@ -1,4 +1,4 @@
-
+"use strict"
 let index = {
 	
 	init: function() {
@@ -8,7 +8,7 @@ let index = {
 		
 		$("#btn-login").bind("click", () => {
 			this.login();
-			alert("btn-save 버튼이 눌러졌습니다");
+			alert("login 버튼이 눌러졌습니다");
 		})
 		
 	},
@@ -43,8 +43,31 @@ let index = {
 			console.log(error);
 			alert("회원가입이 실패했습니다");
 		});
+	},
+	
+	login : function(){
+		
+		let data = {
+			username: $("#username").val(),
+			password: $("#password").val()
+		}
+		// ajax 호출
+		$.ajax({
+			// 회원 로그인 요청
+			type: "POST",
+			url: "/api/user/login",
+			data: JSON.stringify(data),
+			contentType: "application/json; charset=utf-8",
+			dataType: "json"
+		}).done(function(data, textStatus, xhr) {
+			alert("로그인이 완료되었습니다")
+			location.href = "/"
+			console.log(data);
+		}).fail(function(error){
+			alert("로그인이 실패했습니다")
+			console.log(error);
+		});
 	}
 	
 }
 
-index.init();

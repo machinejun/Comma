@@ -30,6 +30,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
+<<<<<<< HEAD
 		
 		  <dependency>
           <groupId>org.springframework.security</groupId>
@@ -40,19 +41,33 @@
 		    <groupId>org.apache.maven.plugins</groupId>
 		    <artifactId>maven-resources-plugin</artifactId>
 		    <version>2.4.3</version>
+=======
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+>>>>>>> feature_login
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+<<<<<<< HEAD
 		
 		
+=======
+
+>>>>>>> feature_login
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> feature_login
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

@@ -109,4 +109,9 @@ public class HouseService {
 		likeHouseRepository.save(likeHouseEntity);
 	}
 
+	@Transactional
+	public List<House> getHouseListByAddress(String address) {
+		return houseRepository.findAllByAddress(address);
+	}
+
 }

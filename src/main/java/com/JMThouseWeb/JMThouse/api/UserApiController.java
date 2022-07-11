@@ -1,5 +1,6 @@
 package com.JMThouseWeb.JMThouse.api;
 
+<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,6 +44,38 @@ public class UserApiController  {
 			System.out.println("세션 정보가 저장되었습니다");
 		}
 		
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.JMThouseWeb.JMThouse.dto.ResponseDto;
+import com.JMThouseWeb.JMThouse.model.User;
+import com.JMThouseWeb.JMThouse.service.UserService;
+
+@RestController
+public class UserApiController {
+
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	
+	@PutMapping("/user/info")
+	public ResponseDto<Integer> updateUserInfo(@RequestBody User user) {
+		userService.updateUserInfo(user);
+		
+		Authentication authentication = authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+>>>>>>> feature_login
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 }

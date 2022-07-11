@@ -8,7 +8,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ResponseDto<T> {
+<<<<<<< HEAD
 
 	private int status;
 	private T data;
+=======
+	
+	private int status;
+	private T data;
+
+>>>>>>> feature_login
 }

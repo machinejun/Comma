@@ -13,27 +13,35 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-	
+
+	@GetMapping({"", "/"})
+	public String index() {
+		return "index";
+	}
+
 	@GetMapping("/auth/login_form")
 	public String loginForm() {
 		return "user/login_form";
 	}
-	
+
 	@GetMapping("/auth/join_form")
-	public String save(User user) {
+	public String joinForm(User user) {
 		return "user/join_form";
 	}
 	
+	@GetMapping("/user/update_form")
+	public String updateForm() {
+		return "user/update_form";
+	}
+
 	@GetMapping("/logout")
 	public String logout() {
 		return "redirect:/";
 	}
-	
+
 	@PostMapping("/auth/joinProc")
 	public String saveUser(User user) {
-		System.out.println("컨트롤러 user : " + user);
 		userService.saveUser(user);
 		return "redirect:/";
 	}
 }
-

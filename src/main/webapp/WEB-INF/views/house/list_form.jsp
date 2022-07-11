@@ -1,3 +1,5 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ include file="../layout/header.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

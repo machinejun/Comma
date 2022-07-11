@@ -34,5 +34,20 @@ public class UserService {
 		return 1;
 	}
 
+	@Transactional
+	public void updateUserInfo(User user) {
+
+		User userEntity = userRepository.findById(user.getId()).orElseThrow(() -> {
+			return new IllegalArgumentException("존재하지 않는 회원입니다.");
+		});
+		
+		String rawPassword = user.getPassword();
+		String hashPassword = encoder.encode(rawPassword);
+		
+		userEntity.setPassword(hashPassword);
+		userEntity.setEmail(user.getEmail());
+		userEntity.setPhoneNumber(user.getPhoneNumber());
+		
+	}
 
 }

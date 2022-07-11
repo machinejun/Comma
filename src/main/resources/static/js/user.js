@@ -1,11 +1,16 @@
-"use strict"
 
 let index = {
 	
 	init: function() {
 		$("#btn-save").bind("click", () => {
+			this.save();
+		}),		
+		
+		$("#btn-login").bind("click", () => {
+			this.login();
 			alert("btn-save 버튼이 눌러졌습니다");
-		});
+		})
+		
 	},
 	
 	save: function() {
@@ -13,13 +18,13 @@ let index = {
 			username: $("#username").val(),
 			password: $("#password").val(),
 			email: $("#email").val(),
-			mobile: $("#mobile").val()
+			phoneNumber: $("#phoneNumber").val()
 		}
 		
 		$.ajax({
 			// 서버측에 회원가입 요청
 			type: "POST",
-			url: "/api/guest",
+			url: "/api/user/join",
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json" // 응답이 왔을 때 기본 데이터 타입(Buffered 문자열) => js object 자동 변환

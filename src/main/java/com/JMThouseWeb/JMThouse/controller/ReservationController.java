@@ -7,8 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ReservationController {
 	
 	@GetMapping("/")
-	public String reserveHouse() {
+	public String home() {
 		
 		return "home";
+	}
+	
+	@GetMapping("/user/bookForm")
+	public String reserveHouse() {
+		
+		return "input";
 	}
 }

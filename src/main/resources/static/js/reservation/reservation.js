@@ -1,6 +1,56 @@
 let userid = $("meta[name='userid']").attr("id");
 let hostid = $("meta[name='hostid']").attr("id");
 let houseid = $("meta[name='houseid']").attr("id");
+$( function(){
+	let istableShow = 0;
+	let count= 0;
+	$("#check-table").hide();
+	
+	$("#count-minus").bind("click",() => {
+		if(count == 0){
+			return;
+		}
+		count--;
+		console.log(count);
+		$("#count").text("인원수 : " + count);
+		
+	})
+	$("#count-plus").bind("click",() => {
+		count++;
+		console.log(count);
+		$("#count").text("인원수 : " + count);
+	})
+	
+	$("#calender-btn").bind("click",() => {
+		if(istableShow == 0){
+			$("#check-table").show();
+			istableShow = 1;
+			disableScrolling()
+		}else{
+			$("#check-table").hide();
+			istableShow = 0;
+			enableScrolling()
+		}
+	})
+});
+function disableScrolling(){
+    var x=window.scrollX;
+    var y=window.scrollY;
+    window.onscroll=function(){window.scrollTo(x, y);};
+}
+
+function enableScrolling(){
+    window.onscroll=function(){};
+}
+
+function inputCalender(){
+	let checkInDate = $("#checkinDate").val();
+	let checkOutDate = $("#checkOutDate").val();
+	$("#bookingDate").text(`예약일 : ${checkInDate} ~ ${checkOutDate}`);
+	$("#check-table").hide();
+	istableShow = 0;
+	enableScrolling()
+}
 
 $( function() {
 	  $.datepicker.setDefaults({  	
@@ -48,14 +98,24 @@ function checkDate(){
 
 } 
 
-
-
 function alreadyBookDates(date) {
-	let bookedDays = ["2022-7-8", "2022-7-10","2022-07-25"];
+	let bookedDays = ["2022-7-12", "2022-7-15","2022-7-25","2022-07-26"];
+	let checkIndate = $("#checkinDate").val();
+	checkIndate = checkIndate.replace(/(^0+)/, "");
+	if(checkIndate != null){
+		bookedDays.push(checkIndate);
+	}
     let m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
-
+	
     for (i = 0; i < bookedDays.length; i++) {
-        if($.inArray(y + '-' +(m+1) + '-' + d,bookedDays) != -1) {
+		let date;
+		if(m < 10){
+			date = `${y}-0${(m+1)}-${d}`;
+			
+		}else{
+			date = `${y}-${(m+1)}-${d}`;
+		}
+        if($.inArray(date,bookedDays) != -1) {
 			
             return [false];
         }

@@ -56,8 +56,8 @@
 						<li class="has-children"><a href="/house/list">List</a></li>
 						<li class="has-children float-right"><a><span class="icon-user-circle"></span>User</a>
 							<ul class="dropdown">
-								<li><a class="user-btn" href="#">로그인</a></li>
-								<li><a class="user-btn" href="#">회원가입</a></li>
+								<li><a class="user-btn" href="/auth/login_form">로그인</a></li>
+								<li><a class="user-btn" href="/auth/join_form">회원가입</a></li>
 								<li><a class="user-btn" href="#">호스트 되기</a></li>
 								<li><a class="user-btn" href="#">예약 보기</a></li>
 							</ul></li>

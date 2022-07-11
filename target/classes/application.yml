@@ -37,3 +37,6 @@ spring:
 file:
   path: C:/houseImgDir/upload/
   
+  house:
+    key: 5d195ca88c7a0a34894705a64ea67db5224fc0e85aae5c39e1a8ace283312a21ac3cae7478b9e9b4b20480dad88a7b8c12b7c7bf1cb45203a0054cc206251a5c
+  

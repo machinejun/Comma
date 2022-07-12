@@ -1,4 +1,4 @@
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ include file="../layout/header.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,30 +24,9 @@
 				</li>
 				<!-- 숙소 사진 리스트 -->
 				<c:forEach var="house" items="${houseList}">
-					<li><a href="/house/list"><img src="http://localhost:9090/upload/${house.image.imageUrl}" width="301px" height="381px" />
+					<li><a href="/house/detail/${house.id}"><img src="http://localhost:9090/upload/${house.image.imageUrl}" width="301px" height="381px" />
 							<h3>${house.name}</h3></a></li>
 				</c:forEach>
-
-				<li><a href="#"><img src="/images/house/dummy.png" alt="dummy" />
-						<h3>A fantastic title</h3></a></li>
-				<li><a href="#"><img src="/images/house/dummy.png" alt="dummy" />
-						<h3>A fantastic title</h3></a></li>
-				<li><a href="#"><img src="/images/house/dummy.png" alt="dummy" />
-						<h3>A fantastic title</h3></a></li>
-				<li><a href="#"><img src="/images/house/dummy.png" alt="dummy" />
-						<h3>A fantastic title</h3></a></li>
-				<li><a href="#"><img src="/images/house/dummy.png" alt="dummy" />
-						<h3>A fantastic title</h3></a></li>
-				<li><a href="#"><img src="/images/house/dummy.png" alt="dummy" />
-						<h3>A fantastic title</h3></a></li>
-				<li><a href="#"><img src="/images/house/dummy.png" alt="dummy" />
-						<h3>A fantastic title</h3></a></li>
-				<li><a href="#"><img src="/images/house/dummy.png" alt="dummy" />
-						<h3>A fantastic title</h3></a></li>
-				<li><a href="#"><img src="/images/house/dummy.png" />
-						<h3>A fantastic title</h3></a></li>
-				<li><a href="#"><img src="/images/house/dummy.png" />
-						<h3>A fantastic title</h3></a></li>
 			</ul>
 		</section>
 

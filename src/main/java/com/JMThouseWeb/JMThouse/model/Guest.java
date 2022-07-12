@@ -36,9 +36,6 @@ public class Guest implements Serializable{
 	@Column(name="userId")
 	private int userId;
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-
 	@OneToOne
 	@JoinColumn(name="userId")
 	private User user;

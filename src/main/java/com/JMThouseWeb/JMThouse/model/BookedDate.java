@@ -19,6 +19,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +36,7 @@ public class BookedDate {
 
 	@ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "houseId")
+	@JsonIgnoreProperties({"bookedDates","reviews","reservation","hostId"})
 	private House house;
 	
 	@Column(name = "bookdedDate", columnDefinition = "DATE")

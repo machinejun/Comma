@@ -2,6 +2,8 @@ package com.JMThouseWeb.JMThouse.service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.JMThouseWeb.JMThouse.model.BookedDate;
 import com.JMThouseWeb.JMThouse.model.Guest;
+import com.JMThouseWeb.JMThouse.model.Host;
 import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.model.Reservation;
 import com.JMThouseWeb.JMThouse.model.ReservationType;
@@ -24,7 +27,7 @@ import com.JMThouseWeb.JMThouse.repository.ReservationRepository;
 
 
 @Service
-public class ReservationService<T extends User>{
+public class ReservationService{
 	
 	
 	//User레파지 스토리도 필요하다
@@ -42,20 +45,23 @@ public class ReservationService<T extends User>{
 	
 	@Autowired
 	private HouseRepository houseRepository;
-	
+
 	@Transactional
 	public void makeReservation(Reservation reservation) {
 		int[] tempIdList = reservation.getTempIdBox();
 		House house = houseRepository.findById(tempIdList[2]).orElseThrow(() ->{
 			return new RuntimeException("해당 숙소를 찾을 수 없습니다.");
 		});
-		Guest guest = guestRepository.findById(tempIdList[1]).orElseThrow(() -> {
+		Guest guest = guestRepository.findById(tempIdList[0]).orElseThrow(() -> {
 			return new RuntimeException("해당 게스트를 찾을 수 없습니다.");
+		});
+		Host host = hostRepository.findById(tempIdList[1]).orElseThrow(() -> {
+			return new RuntimeException("해당 호스트를 찾을 수 없습니다.");
 		});
 		
 		reservation.setHouseId(house);
 		reservation.setGuestId(guest);
-		//reservation.setHostId(house.getHostId());
+		reservation.setHostId(host);
 		calculateBookedDates(reservation.getCheckInDate(), reservation.getCheckOutDate(),house);
 		reservation.setApprovalStatus(ReservationType.WAITING);
 		reservationRepository.save(reservation);
@@ -63,16 +69,15 @@ public class ReservationService<T extends User>{
 	
 	private void calculateBookedDates(Date checkinDate, Date checkOutDate, House house) {
 		int range = getRangeDay(checkinDate, checkOutDate);
-		BookedDate bookedDate = new BookedDate();
-		bookedDate.setHouse(house);
-		bookedDate.setBookedDate(changeToLocalDate(checkinDate));
-		bookedDateRepository.save(bookedDate);
-		if(range != 1) {
-			for(int i = 1; i < range; i++) {
-				bookedDate.setBookedDate(changeToLocalDate(checkinDate).plusDays(i));
-				bookedDateRepository.save(bookedDate);
-			}
+		
+
+		for(int i = 0; i < range; i++) {
+			BookedDate bookedDate = new BookedDate();
+			bookedDate.setHouse(house);
+			bookedDate.setBookedDate(changeToLocalDate(checkinDate).plusDays(i));
+			bookedDateRepository.save(bookedDate);
 		}
+
 	}
 	
 	private LocalDate changeToLocalDate(Date date) {
@@ -99,5 +104,10 @@ public class ReservationService<T extends User>{
 			});
 		}
 		return reservation;
+	}
+	
+	public ArrayList<BookedDate> getListBookedDate(int hostid){
+		ArrayList<BookedDate> list = (ArrayList<BookedDate>)bookedDateRepository.findAllByHouseId(hostid);
+		return list;
 	}
 }

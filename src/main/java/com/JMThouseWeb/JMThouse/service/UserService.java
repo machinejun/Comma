@@ -25,7 +25,7 @@ public class UserService {
 			String rawPassword = user.getPassword();
 			String encPassword = encoder.encode(rawPassword);
 			user.setPassword(encPassword);
-			user.setRole(RoleType.GUEST);
+			user.setRole(RoleType.HOST);
 			userRepository.save(user);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -26,13 +26,9 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Host implements Serializable{
 	
-
+	@Id
 	@Column(name="userId")
 	private int userId;
-
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-
 	
 	@OneToOne
 	@JoinColumn(name="userId")

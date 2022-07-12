@@ -11,12 +11,12 @@ import com.JMThouseWeb.JMThouse.model.Reservation;
 import com.JMThouseWeb.JMThouse.service.ReservationService;
 
 @RestController
-@RequestMapping("/api/house")
+@RequestMapping("/test/api/reserve")
 public class ReservationApiController {
 	@Autowired
 	private ReservationService reservationService;
 	
-	@PostMapping("/reserve")
+	@PostMapping("/house")
 	public int reserveHouse(@RequestBody Reservation reservation) {
 		System.out.println(reservation);
 		reservationService.makeReservation(reservation);

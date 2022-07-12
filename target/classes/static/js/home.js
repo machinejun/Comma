@@ -1,5 +1,3 @@
-
-
 $(document).ready(function(){
   $("#user-table").hide();
 		
@@ -47,4 +45,3 @@ function upnav () {
 		}
 }
 upnav();
-

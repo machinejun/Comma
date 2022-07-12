@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>회원가입 페이지</title>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <style>
 body {
@@ -49,12 +42,12 @@ body {
 					</div>
 
 					<div class="mb-3">
-						<label for="email">Email</label> <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+						<label for="email">Email</label> <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
 						<div class="invalid-feedback">이메일을 입력하세요.</div>
 					</div>
 
 					<div class="mb-3">
-						<label for="phoneNumber">Phone Number</label> <input type="number" class="form-control" id="phoneNumber" placeholder="하이픈(-)을 제외하고 입력하세요." name="phoneNumber" required>
+						<label for="phoneNumber">Phone Number</label> <input type="tel" class="form-control" id="phoneNumber" placeholder="하이픈(-)을 제외하고 입력하세요." name="phoneNumber" required>
 						<div class="invalid-feedback">전화번호를 입력하세요.</div>
 					</div>
 					<br>
@@ -69,8 +62,10 @@ body {
 			</div>
 		</div>
 	</div>
-
+	<script type="text/javascript" src="/js/main.0cf8b554.js"></script></body>
+	<script type="text/javascript" src="/js/home.js"></script></body>
 	<script>
+		/* validation 체크 필요 */
 		(function() {
 			'use strict';
 			window.addEventListener('load',

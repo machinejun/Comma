@@ -47,5 +47,6 @@
 </div>
 
 <div></div>
-
+<script type="text/javascript" src="/js/main.0cf8b554.js"></script></body>
+<script type="text/javascript" src="/js/home.js"></script></body>
 <script src="/js/login/main.js"></script>

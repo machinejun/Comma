@@ -28,7 +28,7 @@
                 <div class="carousel-inner" role="listbox">
 
                     <div class="item active">
-                        <img class="img-responsive" src="./assets/images/img-06.jpg" alt="First slide">
+                        <img class="img-responsive" src="../assets/images/img-06.jpg" alt="First slide">
                         <div class="carousel-caption card-shadow reveal">
                           
                           <h3>Moon</h3>
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="item">
-                        <img class="img-responsive" src="./assets/images/img-07.jpg" alt="First slide">
+                        <img class="img-responsive" src="../assets/images/img-07.jpg" alt="First slide">
                         <div class="carousel-caption card-shadow reveal">
 
                           <h3>Lbortis</h3>
@@ -76,7 +76,7 @@
                           <p>
                             Quisque tempor, ligula pharetra luctus elementum, arcu nisl suscipit ante, pharetra commodo dui est et enim. Sed eu vestibulum elit. Donec ut libero non.
                           </p>
-                          <a href="./project.html" class="btn btn-primary" title="">
+                          <a href="../project.html" class="btn btn-primary" title="">
                             Discover
                           </a>
                         </div>
@@ -103,7 +103,7 @@
       </div>
       <div class="row">
         <div class="col-xs-12 col-md-4">
-          <img src="./assets/images/profil-01.jpg" alt="" class="reveal img-responsive reveal-content image-center">
+          <img src="../assets/images/profil-01.jpg" alt="" class="reveal img-responsive reveal-content image-center">
           <h3>John Snow</h3>
           <h4>UX designer</h4>
           <p>Sed elementum vehicula nisl, a egestas velit rhoncus nec.Cras vel sapien tincidunt, lacinia risus vel, imperdiet neque.</p>
@@ -121,7 +121,7 @@
         </div>
        
         <div class="col-xs-12 col-md-4">
-          <img src="./assets/images/profil-02.jpg" alt="" class="reveal img-responsive reveal-content image-center">
+          <img src="../assets/images/profil-02.jpg" alt="" class="reveal img-responsive reveal-content image-center">
           <h3>Sansa Stark</h3>
           <h4>UI designer</h4>
           <p>Praesent at feugiat est, at faucibus ipsum. Aenean condimentum mauris vel malesuadav pulvinar. Vestibulum sit amet hendrerit leo, quis vehicula mi.</p>
@@ -138,7 +138,7 @@
           </p>
         </div>
         <div class="col-xs-12 col-md-4">
-          <img src="./assets/images/profil-03.jpg" alt="" class="reveal img-responsive reveal-content image-center">
+          <img src="../assets/images/profil-03.jpg" alt="" class="reveal img-responsive reveal-content image-center">
           <h3>Gregor Clegane</h3>
           <h4>Developer</h4>
           <p>Busce rutrum nisi non dui placerat sodales. Vivamus feugiat rutrum malesuada. Nulla volutpat sapien ac gravida varius</p>
@@ -168,21 +168,18 @@
       </div>
       <div class="row">
         <div class="col-xs-12 col-md-4">
-          <img src="./assets/images/logo-01.png" alt="" class="img-responsive reveal-content image-center">
+          <img src="../assets/images/logo-01.png" alt="" class="img-responsive reveal-content image-center">
 
         </div>
        
         <div class="col-xs-12 col-md-4">
-          <img src="./assets/images/logo-02.png" alt="" class="img-responsive reveal-content image-center">
+          <img src="../assets/images/logo-02.png" alt="" class="img-responsive reveal-content image-center">
         </div>
         <div class="col-xs-12 col-md-4">
-          <img src="./assets/images/logo-03.png" alt="" class="img-responsive reveal-content image-center">
+          <img src="../assets/images/logo-03.png" alt="" class="img-responsive reveal-content image-center">
         </div>
       </div>
     </div>
   </div>
- 
 
-<script type="text/javascript" src="js/main.0cf8b554.js"></script></body>
-<script type="text/javascript" src="js/home.js"></script></body>
 <%@ include file="layout/footer.jsp" %>

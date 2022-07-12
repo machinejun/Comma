@@ -67,7 +67,6 @@ public class House {
 	private Timestamp creationDate;
 	
 	@OneToMany(mappedBy = "houseId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"houseId"})
 	private List<Reservation> reservations;
 	
 	@OneToMany(mappedBy = "houseId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)

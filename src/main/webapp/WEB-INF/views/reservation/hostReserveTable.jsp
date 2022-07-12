@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link href="../css/reservationStyle/reservationStyle.css" rel="stylesheet">
+<link href="/css/reservationStyle/reservationStyle.css" rel="stylesheet">
 <%@ include file="../layout/header.jsp" %>
 <div class="section-container contact-container" >
 	<div id="inputPage" class="container" style="background-color: rgba( 0, 0, 0, 0.05);">
@@ -65,8 +65,8 @@
   	</div>
 </div>
 
-<script type="text/javascript" src="../js/main.0cf8b554.js"></script></body>
-<script type="text/javascript" src="../js/home.js"></script></body>
-<script type="text/javascript" src="../js/reservation/hostReserveTable.js"></script></body>
+<script type="text/javascript" src="/js/main.0cf8b554.js"></script></body>
+<script type="text/javascript" src="/js/home.js"></script></body>
+<script type="text/javascript" src="/js/reservation/hostReserveTable.js"></script></body>
 </body>
 </html>

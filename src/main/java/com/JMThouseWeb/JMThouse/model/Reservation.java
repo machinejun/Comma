@@ -18,6 +18,8 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,14 +36,17 @@ public class Reservation {
 
 	@ManyToOne
 	@JoinColumn(name = "guestId")
+	@JsonIgnoreProperties({"reservations"})
 	private Guest guestId;
 	
 	@ManyToOne
 	@JoinColumn(name = "hostId")
+	@JsonIgnoreProperties({"reservations"})
 	private Host hostId;
 	
 	@ManyToOne
 	@JoinColumn(name = "houseId")
+	@JsonIgnoreProperties({"reservations","hostId"})
 	private House houseId;
 
 	@Column(nullable = false)

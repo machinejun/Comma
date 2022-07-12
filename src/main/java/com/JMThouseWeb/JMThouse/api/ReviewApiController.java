@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.JMThouseWeb.JMThouse.auth.PrincipalDetail;
 import com.JMThouseWeb.JMThouse.dto.ResponseDto;
+import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.model.Reply;
 import com.JMThouseWeb.JMThouse.model.Review;
 import com.JMThouseWeb.JMThouse.service.ReviewService;
@@ -27,6 +28,7 @@ public class ReviewApiController {
 	public ResponseDto<Integer> postReview(@RequestBody Review review,
 			@AuthenticationPrincipal PrincipalDetail principalDetail) {
 		// TODO House 데이터 같이 보내기
+		// Test
 		reviewService.postReview(review, principalDetail.getUser());
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}

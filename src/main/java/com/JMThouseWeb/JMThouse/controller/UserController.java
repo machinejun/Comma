@@ -3,6 +3,7 @@ package com.JMThouseWeb.JMThouse.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.JMThouseWeb.JMThouse.model.User;
@@ -43,5 +44,16 @@ public class UserController {
 	public String saveUser(User user) {
 		userService.saveUser(user);
 		return "redirect:/";
+	}
+	
+	@GetMapping("/reservation-history/{guestId}")
+	public String reservationHistory(@PathVariable int guestId) {
+		return "user/reservation_history";
+	}
+	
+	// test
+	@GetMapping("/reservation-info")
+	public String reservationHistory() {
+		return "user/history_form";
 	}
 }

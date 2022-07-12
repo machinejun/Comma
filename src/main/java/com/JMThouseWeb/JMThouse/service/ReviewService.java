@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.model.Reply;
 import com.JMThouseWeb.JMThouse.model.Review;
 import com.JMThouseWeb.JMThouse.model.User;
@@ -17,7 +18,7 @@ public class ReviewService {
 
 	@Autowired
 	private ReviewRepository reviewRepository;
-	
+
 	@Autowired
 	private ReplyRepository replyRepository;
 
@@ -51,5 +52,17 @@ public class ReviewService {
 		Reply replyEntity = replyRepository.save(requestReply);
 		return replyEntity;
 	}
+
+	// test
+	public List<Review> getReviewList() {
+		return reviewRepository.findAll();
+	}
+
+	/*
+	@Transactional
+	public List<Review> getReviewListByHouseId(int houseId) {
+		return replyRepository.findAllByHouseId(houseId);
+	}
+	*/
 
 }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.model.Review;
 import com.JMThouseWeb.JMThouse.service.ReviewService;
 
@@ -27,7 +26,7 @@ public class ReviewController {
 	}
 
 	// 리뷰 관리 폼 호출
-	@GetMapping("/list/{houseId}")
+	@GetMapping("/management/{houseId}")
 	public String getHouseList(@PathVariable int houseId, Model model) {
 		List<Review> reviews = reviewService.getReviewList(houseId);
 		model.addAttribute("reviews", reviews);
@@ -43,7 +42,8 @@ public class ReviewController {
 
 	// test
 	@GetMapping("/list")
-	public String getHouseList() {
+	public String getHouseList(Model model) {
+		model.addAttribute("reviews", reviewService.getReviewList());
 		return "review/management_form";
 	}
 

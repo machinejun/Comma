@@ -14,31 +14,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.JMThouseWeb.JMThouse.auth.PrincipalDetail;
 import com.JMThouseWeb.JMThouse.dto.RequestPostDto;
 import com.JMThouseWeb.JMThouse.model.House;
+import com.JMThouseWeb.JMThouse.model.Review;
 import com.JMThouseWeb.JMThouse.service.HouseService;
+import com.JMThouseWeb.JMThouse.service.ReviewService;
 
 @Controller
 @RequestMapping("/house")
 public class HouseController {
-	
+
 	@Autowired
 	private HouseService houseService;
 	
+	@Autowired
+	private ReviewService reviewService;
+
 	// 숙소 리스트 페이지 호출
 	@GetMapping("/list")
 	public String getHouseList(Model model) {
-		// TODO 리뷰 houseId로 찾아서 평균내서 들고오기
 		List<House> houseList = houseService.getHouseList();
 		model.addAttribute("houseList", houseList);
 		return "house/list_form";
 	}
-	
+
 	// 숙소 상세정보 페이지 호출
 	@GetMapping("/detail/{houseId}")
 	public String getHouseDetail(@PathVariable int houseId, Model model) {
-		model.addAttribute("house", houseService.getHouseDetail(houseId));
+		House houseEntity = houseService.getHouseDetail(houseId);
+		List<House> houseList = houseService.getHouseListByAddress(houseEntity.getAddress());
+		//List<Review> reviews = reviewService.getReviewListByHouseId(1);
+		List<Review> reviews = reviewService.getReviewList();
+		model.addAttribute("house", houseEntity);
+		model.addAttribute("houseList", houseList);
+		model.addAttribute("reviews", reviews);
+
 		return "house/detail_form";
 	}
-	
+
 	// 숙소 등록 페이지 호출
 	@GetMapping("/post_form")
 	public String getPostingForm() {
@@ -50,18 +61,11 @@ public class HouseController {
 	public String getUpdateForm() {
 		return "house/update_form";
 	}
-	
+
 	@PostMapping("/post")
 	public String postHouse(RequestPostDto requestPostDto, @AuthenticationPrincipal PrincipalDetail principalDetail) {
 		houseService.postHouse(requestPostDto, principalDetail.getUser());
 		return "redirect:/house/list";
 	}
-	
-	// 숙소 정렬 필터
-	@GetMapping("/{address}")
-	public void getHouseListByAddress(@PathVariable String address, Model model) {
-		List<House> houseList = houseService.getHouseListByAddress(address);
-		model.addAttribute("houseList", houseList);
-	}
-	
+
 }

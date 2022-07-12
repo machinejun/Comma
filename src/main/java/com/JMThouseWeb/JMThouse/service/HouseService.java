@@ -16,10 +16,12 @@ import com.JMThouseWeb.JMThouse.dto.RequestPostDto;
 import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.model.Image;
 import com.JMThouseWeb.JMThouse.model.LikeHouse;
+import com.JMThouseWeb.JMThouse.model.Review;
 import com.JMThouseWeb.JMThouse.model.User;
 import com.JMThouseWeb.JMThouse.repository.HouseRepository;
 import com.JMThouseWeb.JMThouse.repository.ImageRepository;
 import com.JMThouseWeb.JMThouse.repository.LikeHouseRepository;
+import com.JMThouseWeb.JMThouse.repository.ReviewRepository;
 
 @Service
 public class HouseService {
@@ -36,11 +38,29 @@ public class HouseService {
 	@Autowired
 	private LikeHouseRepository likeHouseRepository;
 
+	@Autowired
+	private ReviewRepository reviewRepository;
+
 	@Transactional
 	public House getHouseDetail(int houseId) {
-		return houseRepository.findById(houseId).orElseThrow(() -> {
+
+		House houseEntity = houseRepository.findById(houseId).orElseThrow(() -> {
 			return new IllegalArgumentException("해당하는 숙소를 찾을 수 없습니다.");
 		});
+		/*
+		List<Review> reviews = reviewRepository.findByHouseId(houseId);
+
+		// starScore 평점 계산
+		double sum = 0.0;
+
+		for (int i = 0; i < reviews.size(); i++) {
+			sum += reviews.get(i).getStarScore();
+		}
+
+		houseEntity.setStarScore(sum / reviews.size());
+		*/
+
+		return houseEntity;
 	}
 
 	@Transactional
@@ -105,7 +125,7 @@ public class HouseService {
 		House selectedHouse = houseRepository.findById(houseId).orElseThrow(() -> {
 			return new IllegalArgumentException("해당하는 숙소를 찾을 수 없습니다.");
 		});
-		
+
 		likeHouseEntity.setGuest(user);
 		likeHouseEntity.setGuestId(user.getId());
 		likeHouseEntity.setHouse(selectedHouse);
@@ -115,12 +135,13 @@ public class HouseService {
 
 	@Transactional
 	public List<House> getHouseListByAddress(String address) {
-		return houseRepository.findAllByAddress(address);
+		List<House> houses = houseRepository.findAllByAddress(address);
+		return houses;
 	}
 
 	@Transactional
 	public void deleteItemOfWishList(int houseId, int guestId) {
-		likeHouseRepository.deleteByHouseIdAndGuestId(houseId, guestId);	
+		likeHouseRepository.deleteByHouseIdAndGuestId(houseId, guestId);
 	}
 
 }

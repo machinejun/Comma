@@ -14,15 +14,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="../css/main.550dcf66.css" rel="stylesheet">
   <link href="../css/style.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   <link rel="stylesheet" href="../css/icomoon/style.css">
-  <link href="../css/main.550dcf66.css" rel="stylesheet">
+  
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<!-- 테스트 -->
   <meta name="userid" id="1" />
   <meta name="hostid" id="2" />
@@ -36,21 +37,21 @@
 	<input id="isNaviFocus" type="hidden" value=0 />
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fiexed-top" >
-    <div id="naviBar"class="container fixed-top" style="background-color: #1763e9; width: 100%;">
+    <div id="naviBar"class="container fixed-top" style="background-color: white; width: 100%;">
       <a class="navbar-brand text-warning" href="#" >JMT HOUSE</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto" style="color: black;">
           <li class="nav-item" style="margin-right: 10px;">
-            <a class="nav-link" href="/"><span class="icon-home2"></span>&nbsp;&nbsp;Home</a>
+            <a class="nav-link" href="/" style="color: black;"><span class="icon-home2"></span>&nbsp;&nbsp;Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/"><span class="icon-list-alt"></span>&nbsp;&nbsp;ssss</a>
+            <a class="nav-link" href="/" style="color: black;"><span class="icon-list-alt"></span>&nbsp;&nbsp;ssss</a>
           </li>
           <li id="user-content" class="nav-item" style="position: relative; left: 700px;">
-            <a  class="btn nav-link" ><span class="icon-user-circle"></span>&nbsp;&nbsp;user</a>
+            <a  class="btn nav-link"  style="color: black;"><span class="icon-user-circle"></span>&nbsp;&nbsp;user</a>
 			<div id="user-table" class="list-group" style="width: 180px; font-size: 20px; position: fixed; left: 75%; top: 7%;">
 			  	<input id="isUserTable" type="hidden" value =0 />
 				<button type="button" class="list-group-item list-group-item-action"><span class="icon-drivers-license-o"></span>&nbsp;&nbsp;로그인</button>

@@ -13,7 +13,10 @@ import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import lombok.Data;
+
 @Entity
+@Data
 public class User {
 	
 	@Id

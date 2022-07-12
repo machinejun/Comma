@@ -17,4 +17,9 @@ public class ReservationController {
 		
 		return "input";
 	}
+	
+	@GetMapping("/reserve/host")
+	public String reserveTable() {
+		return "reservation/hostReserveTable";
+	}
 }

@@ -5,7 +5,6 @@ let count= 1;
 
 $( function(){
 	let istableShow = 0;
-	
 	$("#count-minus").bind("click",() => {
 		if(count == 1){
 			return;

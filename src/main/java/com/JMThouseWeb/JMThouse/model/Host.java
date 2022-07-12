@@ -3,6 +3,7 @@ package com.JMThouseWeb.JMThouse.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,6 +27,9 @@ import lombok.NoArgsConstructor;
 public class Host implements Serializable{
 	
 	@Id
+	@Column(name="userId")
+	private int userId;
+	
 	@OneToOne
 	@JoinColumn(name="userId")
 	private User user;

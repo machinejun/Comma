@@ -33,6 +33,9 @@
 						    						    
 						</div>
 					  </li>
+					  <li  class="list-group-item d-flex justify-content-between align-items-center">
+					    <p id="booker" class="align-items-center" style="transform: translate(0%,30%);">가격 : 원</p>				   
+					  </li>
 					  <li class="list-group-item d-flex justify-content-between align-items-center">요청사항
 					   	<div class="form-group">
                       		<textarea id="request" style="margin-top: 10px" class="form-control" rows="3" placeholder="Enter your message"></textarea>

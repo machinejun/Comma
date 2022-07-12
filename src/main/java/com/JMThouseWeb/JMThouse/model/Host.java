@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -24,25 +23,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Host implements Serializable{
-	
+public class Host implements Serializable {
 
-	@Column(name="userId")
+	@Id
+	@Column(name = "userId")
 	private int userId;
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	
 	@OneToOne
-	@JoinColumn(name="userId")
+	@JoinColumn(name = "userId")
 	private User user;
 
 	@OneToMany(mappedBy = "hostId", fetch = FetchType.LAZY)
-	@JsonIgnoreProperties({"hostId"})
+	@JsonIgnoreProperties({ "hostId" })
 	private List<House> houses;
-	
+
 	@OneToMany(mappedBy = "hostId", fetch = FetchType.LAZY)
-	@JsonIgnoreProperties({"hostId"})
+	@JsonIgnoreProperties({ "hostId" })
 	private List<Reservation> reservations;
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="layout/header.jsp"%>
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 <script
@@ -71,7 +72,8 @@
 
 			<div class="form-group">
 				<br /> <label for="content"><b></b></label>
-				<textarea class="form-control" rows="10" id="content" placeHolder="숙소의 청결도, 위치, 호스트와의 의사소통에 대한 솔직한 후기를 남겨주세요."></textarea>
+				<textarea class="form-control" rows="10" id="content"
+					placeHolder="숙소의 청결도, 위치, 호스트와의 의사소통에 대한 솔직한 후기를 남겨주세요."></textarea>
 			</div>
 
 		</div>
@@ -110,3 +112,4 @@ function postReview() {
 	});
 }
 </script>
+<%@ include file="../layout/footer.jsp"%>

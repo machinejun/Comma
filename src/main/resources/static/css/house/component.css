@@ -42,8 +42,8 @@
 	display: block;
 	margin: 7px;
 	padding: 20px;
-	background: #ff896b;
-	color: #fff;
+	background: rgb(174, 238, 174);;
+	color: black;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-weight: 300;
@@ -55,7 +55,7 @@
 }
 
 .title-box h2 a:hover {
-	color: #fff;
+	color: rgb(174, 238, 174);;
 }
 
 /* Anchor and image */
@@ -130,8 +130,8 @@
 	margin: 0;
 	padding: 20px;
 	width: 100%;
-	background: #ff896b;
-	color: 	#fff;
+	background: #fff;
+	color: 	black;
 	text-align: right;
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -157,14 +157,14 @@
 
 /* Hover effects */
 .grid li.shown:hover h3 {
-	color: #fff;
+	/*color: #fff;*/
 	-webkit-transform: translate3d(0,-30px,0);
 	transform: translate3d(0,-30px,0);
 }
 
 .grid li.shown:hover > a::before {
 	border-width: 14px;
-	border-color: #ff896b;
+	border-color: #fff;
 }
 
 /* Animations */

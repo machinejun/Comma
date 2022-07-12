@@ -16,8 +16,8 @@ public class UserController {
 	private UserService userService;
 
 	@GetMapping({"", "/"})
-	public String index() {
-		return "index";
+	public String home() {
+		return "home";
 	}
 
 	@GetMapping("/auth/login_form")

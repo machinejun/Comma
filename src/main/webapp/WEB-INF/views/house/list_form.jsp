@@ -1,9 +1,9 @@
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ include file="../layout/header.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="shortcut icon" href="../favicon.ico" />
 <link rel="stylesheet" type="text/css" href="/css/house/normalize.css" />
 <link rel="stylesheet" type="text/css" href="/css/house/demo.css" />
 <link rel="stylesheet" type="text/css" href="/css/house/component.css" />
@@ -17,15 +17,12 @@
 	<div class="container">
 		<section class="grid-wrap">
 			<ul class="grid swipe-right" id="grid">
-				<li class="title-box">
-					<h2>
-						Everywhere, Whenever <a href="/">JMT HOUSE</a>
-					</h2>
-				</li>
 				<!-- 숙소 사진 리스트 -->
 				<c:forEach var="house" items="${houseList}">
-					<li><a href="/house/detail/${house.id}"><img src="http://localhost:9090/upload/${house.image.imageUrl}" width="301px" height="381px" />
-							<h3>${house.name}</h3></a></li>
+					<li><a href="/house/detail/${house.id}"><img
+							src="http://localhost:9090/upload/${house.image.imageUrl}"
+							width="301px" height="381px" />
+							<h3>${house.name}, ${house.address}</h3></a></li>
 				</c:forEach>
 			</ul>
 		</section>

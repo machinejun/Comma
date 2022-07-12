@@ -55,7 +55,7 @@ public class ReservationService<T extends User>{
 		
 		reservation.setHouseId(house);
 		reservation.setGuestId(guest);
-		reservation.setHostId(house.getHostId());
+		//reservation.setHostId(house.getHostId());
 		calculateBookedDates(reservation.getCheckInDate(), reservation.getCheckOutDate(),house);
 		reservation.setApprovalStatus(ReservationType.WAITING);
 		reservationRepository.save(reservation);

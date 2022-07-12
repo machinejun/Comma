@@ -10,7 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import lombok.Data;
+
 @Entity
+@Data
 @IdClass(LikeId.class)
 public class LikeHouse implements Serializable {
 	
@@ -22,12 +25,10 @@ public class LikeHouse implements Serializable {
 	@Column(name="guest")
 	private int guestId;
 	
-	@Id
 	@OneToOne
 	@JoinColumn(name="guestId", referencedColumnName = "id")
 	private User guest;
 	
-	@Id
 	@ManyToOne
 	@JoinColumn(name="houseId", referencedColumnName = "id")
 	private House house;

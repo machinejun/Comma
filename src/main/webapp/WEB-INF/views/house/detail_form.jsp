@@ -1,158 +1,212 @@
-<!-- /*
-* Template Name: LuxuryHotel
-* Template Author: Untree.co
-* Tempalte URI: https://untree.co/
-* License: https://creativecommons.org/licenses/by/3.0/
-*/ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../layout/header.jsp"%>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<style>
+.bi-suit-heart {
+	font-size: 20px;
+	line-height: 20px;
+	color: crimson;
+}
 
-<!--
-	Future Imperfect by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-<head>
-<title>Future Imperfect by HTML5 UP</title>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<script src="/js/house/ie/html5shiv.js"></script>
-<link rel="stylesheet" href="/css/house/main.css" />
-<link rel="stylesheet" href="/css/house/ie9.css" />
-<link rel="stylesheet" href="/css/house/ie8.css" />
-</head>
-<body>
+.bi-suit-heart-fill {
+	font-size: 20px;
+	line-height: 20px;
+	color: crimson;
+}
 
-	<!-- Wrapper -->
-	<div id="wrapper">
+.bi-reply {
+	font-size: 20px;
+}
 
-		<!-- Menu -->
-		<section id="menu">
+.bi-reply-fill:hover {
+	font-size: 20px;
+	color: black;
+}
 
-			<!-- Search -->
-			<section>
-				<form class="search" method="get" action="#">
-					<input type="text" name="query" placeholder="Search" />
-				</form>
-			</section>
+.my-underline {
+	text-decoration: underline;
+}
 
-			<!-- Actions -->
-			<section>
-				<ul class="actions vertical">
-					<li><a href="#" class="button big fit">Log In</a></li>
-				</ul>
-			</section>
+.bi-star-fill {
+	color: #ffc107;
+}
 
-		</section>
+.star-rating {
+	display: flex;
+	flex-direction: row-reverse;
+	font-size: 1.5em;
+	justify-content: space-around;
+	padding: 0 .2em;
+	text-align: center;
+	width: 5em;
+}
 
-		<!-- Main -->
-		<div id="main">
+.star-rating input {
+	display: none;
+}
 
-			<!-- Post -->
-			<article class="post">
-				<header>
-					<div class="title">
-						<h2>
-							<a href="#">${house.name}</a>
-						</h2>
-						<p>Lorem ipsum dolor amet nullam consequat etiam feugiat</p>
-					</div>
-					<div class="meta">
-						<time class="published" datetime="2015-11-01">November 1, 2015</time>
-						<a href="#" class="author"><span class="name">Jane Doe</span><img src="/images/house/avatar.jpg" alt="" /></a>
-					</div>
-				</header>
-				<a href="#" class="image featured"><img src="/images/house/pic01.jpg" alt="" /></a>
-				<p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl. Sed mattis nunc id lorem euismod placerat. Vivamus porttitor magna enim, ac accumsan tortor cursus at. Phasellus sed ultricies mi non congue
-					ullam corper. Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-				<footer>
-					<ul class="actions">
-						<li><a href="#" class="button big">예약하기</a></li>
-					</ul>
-				</footer>
-			</article>
+.star-rating label {
+	color: transparent;
+	text-shadow: 0 0 0 #e0e0e0;
+	cursor: pointer;
+}
 
+.star-rating :checked ~ label {
+	text-shadow: 0 0 0 #fdd826;
+}
 
-		</div>
+.star-rating label:hover, .star-rating label:hover ~ label {
+	text-shadow: 0 0 0 #fdd826;
+}
+</style>
 
-		<!-- Sidebar -->
-		<section id="sidebar">
-
-			<!-- Intro -->
-			<section id="intro">
-				<a class="logo"><img src="/images/house/logo.jpg" alt="" /></a>
-				<header>
-					<h2>Future Imperfect</h2>
-					<p>
-						Another fine responsive site template by <p >HTML5 UP</p>
-					</p>
-				</header>
-			</section>
-
-			<!-- Mini Posts -->
-			<section>
-				<div class="mini-posts">
-
-					<!-- Mini Post -->
-					<article class="mini-post">
-						<header>
-							<h3>
-								<a >Vitae sed condimentum</a>
-							</h3>
-							<time class="published" datetime="2015-10-20">October 20, 2015</time>
-							<a href="#" class="author"><img src="/images/house/avatar.jpg" alt="" /></a>
-						</header>
-						<a href="#" class="image"><img src="/images/house/pic04.jpg" alt="" /></a>
-					</article>
-
-					<!-- Mini Post -->
-					<article class="mini-post">
-						<header>
-							<h3>
-								<a href="#">Rutrum neque accumsan</a>
-							</h3>
-							<time class="published" datetime="2015-10-19">October 19, 2015</time>
-							<a href="#" class="author"><img src="/images/house/avatar.jpg" alt="" /></a>
-						</header>
-						<a href="#" class="image"><img src="/images/house/pic04.jpg" alt="" /></a>
-					</article>
-
-					<!-- Mini Post -->
-					<article class="mini-post">
-						<header>
-							<h3>
-								<a href="#">Odio congue mattis</a>
-							</h3>
-							<time class="published" datetime="2015-10-18">October 18, 2015</time>
-							<a href="#" class="author"><img src="/images/house/avatar.jpg" alt="" /></a>
-						</header>
-						<a href="#" class="image"><img src="/images/house/pic04.jpg" alt="" /></a>
-					</article>
-
-					<!-- Mini Post -->
-					<article class="mini-post">
-						<header>
-							<h3>
-								<a href="#">Enim nisl veroeros</a>
-							</h3>
-							<time class="published" datetime="2015-10-17">October 17, 2015</time>
-							<a href="#" class="author"><img src="/images/house/avatar.jpg" alt="" /></a>
-						</header>
-						<a href="#" class="image"><img src="/images/house/pic04.jpg" alt="" /></a>
-					</article>
-
+<section class="py-5">
+	<div class="container px-4 px-lg-5 my-5">
+		<div class="row gx-4 gx-lg-5 align-items-center">
+			<input type="hidden" value="${house.id}" id="house-id">
+			<div class="col-md-6">
+				<img src="http://localhost:9090/upload/${house.image.imageUrl}" width="500px" height="600px" />
+			</div>
+			<div class="col-md-6">
+				<h3 class="display-5 fw-bolder">
+					<b>${house.name}</b>
+				</h3>
+				<div class="fs-5 mb-5 d-flex">
+					<span class="text-decoration-line-through flex-shrink-0"><i class="bi bi-geo-alt"></i>&nbsp;${house.address}</span> <i class="bi bi-suit-heart flex-shrink-0"></i>
 				</div>
-			</section>
+				<p>${house.infoText}</p>
+				<div class="d-flex">
+					&nbsp;&nbsp;
+					<button class="btn btn-outline-dark flex-shrink-0" type="button">예약하기</button>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<!-- Scripts -->
-	<script src="/js/house/jquery.min.js"></script>
-	<script src="/js/house/skel.min.js"></script>
-	<script src="/js/house/util.js"></script>
-	<script src="/js/house/ie/respond.min.js"></script>
-	<script src="/js/house/main.js"></script>
+	<div class="container px-4 px-lg-5 my-5">
+		<hr>
+		<!-- 평균 별점 -->
+		<div class="d-flex">
+		<h5 class="flex-shrink-0">
+			<b>후기</b>
+		</h5>
+		<div >
+			&nbsp;&nbsp;<label class="bi-star-fill"></label>&nbsp;${house.starScore}
+		</div>
+		</div>
+		<c:forEach var="review" items="${reviews}">
+			<a href="/review/list/${house.id}"></a>
+			<!-- 게스트의 리뷰 -->
+			<div class="flex-shrink-0">
+				<img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" />
+			</div>
+			<div class="ms-3">
+				<div class="fw-bold">${review.guestId.username}</div>
+				${review.content}
+			</div>
+			<!-- 호스트에게는 답글 삭제 버튼 보이게 -->
+			<c:if test="">
+				<div style="cursor: pointer;">
+					<p class="mb-5 float-right" style="cursor: pointer;" data-toggle="modal" data-target="#reply">답글 쓰기</p>
+					<i class="bi bi-pencil-square d-flex float-right"></i>
+				</div>
+			</c:if>
 
-</body>
-</html>
-<%@ include file="../layout/footer.jsp"%>
+			<!-- 호스트의 답글 -->
+			<div class="container d-flex mt-4">
+				<div class="flex-shrink-0">
+					<img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
+				</div>
+				<div class="ms-3">
+					<div class="fw-bold">Host Name</div>
+					And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
+				</div>
+			</div>
+
+		</c:forEach>
+	</div>
+</section>
+
+<section class="py-5 bg-light">
+	<div class="container px-4 px-lg-5 mt-5">
+		<hr>
+		<h4 class="fw-bolder mb-4">
+			<b>이런 숙소는 어때요</b>
+		</h4>
+		<br>
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<c:forEach var="house" items="${houseList}">
+				<div class="col mb-5">
+					<div class="card h-100">
+						<!-- Product image-->
+						<img class="card-img-top" src="http://localhost:9090/upload/${house.image.imageUrl}">
+						<!-- Product details-->
+						<div class="card-body p-4">
+							<div class="text-center">
+								<!-- Product name-->
+								<h5 class="fw-bolder">${house.name}</h5>
+								<!-- Product price-->
+								$40.00 - $80.00
+							</div>
+						</div>
+						<!-- Product actions-->
+						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+							<div class="text-center">
+								<button class="btn btn-outline-dark mt-auto">View Detail</button>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</c:forEach>
+		</div>
+	</div>
+
+</section>
+
+<script>
+	let heartCheck = true;
+
+	$('.bi-suit-heart').on('click', function() {
+		if (heartCheck) {
+			$(this).removeClass('bi-suit-heart');
+			$(this).addClass('bi-suit-heart-fill');
+			addWishList();
+			heartCheck = false;
+		} else {
+			$(this).removeClass('bi-suit-heart-fill');
+			$(this).addClass('bi-suit-heart');
+			deleteWishList();
+			heartCheck = true;
+		}
+
+	});
+
+	function addWishList() {
+		let data = {
+			id : document.querySelector("#house-id").value
+		}
+		console.log("houseId" + data.id);
+
+		fetch("/api/house/wishList", {
+			method : "post",
+			headers : {
+				'content-type' : 'application/json; charset=utf-8'
+			},
+			body : JSON.stringify(data)
+		});
+	}
+
+	function deleteWishList() {
+		let houseId = document.querySelector("#house-id").value;
+
+		fetch("/api/house/wishList/" + houseId, {
+			method : "delete"
+		});
+
+	}
+</script>

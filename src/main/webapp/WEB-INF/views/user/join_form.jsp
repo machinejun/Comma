@@ -1,71 +1,93 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="../layout/header.jsp"%>
 
-<div class="d-lg-flex half">
-    <div class="bg order-1 order-md-2" style="background-image: url('images/bg_1.jpg');"></div>
-    <div class="contents order-2 order-md-1">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원가입 페이지</title>
 
-      <div class="container">
-        <div class="row align-items-center justify-content-center">
-          <div class="col-md-7">
-            <div class="mb-4">
-              <h3>Sign Up</h3>
-              <p class="mb-4">Please fill in this form to create an account.</p>
-            </div>
-            <form action="#" method="post">
-              <div class="form-group first mb-2">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username">
-				<div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
-              </div>
-              
-              <div class="form-group second mb-2">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password">
-					<div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
-              </div>
-              
-              <div class="form-group third mb-2">
-                <label for="repeatPassword">Repeat Password</label>
-                <input type="password" class="form-control" id="repeatPassword">
-					<div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
-              </div>
-              
-              <div class="form-group fourth mb-2">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email">
-					<div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
-              </div>
-              
-              <div class="form-group fifth mb-2">
-                <label for="phoneNumber">Mobile</label>
-                <input type="text" class="form-control" id="phoneNumber">
-                	<div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
-              </div>
-              
-              <div class="form-group last mb-2">
-                <label for="role">Role (Guest or Host)</label>
-                <input type="text" class="form-control" id="role">
-                	<div class="valid-feedback">Valid.</div>
-    <div class="invalid-feedback">Please fill out this field.</div>
-              </div>
-              
-              <input id="btn-save" type="submit" value="Sign Up" class="btn btn-block btn-primary">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-              
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <script src="/js/user.js"></script>
-  
-  <%@ include file="../layout/footer.jsp"%>
+<style>
+body {
+	min-height: 100vh;
+}
+
+.input-form {
+	max-width: 680px;
+	margin-top: 80px;
+	padding: 32px;
+	background: #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	-moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+}
+</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="input-form-backgroud row">
+			<div class="input-form col-md-12 mx-auto">
+				<h4 class="mb-3">회원가입</h4>
+				<form action="/auth/joinProc" method="post" class="needs-validation" novalidate>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="name">Username</label> <input type="text" class="form-control" id="name" name="username" required>
+							<div class="invalid-feedback">아이디를 입력하세요.</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="name">Password</label> <input type="password" class="form-control" id="password" name="password" required>
+							<div class="invalid-feedback">비밀번호를 입력하세요.</div>
+						</div>
+					</div>
+
+					<div class="mb-3">
+						<label for="email">Email</label> <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+						<div class="invalid-feedback">이메일을 입력하세요.</div>
+					</div>
+
+					<div class="mb-3">
+						<label for="phoneNumber">Phone Number</label> <input type="number" class="form-control" id="phoneNumber" placeholder="하이픈(-)을 제외하고 입력하세요." name="phoneNumber" required>
+						<div class="invalid-feedback">전화번호를 입력하세요.</div>
+					</div>
+					<br>
+					<hr class="mb-4">
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="aggrement" required> <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+						<div class="invalid-feedback">약관에 동의하셔야 합니다.</div>
+					</div>
+					<div class="mb-4"></div>
+					<button class="btn btn-primary btn-lg btn-block" type="submit">가입 하기</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		(function() {
+			'use strict';
+			window.addEventListener('load',
+					function() {
+						let forms = document
+								.getElementsByClassName('needs-validation');
+						let validation = Array.prototype.filter.call(forms,
+								function(form) {
+									form.addEventListener('submit', function(
+											event) {
+										if (form.checkValidity() === false) {
+											event.preventDefault();
+											event.stopPropagation();
+										}
+										form.classList.add('was-validated');
+									}, false);
+								});
+					}, false);
+		})();
+	</script>

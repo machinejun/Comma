@@ -22,4 +22,5 @@ public class ReservationController {
 	public String reserveTable() {
 		return "reservation/hostReserveTable";
 	}
+
 }

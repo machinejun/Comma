@@ -7,7 +7,6 @@
 <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css" />
 <link rel="stylesheet" type="text/css" href="/css/login/util.css" />
 <link rel="stylesheet" type="text/css" href="/css/login/main.css" />
-<body>
   <div class="limiter">
     <div class="container-login100">
       <div class="wrap-login100">

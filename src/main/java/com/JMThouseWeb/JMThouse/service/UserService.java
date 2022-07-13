@@ -18,14 +18,17 @@ public class UserService {
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 
-	@Transactional
 	public int saveUser(User user) {
 		try {
 			String rawPassword = user.getPassword();
 			String encPassword = encoder.encode(rawPassword);
 			user.setPassword(encPassword);
 			user.setRole(RoleType.HOST);
-			userRepository.save(user);
+			/*
+			 * save() 메소드에는 @Transactional이 달려있으므로 외부 어노테이션은 선언하지 않음
+			 * 중복체크 메소드와 함께 실행될 시의 오류 방지
+			 */
+			userRepository.save(user); 
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -50,6 +53,7 @@ public class UserService {
 
 	}
 
+	@Transactional
 	public User checkUsername(String username) {
 		User checkUser = userRepository.findByUsername(username).orElseGet(() -> {
 			return new User();

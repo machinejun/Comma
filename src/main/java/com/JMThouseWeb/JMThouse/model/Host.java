@@ -23,14 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-<<<<<<< HEAD
-public class Host implements Serializable{
-	
-	@Id
-	@Column(name="userId")
-	private int userId;
-	
-=======
+
 public class Host implements Serializable {
 
 	@Id
@@ -40,7 +33,7 @@ public class Host implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
->>>>>>> e45826e2ca8d287956ab050537f27d088be68253
+
 	@OneToOne
 	@JoinColumn(name = "userId")
 	private User user;

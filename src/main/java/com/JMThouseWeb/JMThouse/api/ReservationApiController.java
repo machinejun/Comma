@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.JMThouseWeb.JMThouse.dto.ReserveDto;
 import com.JMThouseWeb.JMThouse.model.Reservation;
 import com.JMThouseWeb.JMThouse.service.ReservationService;
 

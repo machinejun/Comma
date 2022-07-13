@@ -1,10 +1,9 @@
 package com.JMThouseWeb.JMThouse.service;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.JMThouseWeb.JMThouse.model.RoleType;
 import com.JMThouseWeb.JMThouse.model.User;
@@ -15,10 +14,10 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder encoder;
-	
+
 	@Transactional
 	public int saveUser(User user) {
 		try {
@@ -27,6 +26,7 @@ public class UserService {
 			user.setPassword(encPassword);
 			user.setRole(RoleType.HOST);
 			userRepository.save(user);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
@@ -40,14 +40,22 @@ public class UserService {
 		User userEntity = userRepository.findById(user.getId()).orElseThrow(() -> {
 			return new IllegalArgumentException("존재하지 않는 회원입니다.");
 		});
-		
+
 		String rawPassword = user.getPassword();
 		String hashPassword = encoder.encode(rawPassword);
-		
+
 		userEntity.setPassword(hashPassword);
 		userEntity.setEmail(user.getEmail());
 		userEntity.setPhoneNumber(user.getPhoneNumber());
+
+	}
+
+	public User checkUsername(String username) {
+		User checkUser = userRepository.findByUsername(username).orElseGet(() -> {
+			return new User();
+		});
 		
+		return checkUser;
 	}
 	
 	public User findByUserId(int id) {

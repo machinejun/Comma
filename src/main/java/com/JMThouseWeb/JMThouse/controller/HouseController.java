@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.JMThouseWeb.JMThouse.auth.PrincipalDetail;
 import com.JMThouseWeb.JMThouse.dto.RequestPostDto;
 import com.JMThouseWeb.JMThouse.model.House;
+import com.JMThouseWeb.JMThouse.model.LikeHouse;
 import com.JMThouseWeb.JMThouse.model.Review;
 import com.JMThouseWeb.JMThouse.service.HouseService;
+import com.JMThouseWeb.JMThouse.service.LikeHouseService;
 import com.JMThouseWeb.JMThouse.service.ReviewService;
 
 @Controller
@@ -27,6 +29,9 @@ public class HouseController {
 	
 	@Autowired
 	private ReviewService reviewService;
+	
+	@Autowired
+	private LikeHouseService likeHouseService;
 
 	// 숙소 리스트 페이지 호출
 	@GetMapping("/list")
@@ -38,14 +43,17 @@ public class HouseController {
 
 	// 숙소 상세정보 페이지 호출
 	@GetMapping("/detail/{houseId}")
-	public String getHouseDetail(@PathVariable int houseId, Model model) {
+	public String getHouseDetail(@PathVariable int houseId, Model model,
+			@AuthenticationPrincipal PrincipalDetail principalDetail) {
 		House houseEntity = houseService.getHouseDetail(houseId);
 		List<House> houseList = houseService.getHouseListByAddress(houseEntity.getAddress());
 		//List<Review> reviews = reviewService.getReviewListByHouseId(1);
 		List<Review> reviews = reviewService.getReviewList();
+		LikeHouse likeHouseEntity = likeHouseService.checkWishList(houseId, principalDetail.getUser().getId());
 		model.addAttribute("house", houseEntity);
 		model.addAttribute("houseList", houseList);
 		model.addAttribute("reviews", reviews);
+		model.addAttribute("likeHouse", likeHouseEntity);
 
 		return "house/detail_form";
 	}

@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ public class UserApiController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
-	@PutMapping("/user/info")
+	@PutMapping("/auth/user-info")
 	public ResponseDto<Integer> updateUserInfo(@RequestBody User user) {
 		userService.updateUserInfo(user);
 		
@@ -31,5 +32,12 @@ public class UserApiController {
 				.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+	}
+	
+	@PostMapping("/auth/username-check")
+	public ResponseDto<User> joinCheck(@RequestBody User user) {
+		System.out.println("username-check : " + user.getUsername());
+		User userEntity = userService.checkUsername(user.getUsername());
+		return new ResponseDto<>(HttpStatus.OK.value(), userEntity);
 	}
 }

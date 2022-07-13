@@ -16,11 +16,7 @@ public class UserController {
 	private UserService userService;
 
 	@GetMapping({"", "/"})
-<<<<<<< HEAD
-	public String index() {
-=======
 	public String home() {
->>>>>>> e45826e2ca8d287956ab050537f27d088be68253
 		return "home";
 	}
 	

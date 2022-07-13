@@ -9,5 +9,7 @@ import com.JMThouseWeb.JMThouse.model.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 	Optional<User> findByUsername(String username);
+	
+	//boolean existsByUsername(String username);
 
 }

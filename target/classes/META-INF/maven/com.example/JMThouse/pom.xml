@@ -77,6 +77,14 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.qlrm/qlrm -->
+		<dependency>
+			<groupId>org.qlrm</groupId>
+			<artifactId>qlrm</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

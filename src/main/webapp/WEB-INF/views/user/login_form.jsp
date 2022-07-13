@@ -24,7 +24,7 @@ body {
 </head>
 
 <div class="container">
-	<div class="input-form-backgroud row">
+	<div class="input-form-backgroud row justify-content-center">
 		<div class="input-form col-md-12 mx-auto">
 			<form action="/auth/loginProc" method="post" class="needs-validation" novalidate>
 				<h3 class="mb-3">Welcome</h3>
@@ -56,13 +56,11 @@ body {
 		</div>
 	</div>
 </div>
-<<<<<<< HEAD
 
 <div></div>
 <script type="text/javascript" src="/js/main.0cf8b554.js"></script></body>
 <script type="text/javascript" src="/js/home.js"></script></body>
 <script src="/js/login/main.js"></script>
-=======
 <br>
 <br>
 <script>
@@ -84,4 +82,3 @@ body {
 </script>
 <script src="/js/login/main.js"></script>
 <%@ include file="../layout/footer.jsp"%>
->>>>>>> e45826e2ca8d287956ab050537f27d088be68253

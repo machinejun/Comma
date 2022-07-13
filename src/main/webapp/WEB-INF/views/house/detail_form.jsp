@@ -58,11 +58,32 @@
 .star-rating label:hover, .star-rating label:hover ~ label {
 	text-shadow: 0 0 0 #fdd826;
 }
+
+/* 말줄임 표시 */
+.multiLine {
+	width: 250px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+}
+
+.multiLine-house {
+	width: 400px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+}
 </style>
 
 <section class="py-5">
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
+			<c:set var="notExist" value="bi-suit-heart"></c:set>
+			<c:set var="exist" value="bi-suit-heart-fill"></c:set>
 			<input type="hidden" value="${house.id}" id="house-id">
 			<div class="col-md-6">
 				<img src="http://localhost:9090/upload/${house.image.imageUrl}" width="500px" height="600px" />
@@ -70,11 +91,12 @@
 			<div class="col-md-6">
 				<h3 class="display-5 fw-bolder">
 					<b>${house.name}</b>
-				</h3>
+				</h3><br>
 				<div class="fs-5 mb-5 d-flex">
-					<span class="text-decoration-line-through flex-shrink-0"><i class="bi bi-geo-alt"></i>&nbsp;${house.address}</span> <i class="bi bi-suit-heart flex-shrink-0"></i>
-				</div>
-				<p>${house.infoText}</p>
+					<span class="text-decoration-line-through flex-shrink-0"><i class="bi bi-geo-alt"></i>&nbsp;${house.address}</span> <i class="bi ${not empty likeHouse ? exist : notExist} flex-shrink-0"></i>
+				</div><br>
+				<div><h4>₩ ${house.oneDayPrice}</h4></div><br>
+				<p class="multiLine-house">${house.infoText}</p><br>
 				<div class="d-flex">
 					&nbsp;&nbsp;
 					<button class="btn btn-outline-dark flex-shrink-0" type="button">예약하기</button>
@@ -87,41 +109,38 @@
 		<hr>
 		<!-- 평균 별점 -->
 		<div class="d-flex">
-		<h5 class="flex-shrink-0">
-			<b>후기</b>
-		</h5>
-		<div >
-			&nbsp;&nbsp;<label class="bi-star-fill"></label>&nbsp;${house.starScore}
+			<h4 class="flex-shrink-0">
+				<b>후기</b>
+				</h4>
+				<div>
+					&nbsp;&nbsp;<label class="bi-star-fill"></label>&nbsp;${house.starScore}
+				</div>
 		</div>
-		</div>
+		<br>
+		<br>
+		
+		<div class="container"></div>
 		<c:forEach var="review" items="${reviews}">
 			<a href="/review/list/${house.id}"></a>
 			<!-- 게스트의 리뷰 -->
-			<div class="flex-shrink-0">
-				<img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" />
-			</div>
-			<div class="ms-3">
-				<div class="fw-bold">${review.guestId.username}</div>
-				${review.content}
-			</div>
-			<!-- 호스트에게는 답글 삭제 버튼 보이게 -->
-			<c:if test="">
-				<div style="cursor: pointer;">
-					<p class="mb-5 float-right" style="cursor: pointer;" data-toggle="modal" data-target="#reply">답글 쓰기</p>
-					<i class="bi bi-pencil-square d-flex float-right"></i>
+			<c:set var="star-fill" value="bi-star-fill"></c:set>
+			<c:set var="star-blank" value=""></c:set>
+			
+			<input type="hidden" id="review-id" value="${review.id}">
+			<div class="row"></div>
+			<div class="col-md-8">
+				<h4 class="h4 fw-bolder">${review.guestId.username}</h4>
+				<div class="d-flex small text-warning mb-2">
+					<div class="bi-star-fill"></div>
+					<div class="bi-star-fill"></div>
+					<div class="bi-star-fill"></div>
+					<div class="bi-star-fill"></div>
+					<div class="bi-star-fill"></div>
 				</div>
-			</c:if>
-
-			<!-- 호스트의 답글 -->
-			<div class="container d-flex mt-4">
-				<div class="flex-shrink-0">
-					<img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." />
-				</div>
-				<div class="ms-3">
-					<div class="fw-bold">Host Name</div>
-					And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
-				</div>
+				<p class="multiLine">${review.content}</p>
+				<a class="text-decoration-none" data-toggle="modal" data-target="#replyModal" style="cursor: pointer;"> 더보기 </a>
 			</div>
+			<br>
 
 		</c:forEach>
 	</div>
@@ -160,7 +179,6 @@
 
 <script>
 	let heartCheck = true;
-
 	$('.bi-suit-heart').on('click', function() {
 		if (heartCheck) {
 			$(this).removeClass('bi-suit-heart');
@@ -173,15 +191,12 @@
 			deleteWishList();
 			heartCheck = true;
 		}
-
 	});
 
 	function addWishList() {
 		let data = {
 			id : document.querySelector("#house-id").value
 		}
-		console.log("houseId" + data.id);
-
 		fetch("/api/house/wishList", {
 			method : "post",
 			headers : {
@@ -192,11 +207,9 @@
 	}
 
 	function deleteWishList() {
-		let houseId = document.querySelector("#house-id").value;
-
+		let houseId = $("#house-id").val;
 		fetch("/api/house/wishList/" + houseId, {
 			method : "delete"
 		});
-
 	}
 </script>

@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class HoustWaitDto {
-	private BigInteger houseId;
-	private Integer wait;
-
+	private BigInteger wait;
+	private Integer houseId;
 }

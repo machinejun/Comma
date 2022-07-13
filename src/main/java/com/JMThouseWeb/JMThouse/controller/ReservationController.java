@@ -52,7 +52,7 @@ public class ReservationController {
 		
 		List<HoustWaitDto> count = reservationService.getWaitCount(hostid);
 		List<House> houses =  houseService.findAllByHostId(hostid);
-		
+		System.out.println(count);
 		model.addAttribute("houses", houses);
 		model.addAttribute("count", count);
 		return "reservation/hostReserveTable";

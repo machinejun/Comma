@@ -72,7 +72,7 @@ function addHouseTable(response){
 		let info = `<tr class="child-tr">
 			     <th scope="row">${reservation.username}</th>
 				 <td>${reservation.headCount}</td>
-				 <td>${reservation.chekInDate} ~ ${reservation.checkOutDate}</td>
+				 <td>${reservation.checkInDate} ~ ${reservation.checkOutDate}</td>
 				 <td>${reservation.phoneNumber}</td>
 				 <td><!-- 아이디 값을 다 넣어주어야 한다. -->
 					 <a onclick="showDetail(${reservation.id})" class="icon-search-plus" type="btn"></a>

@@ -19,7 +19,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<div class="login100-pic js-tilt" data-tilt>
+				<div class="login100-pic js-tilt" >
 					<img src="/assets/images/img-01.png" alt="IMG">
 				</div>
 

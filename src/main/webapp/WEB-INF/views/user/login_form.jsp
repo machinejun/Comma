@@ -56,13 +56,12 @@ body {
 		</div>
 	</div>
 </div>
-<<<<<<< HEAD
+
 
 <div></div>
 <script type="text/javascript" src="/js/main.0cf8b554.js"></script></body>
 <script type="text/javascript" src="/js/home.js"></script></body>
 <script src="/js/login/main.js"></script>
-=======
 <br>
 <br>
 <script>
@@ -82,6 +81,4 @@ body {
 		}, false);
 	})();
 </script>
-<script src="/js/login/main.js"></script>
 <%@ include file="../layout/footer.jsp"%>
->>>>>>> e45826e2ca8d287956ab050537f27d088be68253

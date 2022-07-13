@@ -2,9 +2,12 @@
     pageEncoding="UTF-8"%>
 <link href="/css/reservationStyle/reservationStyle.css" rel="stylesheet">
 <%@ include file="layout/header.jsp" %>
+
+<input id="oneDayPrice" type="hidden" value="${house.oneDayPrice}">
+<input id="capacity" type="hidden" value="${house.capacity}">
 <input id="size" value="${size}" type="hidden" />
 <c:forEach var="date" items="${bookedDates}">
-	<input id="date-${date.index}" value="${date.date}" type="hidden"" />
+	<input id="date-${date.index}" value="${date.date}" type="hidden" />
 </c:forEach>
 <div class="section-container contact-container">
     <div id="inputPage" class="container">
@@ -39,7 +42,6 @@
 						</div>
 					  </li>
 					  <li  class="list-group-item d-flex justify-content-between align-items-center">
-					  	<input id="oneDayPrice" type="hidden" value="${house.oneDayPrice}">
 					    <p id="showPrice" class="align-items-center" style="transform: translate(0%,30%);">가격: 원</p>				   
 					  </li>
 					  <li class="list-group-item d-flex justify-content-between align-items-center">요청사항

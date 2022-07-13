@@ -30,19 +30,15 @@ public class Host implements Serializable {
 	@Column(name = "userId")
 	private int userId;
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-
-
 	@OneToOne
 	@JoinColumn(name = "userId")
 	private User user;
 
-	@OneToMany(mappedBy = "hostId", fetch = FetchType.LAZY)
-	@JsonIgnoreProperties({ "hostId" })
-	private List<House> houses;
+//	@OneToMany(mappedBy = "hostId", fetch = FetchType.LAZY)
+//	@JsonIgnoreProperties({ "hostId" })
+//	private List<House> houses;
 
-	@OneToMany(mappedBy = "hostId", fetch = FetchType.LAZY)
-	@JsonIgnoreProperties({ "hostId" })
-	private List<Reservation> reservations;
+//	@OneToMany(mappedBy = "hostId", fetch = FetchType.LAZY)
+//	@JsonIgnoreProperties({ "hostId" })
+//	private List<Reservation> reservations;
 }

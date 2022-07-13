@@ -77,6 +77,27 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- Test -->
+		<dependency>
+		  <groupId>junit</groupId>
+		  <artifactId>junit</artifactId>
+		  <scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-test</artifactId>
+		  <scope>test</scope>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/ch.simas.qlrm/qlrm -->
+		<dependency>
+		    <groupId>ch.simas.qlrm</groupId>
+		    <artifactId>qlrm</artifactId>
+		    <version>1.7.1</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

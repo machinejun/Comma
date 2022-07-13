@@ -3,8 +3,11 @@ package com.JMThouseWeb.JMThouse.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.JMThouseWeb.JMThouse.model.House;
+
 
 public interface HouseRepository extends JpaRepository<House, Integer> {
 
@@ -14,5 +17,8 @@ public interface HouseRepository extends JpaRepository<House, Integer> {
 	List<House> findAllByAddress(String address);
 
 	// select * from house where type = '게스트 하우스';
+	
+	@Query(value = "SELECT * FROM house WHERE hostId = ?1", nativeQuery = true)
+	List<House> findAllByHostId(@Param(value = "hostId")int hostId);
 
 }

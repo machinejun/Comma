@@ -143,5 +143,12 @@ public class HouseService {
 	public void deleteItemOfWishList(int houseId, int guestId) {
 		likeHouseRepository.deleteByHouseIdAndGuestId(houseId, guestId);
 	}
+	
+	@Transactional
+	public List<House> findAllByHostId(int hostId) {
+		List<House> houses = houseRepository.findAllByHostId(hostId);
+		System.out.println(houses);
+		return houses;
+	}
 
 }

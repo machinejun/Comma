@@ -2,26 +2,27 @@ package com.JMThouseWeb.JMThouse;
 
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.JMThouseWeb.JMThouse.model.House;
+import com.JMThouseWeb.JMThouse.repository.HouseRepository;
 import com.JMThouseWeb.JMThouse.service.HouseService;
 
 @SpringBootTest
-class JmThouseApplicationTests {
+public class HostTableTest {
+	@Autowired
+	private HouseService houseService;
 	
 	@Autowired
-	HouseService houseService;
+	private HouseRepository houseRepository;
 	
-	@Transactional
 	@Test
-	void contextLoads() {
-		List<House> h = houseService.findAllByHostId(2);
+	public void test() {
+		System.out.println("hello");
 	}
-	
 	
 
 }

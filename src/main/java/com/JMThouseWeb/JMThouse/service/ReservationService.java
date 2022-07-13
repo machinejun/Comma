@@ -5,10 +5,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.JMThouseWeb.JMThouse.dto.HostTableDto;
+import com.JMThouseWeb.JMThouse.dto.HoustWaitDto;
 import com.JMThouseWeb.JMThouse.model.BookedDate;
 import com.JMThouseWeb.JMThouse.model.Guest;
 import com.JMThouseWeb.JMThouse.model.Host;
@@ -20,6 +24,7 @@ import com.JMThouseWeb.JMThouse.model.User;
 import com.JMThouseWeb.JMThouse.repository.BookedDateRepository;
 import com.JMThouseWeb.JMThouse.repository.GuestRepository;
 import com.JMThouseWeb.JMThouse.repository.HostRepository;
+import com.JMThouseWeb.JMThouse.repository.HostTableRepository;
 import com.JMThouseWeb.JMThouse.repository.HouseRepository;
 import com.JMThouseWeb.JMThouse.repository.ReservationRepository;
 
@@ -29,6 +34,8 @@ import com.JMThouseWeb.JMThouse.repository.ReservationRepository;
 @Service
 public class ReservationService{
 	
+	@Autowired
+	private HostTableRepository hostTableRepository;
 	
 	//User레파지 스토리도 필요하다
 	@Autowired
@@ -92,22 +99,27 @@ public class ReservationService{
 	}
 	
 	@Transactional(readOnly = true)
-	public Reservation getReservation(User user) {
-		Reservation reservation;
+	public List<Reservation> getReservation(User user) {
+		List<Reservation> reservation;
 		if(user.getRole() == RoleType.GUEST) {
-			reservation = reservationRepository.findByGuestId(user.getId()).orElseThrow(() -> {
-				return new RuntimeException("해당 게스트는 예약을 하지않았습니다."); 
-			});
+			reservation = reservationRepository.findByGuestId(user.getId());
 		}else {
-			reservation = reservationRepository.findByHostId(user.getId()).orElseThrow(() -> {
-				return new RuntimeException("해당 호스트는 어떠한 예약도 없습니다."); 
-			});
+			reservation = reservationRepository.findByHostId(user.getId());
 		}
 		return reservation;
+	}
+	
+	public List<HostTableDto> getTableInfo(int hostId, int houseId){
+		return hostTableRepository.getlist(hostId, houseId);
 	}
 	
 	public ArrayList<BookedDate> getListBookedDate(int hostid){
 		ArrayList<BookedDate> list = (ArrayList<BookedDate>)bookedDateRepository.findAllByHouseId(hostid);
 		return list;
 	}
+	
+	public List<HoustWaitDto> getWaitCount(int hostid){
+		return hostTableRepository.getWaitCount(hostid);
+	}
+	
 }

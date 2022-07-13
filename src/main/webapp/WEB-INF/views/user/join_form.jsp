@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-<<<<<<< HEAD
 
-=======
 <title>회원가입 페이지</title>
->>>>>>> e45826e2ca8d287956ab050537f27d088be68253
+
 
 <style>
 body {
@@ -50,24 +48,17 @@ body {
 					</div>
 
 					<div class="mb-3">
-<<<<<<< HEAD
-						<label for="email">Email</label> <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
-=======
 						<label for="email">Email</label> <input type="email"
-							class="form-control" id="email" placeholder="you@example.com"
+							class="form-control" id="email" name="email" placeholder="you@example.com"
 							required>
->>>>>>> e45826e2ca8d287956ab050537f27d088be68253
+
 						<div class="invalid-feedback">이메일을 입력하세요.</div>
 					</div>
 
 					<div class="mb-3">
-<<<<<<< HEAD
-						<label for="phoneNumber">Phone Number</label> <input type="tel" class="form-control" id="phoneNumber" placeholder="하이픈(-)을 제외하고 입력하세요." name="phoneNumber" required>
-=======
 						<label for="phoneNumber">Phone Number</label> <input type="number"
 							class="form-control" id="phoneNumber"
 							placeholder="하이픈(-)을 제외하고 입력하세요." name="phoneNumber" required>
->>>>>>> e45826e2ca8d287956ab050537f27d088be68253
 						<div class="invalid-feedback">전화번호를 입력하세요.</div>
 					</div>
 					<br>
@@ -85,14 +76,14 @@ body {
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
+
 	<script type="text/javascript" src="/js/main.0cf8b554.js"></script></body>
 	<script type="text/javascript" src="/js/home.js"></script></body>
-=======
+
 	<br>
 	<br>
 
->>>>>>> e45826e2ca8d287956ab050537f27d088be68253
+
 	<script>
 		/* validation 체크 필요 */
 		(function() {

@@ -40,8 +40,8 @@ public class Guest implements Serializable{
 	@JoinColumn(name="userId")
 	private User user;
 	
-	@OneToMany(mappedBy = "guestId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"guestId"})
-	private List<Reservation> reservations;
+//	@OneToMany(mappedBy = "guestId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+//	@JsonIgnoreProperties({"guestId"})
+//	private List<Reservation> reservations;
 
 }

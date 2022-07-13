@@ -49,5 +49,9 @@ public class UserService {
 		userEntity.setPhoneNumber(user.getPhoneNumber());
 		
 	}
+	
+	public User findByUserId(int id) {
+		return userRepository.findById(id).get();
+	}
 
 }

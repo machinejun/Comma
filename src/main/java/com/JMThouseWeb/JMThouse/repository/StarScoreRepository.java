@@ -16,11 +16,11 @@ public class StarScoreRepository {
 	
 	private final EntityManager entityManager;
 	
-	public HouseScoreDto AvgStarScoreByHouse(int houseid) {
-		String sql = "select houseId ,avg(starScore) as score\r\n"
-				+ "from review\r\n"
-				+ "where houseid = "+houseid+"\r\n"
-				+ "group by houseId";
+	public HouseScoreDto getAvgStarScoreByHouse(int houseId) {
+		String sql = "SELECT houseId, ROUND(AVG(starScore), 1) AS score\r\n"
+				+ "FROM review\r\n"
+				+ "WHERE houseId = "+houseId+"\r\n"
+				+ "GROUP BY houseId";
 		
 		Query nativeQuery = entityManager.createNativeQuery(sql);
 		JpaResultMapper jpaResultMapper = new JpaResultMapper();

@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.JMThouseWeb.JMThouse.dto.HouseScoreDto;
 import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.model.Reply;
 import com.JMThouseWeb.JMThouse.model.Review;
 import com.JMThouseWeb.JMThouse.model.User;
 import com.JMThouseWeb.JMThouse.repository.ReplyRepository;
 import com.JMThouseWeb.JMThouse.repository.ReviewRepository;
+import com.JMThouseWeb.JMThouse.repository.StarScoreRepository;
 
 @Service
 public class ReviewService {
@@ -21,6 +23,9 @@ public class ReviewService {
 
 	@Autowired
 	private ReplyRepository replyRepository;
+	
+	@Autowired
+	private StarScoreRepository starScoreRepository;
 
 	@Transactional
 	public void postReview(Review review, User user) {
@@ -60,8 +65,12 @@ public class ReviewService {
 
 	@Transactional
 	public List<Review> getReviewListByHouseId(int houseId) {
-		// TODO houseId 넣어서 수정하기
-		return reviewRepository.findAllByHouseIdLmit();
+		return reviewRepository.findAllByHouseIdLmit(houseId);
+	}
+
+	@Transactional
+	public HouseScoreDto getAvgStarScore(int houseId) {
+		return starScoreRepository.getAvgStarScoreByHouse(houseId);
 	}
 
 }

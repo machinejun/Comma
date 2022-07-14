@@ -60,7 +60,7 @@
 					for="1-star">⭐</label>
 			</div>
 
-			<div class="form-group">
+			<div class="form-group summernote">
 				<br /> <label for="content"><b></b></label>
 				<textarea class="form-control" rows="10" id="content"
 					placeHolder="숙소의 청결도, 위치, 호스트와의 의사소통에 대한 솔직한 후기를 남겨주세요."></textarea>
@@ -101,5 +101,19 @@ function postReview() {
 			location.href = "/";
 	});
 }
+
+$(".custom-file-input").on(
+		"change",
+		function() {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected")
+					.html(fileName);
+		});
+
+$('.summernote').summernote({
+	tabsize : 2,
+	height : 300,
+	toolbar : []
+});
 </script>
 <%@ include file="../layout/footer.jsp"%>

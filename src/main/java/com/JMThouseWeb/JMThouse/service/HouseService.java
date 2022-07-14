@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,6 +23,7 @@ import com.JMThouseWeb.JMThouse.repository.HouseRepository;
 import com.JMThouseWeb.JMThouse.repository.ImageRepository;
 import com.JMThouseWeb.JMThouse.repository.LikeHouseRepository;
 import com.JMThouseWeb.JMThouse.repository.ReviewRepository;
+import com.JMThouseWeb.JMThouse.repository.StarScoreRepository;
 
 @Service
 public class HouseService {
@@ -40,6 +42,9 @@ public class HouseService {
 
 	@Autowired
 	private ReviewRepository reviewRepository;
+	
+	@Autowired
+	private StarScoreRepository starScoreRepository;
 
 	@Transactional
 	public House getHouseDetail(int houseId) {
@@ -47,18 +52,6 @@ public class HouseService {
 		House houseEntity = houseRepository.findById(houseId).orElseThrow(() -> {
 			return new IllegalArgumentException("해당하는 숙소를 찾을 수 없습니다.");
 		});
-		/*
-		List<Review> reviews = reviewRepository.findByHouseId(houseId);
-
-		// starScore 평점 계산
-		double sum = 0.0;
-
-		for (int i = 0; i < reviews.size(); i++) {
-			sum += reviews.get(i).getStarScore();
-		}
-
-		houseEntity.setStarScore(sum / reviews.size());
-		*/
 
 		return houseEntity;
 	}
@@ -184,8 +177,8 @@ public class HouseService {
 	}
 	
 	@Transactional(readOnly = true)
-	public int getReviewCount() {
-		return reviewRepository.getReviewCount();
+	public int getReviewCount(int houseId) {
+		return reviewRepository.getReviewCount(houseId);
 	}
 
 }

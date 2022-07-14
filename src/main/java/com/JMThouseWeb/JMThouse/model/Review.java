@@ -1,5 +1,6 @@
 package com.JMThouseWeb.JMThouse.model;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -49,6 +51,9 @@ public class Review {
 
 	@ColumnDefault("0.0")
 	private double starScore;
+	
+	@CreationTimestamp
+	private Timestamp creationDate;
 
 	@OneToMany(mappedBy = "reviewId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	private List<Reply> replies;

@@ -64,6 +64,7 @@
 	display: block;
 	outline: none;
 	border: none;
+	border-radius: 10px;
 }
 
 .grid li > a {
@@ -158,14 +159,16 @@
 
 /* Hover effects */
 .grid li.shown:hover h3 {
-	/*color: #fff;*/
 	-webkit-transform: translate3d(0,-30px,0);
 	transform: translate3d(0,-30px,0);
+	border-radius: 10px;
 }
 
 .grid li.shown:hover > a::before {
 	border-width: 14px;
 	border-color: #fff;
+	border-radius: 10px;
+	
 }
 
 /* Animations */

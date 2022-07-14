@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.JMThouseWeb.JMThouse.auth.PrincipalDetail;
+import com.JMThouseWeb.JMThouse.dto.HouseScoreDto;
 import com.JMThouseWeb.JMThouse.dto.RequestPostDto;
 import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.model.LikeHouse;
@@ -50,13 +51,15 @@ public class HouseController {
 		List<House> houseList = houseService.getHouseListByAddress(houseEntity.getAddress(), houseEntity.getId());
 		List<Review> reviews = reviewService.getReviewListByHouseId(houseId);
 		LikeHouse likeHouseEntity = likeHouseService.checkWishList(houseId, principalDetail.getUser().getId());
-		int reviewCount = houseService.getReviewCount();
+		HouseScoreDto houseScoreDto = reviewService.getAvgStarScore(houseId);
+		int reviewCount = houseService.getReviewCount(houseId);
 		
 		model.addAttribute("house", houseEntity);
 		model.addAttribute("houseList", houseList);
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("likeHouse", likeHouseEntity);
 		model.addAttribute("reviewCount", reviewCount);
+		model.addAttribute("avgScore", houseScoreDto.getScore());
 
 		return "house/detail_form";
 	}

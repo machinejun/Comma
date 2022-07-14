@@ -17,10 +17,6 @@ import com.JMThouseWeb.JMThouse.service.HouseService;
 @RestController
 @RequestMapping("/api/house")
 public class HouseApiController {
-	/**
-	 * 
-	 * 숙소 정보 관리와 관련된 모든 기능은 호스트 회원이어야만 가능하다.
-	 */
 
 	@Autowired
 	private HouseService houseService;

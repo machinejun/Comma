@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.JMThouseWeb.JMThouse.auth.PrincipalDetail;
@@ -46,14 +47,16 @@ public class HouseController {
 	public String getHouseDetail(@PathVariable int houseId, Model model,
 			@AuthenticationPrincipal PrincipalDetail principalDetail) {
 		House houseEntity = houseService.getHouseDetail(houseId);
-		List<House> houseList = houseService.getHouseListByAddress(houseEntity.getAddress());
-		//List<Review> reviews = reviewService.getReviewListByHouseId(1);
-		List<Review> reviews = reviewService.getReviewList();
+		List<House> houseList = houseService.getHouseListByAddress(houseEntity.getAddress(), houseEntity.getId());
+		List<Review> reviews = reviewService.getReviewListByHouseId(houseId);
 		LikeHouse likeHouseEntity = likeHouseService.checkWishList(houseId, principalDetail.getUser().getId());
+		int reviewCount = houseService.getReviewCount();
+		
 		model.addAttribute("house", houseEntity);
 		model.addAttribute("houseList", houseList);
 		model.addAttribute("reviews", reviews);
 		model.addAttribute("likeHouse", likeHouseEntity);
+		model.addAttribute("reviewCount", reviewCount);
 
 		return "house/detail_form";
 	}
@@ -65,14 +68,22 @@ public class HouseController {
 	}
 
 	// 숙소 글 수정 페이지 호출
-	@GetMapping("/update_form")
-	public String getUpdateForm() {
-		return "house/update_form";
+	@GetMapping("/update_form/{houseId}")
+	public String getUpdateForm(@PathVariable int houseId, Model model) {
+		House houseEntity = houseService.getHouseDetail(houseId);
+		model.addAttribute("house", houseEntity);
+		return "house/update_house_form";
 	}
 
 	@PostMapping("/post")
 	public String postHouse(RequestPostDto requestPostDto, @AuthenticationPrincipal PrincipalDetail principalDetail) {
 		houseService.postHouse(requestPostDto, principalDetail.getUser());
+		return "redirect:/house/list";
+	}
+	
+	@PostMapping("/update/{houseId}")
+	public String updateHouse(@PathVariable int houseId, RequestPostDto requestPostDto, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+		houseService.updateHouse(houseId, requestPostDto);
 		return "redirect:/house/list";
 	}
 

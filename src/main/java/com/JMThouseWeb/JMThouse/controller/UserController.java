@@ -30,9 +30,9 @@ public class UserController {
 		return "user/join_form";
 	}
 	
-	@GetMapping("/user/update_form")
+	@GetMapping("/auth/update_form")
 	public String updateForm() {
-		return "user/update_form";
+		return "user/update_user_form";
 	}
 
 	@GetMapping("/logout")

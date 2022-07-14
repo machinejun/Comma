@@ -6,6 +6,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +25,7 @@ public class UserApiController {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
-	@PutMapping("/auth/user-info")
+	@PutMapping("/user/update")
 	public ResponseDto<Integer> updateUserInfo(@RequestBody User user) {
 		userService.updateUserInfo(user);
 		

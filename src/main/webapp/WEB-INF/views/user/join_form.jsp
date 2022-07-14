@@ -2,7 +2,7 @@
 <title>회원가입 페이지</title>
 
 <link rel="stylesheet" href="/fonts/material-icon/css/material-design-iconic-font.min.css" />
-<link rel="stylesheet" href="/css/login/style.css" />
+<link rel="stylesheet" href="/css/user/style.css" />
 
 <div class="main">
   <section class="signup">

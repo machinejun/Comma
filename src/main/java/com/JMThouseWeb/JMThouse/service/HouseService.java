@@ -134,8 +134,8 @@ public class HouseService {
 	}
 
 	@Transactional
-	public List<House> getHouseListByAddress(String address) {
-		List<House> houses = houseRepository.findAllByAddress(address);
+	public List<House> getHouseListByAddress(String address, int houseId) {
+		List<House> houses = houseRepository.findAllByAddress(address, houseId);
 		return houses;
 	}
 
@@ -149,6 +149,43 @@ public class HouseService {
 		List<House> houses = houseRepository.findAllByHostId(hostId);
 		System.out.println(houses);
 		return houses;
+	}
+
+	@Transactional
+	public void updateHouse(int houseId, RequestPostDto requestPostDto) {
+		
+		House houseEntity = houseRepository.findById(houseId).orElseThrow(() -> {
+			return new IllegalArgumentException("해당 숙소는 존재하지 않습니다.");
+		});
+
+		houseEntity.setName(requestPostDto.getName());
+		houseEntity.setAddress(requestPostDto.getAddress());
+		houseEntity.setInfoText(requestPostDto.getInfoText());
+		houseEntity.setType(requestPostDto.getType());
+		houseEntity.setOneDayPrice(requestPostDto.getOneDayPrice());
+
+		String imageFileName = UUID.randomUUID() + "_" + "image";
+		String newFileName = (imageFileName.trim()).replaceAll("\\s", "");
+
+		Path imageFilePath = Paths.get(uploadFolder + newFileName);
+
+		try {
+			Files.write(imageFilePath, requestPostDto.getFile().getBytes());
+
+			Image imageEntity = requestPostDto.toEntity(newFileName);
+			imageRepository.save(imageEntity);
+			houseEntity.setImage(imageEntity);
+			houseRepository.save(houseEntity);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Transactional(readOnly = true)
+	public int getReviewCount() {
+		return reviewRepository.getReviewCount();
 	}
 
 }

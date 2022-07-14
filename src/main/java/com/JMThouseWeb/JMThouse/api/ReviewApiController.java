@@ -28,7 +28,6 @@ public class ReviewApiController {
 	public ResponseDto<Integer> postReview(@RequestBody Review review,
 			@AuthenticationPrincipal PrincipalDetail principalDetail) {
 		// TODO House 데이터 같이 보내기
-		// Test
 		reviewService.postReview(review, principalDetail.getUser());
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}

@@ -1,15 +1,11 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
-<%@ include file="../layout/header.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="/css/house/normalize.css" />
-<link rel="stylesheet" type="text/css" href="/css/house/demo.css" />
 <link rel="stylesheet" type="text/css" href="/css/house/component.css" />
 <script src="/js/house/modernizr.custom.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ include file="../layout/header.jsp"%>
 </head>
 <body>
 	<br />

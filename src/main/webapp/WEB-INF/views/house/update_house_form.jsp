@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link href="/css/style.css" rel="stylesheet">
-	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- include libraries(jQuery, bootstrap) -->
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -12,20 +11,20 @@
 
 <section>
 	<div class="container">
-		<h2>나의 숙소 등록</h2>
+		<h2>나의 숙소 정보 수정</h2>
 		<br> <br>
-		<form action="/house/post" enctype="multipart/form-data" method="post">
+		<form action="/house/update/${house.id}" enctype="multipart/form-data" method="post">
 			<div class="form-group">
 				<div class="form-group">
-					<label for="name"><b>이름</b></label> <input type="text"
-						class="form-control" id="name" name="name" />
+					<label for="name"><b>이름</b></label> <input type="text" class="form-control" id="name" name="name" value="${house.name}" />
 				</div>
 				<br>
+				<c:set var="selected" value="selected"></c:set>
+				<c:set var="notSelected" value=""></c:set>
 				<div class="form-group">
-					<label><b>지역</b></label> <select class="form-control"
-						name="address">
+					<label><b>지역</b></label> <select class="form-control" name="address">
 						<option>서울</option>
-						<option>부산</option>
+						<option selected>부산</option>
 						<option>대구</option>
 						<option>대전</option>
 						<option>경기도</option>
@@ -38,8 +37,7 @@
 				</div>
 				<br>
 				<div class="form-group">
-					<label><b>숙소 유형</b></label> <select class="form-control"
-						name="type">
+					<label><b>숙소 유형</b></label> <select class="form-control" name="type">
 						<option>호텔</option>
 						<option>모텔</option>
 						<option>펜션</option>
@@ -48,23 +46,20 @@
 				</div>
 				<br>
 				<div class="form-group">
-					<label for="price"><b>숙박 가격 (1인 / 1박 기준)</b></label> <input
-						type="text" class="form-control" name="oneDayPrice" />
+					<label for="price"><b>숙박 가격 (1인 / 1박 기준)</b></label> <input type="text" class="form-control" name="oneDayPrice" value="${house.oneDayPrice}" />
 				</div>
 				<br> <label><b>사진 등록</b></label>
 				<div class="custom-file">
-					<input type="file" name="file" class="custom-file-input"
-						required="required" /> <label class="custom-file-label">파일을
-						선택하세요</label>
+					<input type="file" name="file" class="custom-file-input" required="required" value="${house.image.originFileName}" /> <label class="custom-file-label">파일을 선택하세요</label>
 				</div>
 				<br> <br>
 				<div class="form-group">
 					<br /> <label for="infoText"><b>숙소 소개</b></label>
-					<textarea class="form-control summernote" rows="10" name="infoText"></textarea>
+					<textarea class="form-control summernote" rows="10" name="infoText">${house.infoText}</textarea>
 				</div>
 			</div>
 			<br>
-			<button type="submit" class="btn btn-primary" id="btn-register">등록</button>
+			<button type="submit" class="btn btn-primary" id="btn-update">수정</button>
 		</form>
 	</div>
 </section>

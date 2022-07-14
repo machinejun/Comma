@@ -58,11 +58,10 @@ public class ReviewService {
 		return reviewRepository.findAll();
 	}
 
-	/*
 	@Transactional
 	public List<Review> getReviewListByHouseId(int houseId) {
-		return replyRepository.findAllByHouseId(houseId);
+		// TODO houseId 넣어서 수정하기
+		return reviewRepository.findAllByHouseIdLmit();
 	}
-	*/
 
 }

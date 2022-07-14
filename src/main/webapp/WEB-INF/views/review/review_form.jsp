@@ -1,14 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
 <style>
 .star-rating {
 	display: flex;
@@ -47,17 +40,14 @@
 		<!-- TODO 예약내역 뿌리기  -->
 		<div class="form-group">
 			<div class="form-group">
-				<label for="name"><b>예약 정보</b></label> <input type="text"
-					class="form-control" id="name" disabled="disabled" />
-			</div>
-			<div class="form-group">
-				<label for="name"><b>이름</b></label> <input type="text"
+				<label for="name"><b>숙소명</b></label> <input type="text"
 					class="form-control" id="name" disabled="disabled" />
 			</div>
 			<div class="form-group">
 				<label for="name"><b>숙박 일정</b></label> <input type="text"
 					class="form-control" id="name" disabled="disabled" />
 			</div>
+
 			<label><b>만족도</b></label>
 			<div class="form-group star-rating">
 				<input type="radio" id="5-stars" name="rating" value="5" /> <label

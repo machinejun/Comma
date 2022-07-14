@@ -40,10 +40,6 @@ public class Review {
 	@JoinColumn(name = "houseId")
 	private House houseId;
 
-	@OneToOne(cascade = CascadeType.REMOVE)
-	@JoinColumn(name = "imageId")
-	private Image image;
-
 	@ManyToOne
 	@JoinColumn(name = "guestId")
 	private User guestId;

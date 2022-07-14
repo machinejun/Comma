@@ -34,11 +34,10 @@ public class BookedDate {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "houseId")
-	@JsonIgnoreProperties({"bookedDates","reviews","reservation","hostId"})
-	private House house;
+	@ManyToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+	@JoinColumn(name = "ResId")
+	private Reservation Reservation;
 	
-	@Column(name = "bookdedDate", columnDefinition = "DATE")
+	@Column(name = "bookedDate", columnDefinition = "DATE")
 	private LocalDate bookedDate;
 }

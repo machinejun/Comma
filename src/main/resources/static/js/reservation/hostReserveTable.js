@@ -1,20 +1,24 @@
-function cancel(){
-	cancelAlert();
+function cancel(reservationId){
+	cancelAlert(reservationId);
+	
+	
+	
 }
 
 function approve(){
-	approveAlert()
+	alertMessage("예약 승인","예약 승인이 완료되었습니다","success")
 }
 
-function approveAlert(){
+
+function alertMessage(title, text, icon){
 	Swal.fire(
-	  '예약 승인',
-	  '예약승인을 진행합니다',
-	  'success'
+	  title,
+	  text,
+	  icon
 	)
 }
 
-function cancelAlert(){
+function cancelAlert(reservationId){
 	Swal.fire({
 	  title: '정말 예약을 취소시키겠습니까 ?',
 	  text: "예약을 취소시킨다면 다시 복구 할 수 없습니다.",
@@ -24,12 +28,22 @@ function cancelAlert(){
 	  cancelButtonColor: '#d33',
 	  confirmButtonText: 'OK'
 	}).then((result) => {
+		
 	  if (result.isConfirmed) {
-	    Swal.fire(
-	      '예약취소!',
-	      '예약이 취소되었습니다.',
-	      'success'
-	    )
+		$.ajax({
+		type: "delete",
+		url: `/test/api/reserve/delete/${reservationId}`,
+		contentType: "application/json; charset=utf-8",
+		dataType: "json"
+		}).done(function(response) {
+			alertMessage("예약 취소", "예약 취소가 완료되었습니다","success");
+			document.getElementById(`tr-${response}`).remove();
+			return;
+		}).fail(function(){
+			alertMessage("error", "예약 취소에 실패하였습니다","error");
+			return;
+		})
+		
 	  }
 	})
 }
@@ -69,7 +83,7 @@ function addHouseTable(response){
 
 				
 	response.forEach((reservation) => {
-		let info = `<tr class="child-tr">
+		let info = `<tr id="tr-${reservation.id}">
 			     <th scope="row">${reservation.username}</th>
 				 <td>${reservation.headCount}</td>
 				 <td>${reservation.checkInDate} ~ ${reservation.checkOutDate}</td>
@@ -81,7 +95,7 @@ function addHouseTable(response){
 					 </div>
 				 </td>   
 				 <td><span style="font-weight: bold;">${reservation.approvalStatus}<span>&nbsp;&nbsp;</span><button onclick="approve()" id="approve" class="btn btn-success" style="padding: 4px; font-size: 10px;">승인</button></td>   
-				 <td><button onclick="cancel()" class="btn btn-danger" style="padding: 4px; font-size: 10px;">취소</button></td>   
+				 <td><button onclick="cancel(${reservation.id})" class="btn btn-danger" style="padding: 4px; font-size: 10px;">취소</button></td>   
 			</tr>`;
 		$("#table-body").append(info);					    	
 	})

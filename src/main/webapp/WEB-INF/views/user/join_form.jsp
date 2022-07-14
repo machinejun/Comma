@@ -2,10 +2,6 @@
 <%@ include file="../layout/header.jsp"%>
 
 <title>회원가입 페이지</title>
-<<<<<<< HEAD
-
-=======
->>>>>>> 108973e8f0937ee0e0831ea7aeea43b644353260
 
 <style>
 body {
@@ -89,43 +85,10 @@ body {
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
-
+	</br>
+	</br>
 	<script type="text/javascript" src="/js/main.0cf8b554.js"></script></body>
 	<script type="text/javascript" src="/js/home.js"></script></body>
-
-	<br>
-	<br>
-
-
-	<script>
-		/* validation 체크 필요 */
-		(function() {
-			'use strict';
-			window.addEventListener('load',
-					function() {
-						let forms = document
-								.getElementsByClassName('needs-validation');
-						let validation = Array.prototype.filter.call(forms,
-								function(form) {
-									form.addEventListener('submit', function(
-											event) {
-										if (form.checkValidity() === false) {
-											event.preventDefault();
-											event.stopPropagation();
-										}
-										form.classList.add('was-validated');
-									}, false);
-								});
-					}, false);
-		})();
-	</script>
-	<%@ include file="../layout/footer.jsp"%>
-=======
-</body>
-<br>
-<br>
-
 <script>
 	(function() {
 		'use strict';
@@ -187,4 +150,4 @@ body {
 	}
 </script>
 <%@ include file="../layout/footer.jsp"%>
->>>>>>> 108973e8f0937ee0e0831ea7aeea43b644353260
+

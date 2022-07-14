@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -69,18 +70,18 @@ public class ReservationService{
 		reservation.setHouseId(house);
 		reservation.setGuestId(guest);
 		reservation.setHostId(host);
-		calculateBookedDates(reservation.getCheckInDate(), reservation.getCheckOutDate(),house);
+		calculateBookedDates(reservation.getCheckInDate(), reservation.getCheckOutDate(),reservation);
 		reservation.setApprovalStatus(ReservationType.WAITING);
 		reservationRepository.save(reservation);
 	}
 	
-	private void calculateBookedDates(Date checkinDate, Date checkOutDate, House house) {
+	private void calculateBookedDates(Date checkinDate, Date checkOutDate, Reservation res) {
 		int range = getRangeDay(checkinDate, checkOutDate);
 		
 
 		for(int i = 0; i < range; i++) {
 			BookedDate bookedDate = new BookedDate();
-			bookedDate.setHouse(house);
+			bookedDate.setReservation(res);
 			bookedDate.setBookedDate(changeToLocalDate(checkinDate).plusDays(i));
 			bookedDateRepository.save(bookedDate);
 		}
@@ -109,17 +110,27 @@ public class ReservationService{
 		return reservation;
 	}
 	
+	@Transactional(readOnly = true)
 	public List<HostTableDto> getTableInfo(int hostId, int houseId){
 		return hostTableRepository.getlist(hostId, houseId);
 	}
 	
-	public ArrayList<BookedDate> getListBookedDate(int hostid){
-		ArrayList<BookedDate> list = (ArrayList<BookedDate>)bookedDateRepository.findAllByHouseId(hostid);
+	@Transactional(readOnly = true)
+	public List<BookedDate> getListBookedDate(int houseid){
+		List<BookedDate> list = bookedDateRepository.findAllByHouseId(houseid);
 		return list;
 	}
 	
+	@Transactional(readOnly = true)
 	public List<HoustWaitDto> getWaitCount(int hostid){
 		return hostTableRepository.getWaitCount(hostid);
+	}
+	
+	
+	@Transactional
+	public void cancelReservation(int id) {
+		bookedDateRepository.deleteAllByResId(id);
+		reservationRepository.deleteById(id);
 	}
 	
 }

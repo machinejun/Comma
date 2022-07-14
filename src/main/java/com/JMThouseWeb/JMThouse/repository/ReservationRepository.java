@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -33,6 +34,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 			+ "INNER JOIN user u\r\n"
 			+ "ON r.guestId = u.id\r\n"
 			+ "where r.hostId = ?", nativeQuery = true)
-	
+	@Modifying
 	List<HostTableDto> mSelectReservation(@Param(value = "hostId") int hostId);
 }

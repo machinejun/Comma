@@ -4,9 +4,12 @@ let hostid = $("meta[name='hostid']").attr("id");
 let houseid = $("meta[name='houseid']").attr("id");
 */
 let bookedDays= [];
+let loadDaysSize;
 let maxCount = 1;
 let count= 1;
 let istableShow = 0;
+let inputStatus = 0;
+
 
 addListDates();
 setMaxCount();
@@ -18,7 +21,6 @@ $( function(){
 			return;
 		}
 		count--;
-		console.log(count);
 		calculatePrice()
 		$("#count").text("인원수 : " + count);
 		
@@ -33,6 +35,12 @@ $( function(){
 		$("#count").text("인원수 : " + count);
 	})
 	
+	$("#checkIn-Date").bind("click", () => {
+		while(bookedDays.length != loadDaysSize){
+			bookedDays.pop();
+		}
+	})
+	
 	
 	$("#check-default-btn").bind("click", () => {
 		closeModal()
@@ -45,6 +53,7 @@ function addListDates(){
 		let date = $("#date-"+ i).val();
 		bookedDays.push(date);
 	}
+	loadDaysSize = bookedDays.length;
 }
 
 function setMaxCount(){
@@ -62,6 +71,7 @@ function AlertMessage(title, content){
 function startModal(){
 	if(istableShow == 0){
 		showModal();
+		console.log(bookedDays);
 	}else{
 		closeModal();
 	}
@@ -85,10 +95,49 @@ function inputCalender(){
 		AlertMessage("데이터 미등록",`체크인 날짜와 체크아웃 날짜를 확인해주세요`);
 		return;
 	}
+	
+	if(!validCheckInOutDate()){
+		AlertMessage("예약 기간 설정 오류",`체크인 날짜와 체크아웃 날짜를 확인해주세요`);
+		bookedDays.pop();
+		$("#checkIn-Date").val("");
+		$("#checkOut-Date").val("");
+		return;
+	}
+	
 	calculatePrice();
 	$("#bookingDate").text(` ${checkInDate} ~ ${checkOutDate}`);
 	closeModal();
 }
+
+function validCheckInOutDate(){
+	let checkInDate = $("#checkIn-Date").val();
+	let checkOutDate = $("#checkOut-Date").val();
+	let day1 = checkOutDate.split("-");
+	let day2 = checkInDate.split("-");
+	
+	let outDate = new Date(day1[0], day1[1], day1[2]);
+	let inDate = new Date(day2[0], day2[1], day2[2]);
+	
+	if(outDate < inDate){
+		return false;
+	}
+	
+	
+	for(let i =0; i < bookedDays.length; i++){
+		let day = bookedDays[i];
+		let tempday = (day).split('-');
+		
+		let tempDate = new Date(tempday[0], tempday[1], tempday[2]);
+		console.log(tempDate.getTime);
+		if(tempDate > inDate && tempDate < outDate){
+			return false;	
+		}
+	}
+	
+	return true;
+}
+
+
 
 function calculatePrice(){
 	let onDayPrice = $("#oneDayPrice").val();
@@ -152,16 +201,21 @@ $( function() {
 		    beforeShowDay: alreadyBookDates
 		  });
 	  
-    $( "#checkIn-Date, #checkOut-Date" ).datepicker({
+    $( "#checkIn-Date" ).datepicker({
     	maxDate:30,
   		minDate:0,
-
     });
+    
+    $( "#checkOut-Date" ).datepicker({
+    	maxDate:30,
+  		minDate:0,
+    });
+    
 });
 
 function reserveHouse(hostid, houseid){
 
-	let tempBox = [1, hostid, houseid];
+	let tempBox = [2, hostid, houseid];
 	let data ={
 		checkInDate: $("#checkIn-Date").val(),
 		checkOutDate: $("#checkOut-Date").val(),
@@ -189,14 +243,15 @@ function reserveHouse(hostid, houseid){
 function alreadyBookDates(date) {
 	
 	let checkIndate = $("#checkIn-Date").val();
-	console.log(checkIndate);
 	checkIndate = checkIndate.replace(/(^0+)/, "");
+
 	if(checkIndate != ""){
-		bookedDays.push(checkIndate);
+		if(bookedDays[bookedDays.length-1] != checkIndate){
+			bookedDays.push(checkIndate);
+		}
 	}
+
     let m = date.getMonth(), d = date.getDate(), y = date.getFullYear();
-	
-	console.log(bookedDays);
 	
     for (i = 0; i < bookedDays.length; i++) {
 		let date;

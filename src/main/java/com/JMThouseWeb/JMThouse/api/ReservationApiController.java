@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.method.P;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ public class ReservationApiController {
 	@Autowired
 	private ReservationService reservationService;
 	
-	// /test/api/reserve/house/${houseId}
+	// /test/api/reserve/delete/${reservationId}
 	
 	@PostMapping("/house")
 	public int reserveHouse(@RequestBody Reservation reservation) {
@@ -37,7 +38,12 @@ public class ReservationApiController {
 		
 		List<HostTableDto> result = reservationService.getTableInfo(hostId, houseId);
 		return result;
-		
+	}
+	
+	@DeleteMapping("/delete/{reservationId}")
+	public int deleteReservation(@PathVariable int reservationId) {
+		reservationService.cancelReservation(reservationId);
+		return reservationId;
 	}
 	
 }

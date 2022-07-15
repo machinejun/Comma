@@ -1,21 +1,39 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="/css/house/detail.css" rel="stylesheet">
 <section class="py-5">
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
+
+			<c:choose>
+				<c:when test="${not empty principal}">
+
+				</c:when>
+				<c:otherwise>
+
+				</c:otherwise>
+
+			</c:choose>
+
 
 			<c:set var="notExist" value="bi-suit-heart"></c:set>
 			<c:set var="exist" value="bi-suit-heart-fill"></c:set>
 
 			<input type="hidden" value="${house.id}" id="house-id">
 			<div class="col-md-6">
-				<img src="http://localhost:9090/upload/${house.image.imageUrl}" width="500px" height="600px" style="border-radius: 15px" />
+				<img src="http://localhost:9090/upload/${house.image.imageUrl}"
+					width="500px" height="600px" style="border-radius: 15px" />
 			</div>
 			<div class="col-md-6">
 				<h2 class="display-5 fw-bolder">
@@ -23,8 +41,10 @@
 				</h2>
 				<br>
 				<div class="fs-5 mb-5 d-flex ">
-					<span class="text-decoration-line-through flex-shrink-0 "><i class="bi bi-geo-alt"></i>&nbsp;${house.address}</span> <span><i class="bi ${not empty likeHouse.house ? exist : notExist} flex-shrink-0"
-						style="margin-left: 50px" id="like"></i></span>
+					<span class="text-decoration-line-through flex-shrink-0 "><i
+						class="bi bi-geo-alt"></i>&nbsp;${house.address}</span> <span><i
+						class="bi ${not empty likeHouse.house ? exist : notExist}"
+						style="margin-left: 50px; cursor: pointer;" id="like"></i></span>
 				</div>
 				<br>
 				<div class="d-flex">
@@ -32,8 +52,9 @@
 					<h6>&nbsp;&nbsp;/ 박</h6>
 				</div>
 				<p class="multiLine-house">${house.infoText}</p>
-				<br> <br> <a class="text-decoration-none" data-toggle="modal" data-target="#infoModal" style="cursor: pointer;"> 더보기 </a> <br> <br>
-				<br>
+				<br> <br> <a class="text-decoration-none"
+					data-toggle="modal" data-target="#infoModal"
+					style="cursor: pointer;"> 더보기 </a> <br> <br> <br>
 				<div class="d-flex">
 					<button class="custom-btn" type="button">예약하기</button>
 				</div>
@@ -88,13 +109,16 @@
 			<c:forEach var="review" items="${reviews.content}">
 				<div class="row">
 					<!-- 게스트의 리뷰 -->
-					<div class="col-lg-4 mb-5 mb-lg-0" style="height: 240px; margin-right: 120px;">
+					<div class="col-lg-4 mb-5 mb-lg-0"
+						style="height: 240px; margin-right: 120px;">
 						<input type="hidden" id="review-id" value="${review.id}">
-						<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></div>
+						<div
+							class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></div>
 						<h2 class="h4 fw-bolder">${review.guestId.username}</h2>
 						<p class="multiLine">${review.content}</p>
 						<div>
-							<a class="text-decoration-none" data-toggle="modal" data-target="#reviewModal" style="cursor: pointer;"> 더 보기 </a>
+							<a class="text-decoration-none" data-toggle="modal"
+								data-target="#reviewModal" style="cursor: pointer;"> 더 보기 </a>
 						</div>
 					</div>
 				</div>
@@ -122,19 +146,23 @@
 
 				<c:choose>
 					<c:when test="${reviews.first}">
-						<li class="page-item disabled"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
+						<li class="page-item disabled"><a class="page-link"
+							href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="page-item"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
+						<li class="page-item"><a class="page-link"
+							href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
 					</c:otherwise>
 				</c:choose>
 
 				<c:choose>
 					<c:when test="${reviews.last}">
-						<li class="page-item disabled"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
+						<li class="page-item disabled"><a class="page-link"
+							href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="page-item"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
+						<li class="page-item"><a class="page-link"
+							href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>
@@ -153,7 +181,9 @@
 				<c:set var="avgScore" value="${avgScore * 20 * 1.4}"></c:set>
 				<div class="col mb-5">
 					<div class="card h-100">
-						<img class="card-img-top" src="http://localhost:9090/upload/${house.image.imageUrl}" width="100%" height="160px">
+						<img class="card-img-top"
+							src="http://localhost:9090/upload/${house.image.imageUrl}"
+							width="100%" height="160px">
 						<div class="card-body p-4 ">
 							<div class="text-center">
 								<h5 class="fw-bolder multiLine-recommand">${house.name}</h5>
@@ -170,7 +200,8 @@
 						</div>
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
-								<a class="btn btn-outline-dark mt-auto" href="/house/detail/${house.id}">보러가기</a>
+								<a class="btn btn-outline-dark mt-auto"
+									href="/house/detail/${house.id}">보러가기</a>
 							</div>
 						</div>
 					</div>
@@ -182,6 +213,7 @@
 </section>
 
 <script>
+	/*
 	let heartCheck = true;
 
 	if (heartCheck) {
@@ -207,6 +239,7 @@
 		$(this).addClass('bi-suit-heart-fill');
 		addWishList();
 	}
+	 */
 
 	function addWishList() {
 		let data = {
@@ -228,3 +261,4 @@
 		});
 	}
 </script>
+<script src="/js/house/house.js"></script>

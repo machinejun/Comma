@@ -1,13 +1,12 @@
 package com.JMThouseWeb.JMThouse.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.JMThouseWeb.JMThouse.dto.HouseScoreDto;
-import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.model.Reply;
 import com.JMThouseWeb.JMThouse.model.Review;
 import com.JMThouseWeb.JMThouse.model.User;
@@ -40,11 +39,13 @@ public class ReviewService {
 		});
 	}
 
+	/*
 	@Transactional(readOnly = true)
 	public List<Review> getReviewList(int houseId) {
-		List<Review> reviews = reviewRepository.findByHouseId(houseId);
+		List<Review> reviews = reviewRepository.findAllByHouseId(houseId);
 		return reviews;
 	}
+	*/
 
 	@Transactional
 	public Reply addReply(int reviewId, Reply requestReply, User user) {
@@ -58,19 +59,31 @@ public class ReviewService {
 		return replyEntity;
 	}
 
-	// test
-	public List<Review> getReviewList() {
-		return reviewRepository.findAll();
-	}
-
 	@Transactional
-	public List<Review> getReviewListByHouseId(int houseId) {
-		return reviewRepository.findAllByHouseIdLmit(houseId);
+	public Page<Review> getReviewListByHouseId(int houseId, Pageable pageable) {
+		return reviewRepository.findAllByHouseId(houseId, pageable);
 	}
 
 	@Transactional
 	public HouseScoreDto getAvgStarScore(int houseId) {
 		return starScoreRepository.getAvgStarScoreByHouse(houseId);
+	}
+
+	@Transactional
+	public Reply updateReply(int replyId, Reply reply) {
+		Reply replyEntity = replyRepository.findById(replyId).orElseThrow(() -> {
+			return new IllegalArgumentException("해당 댓글은 존재하지 않습니다.");
+		});
+		
+		replyEntity.setContent(reply.getContent());
+		replyRepository.save(replyEntity);
+		return replyEntity;
+	}
+	
+	@Transactional
+	public void deleteReply(int replyId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

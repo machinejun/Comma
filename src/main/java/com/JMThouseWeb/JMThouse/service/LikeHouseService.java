@@ -14,7 +14,7 @@ public class LikeHouseService {
 
 	public LikeHouse checkWishList(int houseId, int guestId) {
 		return likeHouseRepository.findByHouseIdAndGuestId(houseId, guestId).orElseGet(() -> {
-			return null;
+			return new LikeHouse();
 		});
 	}
 }

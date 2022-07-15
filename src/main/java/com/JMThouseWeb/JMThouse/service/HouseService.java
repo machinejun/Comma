@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,7 +17,6 @@ import com.JMThouseWeb.JMThouse.dto.RequestPostDto;
 import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.model.Image;
 import com.JMThouseWeb.JMThouse.model.LikeHouse;
-import com.JMThouseWeb.JMThouse.model.Review;
 import com.JMThouseWeb.JMThouse.model.User;
 import com.JMThouseWeb.JMThouse.repository.HouseRepository;
 import com.JMThouseWeb.JMThouse.repository.ImageRepository;
@@ -128,7 +127,9 @@ public class HouseService {
 
 	@Transactional
 	public List<House> getHouseListByAddress(String address, int houseId) {
-		List<House> houses = houseRepository.findAllByAddress(address, houseId);
+		List<House> houses = houseRepository.findAllByAddress(address, houseId).orElseGet(() -> {
+			return new ArrayList<House>();
+		});
 		return houses;
 	}
 
@@ -178,7 +179,9 @@ public class HouseService {
 	
 	@Transactional(readOnly = true)
 	public int getReviewCount(int houseId) {
-		return reviewRepository.getReviewCount(houseId);
+		return reviewRepository.getReviewCount(houseId).orElseGet(() -> {
+			return 0;
+		});
 	}
 
 }

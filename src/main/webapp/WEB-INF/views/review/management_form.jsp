@@ -1,82 +1,85 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/review/style.css">
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <section class="py-5 border-bottom" id="features">
-	<div class="container px-5 my-5">
-		<h3>
-			<b>📝 리뷰 관리</b>
-		</h3>
+	<div class="container">
+		<div class="row justify-content-center">
+			<h3>
+				<b>📝 리뷰 관리</b>
+			</h3>
+		</div>
 		<br>
-		<div class="row gx-5">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>번 호</th>
-						<th>내용</th>
-						<th>작성자</th>
-					</tr>
-				</thead>
-				<c:forEach var="review" items="${reviews}">
-					<input type="hidden" id="review-id" value="${review.id}">
-					<tr>
-						<td>1</td>
-						<td>${review.guestId.username}</td>
-						<td>홍길동</td>
-					</tr>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="table-wrap">
+					<table class="table table-responsive-xl">
+						<thead>
+							<tr>
+								<th>&nbsp;</th>
+								<th>아이디</th>
+								<th>Username</th>
+								<th>내용</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="review" items="${reviews.content}">
+								<input type="hidden" id="review-id" value="${review.id}">
+								<tr class="alert" role="alert">
+									<td><label class="checkbox-wrap checkbox-primary"> <input type="checkbox" checked> <span class="checkmark"></span>
+									</label></td>
+									<td class="d-flex align-items-center">
+										<div>
+											<span>${review.guestId.username}</span> <span>작성날짜 : ${review.creationDate}</span>
+										</div>
+									</td>
+									<td>${review.guestId.username}</td>
+									<td><span>${review.content}</span></td>
+									<td><a class="text-decoration-none" data-toggle="modal" data-target="#replyModal" style="cursor: pointer;"> 자세히</a></td>
+								</tr>
+								<div class="modal" id="replyModal">
+									<div class="modal-dialog modal-lg">
+										<div class="modal-content">
 
-					<!-- The Modal -->
-					<!--  
-					<a class="text-decoration-none" data-toggle="modal"
-						data-target="#replyModal" style="cursor: pointer;"> 호스트 댓글
-						등록하기</a>
-						-->
+											<!-- Modal Header -->
+											<div class="modal-header">
+												<h5 class="modal-body">${review.guestId.username}</h5>
+												<h6>${review.creationDate}</h6>
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+											</div>
 
-					<div class="modal" id="replyModal">
-						<div class="modal-dialog modal-lg">
-							<div class="modal-content">
+											<div class="modal-body">${review.content}</div>
+											<hr>
 
-								<!-- Modal Header -->
-								<div class="modal-header">
-									<h5 class="modal-body">${review.guestId.username}</h5>
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
+											<div class="modal-body">
+												<h6 class="modal-body">댓글 등록하기</h6>
+											</div>
+
+											<input class="modal-body" style="margin-left: 15px; margin-right: 15px" id="content"></input>
+
+											<div class="modal-footer">
+												<button type="button" id="btn-reply" class="btn btn-primary" data-dismiss="modal">등록</button>
+											</div>
+
+										</div>
+									</div>
 								</div>
-
-								<!-- Modal body -->
-								<div class="modal-body">${review.content}</div>
-
-								<!-- Modal Header -->
-								<div class="modal-body">
-									<h5 class="modal-body">Modal Heading</h5>
-									<hr>
-								</div>
-
-								<!-- Modal body -->
-								<input class="modal-body" style="margin: 5%" id="content"></input>
-
-								<!-- Modal footer -->
-								<div class="modal-footer">
-									<button type="button" id="btn-reply" class="btn btn-primary"
-										data-dismiss="modal">등록</button>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-				</c:forEach>
-			</table>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
+
+
+<script src="/js/review/jquery.min.js"></script>
+<script src="/js/review/popper.js"></script>
+<script src="/js/review/bootstrap.min.js"></script>
+<script src="/js/review/main.js"></script>
 
 <script src="/js/review.js"></script>

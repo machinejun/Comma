@@ -19,6 +19,8 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -56,6 +58,7 @@ public class Review {
 	private Timestamp creationDate;
 
 	@OneToMany(mappedBy = "reviewId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({"reviewId"})
 	private List<Reply> replies;
 
 }

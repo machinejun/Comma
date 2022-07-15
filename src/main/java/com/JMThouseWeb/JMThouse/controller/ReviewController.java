@@ -1,8 +1,10 @@
 package com.JMThouseWeb.JMThouse.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,24 +29,18 @@ public class ReviewController {
 
 	// 리뷰 관리 폼 호출
 	@GetMapping("/management/{houseId}")
-	public String getHouseList(@PathVariable int houseId, Model model) {
-		List<Review> reviews = reviewService.getReviewList(houseId);
+	public String getHouseList(@PathVariable int houseId, Model model,
+			@PageableDefault(size = 5, sort = "id", direction = Direction.DESC) Pageable pageable) {
+		Page<Review> reviews = reviewService.getReviewListByHouseId(houseId, pageable);
 		model.addAttribute("reviews", reviews);
 		return "review/management_form";
-	}
+	}	
 
 	// 상세 리뷰 보기
 	@GetMapping("/detail/{reviewId}")
 	public void getReviewDetail(@PathVariable int reviewId, Model model) {
 		Review reviewEntity = reviewService.getReviewDetail(reviewId);
 		model.addAttribute("review", reviewEntity);
-	}
-
-	// test
-	@GetMapping("/list")
-	public String getHouseList(Model model) {
-		model.addAttribute("reviews", reviewService.getReviewList());
-		return "review/management_form";
 	}
 
 }

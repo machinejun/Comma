@@ -3,13 +3,16 @@ package com.JMThouseWeb.JMThouse.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.JMThouseWeb.JMThouse.auth.PrincipalDetail;
@@ -46,13 +49,20 @@ public class HouseController {
 	// 숙소 상세정보 페이지 호출
 	@GetMapping("/detail/{houseId}")
 	public String getHouseDetail(@PathVariable int houseId, Model model,
-			@AuthenticationPrincipal PrincipalDetail principalDetail) {
+			@AuthenticationPrincipal PrincipalDetail principalDetail,
+			@PageableDefault(size = 3, sort = "id", direction = Direction.DESC) Pageable pageable) {
+		// 조회한 숙소
 		House houseEntity = houseService.getHouseDetail(houseId);
+		// 조회한 숙소와 같은 지역의 숙소 목록
 		List<House> houseList = houseService.getHouseListByAddress(houseEntity.getAddress(), houseEntity.getId());
-		List<Review> reviews = reviewService.getReviewListByHouseId(houseId);
-		LikeHouse likeHouseEntity = likeHouseService.checkWishList(houseId, principalDetail.getUser().getId());
-		HouseScoreDto houseScoreDto = reviewService.getAvgStarScore(houseId);
+		// 조회한 숙소의 리뷰 목록
+		Page<Review> reviews = reviewService.getReviewListByHouseId(houseId, pageable);
+		//숙소 리뷰의 총 개수
 		int reviewCount = houseService.getReviewCount(houseId);
+		// 조회한 사용자가 해당 숙소를 위시리스트에 넣었는지
+		LikeHouse likeHouseEntity = likeHouseService.checkWishList(houseId, principalDetail.getUser().getId());
+		// 숙소의 평균 평점
+		HouseScoreDto houseScoreDto = reviewService.getAvgStarScore(houseId);
 		
 		model.addAttribute("house", houseEntity);
 		model.addAttribute("houseList", houseList);

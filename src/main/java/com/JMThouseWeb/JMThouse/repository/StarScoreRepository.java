@@ -1,6 +1,7 @@
 package com.JMThouseWeb.JMThouse.repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.qlrm.mapper.JpaResultMapper;
@@ -24,7 +25,14 @@ public class StarScoreRepository {
 		
 		Query nativeQuery = entityManager.createNativeQuery(sql);
 		JpaResultMapper jpaResultMapper = new JpaResultMapper();
-		return jpaResultMapper.uniqueResult(nativeQuery, HouseScoreDto.class);
+		HouseScoreDto avgDto;
+		try {
+			avgDto = jpaResultMapper.uniqueResult(nativeQuery, HouseScoreDto.class);
+		} catch (NoResultException e) {
+			avgDto = new HouseScoreDto();
+		}
+		
+		return avgDto;
 		
 	}
 }

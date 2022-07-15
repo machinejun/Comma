@@ -1,6 +1,7 @@
 package com.JMThouseWeb.JMThouse.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,7 +16,7 @@ public interface HouseRepository extends JpaRepository<House, Integer> {
 
 	// select * from house where address = '서울';
 	@Query(value = "SELECT * FROM house WHERE address = ? AND id <> ? LIMIT 4", nativeQuery = true)
-	List<House> findAllByAddress(String address, int houseId);
+	Optional<List<House>> findAllByAddress(String address, int houseId);
 
 	@Query(value = "SELECT * FROM house WHERE hostId = ?1", nativeQuery = true)
 	List<House> findAllByHostId(@Param(value = "hostId") int hostId);

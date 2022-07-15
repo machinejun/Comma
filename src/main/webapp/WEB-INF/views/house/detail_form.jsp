@@ -16,6 +16,7 @@
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
 
+			<!-- TODO 로그인 했을 때만 찜버튼 누를 수 있도록 -->
 			<c:choose>
 				<c:when test="${not empty principal}">
 
@@ -25,7 +26,6 @@
 				</c:otherwise>
 
 			</c:choose>
-
 
 			<c:set var="notExist" value="bi-suit-heart"></c:set>
 			<c:set var="exist" value="bi-suit-heart-fill"></c:set>
@@ -48,7 +48,7 @@
 				</div>
 				<br>
 				<div class="d-flex">
-					<h4>₩ ${house.oneDayPrice}</h4>
+					<h4>₩&nbsp;${house.oneDayPrice}</h4>
 					<h6>&nbsp;&nbsp;/ 박</h6>
 				</div>
 				<p class="multiLine-house">${house.infoText}</p>

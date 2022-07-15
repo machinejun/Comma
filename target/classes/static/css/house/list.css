@@ -1623,7 +1623,6 @@ body {
 }
 
 /* Basic */
-@
 -ms-viewport {
 	width: device-width;
 }
@@ -2380,7 +2379,7 @@ ul.pagination li>.page.active:hover {
 }
 
 ul.pagination li>.page.active:active {
-	background-color: #f45c5c;
+	background-color: #1763E9;
 }
 
 ul.pagination li:first-child {
@@ -2498,8 +2497,8 @@ input[type="submit"], input[type="reset"], input[type="button"], button,
 	background-color: transparent;
 	border-radius: 0.375em;
 	border: 0;
-	box-shadow: inset 0 0 0 2px #f56a6a;
-	color: #f56a6a !important;
+	box-shadow: inset 0 0 0 2px #1763E9;
+	color: #1763E9;
 	cursor: pointer;
 	display: inline-block;
 	font-family: "Roboto Slab", serif;
@@ -2551,7 +2550,7 @@ input[type="submit"].big, input[type="reset"].big, input[type="button"].big,
 
 input[type="submit"].special, input[type="reset"].special, input[type="button"].special,
 	button.special, .button.special {
-	background-color: #f56a6a;
+	background-color: #1763E9;
 	box-shadow: none;
 	color: #ffffff !important;
 }
@@ -2559,13 +2558,13 @@ input[type="submit"].special, input[type="reset"].special, input[type="button"].
 input[type="submit"].special:hover, input[type="reset"].special:hover,
 	input[type="button"].special:hover, button.special:hover, .button.special:hover
 	{
-	background-color: #f67878;
+	background-color: #1763E9;
 }
 
 input[type="submit"].special:active, input[type="reset"].special:active,
 	input[type="button"].special:active, button.special:active, .button.special:active
 	{
-	background-color: #f45c5c;
+	background-color: #1763E9;
 }
 
 input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"].disabled,
@@ -2779,7 +2778,8 @@ input[type="submit"].disabled, input[type="submit"]:disabled, input[type="reset"
 	-webkit-flex-wrap: wrap;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	margin: 0 0 2em -6em; /* 상 우 하 좌 */
+	/*margin: 0 0 2em -6em; /* 상 우 하 좌 */
+	padding: 20px;
 	width: calc(100% + 6em);
 }
 

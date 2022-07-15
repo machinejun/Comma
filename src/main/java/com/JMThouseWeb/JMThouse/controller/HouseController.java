@@ -42,6 +42,7 @@ public class HouseController {
 	@GetMapping("/list")
 	public String getHouseList(Model model) {
 		List<House> houseList = houseService.getHouseList();
+		// TODO 지역별, 숙소 유형별 리스트
 		model.addAttribute("houseList", houseList);
 		return "house/list_form";
 	}

@@ -10,18 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.JMThouseWeb.JMThouse.dto.DateModelDto;
-import com.JMThouseWeb.JMThouse.dto.HostTableDto;
 import com.JMThouseWeb.JMThouse.dto.HoustWaitDto;
 import com.JMThouseWeb.JMThouse.model.BookedDate;
 import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.service.HouseService;
 import com.JMThouseWeb.JMThouse.service.ReservationService;
-import com.JMThouseWeb.JMThouse.service.UserService;
 
 @Controller
 public class ReservationController {
-	@Autowired
-	private UserService userService;
+
 	@Autowired
 	private HouseService houseService;
 	@Autowired
@@ -48,7 +45,7 @@ public class ReservationController {
 	}
 	
 	@GetMapping("/test/reserveTable/host/{hostid}")
-	public String reserveTable(@PathVariable int hostid, Model model) {
+	public String reserveHostTable(@PathVariable int hostid, Model model) {
 		
 		List<HoustWaitDto> count = reservationService.getWaitCount(hostid);
 		List<House> houses =  houseService.findAllByHostId(hostid);
@@ -56,6 +53,12 @@ public class ReservationController {
 		model.addAttribute("houses", houses);
 		model.addAttribute("count", count);
 		return "reservation/hostReserveTable";
+	}
+	
+	@GetMapping("/test/reserveTable/user/{guestid}")
+	public String reserveUserTable(@PathVariable int guestid, Model model) {
+		
+		return "reservation/guestReserveTable";
 	}
 
 }

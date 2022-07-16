@@ -18,23 +18,38 @@ import com.JMThouseWeb.JMThouse.model.Review;
 import com.JMThouseWeb.JMThouse.service.ReviewService;
 
 @RestController
-@RequestMapping("/api/review")
+@RequestMapping("/review")
 public class ReviewApiController {
 
 	@Autowired
 	private ReviewService reviewService;
 
 	// 리뷰 작성 기능
-	@PostMapping("/post")
-	public ResponseDto<Integer> postReview(@RequestBody Review review,
+	@PostMapping("/post/{houseId}")
+	public ResponseDto<Review> postReview(@PathVariable int houseId, @RequestBody Review review,
 			@AuthenticationPrincipal PrincipalDetail principalDetail) {
-		// TODO House 데이터 같이 보내기
-		reviewService.postReview(review, principalDetail.getUser());
+		Review reviewEntity = reviewService.postReview(review, principalDetail.getUser());
+		return new ResponseDto<Review>(HttpStatus.OK.value(), reviewEntity);
+	}
+	
+	// 리뷰 수정 기능
+	@PutMapping("/{reviewId}")
+	public ResponseDto<Review> updateReview(@PathVariable int reviewId,
+			@RequestBody Review review) {
+		Review reviewEntity = reviewService.updateReview(reviewId, review);
+		return new ResponseDto<Review>(HttpStatus.OK.value(), reviewEntity);
+	}
+	
+	
+	// 리뷰 삭제 기능
+	@DeleteMapping("/{reviewId}")
+	public ResponseDto<Integer> deleteReview(@PathVariable int reviewId) {
+		reviewService.deleteReview(reviewId);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 
 	// 댓글 작성 기능
-	@PostMapping("/{reviewId}")
+	@PostMapping("/reply/{reviewId}")
 	public ResponseDto<Reply> addReply(@PathVariable int reviewId, @RequestBody Reply reply,
 			@AuthenticationPrincipal PrincipalDetail principalDetail) {
 		Reply replyEntity = reviewService.addReply(reviewId, reply, principalDetail.getUser());
@@ -42,14 +57,14 @@ public class ReviewApiController {
 	}
 	
 	// 댓글 수정 기능
-	@PutMapping("/{replyId}")
+	@PutMapping("/reply/{replyId}")
 	public ResponseDto<Reply> updateReply(@PathVariable int replyId, @RequestBody Reply reply) {
 		Reply replyEntity = reviewService.updateReply(replyId, reply);
 		return new ResponseDto<Reply>(HttpStatus.OK.value(), replyEntity);
 	}
 	
 	// 댓글 삭제 기능
-	@DeleteMapping("/{replyId}")
+	@DeleteMapping("/reply/{replyId}")
 	public ResponseDto<Integer> deleteReply(@PathVariable int replyId) {
 		reviewService.deleteReply(replyId);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);

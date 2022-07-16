@@ -22,14 +22,15 @@ public class ReviewService {
 
 	@Autowired
 	private ReplyRepository replyRepository;
-	
+
 	@Autowired
 	private StarScoreRepository starScoreRepository;
 
 	@Transactional
-	public void postReview(Review review, User user) {
+	public Review postReview(Review review, User user) {
 		review.setGuestId(user);
-		reviewRepository.save(review);
+		Review reviewEntity = reviewRepository.save(review);
+		return reviewEntity;
 	}
 
 	@Transactional
@@ -38,14 +39,6 @@ public class ReviewService {
 			return new IllegalArgumentException("해당 리뷰는 존재하지 않습니다.");
 		});
 	}
-
-	/*
-	@Transactional(readOnly = true)
-	public List<Review> getReviewList(int houseId) {
-		List<Review> reviews = reviewRepository.findAllByHouseId(houseId);
-		return reviews;
-	}
-	*/
 
 	@Transactional
 	public Reply addReply(int reviewId, Reply requestReply, User user) {
@@ -72,18 +65,33 @@ public class ReviewService {
 	@Transactional
 	public Reply updateReply(int replyId, Reply reply) {
 		Reply replyEntity = replyRepository.findById(replyId).orElseThrow(() -> {
-			return new IllegalArgumentException("해당 댓글은 존재하지 않습니다.");
+			return new IllegalArgumentException("삭제된 댓글입니다.");
 		});
-		
+
 		replyEntity.setContent(reply.getContent());
 		replyRepository.save(replyEntity);
 		return replyEntity;
 	}
-	
+
 	@Transactional
 	public void deleteReply(int replyId) {
-		// TODO Auto-generated method stub
+		replyRepository.deleteById(replyId);
+	}
+
+	@Transactional
+	public void deleteReview(int reviewId) {
+		reviewRepository.deleteById(reviewId);
+	}
+
+	@Transactional
+	public Review updateReview(int reviewId, Review review) {
+		Review reviewEntity = reviewRepository.findById(reviewId).orElseThrow(() -> {
+			return new IllegalArgumentException("해당 리뷰는 존재하지 않습니다.");
+		});
 		
+		reviewEntity.setContent(review.getContent());
+		
+		return reviewEntity;
 	}
 
 }

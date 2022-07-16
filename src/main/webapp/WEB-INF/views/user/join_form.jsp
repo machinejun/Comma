@@ -22,7 +22,7 @@
               <label for="pass"><i class="zmdi zmdi-lock"></i></label> <input type="password" name="password" id="password" placeholder="Password" required />
             </div>
             <div class="form-group">
-              <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+              <label for="re-pass"><i class="zmdi zmdi-lock"></i></label>
               <input type="password" name="re-password" id="re-password" placeholder="Repeat your password" required />
             </div>
 
@@ -31,7 +31,7 @@
             </div>
 
             <div class="form-group">
-              <label for="email"><i class="zmdi zmdi-email"></i></label> <input type="text" name="phoneNumber" id="email" placeholder="Your Phone Number" />
+              <label for="email"><i class="zmdi zmdi-phone"></i></label> <input type="text" name="phoneNumber" id="email" placeholder="Your Phone Number" />
             </div>
             <!-- 
 						<div class="form-group">

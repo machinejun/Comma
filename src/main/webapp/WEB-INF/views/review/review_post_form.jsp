@@ -40,11 +40,12 @@
 		<!-- TODO 예약내역 뿌리기  -->
 		<div class="form-group">
 			<div class="form-group">
-				<label for="name"><b>숙소명</b></label> <input type="text"
+			<input type="hidden" value="${reservation.houseId.id}" id="house-id">
+				<label for="name"><b>${reservation.houseId.name}</b></label> <input type="text"
 					class="form-control" id="name" disabled="disabled" />
 			</div>
 			<div class="form-group">
-				<label for="name"><b>숙박 일정</b></label> <input type="text"
+				<label for="name"><b>${reservation.checkInDate} ~ ${reservation.checkOutDate}</b></label> <input type="text"
 					class="form-control" id="name" disabled="disabled" />
 			</div>
 
@@ -76,20 +77,20 @@
 function postReview() {
 	let starScore;
 	let starLength = document.getElementsByName("rating").length;
+	let houseId = document.getElmentById("#house-id").value;
 	  
      for (let i=0; i < starLength; i++) {
          if (document.getElementsByName("rating")[i].checked == true) {
              starScore = document.getElementsByName("rating")[i].value;
          }
      }
-     console.log(starScore);
 
 	let data = {
 		content: document.querySelector("#content").value,
 		starScore: starScore
 	}
 	
-	fetch("/api/review/post", {
+	fetch("/review/post" + houseId, {
 		method: "post",
 		headers: {
 			'content-type': 'application/json; charset=utf-8'

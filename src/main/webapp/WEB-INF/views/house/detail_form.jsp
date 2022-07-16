@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal" var="principal" />
+</sec:authorize>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet"
@@ -12,7 +18,9 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="/css/house/detail.css" rel="stylesheet">
+
 <section class="py-5">
+	<input type="hidden" id="pageIndex" name="pageIndex" val="" />
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
 
@@ -32,7 +40,8 @@
 
 			<input type="hidden" value="${house.id}" id="house-id">
 			<div class="col-md-6">
-				<img src="http://localhost:9090/upload/${house.image.imageUrl}"
+				<img class="card-img-top mb-5 mb-md-0"
+					src="http://localhost:9090/upload/${house.image.imageUrl}"
 					width="500px" height="600px" style="border-radius: 15px" />
 			</div>
 			<div class="col-md-6">
@@ -41,23 +50,29 @@
 				</h2>
 				<br>
 				<div class="fs-5 mb-5 d-flex ">
-					<span class="text-decoration-line-through flex-shrink-0 "><i
-						class="bi bi-geo-alt"></i>&nbsp;${house.address}</span> <span><i
-						class="bi ${not empty likeHouse.house ? exist : notExist}"
-						style="margin-left: 50px; cursor: pointer;" id="like"></i></span>
+					<span class="text-decoration-line-through flex-shrink-0"><i
+						class="bi bi-geo-alt"></i>&nbsp;${house.address}</span>
 				</div>
 				<br>
 				<div class="d-flex">
 					<h4>₩&nbsp;${house.oneDayPrice}</h4>
-					<h6>&nbsp;&nbsp;/ 박</h6>
+					<h6 style="margin-top: 5px;">&nbsp;&nbsp;/ 박</h6>
 				</div>
 				<p class="multiLine-house">${house.infoText}</p>
+
 				<br> <br> <a class="text-decoration-none"
 					data-toggle="modal" data-target="#infoModal"
 					style="cursor: pointer;"> 더보기 </a> <br> <br> <br>
 				<div class="d-flex">
-					<button class="custom-btn" type="button">예약하기</button>
+
+					<i class="bi ${not empty likeHouse.house ? exist : notExist}"
+						style="margin-top: 5px; cursor: pointer;" id="like"
+						onclick="clickHeart()"></i> &nbsp;&nbsp;
+					<button class="btn btn-outline-dark flex-shrink-0" type="button">
+						<i class="bi-cart-fill me-1"></i> 예약하기
+					</button>
 				</div>
+
 			</div>
 		</div>
 	</div>
@@ -109,7 +124,7 @@
 			<c:forEach var="review" items="${reviews.content}">
 				<div class="row">
 					<!-- 게스트의 리뷰 -->
-					<div class="col-lg-4 mb-5 mb-lg-0"
+					<div class="col-lg-4 mb-5 mb-lg-0" id="bodyContents"
 						style="height: 240px; margin-right: 120px;">
 						<input type="hidden" id="review-id" value="${review.id}">
 						<div
@@ -125,6 +140,9 @@
 				<div class="modal" id="reviewModal">
 					<div class="modal-dialog modal-dialog-scrollable">
 						<div class="modal-content">
+							<c:if test="${review.guestId.id eq principal.user.id}">
+								<button class="btn btn-outline-danger btn-sm" id="btn-delete">삭제</button>
+							</c:if>
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">×</button>
 							</div>
@@ -133,6 +151,9 @@
 								<p>${review.content}</p>
 								<br>
 								<h5>호스트의 댓글</h5>
+								<c:forEach var="reply" items="${review.replies}">
+									<p>${reply.content}</p>
+								</c:forEach>
 								<hr>
 							</div>
 						</div>
@@ -166,6 +187,7 @@
 					</c:otherwise>
 				</c:choose>
 			</ul>
+
 		</div>
 	</div>
 </section>
@@ -208,57 +230,49 @@
 				</div>
 			</c:forEach>
 		</div>
-	</div>
 
+	</div>
 </section>
 
 <script>
-	/*
-	let heartCheck = true;
+	function clickHeart() {
+		// 로그인 안한 상태에서 하트를 클릭하면 로그인해야한다는 알림창 뜨도록
 
-	if (heartCheck) {
-		$('.bi-suit-heart').on('click', function() {
-			$(this).removeClass('bi-suit-heart');
-			$(this).addClass('bi-suit-heart-fill');
-			addWishList();
-		});
-	} else {
-		$(this).removeClass('bi-suit-heart-fill');
-		$(this).addClass('bi-suit-heart');
-		deleteWishList();
-	}
-
-	if (!heartCheck) {
-		$('.bi-suit-heart-fill').on('click', function() {
-			$(this).removeClass('bi-suit-heart-fill');
-			$(this).addClass('bi-suit-heart');
-			deleteWishList();
-		});
-	} else {
-		$(this).removeClass('bi-suit-heart');
-		$(this).addClass('bi-suit-heart-fill');
-		addWishList();
-	}
-	 */
-
-	function addWishList() {
 		let data = {
-			id : document.querySelector("#house-id").value
+			id : $("#house-id").val()
 		}
-		fetch("/api/house/wishList", {
-			method : "post",
-			headers : {
-				'content-type' : 'application/json; charset=utf-8'
-			},
-			body : JSON.stringify(data)
-		});
-	}
+		// 빈하트를 눌렀을때
+		if ($("#like").attr("class") == "bi bi-suit-heart") {
+			$.ajax({
+				url : "/api/house/wishList",
+				type : "POST",
+				data : JSON.stringify(data),
+				contentType : "application/json; charset=utf-8",
+				dataType : "json"
+			}).done(function() {
+				console.log("하트추가 성공");
+			}).fail(function(error) {
+				console.log(error);
+			});
 
-	function deleteWishList() {
-		let houseId = $("#house-id").val;
-		fetch("/api/house/wishList/" + houseId, {
-			method : "delete"
-		});
+			// 꽉찬하트로 바꾸기
+			document.getElementById("like").className = "bi bi-suit-heart-fill";
+
+			// 꽉찬 하트를 눌렀을 때
+		} else if ($("#like").attr("class") == "bi bi-suit-heart-fill") {
+			let houseId = $("#house-id").val();
+
+			$.ajax({
+				url : "/api/house/wishList/" + houseId,
+				type : "DELETE",
+			}).done(function() {
+				console.log("위시리스트 삭제");
+			}).fail(function() {
+			});
+
+			// 빈하트로 바꾸기
+			document.getElementById("like").className = "bi bi-suit-heart";
+		}
 	}
 </script>
-<script src="/js/house/house.js"></script>
+<script src="/js/review.js"></script>

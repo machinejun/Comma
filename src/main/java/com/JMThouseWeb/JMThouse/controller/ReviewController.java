@@ -35,11 +35,19 @@ public class ReviewController {
 		return "review/review_post_form";
 	}
 
+	// 리뷰 수정 폼
+	@GetMapping("/update_form/{reviewId}")
+	public String getReviewUpdateForm(@PathVariable int reviewId, Model model) {
+		model.addAttribute("reivew", reviewService.getReviewDetail(reviewId));
+		return "review/review_update_form";
+	}
+
 	// 리뷰 관리 폼 호출
 	@GetMapping("/management/{houseId}")
 	public String getHouseList(@PathVariable int houseId, Model model,
 			@PageableDefault(size = 5, sort = "id", direction = Direction.DESC) Pageable pageable) {
 		Page<Review> reviews = reviewService.getReviewListByHouseId(houseId, pageable);
+		model.addAttribute("houseId", houseId);
 		model.addAttribute("reviews", reviews);
 		return "review/management_form";
 	}

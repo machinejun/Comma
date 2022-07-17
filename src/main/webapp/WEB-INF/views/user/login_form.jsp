@@ -19,12 +19,12 @@
 				<span class="login100-form-title"> Member Login </span>
 
 				<div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-					<input class="input100" type="text" name="username" placeholder="username" /> <span class="focus-input100"></span> <span class="symbol-input100"> <i class="fa fa-user" aria-hidden="true"></i>
+					<input class="input100" type="text" name="username" placeholder="username" value="test"/> <span class="focus-input100"></span> <span class="symbol-input100"> <i class="fa fa-user" aria-hidden="true"></i>
 					</span>
 				</div>
 
 				<div class="wrap-input100 validate-input" data-validate="Password is required">
-					<input class="input100" type="password" id="password" name="password" required placeholder="Password" /> <span class="focus-input100"></span> <span class="symbol-input100"> <i class="fa fa-lock"
+					<input class="input100" type="password" id="password" name="password" required placeholder="Password" value="1234"/> <span class="focus-input100"></span> <span class="symbol-input100"> <i class="fa fa-lock"
 						aria-hidden="true"></i>
 					</span>
 				</div>

@@ -42,7 +42,7 @@
 							<div class="invalid-feedback">약관에 동의하셔야 합니다.</div>
 						</div>
 						 -->
-            <button type="submit" class="btn btn-primary"></button>
+            <button type="submit" class="btn btn-primary">회원가입</button>
           </form>
         </div>
 

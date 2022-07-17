@@ -35,8 +35,8 @@ let index = {
 			if (response.data.content == "" || response.data.content.trim() == "") {
 				alert("내용을 입력하세요.")
 			} else {
-				alert("댓글이 등록되었습니다.")
-				location.href = "/review/management/" + data.reviewId.houseId.id;
+				appendReply(response.data);
+				alert("댓글이 등록되었습니다.");
 			}
 		}).fail(function(error) {
 			alert("댓글이 등록되지 않았습니다.");
@@ -72,21 +72,32 @@ let index = {
 
 	delete: function() {
 		let replyId = $("#reply-id").val();
+		let deleteCheck = confirm("삭제하시겠습니까?");
 
-		$.ajax({
-			type: "DELETE",
-			url: "/review/reply/" + replyId,
-		}).done(function(response) {
-			if (response.data == 200) {
-				alert("댓글이 삭제되었습니다.")
-			} else {
-				alert("댓글이 삭제되지 않았습니다.")
-			}
-		}).fail(function(error) {
-			alert("댓글이 삭제되지 않았습니다.");
-			console.log(error);
-		});
+		if (deleteCheck) {
+			$.ajax({
+				type: "DELETE",
+				url: "/review/reply/" + replyId,
+			}).done(function(response) {
+				if (response.status == 200) {
+					alert("댓글이 삭제되었습니다.")
+				} else {
+					alert("댓글이 삭제되지 않았습니다.")
+				}
+			}).fail(function(error) {
+				alert("댓글이 삭제되지 않았습니다.");
+				console.log(error);
+			});
+		}
 	}
+}
+
+function appendReply(reply) {
+
+	let childElement = `<p class="modal-body">${reply.content}</p><button type="button" class="close" data-dismiss="modal">&times;</button>`;
+
+	$("#reply--box").append(childElement);
+	$("#content").val("");
 }
 
 index.init();

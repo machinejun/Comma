@@ -59,8 +59,9 @@ public class UserController {
 	}
 	
 	// 위시리스트 페이지 호출
-	@GetMapping("/wish-list/{guestId}")
-	public String getWishList(@PathVariable int guestId, Model model) {
-		return "user/wishList";
+	@GetMapping("/wish-list")
+	public String getWishList(Model model) {
+		// TODO
+		return "user/wish_list_form";
 	}
 }

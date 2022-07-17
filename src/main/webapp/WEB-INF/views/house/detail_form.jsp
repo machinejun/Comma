@@ -69,8 +69,7 @@
 						style="margin-top: 5px; cursor: pointer;" id="like"
 						onclick="clickHeart()"></i> &nbsp;&nbsp;
 					<button class="btn btn-outline-dark flex-shrink-0" type="button">
-						<i class="bi-cart-fill me-1"></i> 예약하기
-					</button>
+						예약하기</button>
 				</div>
 
 			</div>
@@ -82,12 +81,10 @@
 		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
 
-				<!-- Modal Header -->
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">×</button>
 				</div>
 
-				<!-- Modal body -->
 				<div class="modal-body">
 					<h4 class="modal-title">
 						<b>⛪ 숙소 설명</b>
@@ -107,9 +104,9 @@
 			<h4 class="flex-shrink-0">
 				<b>리뷰</b>
 			</h4>
-			<h6 class="flex-shrink-0">&nbsp;&nbsp;${reviewCount}개</h6>
+			<h6 class="flex-shrink-0" style="margin-top: 5px;">&nbsp;&nbsp;${reviewCount}개</h6>
 			<div>
-				&nbsp;&nbsp;<label>⭐</label>&nbsp;${avgScore}
+				&nbsp;&nbsp;<label style="margin-top: 3px;">⭐</label>&nbsp;${avgScore}
 			</div>
 		</div>
 		<br> <br>
@@ -131,6 +128,7 @@
 							class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></div>
 						<h2 class="h4 fw-bolder">${review.guestId.username}</h2>
 						<p class="multiLine">${review.content}</p>
+
 						<div>
 							<a class="text-decoration-none" data-toggle="modal"
 								data-target="#reviewModal" style="cursor: pointer;"> 더 보기 </a>
@@ -141,20 +139,28 @@
 					<div class="modal-dialog modal-dialog-scrollable">
 						<div class="modal-content">
 							<c:if test="${review.guestId.id eq principal.user.id}">
-								<button class="btn btn-outline-danger btn-sm" id="btn-delete">삭제</button>
+
 							</c:if>
 							<div class="modal-header">
+								<h5>
+									<b>📝 리뷰 상세보기</b>
+								</h5>
 								<button type="button" class="close" data-dismiss="modal">×</button>
 							</div>
 							<div class="modal-body">
 								<h3>${review.guestId.username}</h3>
 								<p>${review.content}</p>
-								<br>
-								<h5>호스트의 댓글</h5>
+								<button class="btn btn-outline-danger btn-sm float-right"
+									style="margin-left: 10px;" id="btn-delete">삭제</button>
+								<a class="btn btn-outline-primary btn-sm float-right"
+									id="btn-update" href="/review/update_form/${review.id}">수정</a> <br>
+								<hr>
+								<h5>
+									<b>호스트의 댓글</b>
+								</h5>
 								<c:forEach var="reply" items="${review.replies}">
 									<p>${reply.content}</p>
 								</c:forEach>
-								<hr>
 							</div>
 						</div>
 					</div>
@@ -203,9 +209,9 @@
 				<c:set var="avgScore" value="${avgScore * 20 * 1.4}"></c:set>
 				<div class="col mb-5">
 					<div class="card h-100">
-						<img class="card-img-top"
+						<a href="/house/detail/${house.id}"> <img class="card-img-top"
 							src="http://localhost:9090/upload/${house.image.imageUrl}"
-							width="100%" height="160px">
+							width="100%" height="160px"></a>
 						<div class="card-body p-4 ">
 							<div class="text-center">
 								<h5 class="fw-bolder multiLine-recommand">${house.name}</h5>
@@ -218,12 +224,7 @@
 								<div class="star-ratings-base">
 									<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 								</div>
-							</div>
-						</div>
-						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-							<div class="text-center">
-								<a class="btn btn-outline-dark mt-auto"
-									href="/house/detail/${house.id}">보러가기</a>
+								<br> <br>
 							</div>
 						</div>
 					</div>

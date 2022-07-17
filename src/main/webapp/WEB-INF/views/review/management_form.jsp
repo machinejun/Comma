@@ -45,14 +45,13 @@
 										<td>${not empty review.replies ? 'Y' : 'N'}</td>
 										<td><a class="btn btn-primary-outline"
 											data-toggle="modal" data-target="#replyModal"
-											style="cursor: pointer;">답글 달기</a></td>
+											style="cursor: pointer;">답글 관리</a></td>
 									</tr>
 
 									<div class="modal" id="replyModal">
 										<div class="modal-dialog modal-lg">
 											<div class="modal-content">
 
-												<!-- Modal Header -->
 												<div class="modal-header">
 													<h5 class="modal-body">${review.guestId.username}</h5>
 													<h6>${review.creationDate}</h6>
@@ -61,9 +60,20 @@
 
 												<div class="modal-body">${review.content}</div>
 												<hr>
+												<div class="modal-body" id="reply--box">호스트 댓글</div>
+												<c:forEach var="reply" items="${review.replies}">
+													<input type="hidden" id="reply-id" value="${reply.id}">
+													<p class="modal-body">${reply.content}
+														<button type="button" id="btn-delete"
+															class="close float-right">&times;</button>
+													</p>
+												</c:forEach>
 
+												<hr>
 												<div class="modal-body">
-													<h6 class="modal-body">호스트 댓글 등록하기</h6>
+													<h6 class="modal-body">
+														<b>호스트 댓글 등록하기</b>
+													</h6>
 												</div>
 
 												<input class="modal-body"
@@ -81,6 +91,33 @@
 							</tbody>
 
 						</table>
+
+						<ul class="pagination">
+
+							<c:set var="isDisabled" value="disabled"></c:set>
+
+							<c:choose>
+								<c:when test="${reviews.first}">
+									<li class="page-item disabled"><a class="page-link"
+										href="/review/management/${houseId}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="/review/management/${houseId}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
+								</c:otherwise>
+							</c:choose>
+
+							<c:choose>
+								<c:when test="${reviews.last}">
+									<li class="page-item disabled"><a class="page-link"
+										href="/review/management/${houseId}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="/review/management/${houseId}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
+								</c:otherwise>
+							</c:choose>
+						</ul>
 					</div>
 				</div>
 			</div>

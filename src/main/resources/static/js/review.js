@@ -112,12 +112,15 @@ let index = {
 function changeReviewPage(review) {
 	let principal = $("#principal").val();
 	let reviewBox = document.getElementById("review-box");
-	let reviewContent = document.getElementById("review-content")
-	let reviewModal = document.getElementById("review-modal")
 
-	reviewBox.removeChild(reviewContent);
-	reviewBox.removeChild(reviewModal);
+	var cell = document.getElementById("review-box");
 
+        while ( cell.hasChildNodes() )
+        {
+             cell.removeChild( cell.firstChild );
+        }
+	review.forEach 
+	
 	let childElement = `<c:forEach var="review" items="${review.content}">
 				<div class="row"  id="review-content">
 					<!-- 게스트의 리뷰 -->

@@ -1,13 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<link
-	href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700'
-	rel='stylesheet' type='text/css'>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/review/style.css">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../layout/re_header.jsp"%>
+<!-- 
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ -->
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <section class="py-5 border-bottom" id="features">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -43,9 +40,7 @@
 										<td>${review.content}</td>
 										<td>${review.creationDate}</td>
 										<td>${not empty review.replies ? 'Y' : 'N'}</td>
-										<td><a class="btn btn-primary-outline"
-											data-toggle="modal" data-target="#replyModal"
-											style="cursor: pointer;">답글 관리</a></td>
+										<td><a class="btn btn-primary-outline" data-toggle="modal" data-target="#replyModal" style="cursor: pointer;">답글 관리</a></td>
 									</tr>
 
 									<div class="modal" id="replyModal">
@@ -64,8 +59,7 @@
 												<c:forEach var="reply" items="${review.replies}">
 													<input type="hidden" id="reply-id" value="${reply.id}">
 													<p class="modal-body">${reply.content}
-														<button type="button" id="btn-delete"
-															class="close float-right">&times;</button>
+														<button type="button" id="btn-delete" class="close float-right">&times;</button>
 													</p>
 												</c:forEach>
 
@@ -76,12 +70,10 @@
 													</h6>
 												</div>
 
-												<input class="modal-body"
-													style="margin-left: 15px; margin-right: 15px" id="content"></input>
+												<input class="modal-body" style="margin-left: 15px; margin-right: 15px" id="content"></input>
 
 												<div class="modal-footer">
-													<button type="button" id="btn-reply"
-														class="btn btn-primary" data-dismiss="modal">등록</button>
+													<button type="button" id="btn-reply" class="btn btn-primary" data-dismiss="modal">등록</button>
 												</div>
 
 											</div>
@@ -92,29 +84,25 @@
 
 						</table>
 
-						<ul class="pagination">
+						<ul class="pagination float-center">
 
 							<c:set var="isDisabled" value="disabled"></c:set>
 
 							<c:choose>
 								<c:when test="${reviews.first}">
-									<li class="page-item disabled"><a class="page-link"
-										href="/review/management/${houseId}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
+									<li class="page-item disabled"><a class="page-link" href="/review/management/${houseId}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
 								</c:when>
 								<c:otherwise>
-									<li class="page-item"><a class="page-link"
-										href="/review/management/${houseId}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
+									<li class="page-item"><a class="page-link" href="/review/management/${houseId}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
 								</c:otherwise>
 							</c:choose>
 
 							<c:choose>
 								<c:when test="${reviews.last}">
-									<li class="page-item disabled"><a class="page-link"
-										href="/review/management/${houseId}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
+									<li class="page-item disabled"><a class="page-link" href="/review/management/${houseId}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
 								</c:when>
 								<c:otherwise>
-									<li class="page-item"><a class="page-link"
-										href="/review/management/${houseId}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
+									<li class="page-item"><a class="page-link" href="/review/management/${houseId}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
 								</c:otherwise>
 							</c:choose>
 						</ul>

@@ -49,7 +49,7 @@ public class ReviewController {
 		Page<Review> reviews = reviewService.getReviewPageByHouseId(houseId, pageable);
 		model.addAttribute("houseId", houseId);
 		model.addAttribute("reviews", reviews);
-		return "review/management_form";
+		return "review/review_management_form";
 	}
 
 }

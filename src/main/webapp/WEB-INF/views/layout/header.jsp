@@ -34,8 +34,8 @@
 <body>
 <input id="isNaviFocus" type="hidden" value =0 />
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark fiexed-top" >
-    <div id="naviBar"class="container fixed-top" style="background-color: #1763e9; width: 100%;">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fiexed-top" >
+    <div id="naviBar"class="navbar-expand-lg bg-light fixed-top" style="background-color: #1763e9; width: 100%;">
       <a class="navbar-brand text-warning" href="#" >JMT HOUSE</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

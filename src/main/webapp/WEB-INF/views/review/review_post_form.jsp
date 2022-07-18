@@ -40,12 +40,12 @@
 		<!-- TODO 예약내역 뿌리기  -->
 		<div class="form-group">
 			<div class="form-group">
-			<input type="hidden" value="${reservation.houseId.id}" id="house-id">
-				<label for="name"><b>${reservation.houseId.name}</b></label> <input type="text"
+			<input type="hidden" value="" id="house-id">
+				<label for="name"><b></b></label> <input type="text"
 					class="form-control" id="name" disabled="disabled" />
 			</div>
 			<div class="form-group">
-				<label for="name"><b>${reservation.checkInDate} ~ ${reservation.checkOutDate}</b></label> <input type="text"
+				<label for="name"><b> ~ </b></label> <input type="text"
 					class="form-control" id="name" disabled="disabled" />
 			</div>
 
@@ -77,7 +77,7 @@
 function postReview() {
 	let starScore;
 	let starLength = document.getElementsByName("rating").length;
-	let houseId = document.getElmentById("#house-id").value;
+	// let houseId = document.getElmentById("#house-id").value;
 	  
      for (let i=0; i < starLength; i++) {
          if (document.getElementsByName("rating")[i].checked == true) {
@@ -89,8 +89,8 @@ function postReview() {
 		content: document.querySelector("#content").value,
 		starScore: starScore
 	}
-	
-	fetch("/review/post" + houseId, {
+	// TODO houseId 넣어서 수정
+	fetch("/review/post", {
 		method: "post",
 		headers: {
 			'content-type': 'application/json; charset=utf-8'

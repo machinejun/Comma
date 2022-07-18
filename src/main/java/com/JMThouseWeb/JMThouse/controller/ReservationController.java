@@ -57,5 +57,12 @@ public class ReservationController {
 		model.addAttribute("count", count);
 		return "reservation/hostReserveTable";
 	}
+	
+	// 게스트 예약내역 페이지 호출
+	@GetMapping("/reservation-info/{guestId}")
+	public String guestReservationHistory(@PathVariable int guestId, Model model) {
+		model.addAttribute("reservations", reservationService.getReservationList(guestId));
+		return "user/history_form";
+	}
 
 }

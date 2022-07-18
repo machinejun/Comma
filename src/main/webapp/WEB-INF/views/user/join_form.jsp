@@ -42,13 +42,13 @@
 							<div class="invalid-feedback">약관에 동의하셔야 합니다.</div>
 						</div>
 						 -->
-            <button type="submit" class="btn btn-primary">회원가입</button>
+            <button type="submit" class="btn btn-primary btn-sm">회원가입</button>
           </form>
         </div>
 
         <div class="signup-image">
           <figure>
-            <img src="/assets/images/signup-image.jpg" />
+            <img src="/assets/images/img-01.png" style="margin-top: 50px;"/>
           </figure>
           <br />
           <br />

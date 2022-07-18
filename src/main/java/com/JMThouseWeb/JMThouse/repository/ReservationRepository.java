@@ -35,4 +35,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 			+ "where r.hostId = ?", nativeQuery = true)
 	
 	List<HostTableDto> mSelectReservation(@Param(value = "hostId") int hostId);
+
+	Optional<List<Reservation>> findAllByGuestId(int guestId);
 }

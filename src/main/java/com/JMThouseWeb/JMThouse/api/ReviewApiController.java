@@ -1,9 +1,12 @@
 package com.JMThouseWeb.JMThouse.api;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -25,8 +28,8 @@ public class ReviewApiController {
 	private ReviewService reviewService;
 
 	// 리뷰 작성 기능
-	@PostMapping("/post/{houseId}")
-	public ResponseDto<Review> postReview(@PathVariable int houseId, @RequestBody Review review,
+	@PostMapping("/post")
+	public ResponseDto<Review> postReview(@RequestBody Review review,
 			@AuthenticationPrincipal PrincipalDetail principalDetail) {
 		Review reviewEntity = reviewService.postReview(review, principalDetail.getUser());
 		return new ResponseDto<Review>(HttpStatus.OK.value(), reviewEntity);
@@ -69,4 +72,12 @@ public class ReviewApiController {
 		reviewService.deleteReply(replyId);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
+	
+	// 리뷰 리스트
+	@GetMapping("/list/{houseId}")
+	public List<Review> getReviewList(@PathVariable int houseId) {
+		List<Review> reviewList = reviewService.getReviewListByHouseId(houseId);
+		return reviewList;
+	}
+	
 }

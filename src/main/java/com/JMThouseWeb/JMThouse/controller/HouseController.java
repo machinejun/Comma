@@ -57,7 +57,7 @@ public class HouseController {
 		// 조회한 숙소와 같은 지역의 숙소 목록
 		List<House> houseList = houseService.getHouseListByAddress(houseEntity.getAddress(), houseEntity.getId());
 		// 조회한 숙소의 리뷰 목록
-		Page<Review> reviews = reviewService.getReviewListByHouseId(houseId, pageable);
+		Page<Review> reviews = reviewService.getReviewPageByHouseId(houseId, pageable);
 		//숙소 리뷰의 총 개수
 		int reviewCount = houseService.getReviewCount(houseId);
 		// 조회한 사용자가 해당 숙소를 위시리스트에 넣었는지

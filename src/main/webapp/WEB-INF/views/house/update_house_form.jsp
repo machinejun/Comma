@@ -52,7 +52,7 @@
 				</div>
 				<br> <label><b>사진 등록</b></label>
 				<div class="custom-file">
-					<input type="file" name="file" class="custom-file-input" required="required" value="http://localhost:9090/upload/${house.image.imageUrl}" /> <label class="custom-file-label">파일을 선택하세요</label>
+					<input type="file" name="file" class="custom-file-input" required="required" value="${house.image.imageUrl}" /> <label class="custom-file-label">기존 : ${house.image.originFileName}</label>
 				</div>
 				<br> <br>
 				<div class="form-group">
@@ -61,7 +61,7 @@
 				</div>
 			</div>
 			<br>
-			<button type="submit" class="btn btn-primary" id="btn-update">수정</button>
+			<button type="submit" onsubmit="checkImageChange(${house.image.imageUrl})" class="btn btn-primary" id="btn-update">수정</button>
 		</form>
 	</div>
 </section>

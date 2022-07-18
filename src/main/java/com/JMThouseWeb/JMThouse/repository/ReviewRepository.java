@@ -1,5 +1,6 @@
 package com.JMThouseWeb.JMThouse.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -19,5 +20,9 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
 	@Query(value = "SELECT COUNT(*) FROM review WHERE houseId = ?", nativeQuery = true)
 	Optional<Integer> getReviewCount(int houseId);
+	
+	List<Review> findAllByHouseId(int houseId);
+
+	Optional<List<Review>> findAllByGuestId(int guestId);
 
 }

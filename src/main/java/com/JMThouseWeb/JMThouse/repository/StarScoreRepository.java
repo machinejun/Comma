@@ -21,7 +21,7 @@ public class StarScoreRepository {
 		String sql = "SELECT houseId, ROUND(AVG(starScore), 1) AS score\r\n"
 				+ "FROM review\r\n"
 				+ "WHERE houseId = "+houseId+"\r\n"
-				+ "GROUP BY houseId";
+				+ "GROUP BY houseId ";
 		
 		Query nativeQuery = entityManager.createNativeQuery(sql);
 		JpaResultMapper jpaResultMapper = new JpaResultMapper();

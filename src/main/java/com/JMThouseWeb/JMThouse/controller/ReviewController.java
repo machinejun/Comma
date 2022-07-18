@@ -31,7 +31,7 @@ public class ReviewController {
 	// TODO house 데이터 같이 보내야함
 	@GetMapping("/post_form")
 	public String getReviewForm(Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
-		model.addAttribute("reservation", reservationService.getReservation(principalDetail.getUser()));
+		//model.addAttribute("reservation", reservationService.getReservation(principalDetail.getUser()));
 		return "review/review_post_form";
 	}
 
@@ -46,17 +46,10 @@ public class ReviewController {
 	@GetMapping("/management/{houseId}")
 	public String getHouseList(@PathVariable int houseId, Model model,
 			@PageableDefault(size = 5, sort = "id", direction = Direction.DESC) Pageable pageable) {
-		Page<Review> reviews = reviewService.getReviewListByHouseId(houseId, pageable);
+		Page<Review> reviews = reviewService.getReviewPageByHouseId(houseId, pageable);
 		model.addAttribute("houseId", houseId);
 		model.addAttribute("reviews", reviews);
 		return "review/management_form";
-	}
-
-	// 상세 리뷰 보기
-	@GetMapping("/detail/{reviewId}")
-	public void getReviewDetail(@PathVariable int reviewId, Model model) {
-		Review reviewEntity = reviewService.getReviewDetail(reviewId);
-		model.addAttribute("review", reviewEntity);
 	}
 
 }

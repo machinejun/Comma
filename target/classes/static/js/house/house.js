@@ -7,10 +7,6 @@ let index = {
 
 	clickHeart: function() {
 		// 로그인 안한 상태에서 하트를 클릭하면 로그인해야한다는 알림창 뜨도록
-		$(".heart-notlogin").unbind('click');
-		$(".heart-notlogin ").click(function() {
-			alert('로그인 후 이용 가능한 서비스입니다.');
-		});
 
 		let data = {
 			id: $("#house-id").val()
@@ -51,7 +47,38 @@ let index = {
 			// 빈하트로 바꾸기
 			document.getElementById("like").className = "bi bi-suit-heart";
 		}
+	},
+
+	changeReviewPage: function(houseId) {
+		let houseId = $("#house-id").val();
+		
+		$.ajax({
+			type: "GET",
+			url: "/review/list/" + houseId,
+			contentType: "application/json; charset=utf-8",
+			dataType: "json"
+		}).done(function(response) {
+			addReviewTable(response);
+		}).fail(function(error) {
+			console.log(error);
+		})
 	}
+}
+
+function addReviewTable(response) {
+	let principalId = $("#principal-id").val();
+	let section = document.querySelector("#bodyContents");
+
+	while (section.hasChildNodes()) {
+		section.removeChild(section.firstChild);
+	}
+
+	response.forEach((review) => {
+		
+		let data = ``;
+			
+		$("#table-body").append(data);
+	})
 }
 
 index.init();

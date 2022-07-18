@@ -41,7 +41,7 @@ public class HouseService {
 
 	@Autowired
 	private ReviewRepository reviewRepository;
-	
+
 	@Autowired
 	private StarScoreRepository starScoreRepository;
 
@@ -137,7 +137,7 @@ public class HouseService {
 	public void deleteItemOfWishList(int houseId, int guestId) {
 		likeHouseRepository.deleteByHouseIdAndGuestId(houseId, guestId);
 	}
-	
+
 	@Transactional
 	public List<House> findAllByHostId(int hostId) {
 		List<House> houses = houseRepository.findAllByHostId(hostId);
@@ -147,7 +147,7 @@ public class HouseService {
 
 	@Transactional
 	public void updateHouse(int houseId, RequestPostDto requestPostDto) {
-		
+
 		House houseEntity = houseRepository.findById(houseId).orElseThrow(() -> {
 			return new IllegalArgumentException("해당 숙소는 존재하지 않습니다.");
 		});
@@ -174,14 +174,24 @@ public class HouseService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	@Transactional(readOnly = true)
 	public int getReviewCount(int houseId) {
 		return reviewRepository.getReviewCount(houseId).orElseGet(() -> {
 			return 0;
 		});
+	}
+
+	@Transactional
+	public List<House> searchHouseByAddressAndType(String address, String type) {
+		return houseRepository.findAllByAddressAndType(address, type);
+	}
+
+	@Transactional
+	public List<House> searchHouseByAddressOrType(String address, String type) {
+		return houseRepository.findAllByAddressOrType(address, type);
 	}
 
 }

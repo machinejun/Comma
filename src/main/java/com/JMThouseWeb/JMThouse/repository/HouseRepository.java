@@ -20,4 +20,8 @@ public interface HouseRepository extends JpaRepository<House, Integer> {
 
 	@Query(value = "SELECT * FROM house WHERE hostId = ?1", nativeQuery = true)
 	List<House> findAllByHostId(@Param(value = "hostId") int hostId);
+
+	List<House> findAllByAddressAndType(String address, String type);
+	
+	List<House> findAllByAddressOrType(String address, String type);
 }

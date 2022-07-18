@@ -116,7 +116,7 @@ public class ReviewService {
 	}
 
 	@Transactional
-	public List<Review> getReviewList(int guestId) {
+	public List<Review> getReviewListByGuestId(int guestId) {
 		return reviewRepository.findAllByGuestId(guestId).orElseGet(() -> {
 			return new ArrayList<>();
 		});

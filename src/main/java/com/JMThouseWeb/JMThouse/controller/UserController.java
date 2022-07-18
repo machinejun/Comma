@@ -86,7 +86,7 @@ public class UserController {
 	// 나의 리뷰 관리 페이지 호출
 	@GetMapping("/my-review/{guestId}")
 	public String getReviewList(@PathVariable int guestId, Model model) {
-		model.addAttribute("reviews", reviewService.getReviewList(guestId));
+		model.addAttribute("reviews", reviewService.getReviewListByGuestId(guestId));
 		return "user/my_review_list_form";
 	}
 }

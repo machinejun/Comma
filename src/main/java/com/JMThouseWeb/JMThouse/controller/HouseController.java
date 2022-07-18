@@ -31,19 +31,35 @@ public class HouseController {
 
 	@Autowired
 	private HouseService houseService;
-	
+
 	@Autowired
 	private ReviewService reviewService;
-	
+
 	@Autowired
 	private LikeHouseService likeHouseService;
 
 	// 숙소 리스트 페이지 호출
 	@GetMapping("/list")
-	public String getHouseList(Model model) {
-		List<House> houseList = houseService.getHouseList();
-		// TODO 지역별, 숙소 유형별 리스트
+	public String getHouseList(Model model, String address, String type) {
+
+		// 지역별, 유형별 숙소 검색
+		List<House> houseList;
+
+		address = address == null ? "" : address;
+		type = type == null ? "" : type;
+
+		if (address == "" && type == "") {
+			houseList = houseService.getHouseList();
+		} else if (address == "" || type == "") {
+			houseList = houseService.searchHouseByAddressOrType(address, type);
+		} else {
+			houseList = houseService.searchHouseByAddressAndType(address, type);
+		}
+		
 		model.addAttribute("houseList", houseList);
+		model.addAttribute("searchedAddress", address);
+		model.addAttribute("searchedType", type);
+
 		return "house/list_form";
 	}
 
@@ -58,13 +74,13 @@ public class HouseController {
 		List<House> houseList = houseService.getHouseListByAddress(houseEntity.getAddress(), houseEntity.getId());
 		// 조회한 숙소의 리뷰 목록
 		Page<Review> reviews = reviewService.getReviewPageByHouseId(houseId, pageable);
-		//숙소 리뷰의 총 개수
+		// 숙소 리뷰의 총 개수
 		int reviewCount = houseService.getReviewCount(houseId);
 		// 조회한 사용자가 해당 숙소를 위시리스트에 넣었는지
 		LikeHouse likeHouseEntity = likeHouseService.checkWishList(houseId, principalDetail.getUser().getId());
 		// 숙소의 평균 평점
 		HouseScoreDto houseScoreDto = reviewService.getAvgStarScore(houseId);
-		
+
 		model.addAttribute("house", houseEntity);
 		model.addAttribute("houseList", houseList);
 		model.addAttribute("reviews", reviews);
@@ -94,9 +110,10 @@ public class HouseController {
 		houseService.postHouse(requestPostDto, principalDetail.getUser());
 		return "redirect:/house/list";
 	}
-	
+
 	@PostMapping("/update/{houseId}")
-	public String updateHouse(@PathVariable int houseId, RequestPostDto requestPostDto, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+	public String updateHouse(@PathVariable int houseId, RequestPostDto requestPostDto,
+			@AuthenticationPrincipal PrincipalDetail principalDetail) {
 		houseService.updateHouse(houseId, requestPostDto);
 		return "redirect:/house/list";
 	}

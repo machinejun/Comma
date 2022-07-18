@@ -74,11 +74,11 @@ let index = {
 		let pageNumber = $("#pageNumber").val();
 		let houseId = $("#house-id").val();
 
-		console.log(pageNumber);
+		//console.log(pageNumber);
 
 		$.ajax({
 			type: "GET",
-			url: "/api/house/" + houseId + "?page=" + pageNumber - 1,
+			url: "/api/house/" + houseId + "?page=" + (pageNumber - 1),
 			dataType: "json"
 		}).done(function(response) {
 			changeReviewPage(response);
@@ -91,12 +91,11 @@ let index = {
 	next: function() {
 		let pageNumber = $("#pageNumber").val();
 		let houseId = $("#house-id").val();
-
 		console.log(pageNumber);
 
 		$.ajax({
 			type: "GET",
-			url: "/api/house/" + houseId + "?page=" + pageNumber + 1,
+			url: "/api/house/" + houseId + "?page=" + pageNumber,
 			dataType: "json"
 
 		}).done(function(response) {
@@ -113,15 +112,11 @@ function changeReviewPage(review) {
 	let principal = $("#principal").val();
 	let reviewBox = document.getElementById("review-box");
 
-	var cell = document.getElementById("review-box");
+	while (reviewBox.hasChildNodes()) {
+		reviewBox.removeChild(reviewBox.firstChild);
+	}
 
-        while ( cell.hasChildNodes() )
-        {
-             cell.removeChild( cell.firstChild );
-        }
-	review.forEach 
-	
-	let childElement = `<c:forEach var="review" items="${review.content}">
+	let childElement = `<c:forEach var="review" items="${response}">
 				<div class="row"  id="review-content">
 					<!-- 게스트의 리뷰 -->
 					<div class="col-lg-4 mb-5 mb-lg-0" id="bodyContents" style="height: 240px; margin-right: 120px;">

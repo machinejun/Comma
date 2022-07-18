@@ -42,9 +42,9 @@ public class ReviewController {
 		return "review/review_update_form";
 	}
 
-	// 리뷰 관리 폼 호출
+	// 리뷰 관리 폼 호출 (호스트)
 	@GetMapping("/management/{houseId}")
-	public String getHouseList(@PathVariable int houseId, Model model,
+	public String getMyHouseReviewList(@PathVariable int houseId, Model model,
 			@PageableDefault(size = 5, sort = "id", direction = Direction.DESC) Pageable pageable) {
 		Page<Review> reviews = reviewService.getReviewPageByHouseId(houseId, pageable);
 		model.addAttribute("houseId", houseId);

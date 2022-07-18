@@ -21,8 +21,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 
 	
 	
-	@Query(value = "SELECT * FROM reservation WHERE userId = ?1", nativeQuery = true)
-	List<Reservation> findByGuestId(@Param(value = "userId")int userId);
+	@Query(value = "SELECT * FROM reservation WHERE guestId = ?1", nativeQuery = true)
+	List<Reservation> findByGuestId(@Param(value = "guestId")int guestId);
 	
 	@Query(value = "SELECT * FROM reservation WHERE hostId = ?1", nativeQuery = true)
 	List<Reservation> findByHostId(@Param(value = "hostId")int id);

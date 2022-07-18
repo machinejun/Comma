@@ -100,6 +100,7 @@ public class ReservationService {
 	public List<Reservation> getReservation(User user) {
 		List<Reservation> reservation;
 		if (user.getRole() == RoleType.GUEST) {
+			System.out.println("sdfdsfsdfsdfsdf");
 			reservation = reservationRepository.findByGuestId(user.getId());
 		} else {
 			reservation = reservationRepository.findByHostId(user.getId());
@@ -137,9 +138,7 @@ public class ReservationService {
 	@Modifying
 	@Transactional
 	public void changeResType(ApproveDto approveDto) {
-		Reservation reservation = reservationRepository.findById(approveDto.getResId()).orElseThrow(() -> {
-			return new RuntimeException("해당 예약을 찾을 수 없습니다.");
-		});
+		Reservation reservation = findByResId(approveDto.getResId());
 		reservation.setApprovalStatus(parseResEnumType(approveDto.getApprove()));
 	}
 
@@ -160,5 +159,14 @@ public class ReservationService {
 		}
 		return enumType;
 	}
+
+	public Reservation findByResId(int resId) {
+		Reservation res = reservationRepository.findById(resId).orElseThrow(()->{
+			return new RuntimeException("해당 예약을 찾을 수 없습니다.");
+		});
+		return res;
+		
+	}
+
 
 }

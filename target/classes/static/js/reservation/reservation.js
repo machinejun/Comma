@@ -45,6 +45,17 @@ $( function(){
 	$("#check-default-btn").bind("click", () => {
 		closeModal()
 	})
+	
+	
+	
+	$("#checkOut-Date").bind("click", () => {
+		console.log($("#checkIn-Date").val())
+		if($("#checkIn-Date").val() != ""){
+			console.log($("#checkIn-Date").val())
+					
+		}
+	})
+	
 });
 
 function addListDates(){
@@ -204,13 +215,15 @@ $( function() {
     $( "#checkIn-Date" ).datepicker({
     	maxDate:30,
   		minDate:0,
+  		onClose: function(selectCheckInDate){
+			$("#checkOut-Date").datepicker("option", "minDate", selectCheckInDate);
+			$("#checkOut-Date").datepicker("option", "maxDate", 60);
+			$("#checkOut-Date").datepicker("option", "beforeShowDay", alreadyBookDates);
+			
+		}
     });
     
-    $( "#checkOut-Date" ).datepicker({
-    	maxDate:30,
-  		minDate:0,
-    });
-    
+    $("#checkOut-Date").datepicker(); 
 });
 
 function reserveHouse(hostid, houseid){
@@ -231,8 +244,8 @@ function reserveHouse(hostid, houseid){
 		dataType: "json"
 	}).done(function(response){
 		if(reponse == 1){
-			alsert("예약완료")
-			//location.href="/user/reservation";
+			alert("예약완료")
+			location.href("/");
 		}
 	}).fail(function(){
 		AlertMessage("통신 오류",`예약에 실패하였습니다.`);
@@ -262,6 +275,7 @@ function alreadyBookDates(date) {
 			date = `${y}-${(m+1)}-${d}`;
 		}
         if($.inArray(date,bookedDays) != -1) {
+			console.log(date + " == " + bookedDays)
 			
             return [false];
         }

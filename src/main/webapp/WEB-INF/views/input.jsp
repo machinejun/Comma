@@ -90,7 +90,7 @@
  	<div id="check-table" >
  		<a id="check-default-btn" class="m-2" type="button"><span class="icon-times-circle-o"></span></a>
 
-		<ul class="list-group">
+		<ul id="check-table-ul" class="list-group">
 			<li class="list-group-item list-group-item-action">Checkin: <input type="date" id="checkIn-Date" style="width: 120px"/></li>
 			<li class="list-group-item list-group-item-action">CheckOut: <input type="date"  id="checkOut-Date" style="width: 120px"/></li>
 		</ul>

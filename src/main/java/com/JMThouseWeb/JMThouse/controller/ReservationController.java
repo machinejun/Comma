@@ -13,12 +13,16 @@ import com.JMThouseWeb.JMThouse.dto.DateModelDto;
 import com.JMThouseWeb.JMThouse.dto.HoustWaitDto;
 import com.JMThouseWeb.JMThouse.model.BookedDate;
 import com.JMThouseWeb.JMThouse.model.House;
+import com.JMThouseWeb.JMThouse.model.Reservation;
+import com.JMThouseWeb.JMThouse.model.User;
 import com.JMThouseWeb.JMThouse.service.HouseService;
 import com.JMThouseWeb.JMThouse.service.ReservationService;
+import com.JMThouseWeb.JMThouse.service.UserService;
 
 @Controller
 public class ReservationController {
-
+	@Autowired
+	private UserService userService;
 	@Autowired
 	private HouseService houseService;
 	@Autowired
@@ -55,10 +59,12 @@ public class ReservationController {
 		return "reservation/hostReserveTable";
 	}
 	
-	@GetMapping("/test/reserveTable/user/{guestid}")
-	public String reserveUserTable(@PathVariable int guestid, Model model) {
-		
-		return "reservation/guestReserveTable";
+	@GetMapping("/test/reserveTable/user/{userid}")
+	public String reserveUserTable(@PathVariable int userid, Model model) {
+		User user = userService.findByUserId(userid);
+		List<Reservation> res = reservationService.getReservation(user);
+		model.addAttribute("reservations", res);
+		return "reservation/userReservationTable";
 	}
 
 }

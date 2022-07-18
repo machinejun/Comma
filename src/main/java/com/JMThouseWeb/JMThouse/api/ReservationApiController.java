@@ -62,4 +62,11 @@ public class ReservationApiController {
 		return new ResponseDto<Integer>(HttpStatus.ACCEPTED.value(), approveDto.getResId());
 	}
 	
+	@GetMapping("/guest/showRes/{resId}")
+	public Reservation showResDetail(@PathVariable int resId){
+		Reservation res = reservationService.findByResId(resId);
+		System.out.println(res);
+		return res;
+	}
+		
 }

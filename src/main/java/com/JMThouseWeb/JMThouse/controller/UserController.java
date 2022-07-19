@@ -27,9 +27,6 @@ public class UserController {
 	@Autowired
 	private LikeHouseService likeHouseService;
 
-	@Autowired
-	private ReviewService reviewService;
-
 	@GetMapping({ "", "/" })
 	public String home() {
 		return "home";
@@ -70,12 +67,6 @@ public class UserController {
 		return "user/reservation_history_form";
 	}
 
-	// test
-	@GetMapping("/test")
-	public String test() {
-		return "user/my_review_list_form";
-	}
-
 	// 위시리스트 페이지 호출
 	@GetMapping("/wish-list/{guestId}")
 	public String getWishList(@PathVariable int guestId, Model model) {
@@ -83,10 +74,4 @@ public class UserController {
 		return "user/wish_list_form";
 	}
 
-	// 나의 리뷰 관리 페이지 호출
-	@GetMapping("/user/my-review/{guestId}")
-	public String getReviewList(@PathVariable int guestId, Model model) {
-		model.addAttribute("reviews", reviewService.getReviewListByGuestId(guestId));
-		return "user/my_review_list_form";
-	}
 }

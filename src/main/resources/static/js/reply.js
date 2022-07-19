@@ -17,61 +17,68 @@ let index = {
 	},
 
 	addReply: function() {
-		let houseId = $("#house-id").text();
+		let houseId = $("#house-id").val();
 		let reviewId = $("#review-id").text();
-		console.log(houseId);
+		console.log("찍히나요?" + reviewId);
 
 		let data = {
 			content: $("#content").val()
 		}
 
-		$.ajax({
-			type: "POST",
-			url: "/review/reply/" + reviewId,
-			data: JSON.stringify(data),
-			contentType: "application/json; charset=utf-8",
-			dataType: "json"
-		}).done(function(response) {
-			if (response.data.content == "" || response.data.content.trim() == "") {
-				alert("내용을 입력하세요.")
-			} else {
-				appendReply(response.data);
-				alert("댓글이 등록되었습니다.");
-			}
-		}).fail(function(error) {
-			alert("댓글이 등록되지 않았습니다.");
-			console.log(error);
-		});
+		if (data.content == "" || data.content.trim() === "") {
+			alert("내용을 입력하세요.")
+		} else {
+			$.ajax({
+				type: "POST",
+				url: "/review/reply/" + reviewId,
+				data: JSON.stringify(data),
+				contentType: "application/json; charset=utf-8",
+				dataType: "json"
+			}).done(function(response) {
+				if (response.status == 200) {
+					appendReply(response.data);
+					alert("댓글이 등록되었습니다.");
+				}
+			}).fail(function(error) {
+				alert("댓글이 등록되지 않았습니다.");
+				console.log(error);
+			});
+		}
 	},
 
 	update: function() {
-		let reviewId = $("#reply-id").val();
+		let replyId = $("#reply-id").val();
 
 		let data = {
 			content: $("#content").val()
 		}
 
-		$.ajax({
-			type: "PUT",
-			url: "/review/reply/" + replyId,
-			data: JSON.stringify(data),
-			contentType: "application/json; charset=utf-8",
-			dataType: "json"
-		}).done(function(response) {
-			if (response.data.content == "" || response.data.content.trim() == "") {
-				alert("내용을 입력하세요.")
-			} else {
-				alert("댓글이 수정되었습니다.")
-			}
-		}).fail(function(error) {
-			alert("댓글이 수정되지 않았습니다.");
-			console.log(error);
-		});
+		if (data.content == "" || data.content.trim() === "") {
+			alert("내용을 입력하세요.")
+		} else {
+			$.ajax({
+				type: "PUT",
+				url: "/review/reply/" + replyId,
+				data: JSON.stringify(data),
+				contentType: "application/json; charset=utf-8",
+				dataType: "json"
+			}).done(function(response) {
+				if (response.status == 200) {
+					alert("댓글이 수정되었습니다.")
+				}
+
+			}).fail(function(error) {
+				alert("댓글이 수정되지 않았습니다.");
+				console.log(error);
+			});
+
+		}
 
 	},
 
 	delete: function() {
 		let replyId = $("#reply-id").val();
+		let houseId = $("#house-id").val();
 		let deleteCheck = confirm("삭제하시겠습니까?");
 
 		if (deleteCheck) {
@@ -80,7 +87,8 @@ let index = {
 				url: "/review/reply/" + replyId,
 			}).done(function(response) {
 				if (response.status == 200) {
-					alert("댓글이 삭제되었습니다.")
+					alert("댓글이 삭제되었습니다.");
+					location.href = "/review/management/" + houseId;
 				} else {
 					alert("댓글이 삭제되지 않았습니다.")
 				}
@@ -94,7 +102,17 @@ let index = {
 
 function appendReply(reply) {
 
-	let childElement = `<p class="modal-body">${reply.content}</p><button type="button" class="close" data-dismiss="modal">&times;</button>`;
+	let childElement = `<div class=" d-flex">
+																		<div class="ms-3">
+																			<div class="fw-bold">Commenter Name</div>
+																			<p>${reply.content}</p>
+																			<button
+																				class="btn btn-outline-danger btn-sm float-right"
+																				style="margin-left: 10px;" id="btn-delete">삭제</button>
+																			<a class="btn btn-outline-primary btn-sm float-right"
+																				id="btn-update" href="">수정</a>
+																		</div>
+																	</div>`;
 
 	$("#reply--box").append(childElement);
 	$("#content").val("");

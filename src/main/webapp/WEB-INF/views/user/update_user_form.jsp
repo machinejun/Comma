@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <title>회원가입 수정 페이지</title>
 
-<link rel="stylesheet" href="/fonts/material-icon/css/material-design-iconic-font.min.css" />
+<link rel="stylesheet"
+	href="/fonts/material-icon/css/material-design-iconic-font.min.css" />
 <link rel="stylesheet" href="/css/user/style.css" />
 
 <div class="main">
@@ -12,29 +14,40 @@
 				<div class="signup-form">
 					<h2 class="form-title">회원정보 수정</h2>
 					<div class="form-group">
-						<input value="${principal.user.id}" id="user-id" type="hidden"> <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label> <input type="text" value="${principal.user.username}"
-							id="username" disabled />
+						<input value="${principal.user.id}" id="user-id" type="hidden">
+						<label for="name"><i
+							class="zmdi zmdi-account material-icons-name"></i></label> <input
+							type="text" value="${principal.user.username}" id="username"
+							disabled />
 					</div>
 					<div class="form-group">
-						<label for="password"><i class="zmdi zmdi-lock"></i></label> <input type="password" id="password" placeholder="Password" required />
+						<label for="password"><i class="zmdi zmdi-lock"></i></label> <input
+							type="password" id="password" placeholder="Password" required />
 					</div>
 					<div class="form-group">
-						<label for="password"><i class="zmdi zmdi-lock-outline"></i></label> <input type="password" id="re-password" placeholder="Repeat your password" required />
+						<label for="password"><i class="zmdi zmdi-lock-outline"></i></label>
+						<input type="password" id="re-password"
+							placeholder="Repeat your password" required />
 					</div>
 
 					<div class="form-group">
-						<label for="email"><i class="zmdi zmdi-email"></i></label> <input type="email" value="${principal.user.email}" id="email" placeholder="Your Email" />
+						<label for="email"><i class="zmdi zmdi-email"></i></label> <input
+							type="email" value="${principal.user.email}" id="email"
+							placeholder="Your Email" />
 					</div>
 
 					<div class="form-group">
-						<label for="phoneNumber"><i class="zmdi zmdi-email"></i></label> <input type="text" value="${principal.user.phoneNumber}" id="phoneNumber" placeholder="Your Phone Number" />
+						<label for="phoneNumber"><i class="zmdi zmdi-email"></i></label> <input
+							type="text" value="${principal.user.phoneNumber}"
+							id="phoneNumber" placeholder="Your Phone Number" />
 					</div>
-					<button type="button" onsubmit="return passwordCheck()" id="btn-update" class="btn btn-sm btn-primary">수정하기</button>
+					<button type="button" onsubmit="return passwordCheck()"
+						id="btn-update" class="btn btn-sm btn-primary">수정하기</button>
 				</div>
 
-				<div class="signup-image">
+				<div class="signup-image" style="margin-top: 50px;">
 					<figure>
-						<img src="/assets/images/signup-image.jpg" />
+						<img src="/assets/images/img-01.png" />
 					</figure>
 				</div>
 			</div>

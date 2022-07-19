@@ -115,11 +115,4 @@ public class ReviewService {
 		return reviewRepository.findAllByHouseId(houseId);
 	}
 
-	@Transactional
-	public List<Review> getReviewListByGuestId(int guestId) {
-		return reviewRepository.findAllByGuestId(guestId).orElseGet(() -> {
-			return new ArrayList<>();
-		});
-	}
-
 }

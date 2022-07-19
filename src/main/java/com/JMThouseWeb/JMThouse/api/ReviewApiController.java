@@ -55,6 +55,7 @@ public class ReviewApiController {
 	@PostMapping("/reply/{reviewId}")
 	public ResponseDto<Reply> addReply(@PathVariable int reviewId, @RequestBody Reply reply,
 			@AuthenticationPrincipal PrincipalDetail principalDetail) {
+		System.out.println("댓글 들어오나요 ??" + reply);
 		Reply replyEntity = reviewService.addReply(reviewId, reply, principalDetail.getUser());
 		return new ResponseDto<Reply>(HttpStatus.OK.value(), replyEntity);
 	}

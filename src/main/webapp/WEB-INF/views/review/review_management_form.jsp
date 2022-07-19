@@ -1,16 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../layout/re_header.jsp"%>
-<!-- 
-<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="../layout/header.jsp"%>
+<link href="/css/house/detail.css" rel="stylesheet">
+
+<style>
+.modal {
+	
+}
+</style>
 
 <section class="py-5 border-bottom" id="features">
 	<div class="container">
 		<div class="row justify-content-center">
-			<h3>
-				<b>📝 리뷰 관리</b>
-			</h3>
+			<h3>📝 리뷰 관리</h3>
 		</div>
 		<br>
 		<div class="row">
@@ -40,7 +42,9 @@
 										<td>${review.content}</td>
 										<td>${review.creationDate}</td>
 										<td>${not empty review.replies ? 'Y' : 'N'}</td>
-										<td><a class="btn btn-primary-outline" data-toggle="modal" data-target="#replyModal" style="cursor: pointer;">답글 관리</a></td>
+										<td><a class="btn btn-primary-outline"
+											data-toggle="modal" data-target="#replyModal"
+											style="cursor: pointer;">답글 관리</a></td>
 									</tr>
 
 									<div class="modal" id="replyModal">
@@ -48,34 +52,52 @@
 											<div class="modal-content">
 
 												<div class="modal-header">
-													<h5 class="modal-body">${review.guestId.username}</h5>
+													<h4 class="modal-body">${review.guestId.username}님의 리뷰</h4>
 													<h6>${review.creationDate}</h6>
 													<button type="button" class="close" data-dismiss="modal">&times;</button>
 												</div>
 
 												<div class="modal-body">${review.content}</div>
 												<hr>
-												<div class="modal-body" id="reply--box">호스트 댓글</div>
-												<c:forEach var="reply" items="${review.replies}">
-													<input type="hidden" id="reply-id" value="${reply.id}">
-													<p class="modal-body">${reply.content}
-														<button type="button" id="btn-delete" class="close float-right">&times;</button>
-													</p>
-												</c:forEach>
 
-												<hr>
-												<div class="modal-body">
-													<h6 class="modal-body">
-														<b>호스트 댓글 등록하기</b>
-													</h6>
+
+												<div class="modal-body mb-5">
+													<div class="card bg-light">
+														<div class="card-body">
+															<h4>호스트 댓글</h4>
+															<form class="mb-4">
+																<textarea class="form-control" rows="3" id="content"
+																	placeholder="게스트의 리뷰에 대한 답글을 남겨주세요!"></textarea>
+															</form>
+															<br>
+															<div>
+																<button type="button" id="btn-reply"
+																	class="custom-sm-btn float-right">등록</button>
+															</div>
+															<br> <br>
+															<c:forEach var="reply" items="${review.replies}">
+																<input type="hidden" id="reply-id" value="${reply.id}">
+																<div class="mb-4" id="reply--box">
+
+																	<div class=" d-flex">
+																		<div class="ms-3">
+																			<div class="fw-bold">Commenter Name</div>
+																			<p>${reply.content}</p>
+																			<button
+																				class="btn btn-outline-danger btn-sm float-right"
+																				style="margin-left: 10px;" id="btn-delete">삭제</button>
+																			<a class="btn btn-outline-primary btn-sm float-right"
+																				id="btn-update" href="">수정</a>
+																		</div>
+																	</div>
+																</div>
+															</c:forEach>
+														</div>
+													</div>
+
+													<hr>
+
 												</div>
-
-												<input class="modal-body" style="margin-left: 15px; margin-right: 15px" id="content"></input>
-
-												<div class="modal-footer">
-													<button type="button" id="btn-reply" class="btn btn-primary" data-dismiss="modal">등록</button>
-												</div>
-
 											</div>
 										</div>
 									</div>
@@ -90,19 +112,23 @@
 
 							<c:choose>
 								<c:when test="${reviews.first}">
-									<li class="page-item disabled"><a class="page-link" href="/review/management/${houseId}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
+									<li class="page-item disabled"><a class="page-link"
+										href="/review/management/${houseId}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
 								</c:when>
 								<c:otherwise>
-									<li class="page-item"><a class="page-link" href="/review/management/${houseId}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
+									<li class="page-item"><a class="page-link"
+										href="/review/management/${houseId}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
 								</c:otherwise>
 							</c:choose>
 
 							<c:choose>
 								<c:when test="${reviews.last}">
-									<li class="page-item disabled"><a class="page-link" href="/review/management/${houseId}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
+									<li class="page-item disabled"><a class="page-link"
+										href="/review/management/${houseId}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
 								</c:when>
 								<c:otherwise>
-									<li class="page-item"><a class="page-link" href="/review/management/${houseId}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
+									<li class="page-item"><a class="page-link"
+										href="/review/management/${houseId}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
 								</c:otherwise>
 							</c:choose>
 						</ul>

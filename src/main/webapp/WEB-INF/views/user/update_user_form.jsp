@@ -12,7 +12,7 @@
 				<div class="signup-form">
 					<h2 class="form-title">회원정보 수정</h2>
 					<div class="form-group">
-						<input value=${principal.user.id } id="user-id" type="hidden"> <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label> <input type="text" value="${principal.user.username}"
+						<input value="${principal.user.id}" id="user-id" type="hidden"> <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label> <input type="text" value="${principal.user.username}"
 							id="username" disabled />
 					</div>
 					<div class="form-group">
@@ -29,7 +29,7 @@
 					<div class="form-group">
 						<label for="phoneNumber"><i class="zmdi zmdi-email"></i></label> <input type="text" value="${principal.user.phoneNumber}" id="phoneNumber" placeholder="Your Phone Number" />
 					</div>
-					<button type="button" onclick="return passwordCheck()" id="btn-update" class="btn btn-sm btn-primary">수정하기</button>
+					<button type="button" onsubmit="return passwordCheck()" id="btn-update" class="btn btn-sm btn-primary">수정하기</button>
 				</div>
 
 				<div class="signup-image">

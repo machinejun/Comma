@@ -24,14 +24,12 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 
-	@Autowired
-	private ReservationService reservationService;
-
 	// 리뷰 작성 폼 호출
 	// TODO house 데이터 같이 보내야함
 	@GetMapping("/post_form")
 	public String getReviewForm(Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
-		//model.addAttribute("reservation", reservationService.getReservation(principalDetail.getUser()));
+		// model.addAttribute("reservation",
+		// reservationService.getReservation(principalDetail.getUser()));
 		return "review/review_post_form";
 	}
 

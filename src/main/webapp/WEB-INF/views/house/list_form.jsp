@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="/css/house/list.css" />
-<%@ include file="../layout/re_header.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../layout/header.jsp"%>
+<link href="/css/house/list.css" rel="stylesheet">
 
 <section>
 	<div class="section-container">
@@ -9,21 +8,22 @@
 			<div class="row">
 				<div class="col-xs-12 col-md-8 col-md-offset-2">
 					<div class="text-center">
-						<h3>About Us</h3>
-
+						<h2>About Us</h2>
+						<p>설명</p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="container">
+	<div class="container justify-content-center">
 		<form class="form-inline" action="/house/list" method="get">
 			<c:set var="searchedAddress" value="${searchedAddress}"></c:set>
 			<c:set var="selected" value="selected"></c:set>
 			<c:set var="notSelected" value=""></c:set>
-			<div class="form-group justify-content-center col-sm-4">
-				<label><b>지역</b></label> <select class="form-control" name="address">
+			<div class="form-group col-sm-4 justify-content-center">
+				<h4>지역</h4>
+				<select class="form-control" name="address">
 					<option value="">전체</option>
 					<option ${searchedAddress eq '서울' ? selected : notSelected}>서울</option>
 					<option ${searchedAddress eq '대전' ? selected : notSelected}>대전</option>
@@ -38,9 +38,10 @@
 				</select>
 			</div>
 
-			<div class="form-group justify-content-center col-sm-4">
-			<c:set var="searchedType" value="${searchedType}"></c:set>
-				<label><b>숙소 유형</b></label> <select class="form-control" name="type">
+			<div class="form-group col-sm-4 justify-content-center">
+				<c:set var="searchedType" value="${searchedType}"></c:set>
+				<h4>숙소 유형</h4>
+				<select class="form-control" name="type">
 					<option value="">전체</option>
 					<option ${searchedType eq '호텔' ? selected : notSelected}>호텔</option>
 					<option ${searchedType eq '모텔' ? selected : notSelected}>모텔</option>
@@ -48,29 +49,32 @@
 					<option ${searchedType eq '게스트 하우스' ? selected : notSelected}>게스트 하우스</option>
 				</select>
 			</div>
-			<button class="custom-btn col-sm-4" type="submit">검색</button>
+			<button class="custom-btn" type="submit">검색</button>
 		</form>
 	</div>
 	<br> <br>
-	<div class="container posts">
-		<c:forEach var="house" items="${houseList}">
-			<article>
-				<a href="/house/detail/${house.id}" class="image"><img
-					src="http://localhost:9090/upload/${house.image.imageUrl}"></a>
-				<h3 class="multiLine">${house.name}</h3>
-				<div>
-					&nbsp;&nbsp;<label>⭐&nbsp;${house.starScore}</label>
+	<div class="container">
+		<c:if test="${empty houseList}">
+			<h4>검색하신 결과가 존재하지 않습니다.</h4>
+			<br>
+		</c:if>
+		<div class="row">
+			<c:forEach var="house" items="${houseList}">
+				<div class="col-sm-4">
+					<a href="/house/detail/${house.id}" class="image"><img class="custom-img" src="http://localhost:9090/upload/${house.image.imageUrl}"></a>
+					<h4 class="multiLine">
+						<b>${house.name}</b>
+					</h4>
+					<div>
+						<label>⭐&nbsp;${house.starScore}</label>
+					</div>
+					<p>₩&nbsp;${house.oneDayPrice}&nbsp;&nbsp;/ 박</p>
+					<br>
 				</div>
-				<p>₩&nbsp;${house.oneDayPrice}&nbsp;&nbsp;/박</p>
-			</article>
-		</c:forEach>
+			</c:forEach>
+		</div>
 	</div>
 </section>
 
-<script src="/js/house/jquery.min.js"></script>
-<script src="/js/house/skel.min.js"></script>
-<script src="/js/house/util.js"></script>
-<script src="/js/house/main.js"></script>
-
 <script src="/js/house/house.js"></script>
-<%@ include file="../layout/re_footer.jsp"%>
+<%@ include file="../layout/footer.jsp"%>

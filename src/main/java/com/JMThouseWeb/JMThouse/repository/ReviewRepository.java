@@ -23,6 +23,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 	
 	List<Review> findAllByHouseId(int houseId);
 
+	@Query(value = "SELECT * FROM review WHERE guestId = ? ORDER BY id DESC", nativeQuery = true)
 	Optional<List<Review>> findAllByGuestId(int guestId);
 
 }

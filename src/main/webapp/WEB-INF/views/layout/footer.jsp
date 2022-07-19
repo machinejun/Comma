@@ -8,7 +8,7 @@
 
 <footer class="py-5 bg-light col-md-12">
 	<div class="container">
-		<p class="m-0 text-center">Copyright &copy; Your Website 2019</p>
+		<p class="m-0 text-center">Copyright &copy; Our Website 2022</p>
 	</div>
 </footer>
 

@@ -67,7 +67,7 @@ public class UserController {
 
 	@GetMapping("/reservation-history/{guestId}")
 	public String reservationHistory(@PathVariable int guestId) {
-		return "user/reservation_history";
+		return "user/reservation_history_form";
 	}
 
 	// test
@@ -84,7 +84,7 @@ public class UserController {
 	}
 
 	// 나의 리뷰 관리 페이지 호출
-	@GetMapping("/my-review/{guestId}")
+	@GetMapping("/user/my-review/{guestId}")
 	public String getReviewList(@PathVariable int guestId, Model model) {
 		model.addAttribute("reviews", reviewService.getReviewListByGuestId(guestId));
 		return "user/my_review_list_form";

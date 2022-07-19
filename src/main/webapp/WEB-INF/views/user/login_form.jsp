@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <title>로그인 페이지</title>
-<link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
-<link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css" />
-<link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css" />
-<link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css" />
 <link rel="stylesheet" type="text/css" href="/css/user/util.css" />
 <link rel="stylesheet" type="text/css" href="/css/user/main.css" />
 <div class="limiter">
@@ -44,16 +40,6 @@
 	</div>
 </div>
 
-<script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
-<script src="/vendor/bootstrap/js/popper.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="/vendor/select2/select2.min.js"></script>
-<script src="/vendor/tilt/tilt.jquery.min.js"></script>
-<script>
-	$(".js-tilt").tilt({
-		scale : 1.1,
-	});
-</script>
 <script src="/js/user/main.js"></script>
 <%@ include file="../layout/footer.jsp"%>
 </body>

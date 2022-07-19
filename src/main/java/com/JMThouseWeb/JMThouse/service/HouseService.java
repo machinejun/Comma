@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +23,6 @@ import com.JMThouseWeb.JMThouse.repository.HouseRepository;
 import com.JMThouseWeb.JMThouse.repository.ImageRepository;
 import com.JMThouseWeb.JMThouse.repository.LikeHouseRepository;
 import com.JMThouseWeb.JMThouse.repository.ReviewRepository;
-import com.JMThouseWeb.JMThouse.repository.StarScoreRepository;
 
 @Service
 public class HouseService {
@@ -41,9 +41,6 @@ public class HouseService {
 
 	@Autowired
 	private ReviewRepository reviewRepository;
-
-	@Autowired
-	private StarScoreRepository starScoreRepository;
 
 	@Transactional
 	public House getHouseDetail(int houseId) {
@@ -106,7 +103,7 @@ public class HouseService {
 
 	@Transactional
 	public List<House> getHouseList() {
-		List<House> houseList = houseRepository.findAll();
+		List<House> houseList = houseRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
 		return houseList;
 
 	}

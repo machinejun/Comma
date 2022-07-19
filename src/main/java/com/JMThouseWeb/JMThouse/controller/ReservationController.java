@@ -3,14 +3,26 @@ package com.JMThouseWeb.JMThouse.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 
 import com.JMThouseWeb.JMThouse.dto.DateModelDto;
 import com.JMThouseWeb.JMThouse.dto.HoustWaitDto;
+import com.JMThouseWeb.JMThouse.dto.ResponsePaidDto;
 import com.JMThouseWeb.JMThouse.model.BookedDate;
 import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.model.Reservation;
@@ -21,18 +33,21 @@ import com.JMThouseWeb.JMThouse.service.UserService;
 
 @Controller
 public class ReservationController {
+	
+	@Autowired
+	private HttpSession httpSession;
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private HouseService houseService;
 	@Autowired
 	private ReservationService reservationService;
+
 	
 	@GetMapping("/test/user/bookForm/{id}")
 	public String reserveHouse(@PathVariable int id,Model model) {
 		House house = houseService.getHouseDetail(id);
-		model.addAttribute("house", house);
-		//System.out.println(reservationService.getListBookedDate(id));
+		
 		int index = 0;
 		ArrayList<DateModelDto> dates = new ArrayList<DateModelDto>();
 		for(BookedDate date : reservationService.getListBookedDate(id)) {
@@ -42,11 +57,14 @@ public class ReservationController {
 			dates.add(dto);
 			index++;
 		}
+		
+		model.addAttribute("house", house);
 		model.addAttribute("bookedDates", dates);
 		model.addAttribute("size", dates.size());
 
 		return "input";
 	}
+	
 	
 	@GetMapping("/test/reserveTable/host/{hostid}")
 	public String reserveHostTable(@PathVariable int hostid, Model model) {
@@ -66,5 +84,35 @@ public class ReservationController {
 		model.addAttribute("reservations", res);
 		return "reservation/userReservationTable";
 	}
-
+	
+	@GetMapping("/test/kakao/approve")
+	public String approve(@RequestParam String pg_token) {
+		ResponsePaidDto paidDto = (ResponsePaidDto) httpSession.getAttribute("tttt");
+		ResponseEntity<String> response = requestKakaoPaymentApprove(pg_token, paidDto);
+		if(response.getStatusCode() == HttpStatus.OK) {
+			reservationService.kakaoPaymentApprove(paidDto.getResId());
+			return "redirect:/test/reserveTable/user/2";
+		}else {
+			return "erroPage";
+		}	
+	}
+	
+	private ResponseEntity<String> requestKakaoPaymentApprove(String pg_token, ResponsePaidDto paidDto) {
+		String pgtoken = pg_token;
+		RestTemplate transmitter = new RestTemplate();
+		HttpHeaders header = new HttpHeaders();
+		header.add("Authorization", "KakaoAK d8767c47b52237a1d96cea7c9e34596b");
+		header.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		
+		MultiValueMap<String, String> param = new LinkedMultiValueMap<>();
+		param.add("cid", "TC0ONETIME");
+		param.add("tid", paidDto.getTid());
+		param.add("partner_order_id", paidDto.getHostName());
+		param.add("partner_user_id", paidDto.getGuestName());
+		param.add("pg_token", pgtoken);
+	
+		HttpEntity<MultiValueMap<String, String>> message = new HttpEntity<>(param, header);
+		ResponseEntity<String> response = transmitter.exchange("https://kapi.kakao.com/v1/payment/approve", HttpMethod.POST, message, String.class);
+		return response;
+	}
 }

@@ -38,8 +38,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	position: fixed;
 	width: 500px;
 	z-index:3;
-	right: 18%;
-	top: 15%;
+	right: 10%;
+	top: 5%;
 	border: 1px solid;
 	background-color: white;
 }

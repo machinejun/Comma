@@ -28,7 +28,7 @@
 								      <td style="font-weight: bold;">${reservation.approvalStatus}</td>
 								      <c:choose>
 								      	<c:when test="${reservation.approvalStatus eq 'WAITING'}">
-								      		<td style="text-align: center;"><button class="btn btn-secondary" style="padding: 5px; font-size: 13px; background-color: green;">결 제</button></td>
+								      		<td style="text-align: center;"><button class="btn btn-secondary"  onclick="payForKakao(${reservation.id})" style="padding: 5px; font-size: 13px; background-color: green;">결 제</button></td>
 								      	</c:when>
 								      	<c:otherwise>
 								      		<td style="text-align: center;"><button class="btn btn-secondary disabled" style="padding: 5px; font-size: 13px; background-color: green;">결 제</button></td>

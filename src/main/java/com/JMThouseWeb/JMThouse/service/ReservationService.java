@@ -32,7 +32,8 @@ import com.JMThouseWeb.JMThouse.repository.ReservationRepository;
 
 @Service
 public class ReservationService {
-
+	public static String tid;
+	
 	@Autowired
 	private HostTableRepository hostTableRepository;
 
@@ -100,7 +101,6 @@ public class ReservationService {
 	public List<Reservation> getReservation(User user) {
 		List<Reservation> reservation;
 		if (user.getRole() == RoleType.GUEST) {
-			System.out.println("sdfdsfsdfsdfsdf");
 			reservation = reservationRepository.findByGuestId(user.getId());
 		} else {
 			reservation = reservationRepository.findByHostId(user.getId());
@@ -166,6 +166,15 @@ public class ReservationService {
 		});
 		return res;
 		
+	}
+	
+	public boolean kakaoPaymentApprove(int resId) {
+		Reservation res = reservationRepository.findById(resId).get();
+		if(res == null) {
+			return false;
+		}
+		res.setApprovalStatus(ReservationType.COMPLETED);
+		return true;
 	}
 
 

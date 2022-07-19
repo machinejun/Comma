@@ -1,5 +1,6 @@
 let istableShow = 0;
 
+// 화면 이벤트
 function startModal(){
 	if(istableShow == 0){
 		showModal();
@@ -8,7 +9,6 @@ function startModal(){
 		closeModal();
 	}
 }
-
 
 function showModal(){
 	istableShow = 1;
@@ -34,6 +34,16 @@ function enableScrolling(){
     window.onscroll=function(){};
 }
 
+function alertMessage(title, text, icon){
+	Swal.fire(
+	  title,
+	  text,
+	  icon
+	)
+}
+// end 화면 이벤트
+
+// 예약 취소
 function cancelAndAlert(reservationId){
 	Swal.fire({
 	  title: '정말 예약을 취소시키겠습니까 ?',
@@ -56,13 +66,12 @@ function cancelAndAlert(reservationId){
 		}).fail(function(){
 			alertMessage("error", "예약 취소에 실패하였습니다","error");
 			return;
-		})
-		
+		})	
 	  }
-	  
 	})
 }
 
+// 유저 예약 테이블 표시
 function showResDetail(resId){
 	$.ajax({
 		type: "get",
@@ -108,6 +117,10 @@ function addDetailPage(response){
 		    <tr>
 		      <th scope="row">checkin/out</th>
 		      <td >${response.checkInDate} ~ ${response.checkOutDate}</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">가격</th>
+		      <td >${response.price}</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">요청사항</th>
@@ -168,10 +181,21 @@ function checkImgContain(response){
 	}
 }
 
-function alertMessage(title, text, icon){
-	Swal.fire(
-	  title,
-	  text,
-	  icon
-	)
+function payForKakao(resId){
+	let data = {
+		
+		
+	}
+	
+	$.ajax({
+		type:"post",
+		url:`/test/api/reserve/kakao/${resId}`
+	}).done(function (res){
+		console.log(res.next_redirect_pc_url);
+		window.location.replace(res.next_redirect_pc_url);
+		
+	}).fail(function(){
+		
+	})
 }
+

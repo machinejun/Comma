@@ -21,7 +21,7 @@ public class HostTableRepository {
 	
 	public List<HostTableDto> getlist(int hostid, int houseid, int month) {
 		
-		String sql= "SELECT r.id as id,username, headCount, checkInDate, checkOutDate, phoneNumber, request, approvalStatus, h.id as houseId, h.name as houseName\r\n"
+		String sql= "SELECT r.id as id,username, headCount, checkInDate, checkOutDate, price ,phoneNumber, request, approvalStatus, h.id as houseId, h.name as houseName\r\n"
 				+ "FROM reservation as r\r\n"
 				+ "INNER JOIN house as h\r\n"
 				+ "ON r.houseId = h.id\r\n"

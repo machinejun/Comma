@@ -13,8 +13,11 @@ public class HostTableDto {
 	private int id;
 	private String username;
 	private int headCount;
+	
 	private Date checkInDate;
 	private Date checkOutDate;
+	private int price;
+	
 	private String phoneNumber;
 	private String request;
 	private String approvalStatus;

@@ -42,6 +42,7 @@
 							      <th scope="col">예약자</th>
 							      <th scope="col">인원 수</th>
 							      <th scope="col">예약 일</th>
+							      <th scope="col">가격</th>
 							      <th scope="col">휴대폰 번호</th>
 							      <th scope="col">요청 사항</th>
 							      <th scope="col">상태</th>

@@ -2,9 +2,17 @@ package com.JMThouseWeb.JMThouse.api;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.method.P;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,16 +20,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.JMThouseWeb.JMThouse.dto.ApproveDto;
 import com.JMThouseWeb.JMThouse.dto.HostTableDto;
+import com.JMThouseWeb.JMThouse.dto.KaKaoApproveDto;
 import com.JMThouseWeb.JMThouse.dto.ResponseDto;
+import com.JMThouseWeb.JMThouse.dto.ResponsePaidDto;
 import com.JMThouseWeb.JMThouse.model.Reservation;
+import com.JMThouseWeb.JMThouse.model.User;
+import com.JMThouseWeb.JMThouse.repository.UserRepository;
 import com.JMThouseWeb.JMThouse.service.ReservationService;
 
 @RestController
 @RequestMapping("/test/api/reserve")
 public class ReservationApiController {
+	@Autowired
+	HttpSession httpSession;
+	@Autowired
+	private UserRepository userRepository;
 	@Autowired
 	private ReservationService reservationService;
 	
@@ -68,5 +85,43 @@ public class ReservationApiController {
 		System.out.println(res);
 		return res;
 	}
+	
+	@PostMapping("/kakao/{resId}")
+	public KaKaoApproveDto payForKaKao(@PathVariable int resId, @RequestBody ResponsePaidDto paidDto) {
+		KaKaoApproveDto approveDto = requestReadyForKaKaoPay(paidDto.getGuestName(),
+				paidDto.getHostName(),
+				paidDto.getHouseName(),
+				paidDto.getPrice());
+		paidDto.setTid(approveDto.getTid());
+		paidDto.setResId(resId);
+		httpSession.setAttribute(paidDto.getGuestName(), paidDto);
+		return approveDto;
+	}
+	
+	private KaKaoApproveDto requestReadyForKaKaoPay(String guestName, String hostName, String houseName, int price) {
+		RestTemplate transmitter = new RestTemplate();
+		HttpHeaders header = new HttpHeaders();
+		header.add("Authorization", "KakaoAK d8767c47b52237a1d96cea7c9e34596b");
+		header.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 		
+		MultiValueMap<String, String> param = new LinkedMultiValueMap<>();
+		param.add("cid", "TC0ONETIME");
+		param.add("partner_order_id", hostName);
+		param.add("partner_user_id", guestName);
+		param.add("item_name", houseName);
+		param.add("quantity", String.valueOf(price));
+		param.add("total_amount", "1");
+		param.add("tax_free_amount", "0");
+		param.add("approval_url", "http://localhost:9090/test/kakao/approve");
+		param.add("cancel_url", "http://localhost:9090/test/kakao/approve");
+		param.add("fail_url", "http://localhost:9090/test/kakao/approve");
+		
+		HttpEntity<MultiValueMap<String, String>> message = new HttpEntity<>(param, header);
+		ResponseEntity<KaKaoApproveDto> response = transmitter
+				.exchange("https://kapi.kakao.com/v1/payment/ready", HttpMethod.POST, message, KaKaoApproveDto.class);
+		return response.getBody();
+	}
+
+	
+	
 }

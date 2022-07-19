@@ -42,6 +42,7 @@
 						</div>
 					  </li>
 					  <li  class="list-group-item d-flex justify-content-between align-items-center">
+					  	<input type="hidden" id="price"/>
 					    <p id="showPrice" class="align-items-center" style="transform: translate(0%,30%);">가격: 원</p>				   
 					  </li>
 					  <li class="list-group-item d-flex justify-content-between align-items-center">요청사항

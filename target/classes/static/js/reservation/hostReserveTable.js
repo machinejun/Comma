@@ -1,15 +1,15 @@
 let buttonOn = "";
 let monthOn = 0;
 
-
-function cancel(reservationId){
-	cancelAlert(reservationId);	
+// 화면 이벤트
+function showDetail(id){
+	let status = $("#request-detail-"+ id).css('display');
+	if(status == 'none'){
+		$("#request-detail-"+ id).fadeIn();
+	}else{
+		$("#request-detail-"+ id).fadeOut();
+	}
 }
-
-function approve(){
-	alertMessage("예약 승인","예약 승인이 완료되었습니다","success")
-}
-
 
 function alertMessage(title, text, icon){
 	Swal.fire(
@@ -17,6 +17,19 @@ function alertMessage(title, text, icon){
 	  text,
 	  icon
 	)
+}
+
+function changeButton(btnId){
+	$("#" + btnId).disabled = true;
+	if(buttonOn != ""){
+		$("#" + buttonOn).disabled = false;
+	}
+	buttonOn = btnId
+}
+
+// 예약 취소
+function cancel(reservationId){
+	cancelAlert(reservationId);	
 }
 
 function cancelAlert(reservationId){
@@ -50,15 +63,8 @@ function cancelAlert(reservationId){
 }
 
 
-function showDetail(id){
-	let status = $("#request-detail-"+ id).css('display');
-	if(status == 'none'){
-		$("#request-detail-"+ id).fadeIn();
-	}else{
-		$("#request-detail-"+ id).fadeOut();
-	}
-}
 
+// 예약 목록 표시
 function checkHouseReservation(hostId,houseId){
 	let month = $("#month").val();
 	console.log(month);
@@ -90,23 +96,6 @@ function checkReservation(hostId){
 	})
 }
 
-function sentApprove(resId){
-	fetch("/test/api/reserve/host/approve", {
-  	method: "POST",
-  	headers: {
-    	"Content-Type": "application/json",
-    	"DateType": "json"
-  	},
-  	body: JSON.stringify({
-		resId: resId,
-		approve: "APPROVED"
-	}),
-  	}).then((response) => {
-		approve();
-		location.reload();
-  	}).catch((err)=> console.log(err));
-}
-
 
 function addHouseTable(response){
 	var cell = document.querySelector('tbody');
@@ -125,6 +114,7 @@ function addHouseTable(response){
 			     <th scope="row">${reservation.username}</th>
 				 <td>${reservation.headCount}</td>
 				 <td>${reservation.checkInDate} ~ ${reservation.checkOutDate}</td>
+				 <td>${reservation.price}</td>
 				 <td>${reservation.phoneNumber}</td>
 				 <td><!-- 아이디 값을 다 넣어주어야 한다. -->
 					 <a onclick="showDetail(${reservation.id})" class="icon-search-plus" type="btn">${reservation.request == "" ? "" : " ..."}</a>
@@ -140,10 +130,24 @@ function addHouseTable(response){
 	})						
 }
 
-function changeButton(btnId){
-	$("#" + btnId).disabled = true;
-	if(buttonOn != ""){
-		$("#" + buttonOn).disabled = false;
-	}
-	buttonOn = btnId
+
+// 예약 승인
+function sentApprove(resId){
+	fetch("/test/api/reserve/host/approve", {
+  	method: "POST",
+  	headers: {
+    	"Content-Type": "application/json",
+    	"DateType": "json"
+  	},
+  	body: JSON.stringify({
+		resId: resId,
+		approve: "APPROVED"
+	}),
+  	}).then((response) => {
+		alertMessage("예약 승인","예약 승인이 완료되었습니다","success")
+		location.reload();
+  	}).catch((err)=> console.log(err));
 }
+
+
+

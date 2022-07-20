@@ -1,0 +1,159 @@
+.multiLine {
+	width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.multiLine-title {
+	width: 350px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+.card-img {
+	border-radius: 10px;
+}
+
+.bi-suit-heart {
+	font-size: 35px;
+	line-height: 25px;
+	color: crimson;
+}
+
+.bi-suit-heart-fill {
+	font-size: 35px;
+	line-height: 25px;
+	color: crimson;
+}
+
+.bi-reply {
+	font-size: 20px;
+}
+
+.bi-reply-fill:hover {
+	font-size: 20px;
+	color: black;
+}
+
+.my-underline {
+	text-decoration: underline;
+}
+
+.star-ratings {
+	color: #aaa9a9;
+	position: relative;
+	unicode-bidi: bidi-override;
+	width: max-content;
+	-webkit-text-fill-color: transparent; /* 덮어써지는 색깔 */
+	-webkit-text-stroke-color: #2b2a29;
+	justify-content: center;
+	margin-left: 37px;
+}
+
+.star-ratings-fill {
+	color: #ffc107;
+	padding: 0;
+	position: absolute;
+	z-index: 1;
+	display: flex;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	-webkit-text-fill-color: #ffc107;
+}
+
+.star-ratings-base {
+	z-index: 0;
+	padding: 0;
+}
+
+.multiLine-house {
+	width: 400px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+}
+
+.multiLine-recommand {
+	width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.custom-btn {
+	font-family: Montserrat-Bold;
+	font-size: 15px;
+	line-height: 1.5;
+	color: #fff;
+	text-transform: uppercase;
+	border: none;
+	width: 30%;
+	height: 50px;
+	border-radius: 25px;
+	background: #1763E9;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 25px;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+	width: 30%;
+}
+
+.custom-sm-btn {
+	font-family: Montserrat-Bold;
+	font-size: 15px;
+	line-height: 1.5;
+	color: #fff;
+	text-transform: uppercase;
+	border: none;
+	width: 100px;
+	height: 40px;
+	border-radius: 25px;
+	background: #1763E9;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 25px;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.underline-text {
+	font-size: 15px;
+	text-decoration: underline;
+}
+
+.custom-card-img {
+	border-radius: 10px;
+}
+
+.h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-family: Martel,Times New Roman,Times,serif;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #000000;
+}

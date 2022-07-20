@@ -1,215 +1,240 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<style>
-.bi-suit-heart {
-	font-size: 20px;
-	line-height: 20px;
-	color: crimson;
-}
-
-.bi-suit-heart-fill {
-	font-size: 20px;
-	line-height: 20px;
-	color: crimson;
-}
-
-.bi-reply {
-	font-size: 20px;
-}
-
-.bi-reply-fill:hover {
-	font-size: 20px;
-	color: black;
-}
-
-.my-underline {
-	text-decoration: underline;
-}
-
-.bi-star-fill {
-	color: #ffc107;
-}
-
-.star-rating {
-	display: flex;
-	flex-direction: row-reverse;
-	font-size: 1.5em;
-	justify-content: space-around;
-	padding: 0 .2em;
-	text-align: center;
-	width: 5em;
-}
-
-.star-rating input {
-	display: none;
-}
-
-.star-rating label {
-	color: transparent;
-	text-shadow: 0 0 0 #e0e0e0;
-	cursor: pointer;
-}
-
-.star-rating :checked ~ label {
-	text-shadow: 0 0 0 #fdd826;
-}
-
-.star-rating label:hover, .star-rating label:hover ~ label {
-	text-shadow: 0 0 0 #fdd826;
-}
-
-/* 말줄임 표시 */
-.multiLine {
-	width: 250px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 5;
-	-webkit-box-orient: vertical;
-}
-
-.multiLine-house {
-	width: 400px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 5;
-	-webkit-box-orient: vertical;
-}
-</style>
+<link href="/css/house/detail.css" rel="stylesheet">
 
 <section class="py-5">
 	<div class="container px-4 px-lg-5 my-5">
 		<div class="row gx-4 gx-lg-5 align-items-center">
+
 			<c:set var="notExist" value="bi-suit-heart"></c:set>
 			<c:set var="exist" value="bi-suit-heart-fill"></c:set>
+
 			<input type="hidden" value="${house.id}" id="house-id">
 			<div class="col-md-6">
-				<img src="http://localhost:9090/upload/${house.image.imageUrl}" width="500px" height="600px" />
+				<img class="card-img-top mb-5 mb-md-0" src="http://localhost:9090/upload/${house.image.imageUrl}" width="500px" height="600px" style="border-radius: 15px" />
 			</div>
 			<div class="col-md-6">
-				<h3 class="display-5 fw-bolder">
-					<b>${house.name}</b>
-				</h3><br>
-				<div class="fs-5 mb-5 d-flex">
-					<span class="text-decoration-line-through flex-shrink-0"><i class="bi bi-geo-alt"></i>&nbsp;${house.address}</span> <i class="bi ${not empty likeHouse ? exist : notExist} flex-shrink-0"></i>
-				</div><br>
-				<div><h4>₩ ${house.oneDayPrice}</h4></div><br>
-				<p class="multiLine-house">${house.infoText}</p><br>
-				<div class="d-flex">
-					&nbsp;&nbsp;
-					<button class="btn btn-outline-dark flex-shrink-0" type="button">예약하기</button>
+				<i class="bi bi-geo-alt"></i>&nbsp;${house.address}
+				<h2 class="multiLine-title">${house.name}</h2>
+				<br>
+				<div class="fs-5 mb-5 d-flex ">
+					<span class="text-decoration-line-through flex-shrink-0">&nbsp;${house.type}</span>
 				</div>
+				<br>
+				<div class="d-flex">
+					<h3>₩&nbsp;${house.oneDayPrice}</h3>
+					<p style="margin-top: 25px;">&nbsp;&nbsp;/ 박</p>
+				</div>
+				<br>
+				<p class="multiLine">${house.infoText}</p>
+
+				<br> <br>
+				<p class="underline-text">
+					<a data-toggle="modal" data-target="#info-modal" style="cursor: pointer;">더 보기</a>
+				</p>
+				<br> <br> <br>
+				<div class="d-flex">
+					<button class="custom-btn flex-shrink-0" type="button">예약하기</button>
+					<i class="bi ${not empty likeHouse.house ? exist : notExist}" style="margin-top: 5px; margin-left: 15px; cursor: pointer;" id="like" onclick="clickHeart()"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- 숙소 설명 모달 -->
+	<div class="modal" id="info-modal">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+				</div>
+
+				<div class="modal-body">
+					<h4 class="modal-title">
+						<b>⛪ 숙소 설명</b>
+					</h4>
+					<br>
+					<p>${house.infoText}</p>
+				</div>
+
 			</div>
 		</div>
 	</div>
 
 	<div class="container px-4 px-lg-5 my-5">
+		<input type="hidden" value="${principal.user.id}" id="principal-id" />
 		<hr>
 		<!-- 평균 별점 -->
 		<div class="d-flex">
-			<h4 class="flex-shrink-0">
-				<b>후기</b>
-				</h4>
-				<div>
-					&nbsp;&nbsp;<label class="bi-star-fill"></label>&nbsp;${house.starScore}
-				</div>
+			<h3>리뷰</h3>
+			<h4 style="margin-top: 25px;">&nbsp;&nbsp;&nbsp;${reviewCount}개</h4>
+			<div>
+				&nbsp;&nbsp;<label style="margin-top: 20px;">⭐</label>&nbsp;${avgScore}
+			</div>
 		</div>
-		<br>
-		<br>
-		
-		<div class="container"></div>
-		<c:forEach var="review" items="${reviews}">
-			<a href="/review/list/${house.id}"></a>
-			<!-- 게스트의 리뷰 -->
+		<br> <br>
+
+		<div class="container d-flex" id="review-box">
 			<c:set var="star-fill" value="bi-star-fill"></c:set>
 			<c:set var="star-blank" value=""></c:set>
-			
-			<input type="hidden" id="review-id" value="${review.id}">
-			<div class="row"></div>
-			<div class="col-md-8">
-				<h4 class="h4 fw-bolder">${review.guestId.username}</h4>
-				<div class="d-flex small text-warning mb-2">
-					<div class="bi-star-fill"></div>
-					<div class="bi-star-fill"></div>
-					<div class="bi-star-fill"></div>
-					<div class="bi-star-fill"></div>
-					<div class="bi-star-fill"></div>
-				</div>
-				<p class="multiLine">${review.content}</p>
-				<a class="text-decoration-none" data-toggle="modal" data-target="#replyModal" style="cursor: pointer;"> 더보기 </a>
-			</div>
-			<br>
 
-		</c:forEach>
+			<c:set var="isDisabled" value="disabled"></c:set>
+			<c:set var="isAbled" value=""></c:set>
+
+			<c:choose>
+				<c:when test="${reviewCount eq 0}">
+					<h4 class="display-5 fw-bold">작성된 리뷰가 없습니다.</h4>
+				</c:when>
+			</c:choose>
+			<c:forEach var="review" items="${reviews.content}">
+				<div class="row" id="review-content">
+					<!-- 게스트의 리뷰 -->
+					<div class="col-lg-4 mb-5 mb-lg-0" id="bodyContents" style="height: 240px; margin-right: 120px;">
+						<input type="hidden" id="review-id" value="${review.id}">
+						<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></div>
+						<h3>${review.guestId.username}</h3>
+						<p class="multiLine">${review.content}</p>
+						<div>
+							<br> <br>
+							<p class="underline-text">
+								<a data-toggle="modal" data-target="#review-modal" style="cursor: pointer;">더 보기</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="modal" id="review-modal">
+					<div class="modal-dialog modal-dialog-scrollable">
+						<div class="modal-content">
+
+							<div class="modal-header">
+								<h5>
+									<b>📝 리뷰 상세보기</b>
+								</h5>
+								<button type="button" class="close" data-dismiss="modal">×</button>
+							</div>
+							<div class="modal-body">
+								<h3>${review.guestId.username}</h3>
+								<p>${review.content}</p>
+								<c:if test="${review.guestId.id eq principal.user.id}">
+									<button class="btn btn-outline-danger btn-sm float-right" style="margin-left: 10px;" id="btn-delete">삭제</button>
+									<a class="btn btn-outline-primary btn-sm float-right" id="btn-update" href="/review/update_form/${review.id}">수정</a>
+									<br>
+								</c:if>
+								<hr>
+								<h5>
+									<b>호스트의 댓글</b>
+								</h5>
+								<c:forEach var="reply" items="${review.replies}">
+									<p>${reply.content}</p>
+								</c:forEach>
+							</div>
+						</div>
+					</div>
+				</div>
+			</c:forEach>
+		</div>
+		<ul class="pagination">
+
+			<c:set var="isDisabled" value="disabled"></c:set>
+
+			<c:choose>
+				<c:when test="${reviews.first}">
+					<li class="page-item disabled"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
+				</c:otherwise>
+			</c:choose>
+
+			<c:choose>
+				<c:when test="${reviews.last}">
+					<li class="page-item disabled"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
+				</c:otherwise>
+			</c:choose>
+		</ul>
+
 	</div>
 </section>
 
 <section class="py-5 bg-light">
 	<div class="container px-4 px-lg-5 mt-5">
-		<hr>
-		<h4 class="fw-bolder mb-4">
-			<b>이런 숙소는 어때요</b>
-		</h4>
+		<h3 class="fw-bolder mb-4">🏡 이런 숙소는 어때요</h3>
 		<br>
-		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
 			<c:forEach var="house" items="${houseList}">
+				<c:set var="avgScore" value="${house.starScore * 20}"></c:set>
 				<div class="col mb-5">
-					<div class="card h-100">
-						<img class="card-img-top" src="http://localhost:9090/upload/${house.image.imageUrl}" width="230px" height="160px">
-						<div class="card-body p-4">
+					<div class="custom-card h-100">
+						<a href="/house/detail/${house.id}"> <img class="custom-card-img" src="http://localhost:9090/upload/${house.image.imageUrl}" width="100%" height="160px"></a>
+						<div class="card-body ">
 							<div class="text-center">
-								<h5 class="fw-bolder">${house.name}</h5>
+								<h4 class="multiLine" style="">
+									<b>${house.name}</b>
+								</h4>
 							</div>
-						</div>
-						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-							<div class="text-center">
-								<a class="btn btn-outline-dark mt-auto" href="/house/detail/${house.id}">View Detail</a>
+							<br>
+							<div class="star-ratings">
+								<div class="star-ratings-fill" style="width: ${house.starScore * 20 * 1.4}%">
+									<span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+								</div>
+								<div class="star-ratings-base">
+									<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+								</div>
+								<br> <br>
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</c:forEach>
 		</div>
 	</div>
 
+	<div id="segment1"></div>
 </section>
-
 <script>
-	let heartCheck = true;
-	$('.bi-suit-heart').on('click', function() {
-		if (heartCheck) {
-			$(this).removeClass('bi-suit-heart');
-			$(this).addClass('bi-suit-heart-fill');
-			addWishList();
-			heartCheck = false;
-		} else {
-			$(this).removeClass('bi-suit-heart-fill');
-			$(this).addClass('bi-suit-heart');
-			deleteWishList();
-			heartCheck = true;
-		}
-	});
+	function clickHeart() {
 
-	function addWishList() {
 		let data = {
-			id : document.querySelector("#house-id").value
+			id : $("#house-id").val()
 		}
-		fetch("/api/house/wishList", {
-			method : "post",
-			headers : {
-				'content-type' : 'application/json; charset=utf-8'
-			},
-			body : JSON.stringify(data)
-		});
-	}
 
-	function deleteWishList() {
-		let houseId = $("#house-id").val;
-		fetch("/api/house/wishList/" + houseId, {
-			method : "delete"
-		});
+		// 빈 하트를 눌렀을때
+		if ($("#like").attr("class") == "bi bi-suit-heart") {
+			$.ajax({
+				url : "/api/house/wish-list",
+				type : "POST",
+				data : JSON.stringify(data),
+				contentType : "application/json; charset=utf-8",
+				dataType : "json"
+			}).done(function() {
+				console.log("하트추가 성공");
+			}).fail(function(error) {
+				console.log(error);
+			});
+			// 채워진 하트로 바꾸기
+			document.getElementById("like").className = "bi bi-suit-heart-fill";
+
+			// 채워진 하트를 눌렀을 때
+		} else if ($("#like").attr("class") == "bi bi-suit-heart-fill") {
+			let houseId = $("#house-id").val();
+			$.ajax({
+				url : "/api/house/wish-list/" + houseId,
+				type : "DELETE",
+			}).done(function() {
+				console.log("위시리스트 삭제");
+			}).fail(function() {
+			});
+			// 빈 하트로 바꾸기
+			document.getElementById("like").className = "bi bi-suit-heart";
+		}
+
 	}
 </script>
+<script src="/js/review.js"></script>
+<%@ include file="../layout/footer.jsp"%>

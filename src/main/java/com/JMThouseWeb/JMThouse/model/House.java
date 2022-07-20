@@ -30,55 +30,52 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class House {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(nullable = false, length = 100)
 	private String name;
-	
+
 	@Column(nullable = false)
 	private String address;
-	
+
 	@ManyToOne
-	@JoinColumn(name="hostId")
+	@JoinColumn(name = "hostId")
 	private User hostId;
-	
+
 	@ColumnDefault("0.0")
 	private double starScore;
-	
+
 	private int oneDayPrice; // 하루 숙박 가격
-	
+
 	@Column(nullable = false)
 	private String type; // 숙소 유형
-	
+
 	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "imageId")
 	private Image image;
-	
+
 	@ColumnDefault("1")
 	private int capacity;
-	
+
 	@Lob
 	private String infoText;
-	
+
 	@CreationTimestamp
 	private Timestamp creationDate;
-	
+
 //	@OneToMany(mappedBy = "houseId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 //	@JsonIgnoreProperties({"reservations", "houseId"})
 //	private List<Reservation> reservations;
-	
+
 	@OneToMany(mappedBy = "houseId", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"houseId"})
+	@JsonIgnoreProperties({ "houseId" })
 	private List<Review> reviews;
-	
+
 //	@OneToMany(mappedBy ="house", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //	@JsonIgnoreProperties({"house"})
 //	private List<BookedDate> bookedDates;
-	
-	
-	
 
 }

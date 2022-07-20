@@ -1,0 +1,54 @@
+/* @import "../house/detail.css"; */
+
+.star-rating {
+	display: flex;
+	flex-direction: row-reverse;
+	font-size: 1.5em;
+	justify-content: space-around;
+	margin-left: 20px;
+	text-align: center;
+	width: 5em;
+}
+
+.star-rating input {
+	display: none;
+}
+
+.star-rating label {
+	color: transparent;
+	text-shadow: 0 0 0 #e0e0e0;
+	cursor: pointer;
+}
+
+.star-rating :checked ~ label {
+	text-shadow: 0 0 0 #fdd826;
+}
+
+.star-rating label:hover, .star-rating label:hover ~ label {
+	text-shadow: 0 0 0 #fdd826;
+}
+
+.custom-sm-btn {
+	font-family: Montserrat-Bold;
+	font-size: 15px;
+	line-height: 1.5;
+	color: #fff;
+	text-transform: uppercase;
+	border: none;
+	width: 100px;
+	height: 40px;
+	border-radius: 25px;
+	background: #1763E9;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 25px;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+}

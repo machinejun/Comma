@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +18,6 @@ import com.JMThouseWeb.JMThouse.dto.RequestPostDto;
 import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.model.Image;
 import com.JMThouseWeb.JMThouse.model.LikeHouse;
-import com.JMThouseWeb.JMThouse.model.Review;
 import com.JMThouseWeb.JMThouse.model.User;
 import com.JMThouseWeb.JMThouse.repository.HouseRepository;
 import com.JMThouseWeb.JMThouse.repository.ImageRepository;
@@ -47,18 +48,6 @@ public class HouseService {
 		House houseEntity = houseRepository.findById(houseId).orElseThrow(() -> {
 			return new IllegalArgumentException("해당하는 숙소를 찾을 수 없습니다.");
 		});
-		/*
-		List<Review> reviews = reviewRepository.findByHouseId(houseId);
-
-		// starScore 평점 계산
-		double sum = 0.0;
-
-		for (int i = 0; i < reviews.size(); i++) {
-			sum += reviews.get(i).getStarScore();
-		}
-
-		houseEntity.setStarScore(sum / reviews.size());
-		*/
 
 		return houseEntity;
 	}
@@ -114,7 +103,7 @@ public class HouseService {
 
 	@Transactional
 	public List<House> getHouseList() {
-		List<House> houseList = houseRepository.findAll();
+		List<House> houseList = houseRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
 		return houseList;
 
 	}
@@ -134,8 +123,10 @@ public class HouseService {
 	}
 
 	@Transactional
-	public List<House> getHouseListByAddress(String address) {
-		List<House> houses = houseRepository.findAllByAddress(address);
+	public List<House> getHouseListByAddress(String address, int houseId) {
+		List<House> houses = houseRepository.findAllByAddress(address, houseId).orElseGet(() -> {
+			return new ArrayList<House>();
+		});
 		return houses;
 	}
 
@@ -143,12 +134,67 @@ public class HouseService {
 	public void deleteItemOfWishList(int houseId, int guestId) {
 		likeHouseRepository.deleteByHouseIdAndGuestId(houseId, guestId);
 	}
-	
+
 	@Transactional
 	public List<House> findAllByHostId(int hostId) {
 		List<House> houses = houseRepository.findAllByHostId(hostId);
 		System.out.println(houses);
 		return houses;
+	}
+
+	@Transactional
+	public void updateHouse(int houseId, RequestPostDto requestPostDto) {
+
+		House houseEntity = houseRepository.findById(houseId).orElseThrow(() -> {
+			return new IllegalArgumentException("해당 숙소는 존재하지 않습니다.");
+		});
+
+		houseEntity.setName(requestPostDto.getName());
+		houseEntity.setAddress(requestPostDto.getAddress());
+		houseEntity.setInfoText(requestPostDto.getInfoText());
+		houseEntity.setType(requestPostDto.getType());
+		houseEntity.setOneDayPrice(requestPostDto.getOneDayPrice());
+
+		String imageFileName = UUID.randomUUID() + "_" + "image";
+		String newFileName = (imageFileName.trim()).replaceAll("\\s", "");
+
+		Path imageFilePath = Paths.get(uploadFolder + newFileName);
+
+		try {
+			Files.write(imageFilePath, requestPostDto.getFile().getBytes());
+
+			Image imageEntity = requestPostDto.toEntity(newFileName);
+			imageRepository.save(imageEntity);
+			houseEntity.setImage(imageEntity);
+			houseRepository.save(houseEntity);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Transactional(readOnly = true)
+	public int getReviewCount(int houseId) {
+		return reviewRepository.getReviewCount(houseId).orElseGet(() -> {
+			return 0;
+		});
+	}
+
+	@Transactional
+	public List<House> searchHouseByAddressAndType(String address, String type) {
+		return houseRepository.findAllByAddressAndType(address, type);
+	}
+
+	@Transactional
+	public List<House> searchHouseByAddressOrType(String address, String type) {
+		return houseRepository.findAllByAddressOrType(address, type);
+	}
+
+	@Transactional
+	public List<House> getHouseOrderByStarScore() {
+		return houseRepository.findAllByStarScore();
+		
 	}
 
 }

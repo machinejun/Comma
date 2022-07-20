@@ -1,0 +1,79 @@
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+@import url('https://fonts.googleapis.com/css2?family=Alef:wght@700&display=swap');
+
+.custom-img {
+	width: 300px;
+	height: 370px;
+	border-radius: 10px;
+}
+
+/* 말줄임 표시 */
+.multiLine {
+	width: 200px;
+	height: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+}
+
+.custom-btn {
+	font-family: Montserrat-Bold;
+	font-size: 15px;
+	line-height: 1.5;
+	color: #fff;
+	text-transform: uppercase;
+	border: none;
+	width: 90px;
+	height: 40px;
+	border-radius: 25px;
+	background: #1763E9;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 20px;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	-moz-transition: all 0.4s;
+	transition: all 0.4s;
+	margin-top: 15px;
+}
+
+.h4, .h5, .h6, h3, h4, h5, h6 {
+	font-family: 'Alef', sans-serif;
+	/*font-family: 'Hanna', sans-serif;*/
+	font-weight: 900;
+	line-height: 1.1;
+	color: #000000;
+}
+
+.star-score {
+	color: transparent;
+	text-shadow: 0 0 0 #fdd826;
+}
+
+.selector {
+	height: 50px;
+	width: 170px;
+	border-radius: 10px;
+}
+
+.list-img:hover {
+    transform: scale(1.1);
+	transition: all 1s;
+	cursor: pointer;
+}
+
+@keyframes box-ani {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(0, -15px);
+    }
+}

@@ -1,5 +1,6 @@
 package com.JMThouseWeb.JMThouse.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,5 +14,7 @@ public interface LikeHouseRepository extends JpaRepository<LikeHouse, Integer> {
 	
 	// select * from likehouse where houseId=1 and guestId=1;
 	Optional<LikeHouse> findByHouseIdAndGuestId(int houseId, int guestId);
+
+	List<LikeHouse> getWishListByGuestId(int guestId);
 
 }

@@ -1,60 +1,51 @@
-
 let index = {
-
 	init: function() {
-		$("#btn-register").bind("click", () => {
-			this.register();
-		}),
-
-		$(".bi-heart").bind("click", () => {
-				this.addWishList();
+		$("#like").bind("click", () => {
+			this.clickHeart();
 		})
-
 	},
 
-	register: function() {
+	clickHeart: function() {
+		// 로그인 안한 상태에서 하트를 클릭하면 로그인해야한다는 알림창 뜨도록
+
 		let data = {
-			name: $("#name").val(),
-			address: $("#address").val(),
-			type: $("#type").val(),
-			oneDayPrice: $("#oneDayPrice").val(),
-			infoText: $("#infoText").val(),
+			id: $("#house-id").val()
 		}
-
-		$.ajax({
-			type: "POST",
-			url: "/api/house/register",
-			data: JSON.stringify(data),
-			contentType: "application/json; charset=utf-8",
-			dataType: "json"
-		})
-			.done(function(response) {
-				if (data.name == "" || data.name.trim() == "") {
-					alert("이름을 입력해주세요.")
-				} else {
-					if (data.infoText == "" || data.infoText.trim() == "") {
-						alert("소개글을 입력해주세요.")
-					} else {
-						alert("나의 숙소가 등록되었습니다.");
-					}
-				}
+		// 빈하트를 눌렀을때
+		if ($("#like").attr("class") == "bi bi-suit-heart") {
+			$.ajax({
+				url: "/api/house/wishList",
+				type: "POST",
+				data: JSON.stringify(data),
+				contentType: "application/json; charset=utf-8",
+				dataType: "json"
 			})
-			.fail(function(error) {
-				alert("숙소가 등록되지 않았습니다.");
-				console.log(error);
-			});
-	},
+				.done(function() {
+					console.log("하트추가 성공");
+				})
+				.fail(function(error) {
+					console.log(error);
+				});
 
-	addWishList: function() {
-		let i = 0;
-		if (i == 0) {
-			$(this).removeClass('bi-heart');
-			$(this).addClass('bi-heart-fill');
-			i++;
-		} else if (i == 1) {
-			$(this).removeClass('bi-heart-fill');
-			$(this).addClass('bi-heart');
-			i--;
+			// 꽉찬하트로 바꾸기
+			document.getElementById("like").className = "bi bi-suit-heart-fill";
+
+			// 꽉찬 하트를 눌렀을 때
+		} else if ($("#like").attr("class") == "bi bi-suit-heart-fill") {
+			let houseId = $("#house-id").val();
+
+			$.ajax({
+				url: "/api/house/wishList/" + houseId,
+				type: "DELETE",
+			})
+				.done(function() {
+					console.log("위시리스트 삭제");
+				})
+				.fail(function() {
+				});
+
+			// 빈하트로 바꾸기
+			document.getElementById("like").className = "bi bi-suit-heart";
 		}
 	}
 }

@@ -35,7 +35,7 @@
 						<option>호텔</option>
 						<option>모텔</option>
 						<option>펜션</option>
-						<option>게스트하우스</option>
+						<option>게스트 하우스</option>
 					</select>
 				</div>
 				<br>

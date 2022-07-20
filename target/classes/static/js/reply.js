@@ -7,7 +7,7 @@ let index = {
 		});
 
 		$("#btn-update").bind("click", () => {
-			this.updateReply();
+			this.clickUpdateBtn();
 		});
 
 		$("#btn-delete").bind("click", () => {
@@ -55,14 +55,6 @@ let index = {
 			content: $("#content").val()
 		}
 
-		document.querySelectorAll('#btn-update').forEach(function(item) {
-			item.addEventListener('click', function() {
-				const form = this.closest('form');
-				this
-			});
-		});
-
-
 		if (data.content == "" || data.content.trim() === "") {
 			alert("내용을 입력하세요.")
 		} else {
@@ -108,6 +100,36 @@ let index = {
 			});
 		}
 	}
+}
+
+function clickUpdateBtn() {
+	console.log("수정 버튼 클릭");
+	
+	// 수정 전 댓글
+	let beforeReplyRow;
+	
+	// 댓글 수정 창이 한 개만 열릴 수 있도록 만들기
+	const temp = document.querySelectorAll(".update-textarea");
+	
+	const replyRow = updateBtn.parentElement.parentElement
+	beforeReplyRow = replyRow.innerHTML;
+	
+	let beforeContent = replyRow.children[1].innerHTML;
+	replyRow.innerHTML = "";
+	
+	const textarea = document.createElement("textarea");
+	textarea.classList.add("update-textarea");
+	
+	replyRow.append(textarea);
+	
+	const replyBtnArea = document.createElement("div");
+	replyBtnArea.classList.add("reply-btn-area");
+	
+	const updateBtn = document.createElement("button");
+	updateBtn.innerText="수정";
+	updateBtn.setAttribute("onclick", "updateReply(" + replyNo + ",this)");
+
+	
 }
 
 function appendReply(reply) {

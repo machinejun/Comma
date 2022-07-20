@@ -47,21 +47,43 @@
 					<li class="nav-item"><a class="nav-link" href="/house/list"><span></span>&nbsp;&nbsp;숙소 둘러보기</a></li>
 					<li id="user-content" class="nav-item" style="position: relative; left: 1000px;"><a class="btn nav-link"><span class="icon-user-circle"></span>&nbsp;&nbsp;user</a>
 						<div id="user-table" class="list-group" style="width: 180px; font-size: 20px; position: fixed; left: 70%; top: 6%;">
-							<input id="isUserTable" type="hidden" value=0 /> <a href="/auth/login_form" class="list-group-item list-group-item-action"> <span class="icon-drivers-license-o"></span>&nbsp;&nbsp;로그인
-							</a> <a href="/auth/join_form" class="list-group-item list-group-item-action"> <span class="icon-user-plus"></span>&nbsp;&nbsp;회원가입
+							<input id="isUserTable" type="hidden" value=0 /> 
+							<c:choose>
+								<c:when  test="${principal.user.role eq 'GUEST'}">
+										<a class="list-group-item list-group-item-action" href="/reservation-history/${principal.user.id}">
+												<span class="icon-suitcase"></span>&nbsp;&nbsp;예약 내역
+										</a>
+										<button type="button" class="list-group-item list-group-item-action">
+												<span class="icon-gittip"></span>&nbsp;&nbsp;예약하기
+										</button>
+								</c:when>
+								<c:when  test="${principal.user.role eq 'HOST'}">
+											<a class="list-group-item list-group-item-action" href="/reservation-history/${principal.user.id}">
+													<span class="icon-suitcase"></span>&nbsp;&nbsp;예약 내역
+											</a>
+											<button type="button" class="list-group-item list-group-item-action">
+													<span class="icon-users"></span>&nbsp;&nbsp;예약자 확인
+											</button>
+								</c:when>
+								<c:when  test="${principal.user.role eq 'ADMIN'}">
+										<a class="list-group-item list-group-item-action" href="/admin_form">
+											<span class="icon-server"></span>&nbsp;&nbsp;관리자 상세
+										</a>
+								</c:when>
+								
+							</c:choose>
+							<a href="/auth/login_form" class="list-group-item list-group-item-action"> <span class="icon-drivers-license-o"></span>&nbsp;&nbsp;로그인
+							</a> 
+							<a href="/auth/join_form" class="list-group-item list-group-item-action"> <span class="icon-user-plus"></span>&nbsp;&nbsp;회원가입
 							</a>
 							<button type="button" class="list-group-item list-group-item-action">
 								<span class="icon-black-tie"></span>&nbsp;&nbsp;호스트 되기
 							</button>
-							<a class="list-group-item list-group-item-action" href="/reservation-history/${principal.user.id}">
-								<span class="icon-suitcase"></span>&nbsp;&nbsp;예약 내역
+							<a class="list-group-item list-group-item-action" href="/auth/login_form">
+								<span class="icon-server"></span>&nbsp;&nbsp;관리자 조회
 							</a>
-							<button type="button" class="list-group-item list-group-item-action">
-								<span class="icon-users"></span>&nbsp;&nbsp;예약자 확인
-							</button>
-							<button type="button" class="list-group-item list-group-item-action">
-								<span class="icon-gittip"></span>&nbsp;&nbsp;예약하기
-							</button>
+							
+							
 						</div></li>
 				</ul>
 			</div>

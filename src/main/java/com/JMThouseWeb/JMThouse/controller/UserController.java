@@ -73,5 +73,11 @@ public class UserController {
 		model.addAttribute("wishList", likeHouseService.getWishListById(guestId));
 		return "user/wish_list_form";
 	}
+	
+	// 관리자페이지 호출
+	@GetMapping("/admin_form")
+	public String adminForm() {
+		return "user/admin_form";
+	}
 
 }

@@ -6,13 +6,21 @@
 	transition: all 1s;
 	cursor: pointer;
 }
+
+.text-center > h2 {
+	color: rgba(255,149,149,0.7);
+}
+.text-center > h2::after {
+	color: rgba(255,149,149,0.7);
+}
+
 </style>
 <div class="section-container">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 col-md-8 col-md-offset-2">
 				<div class="text-center">
-					<h2>About Us</h2>
+					<h2>Comma(,)</h2>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas luctus at sem quis varius. <br> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus iaculis
 						magna sagittis elit sagittis, at hendrerit lorem venenatis. Morbi accumsan iaculis blandit. Cras ultrices hendrerit nisl.
@@ -92,13 +100,11 @@
 					<h3>Best</h3>
 					<h4>UX designer</h4>
 					<p>Sed elementum vehicula nisl, a egestas velit rhoncus nec.Cras vel sapien tincidunt, lacinia risus vel, imperdiet neque.</p>
-
 				</div>
 			</c:forEach>
 		</div>
 	</div>
 </div>
-
 <div class="section-container">
 	<div class="container text-center">
 		<div class="row section-container-spacer">
@@ -112,9 +118,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-4">
 				<i class="bi bi-person-check" style="width: 210px; height: 210px;"></i>
-
 			</div>
-
 			<div class="col-xs-12 col-md-4">
 				<img src="../assets/images/logo-02.png" alt="" class="img-responsive reveal-content image-center">
 			</div>
@@ -124,5 +128,4 @@
 		</div>
 	</div>
 </div>
-
 <%@ include file="layout/footer.jsp"%>

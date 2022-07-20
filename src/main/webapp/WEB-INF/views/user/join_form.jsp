@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <title>회원가입 페이지</title>
-<<<<<<< HEAD
-
-<style>
-body {
-	min-height: 70vh;
-}
-=======
->>>>>>> aeef87eda6e5a819e058acafc4bf5cf7f0385a18
 
 <link rel="stylesheet" href="/fonts/material-icon/css/material-design-iconic-font.min.css" />
 <link rel="stylesheet" href="/css/user/style.css" />
@@ -52,26 +44,16 @@ body {
 				</div>
 			</div>
 		</div>
-<<<<<<< HEAD
-	</div>
-	</br>
-	</br>
-	<script type="text/javascript" src="/js/main.0cf8b554.js"></script></body>
-	<script type="text/javascript" src="/js/home.js"></script></body>
-=======
 	</section>
 </div>
 
-<script src="/vendor/jquery/jquery.min.js"></script>
->>>>>>> aeef87eda6e5a819e058acafc4bf5cf7f0385a18
+
 <script>
 	let usernameCheck = false;
-
 	$("#btn-checkUsername").bind("click", function() {
 		let data = {
 			username : $("#username").val(),
 		};
-
 		$.ajax({
 			type : "POST",
 			url : "/auth/username-check",
@@ -90,18 +72,15 @@ body {
 			console.log(error);
 		});
 	});
-
 	function joinCheck() {
 		let password = $("#password").val();
 		let passwordCheck = $("#re-password").val();
-
 		if (password != "" || passwordCheck != "") {
 			if (password != passwordCheck) {
 				alert("입력하신 비밀번호가 일치하지 않습니다.");
 				return false;
 			}
 		}
-
 		if (usernameCheck == false) {
 			alert("아이디 중복확인을 해주세요.");
 			return false;
@@ -109,7 +88,3 @@ body {
 	}
 </script>
 <%@ include file="../layout/footer.jsp"%>
-<<<<<<< HEAD
-
-=======
->>>>>>> aeef87eda6e5a819e058acafc4bf5cf7f0385a18

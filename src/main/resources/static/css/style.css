@@ -1,16 +1,3 @@
-.downdown {
-  position:fixed;
-  animation: down 0.3s ease;
-}
-@keyframes down {
-  0%{
-    transform: translateY(-50px)
-  }
-  100%{
-    transform: translateY(0px)
-  }  
-}
-
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap');
 .body{
 	font-family: 'Dongle';

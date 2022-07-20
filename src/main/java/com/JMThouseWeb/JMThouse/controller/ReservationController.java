@@ -77,15 +77,6 @@ public class ReservationController {
 		return "reservation/hostReserveTable";
 	}
 	
-<<<<<<< HEAD
-	// 게스트 예약내역 페이지 호출
-	@GetMapping("/reservation-info/{guestId}")
-	public String guestReservationHistory(@PathVariable int guestId, Model model) {
-		model.addAttribute("reservations", reservationService.getReservationList(guestId));
-		return "user/history_form";
-	}
-
-=======
 	@GetMapping("/test/reserveTable/user/{userid}")
 	public String reserveUserTable(@PathVariable int userid, Model model) {
 		User user = userService.findByUserId(userid);
@@ -124,5 +115,5 @@ public class ReservationController {
 		ResponseEntity<String> response = transmitter.exchange("https://kapi.kakao.com/v1/payment/approve", HttpMethod.POST, message, String.class);
 		return response;
 	}
->>>>>>> feature_junic
+
 }

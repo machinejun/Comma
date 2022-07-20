@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
@@ -30,12 +32,8 @@ import com.JMThouseWeb.JMThouse.repository.ReservationRepository;
 
 @Service
 public class ReservationService {
-<<<<<<< HEAD
-
-=======
 	public static String tid;
 	
->>>>>>> feature_junic
 	@Autowired
 	private HostTableRepository hostTableRepository;
 
@@ -71,25 +69,12 @@ public class ReservationService {
 		reservation.setHouseId(house);
 		reservation.setGuestId(guest);
 		reservation.setHostId(host);
-<<<<<<< HEAD
-<<<<<<< HEAD
-		calculateBookedDates(reservation.getCheckInDate(), reservation.getCheckOutDate(),reservation);
-=======
 		calculateBookedDates(reservation.getCheckInDate(), reservation.getCheckOutDate(), reservation);
->>>>>>> feature_junic
 		reservation.setApprovalStatus(ReservationType.WAITING);
 		reservationRepository.save(reservation);
 	}
 
 	private void calculateBookedDates(Date checkinDate, Date checkOutDate, Reservation res) {
-=======
-		calculateBookedDates(reservation.getCheckInDate(), reservation.getCheckOutDate(), house);
-		reservation.setApprovalStatus(ReservationType.WAITING);
-		reservationRepository.save(reservation);
-	}
-
-	private void calculateBookedDates(Date checkinDate, Date checkOutDate, House house) {
->>>>>>> aeef87eda6e5a819e058acafc4bf5cf7f0385a18
 		int range = getRangeDay(checkinDate, checkOutDate);
 
 		for (int i = 0; i < range; i++) {
@@ -122,12 +107,7 @@ public class ReservationService {
 		}
 		return reservation;
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> feature_junic
 	@Transactional(readOnly = true)
 	public List<HostTableDto> getTableInfo(int hostId, int houseId, int month) {
 		return hostTableRepository.getlist(hostId, houseId, month);
@@ -188,31 +168,6 @@ public class ReservationService {
 		
 	}
 	
-<<<<<<< HEAD
-=======
-
-	public List<HostTableDto> getTableInfo(int hostId, int houseId) {
-		return hostTableRepository.getlist(hostId, houseId);
-	}
-
-	public ArrayList<BookedDate> getListBookedDate(int hostid) {
-		ArrayList<BookedDate> list = (ArrayList<BookedDate>) bookedDateRepository.findAllByHouseId(hostid);
-		return list;
-	}
-
-	public List<HoustWaitDto> getWaitCount(int hostid) {
-		return hostTableRepository.getWaitCount(hostid);
-	}
-
-	@Transactional(readOnly = true)
-	public List<Reservation> getReservationList(int guestId) {
-		return reservationRepository.findAllByGuestId(guestId).orElseGet(() -> {
-			return new ArrayList<>();
-		});
-	}
-
->>>>>>> aeef87eda6e5a819e058acafc4bf5cf7f0385a18
-=======
 	public boolean kakaoPaymentApprove(int resId) {
 		Reservation res = reservationRepository.findById(resId).get();
 		if(res == null) {
@@ -223,5 +178,4 @@ public class ReservationService {
 	}
 
 
->>>>>>> feature_junic
 }

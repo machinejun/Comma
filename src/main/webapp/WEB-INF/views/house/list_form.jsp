@@ -23,7 +23,7 @@
 			<c:set var="notSelected" value=""></c:set>
 			<div class="form-group col-sm-4 justify-content-center">
 				<h4>지역</h4>
-				<select class="form-control" name="address">
+				<select class="form-control selector" name="address">
 					<option value="">전체</option>
 					<option ${searchedAddress eq '서울' ? selected : notSelected}>서울</option>
 					<option ${searchedAddress eq '대전' ? selected : notSelected}>대전</option>
@@ -41,7 +41,7 @@
 			<div class="form-group col-sm-4 justify-content-center">
 				<c:set var="searchedType" value="${searchedType}"></c:set>
 				<h4>숙소 유형</h4>
-				<select class="form-control" name="type">
+				<select class="form-control selector" name="type">
 					<option value="">전체</option>
 					<option ${searchedType eq '호텔' ? selected : notSelected}>호텔</option>
 					<option ${searchedType eq '모텔' ? selected : notSelected}>모텔</option>
@@ -49,7 +49,7 @@
 					<option ${searchedType eq '게스트 하우스' ? selected : notSelected}>게스트 하우스</option>
 				</select>
 			</div>
-			<button class="custom-btn" type="submit">검색</button>
+			<button class="custom-btn" type="submit" style="margin-top: 33px;">검색</button>
 		</form>
 	</div>
 	<br> <br>
@@ -61,12 +61,12 @@
 		<div class="row">
 			<c:forEach var="house" items="${houseList}">
 				<div class="col-sm-4">
-					<a href="/house/detail/${house.id}" class="image"><img class="custom-img" src="http://localhost:9090/upload/${house.image.imageUrl}"></a>
+					<a href="/house/detail/${house.id}"><img class="custom-img list-img" src="http://localhost:9090/upload/${house.image.imageUrl}"></a>
 					<h4 class="multiLine">
 						<b>${house.name}</b>
 					</h4>
 					<div>
-						<label>⭐&nbsp;${house.starScore}</label>
+						<label class="star-score">⭐&nbsp;${house.starScore}</label>
 					</div>
 					<p>₩&nbsp;${house.oneDayPrice}&nbsp;&nbsp;/ 박</p>
 					<br>

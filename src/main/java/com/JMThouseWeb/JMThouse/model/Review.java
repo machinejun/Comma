@@ -42,6 +42,7 @@ public class Review {
 
 	@ManyToOne
 	@JoinColumn(name = "houseId")
+	@JsonIgnoreProperties({"reviews"})
 	private House houseId;
 
 	@ManyToOne

@@ -21,7 +21,7 @@
 							disabled />
 					</div>
 					<div class="form-group">
-						<label for="password"><i class="zmdi zmdi-lock"></i></label> <input
+						<label for="password"><i class="zmdi zmdi-lock-outline"></i></label> <input
 							type="password" id="password" placeholder="Password" required />
 					</div>
 					<div class="form-group">
@@ -37,7 +37,7 @@
 					</div>
 
 					<div class="form-group">
-						<label for="phoneNumber"><i class="zmdi zmdi-email"></i></label> <input
+						<label for="phoneNumber"><i class="zmdi zmdi-phone"></i></label> <input
 							type="text" value="${principal.user.phoneNumber}"
 							id="phoneNumber" placeholder="Your Phone Number" />
 					</div>

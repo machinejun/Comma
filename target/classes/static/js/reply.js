@@ -7,26 +7,27 @@ let index = {
 		});
 
 		$("#btn-update").bind("click", () => {
-			this.update();
+			this.updateReply();
 		});
 
 		$("#btn-delete").bind("click", () => {
-			this.delete();
+			this.deleteReply();
 		});
 
 	},
 
 	addReply: function() {
-		let houseId = $("#house-id").val();
 		let reviewId = $("#review-id").text();
-		console.log("찍히나요?" + reviewId);
+		let houseId = $("#house-id").text();
+
+		console.log("houseId : " + houseId);
 
 		let data = {
 			content: $("#content").val()
 		}
 
 		if (data.content == "" || data.content.trim() === "") {
-			alert("내용을 입력하세요.")
+			alert("내용을 입력하세요.");
 		} else {
 			$.ajax({
 				type: "POST",
@@ -38,6 +39,7 @@ let index = {
 				if (response.status == 200) {
 					appendReply(response.data);
 					alert("댓글이 등록되었습니다.");
+					location.href = "/review/management/" + houseId
 				}
 			}).fail(function(error) {
 				alert("댓글이 등록되지 않았습니다.");
@@ -46,12 +48,20 @@ let index = {
 		}
 	},
 
-	update: function() {
+	updateReply: function() {
 		let replyId = $("#reply-id").val();
 
 		let data = {
 			content: $("#content").val()
 		}
+
+		document.querySelectorAll('#btn-update').forEach(function(item) {
+			item.addEventListener('click', function() {
+				const form = this.closest('form');
+				this
+			});
+		});
+
 
 		if (data.content == "" || data.content.trim() === "") {
 			alert("내용을 입력하세요.")
@@ -76,7 +86,7 @@ let index = {
 
 	},
 
-	delete: function() {
+	deleteReply: function() {
 		let replyId = $("#reply-id").val();
 		let houseId = $("#house-id").val();
 		let deleteCheck = confirm("삭제하시겠습니까?");
@@ -104,7 +114,6 @@ function appendReply(reply) {
 
 	let childElement = `<div class=" d-flex">
 																		<div class="ms-3">
-																			<div class="fw-bold">Commenter Name</div>
 																			<p>${reply.content}</p>
 																			<button
 																				class="btn btn-outline-danger btn-sm float-right"
@@ -112,7 +121,8 @@ function appendReply(reply) {
 																			<a class="btn btn-outline-primary btn-sm float-right"
 																				id="btn-update" href="">수정</a>
 																		</div>
-																	</div>`;
+																	</div>
+																	<br>`;
 
 	$("#reply--box").append(childElement);
 	$("#content").val("");

@@ -1,6 +1,5 @@
 package com.JMThouseWeb.JMThouse.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.JMThouseWeb.JMThouse.dto.HouseScoreDto;
-import com.JMThouseWeb.JMThouse.model.Guest;
 import com.JMThouseWeb.JMThouse.model.Reply;
 import com.JMThouseWeb.JMThouse.model.Review;
 import com.JMThouseWeb.JMThouse.model.User;
@@ -34,9 +32,6 @@ public class ReviewService {
 
 	@Autowired
 	private HouseRepository houseRepository;
-
-	@Autowired
-	private UserRepository userRepository;
 
 	@Transactional
 	public Review postReview(Review review, User user) {
@@ -106,6 +101,7 @@ public class ReviewService {
 		});
 
 		reviewEntity.setContent(review.getContent());
+		reviewEntity.setStarScore(review.getStarScore());
 
 		return reviewEntity;
 	}

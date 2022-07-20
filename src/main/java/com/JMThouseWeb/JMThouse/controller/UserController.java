@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.JMThouseWeb.JMThouse.model.User;
+import com.JMThouseWeb.JMThouse.service.HouseService;
 import com.JMThouseWeb.JMThouse.service.LikeHouseService;
-import com.JMThouseWeb.JMThouse.service.ReviewService;
 import com.JMThouseWeb.JMThouse.service.UserService;
 
 @Controller
@@ -26,9 +26,14 @@ public class UserController {
 
 	@Autowired
 	private LikeHouseService likeHouseService;
+	
+	@Autowired
+	private HouseService houseService;
 
 	@GetMapping({ "", "/" })
-	public String home() {
+	public String home(Model model) {
+		// Best 3 가져오기
+		model.addAttribute("houses", houseService.getHouseOrderByStarScore());
 		return "home";
 	}
 

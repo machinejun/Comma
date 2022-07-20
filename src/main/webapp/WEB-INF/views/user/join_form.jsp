@@ -19,10 +19,10 @@
 						<br /> <br />
 
 						<div class="form-group" data-validate="Password is required">
-							<label for="password"><i class="zmdi zmdi-lock"></i></label> <input type="password" name="password" id="password" placeholder="Password" required />
+							<label for="password"><i class="zmdi zmdi-lock-outline"></i></label> <input type="password" name="password" id="password" placeholder="Password" required />
 						</div>
 						<div class="form-group">
-							<label for="re-password"><i class="zmdi zmdi-lock"></i></label> <input type="password" name="re-password" id="re-password" placeholder="Repeat your password" required />
+							<label for="re-password"><i class="zmdi zmdi-lock-outline"></i></label> <input type="password" name="re-password" id="re-password" placeholder="Repeat your password" required />
 						</div>
 
 						<div class="form-group">

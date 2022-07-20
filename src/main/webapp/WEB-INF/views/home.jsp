@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="layout/header.jsp"%>
-
+<style>
+.custom-img:hover {
+	transform: scale(1.2);
+	transition: all 1s;
+	cursor: pointer;
+}
+</style>
 <div class="section-container">
 	<div class="container">
 		<div class="row">
@@ -59,7 +65,6 @@
 
 				</div>
 
-
 			</div>
 
 		</div>
@@ -69,37 +74,27 @@
 
 <div class="section-container">
 	<div class="container text-center">
+
 		<div class="row section-container-spacer">
+
 			<div class="col-xs-12 col-md-12">
-				<h2>Partners</h2>
+				<h2>Best House</h2>
 				<p>
 					Praesent at feugiat est, at faucibus ipsum. Aenean condimentum mauris vel malesuada pulvinar. <br>Vestibulum sit amet hendrerit leo, quis vehicula mi.
 				</p>
 			</div>
 		</div>
+
 		<div class="row">
-			<div class="col-xs-12 col-md-4">
-				<img src="../assets/images/profil-01.jpg" alt="" class="reveal img-responsive reveal-content image-center">
-				<h3>John Snow</h3>
-				<h4>UX designer</h4>
-				<p>Sed elementum vehicula nisl, a egestas velit rhoncus nec.Cras vel sapien tincidunt, lacinia risus vel, imperdiet neque.</p>
+			<c:forEach var="house" items="${houses}">
+				<div class="col-xs-12 col-md-4">
+					<img class="custom-img" src="http://localhost:9090/upload/${house.image.imageUrl} class=" reveal img-responsive reveal-contentimage-center" style="width: 210px; height: 210px;">
+					<h3>Best</h3>
+					<h4>UX designer</h4>
+					<p>Sed elementum vehicula nisl, a egestas velit rhoncus nec.Cras vel sapien tincidunt, lacinia risus vel, imperdiet neque.</p>
 
-			</div>
-
-			<div class="col-xs-12 col-md-4">
-				<img src="../assets/images/profil-02.jpg" alt="" class="reveal img-responsive reveal-content image-center">
-				<h3>Sansa Stark</h3>
-				<h4>UI designer</h4>
-				<p>Praesent at feugiat est, at faucibus ipsum. Aenean condimentum mauris vel malesuadav pulvinar. Vestibulum sit amet hendrerit leo, quis vehicula mi.</p>
-
-			</div>
-			<div class="col-xs-12 col-md-4">
-				<img src="../assets/images/profil-03.jpg" alt="" class="reveal img-responsive reveal-content image-center">
-				<h3>Gregor Clegane</h3>
-				<h4>Developer</h4>
-				<p>Busce rutrum nisi non dui placerat sodales. Vivamus feugiat rutrum malesuada. Nulla volutpat sapien ac gravida varius</p>
-
-			</div>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 </div>
@@ -108,7 +103,7 @@
 	<div class="container text-center">
 		<div class="row section-container-spacer">
 			<div class="col-xs-12 col-md-12">
-				<h2 class="text-center">Customers</h2>
+				<h2 class="text-center">Our Service</h2>
 				<p>
 					Praesent at feugiat est, at faucibus ipsum. Aenean condimentum mauris vel malesuada pulvinar. <br>Vestibulum sit amet hendrerit leo, quis vehicula mi.
 				</p>
@@ -116,7 +111,7 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-md-4">
-				<img src="../assets/images/logo-01.png" alt="" class="img-responsive reveal-content image-center">
+				<i class="bi bi-person-check" style="width: 210px; height: 210px;"></i>
 
 			</div>
 

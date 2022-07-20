@@ -24,4 +24,7 @@ public interface HouseRepository extends JpaRepository<House, Integer> {
 	List<House> findAllByAddressAndType(String address, String type);
 	
 	List<House> findAllByAddressOrType(String address, String type);
+
+	@Query(value = "SELECT * FROM house ORDER BY starscore DESC LIMIT 3;", nativeQuery = true)
+	List<House> findAllByStarScore();
 }

@@ -1,5 +1,7 @@
 package com.JMThouseWeb.JMThouse.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.JMThouseWeb.JMThouse.auth.PrincipalDetail;
 import com.JMThouseWeb.JMThouse.model.Review;
-import com.JMThouseWeb.JMThouse.service.ReservationService;
 import com.JMThouseWeb.JMThouse.service.ReviewService;
 
 @Controller
@@ -33,10 +34,11 @@ public class ReviewController {
 		return "review/review_post_form";
 	}
 
-	// 리뷰 수정 폼
+	// 리뷰 수정 폼 호출
 	@GetMapping("/update_form/{reviewId}")
 	public String getReviewUpdateForm(@PathVariable int reviewId, Model model) {
-		model.addAttribute("reivew", reviewService.getReviewDetail(reviewId));
+		Review reviewEntity = reviewService.getReviewDetail(reviewId);
+		model.addAttribute("reviewEntity", reviewEntity);
 		return "review/review_update_form";
 	}
 
@@ -45,8 +47,23 @@ public class ReviewController {
 	public String getMyHouseReviewList(@PathVariable int houseId, Model model,
 			@PageableDefault(size = 5, sort = "id", direction = Direction.DESC) Pageable pageable) {
 		Page<Review> reviews = reviewService.getReviewPageByHouseId(houseId, pageable);
-		model.addAttribute("houseId", houseId);
+
+		int nowPage = reviews.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 2, 1);
+		int endPage = Math.min(nowPage + 2, reviews.getTotalPages());
+
+		// 페이지 번호 배열에 담기
+		ArrayList<Integer> pageNumbers = new ArrayList<>();
+		for (int i = startPage; i <= endPage; i++) {
+			pageNumbers.add(i);
+		}
+
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("pageNumbers", pageNumbers);
 		model.addAttribute("reviews", reviews);
+		model.addAttribute("houseId", houseId);
+
 		return "review/review_management_form";
 	}
 

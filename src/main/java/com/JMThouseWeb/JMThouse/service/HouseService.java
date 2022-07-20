@@ -191,4 +191,10 @@ public class HouseService {
 		return houseRepository.findAllByAddressOrType(address, type);
 	}
 
+	@Transactional
+	public List<House> getHouseOrderByStarScore() {
+		return houseRepository.findAllByStarScore();
+		
+	}
+
 }

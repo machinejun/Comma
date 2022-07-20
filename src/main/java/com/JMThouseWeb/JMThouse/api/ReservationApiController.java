@@ -86,14 +86,15 @@ public class ReservationApiController {
 		return res;
 	}
 	
-	@PostMapping("/kakao/{resId}")
-	public KaKaoApproveDto payForKaKao(@PathVariable int resId, @RequestBody ResponsePaidDto paidDto) {
-		KaKaoApproveDto approveDto = requestReadyForKaKaoPay(paidDto.getGuestName(),
+	@PostMapping("/kakao")
+	public KaKaoApproveDto payForKaKao(@RequestBody ResponsePaidDto paidDto) {
+		System.out.println(paidDto);
+		KaKaoApproveDto approveDto = requestReadyForKaKaoPay(
+				paidDto.getGuestName(),
 				paidDto.getHostName(),
 				paidDto.getHouseName(),
 				paidDto.getPrice());
 		paidDto.setTid(approveDto.getTid());
-		paidDto.setResId(resId);
 		httpSession.setAttribute(paidDto.getGuestName(), paidDto);
 		return approveDto;
 	}

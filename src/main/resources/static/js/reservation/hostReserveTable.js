@@ -114,7 +114,6 @@ function addHouseTable(response){
 			     <th scope="row">${reservation.username}</th>
 				 <td>${reservation.headCount}</td>
 				 <td>${reservation.checkInDate} ~ ${reservation.checkOutDate}</td>
-				 <td>${reservation.price}</td>
 				 <td>${reservation.phoneNumber}</td>
 				 <td><!-- 아이디 값을 다 넣어주어야 한다. -->
 					 <a onclick="showDetail(${reservation.id})" class="icon-search-plus" type="btn">${reservation.request == "" ? "" : " ..."}</a>
@@ -122,8 +121,8 @@ function addHouseTable(response){
 					 	<p>${reservation.request}<p> 
 					 </div>
 				 </td>   
-				 <td><span style="font-weight: bold;">${reservation.approvalStatus}<span>&nbsp;&nbsp;</span><button onclick="sentApprove(${reservation.id})" id="approve-${reservation.id}" class="btn btn-success" style="padding: 4px; font-size: 10px; display: ${reservation.approvalStatus != "WAITING" ? "none;" : ""}">승인</button></td>   
-				 <td><button onclick="cancel(${reservation.id})" class="btn btn-danger" style="padding: 4px; font-size: 10px;">취소</button></td>   
+				 <td><span style="font-weight: bold;">${reservation.approvalStatus}<span>&nbsp;&nbsp;</span><button onclick="sentApprove(${reservation.id})" id="approve-${reservation.id}" class="table-in-btn" style=" background-color: white; color: rgba(0,146,51,0.7) ;border: 0px; display: ${reservation.approvalStatus != "WAITING" ? "none;" : ""}">(승인)</button></td>   
+				 <td><button onclick="cancel(${reservation.id})" class="table-in-btn" style="border: 0px; color: rgba(255, 102, 102, 0.7); background-color: white;">취소</button></td>   
 			</tr>`;
 		$("#table-body").append(info);
 		changeButton(reservation.houseName);					    	

@@ -181,15 +181,21 @@ function checkImgContain(response){
 	}
 }
 
-function payForKakao(resId){
+function payForKakao(iresId, iguestName, ihostName, ihouseName, iprice){
 	let data = {
-		
-		
+		resId: iresId,
+		guestName: iguestName,
+		hostName: ihostName,
+		houseName: ihouseName,
+		price: iprice,
 	}
 	
 	$.ajax({
 		type:"post",
-		url:`/test/api/reserve/kakao/${resId}`
+		url:`/test/api/reserve/kakao`,
+		contentType: "application/json; charset=utf-8",
+		dataType: "json",
+		data: JSON.stringify(data)
 	}).done(function (res){
 		console.log(res.next_redirect_pc_url);
 		window.location.replace(res.next_redirect_pc_url);

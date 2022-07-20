@@ -36,7 +36,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
 				.authorizeRequests()
+<<<<<<< HEAD
 				.antMatchers("/auth/**", "/user/**", "/", "/js/**", "/css/**", "/assets/**", "/images/**", "/test/**", "/fonts/**", "/upload/**")
+=======
+				.antMatchers("/auth/**", "/", "/js/**", "/css/**", "/image/**", "/test/**","/assets/**")
+>>>>>>> feature_junic
 				.permitAll()
 				.anyRequest()
 				.authenticated()

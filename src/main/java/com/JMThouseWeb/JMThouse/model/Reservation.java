@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.ColumnDefault;
@@ -29,6 +30,7 @@ public class Reservation {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@OrderBy(value = "desc")
 	private int id;
 
 	@ManyToOne
@@ -54,6 +56,9 @@ public class Reservation {
 	
 	@ColumnDefault("1")
 	private int headCount;
+	
+	@ColumnDefault("0")
+	private int price;
 	
 	private String request;
 	

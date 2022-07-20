@@ -18,13 +18,10 @@ import lombok.RequiredArgsConstructor;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Integer>{
 	
-
+	@Query(value = "SELECT * FROM reservation WHERE guestId = ?1 order by id desc", nativeQuery = true)
+	List<Reservation> findByGuestId(@Param(value = "guestId")int guestId);
 	
-	
-	@Query(value = "SELECT * FROM reservation WHERE userId = ?1", nativeQuery = true)
-	List<Reservation> findByGuestId(@Param(value = "userId")int userId);
-	
-	@Query(value = "SELECT * FROM reservation WHERE hostId = ?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM reservation WHERE hostId = ?1 order by id desc", nativeQuery = true)
 	List<Reservation> findByHostId(@Param(value = "hostId")int id);
 	
 	@Query(value = "SELECT username, headCount, checkInDate, checkOutDate, phoneNumber, request, approvalStatus, h.id as houseId, h.name as houseName \r\n"

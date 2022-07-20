@@ -4,12 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class ReserveDto<T> {
-	private int userId;
-	private int houseId;
-	private int hostId;
-	private T data;
-}	
+public class KaKaoApproveDto {
+	String tid;
+	String next_redirect_pc_url;
+}

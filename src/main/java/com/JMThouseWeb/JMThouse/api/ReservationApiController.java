@@ -2,8 +2,17 @@ package com.JMThouseWeb.JMThouse.api;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.method.P;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,14 +20,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import com.JMThouseWeb.JMThouse.dto.ApproveDto;
 import com.JMThouseWeb.JMThouse.dto.HostTableDto;
+import com.JMThouseWeb.JMThouse.dto.KaKaoApproveDto;
+import com.JMThouseWeb.JMThouse.dto.ResponseDto;
+import com.JMThouseWeb.JMThouse.dto.ResponsePaidDto;
 import com.JMThouseWeb.JMThouse.model.Reservation;
+import com.JMThouseWeb.JMThouse.model.User;
+import com.JMThouseWeb.JMThouse.repository.UserRepository;
 import com.JMThouseWeb.JMThouse.service.ReservationService;
 
 @RestController
 @RequestMapping("/test/api/reserve")
 public class ReservationApiController {
+	@Autowired
+	HttpSession httpSession;
+	@Autowired
+	private UserRepository userRepository;
 	@Autowired
 	private ReservationService reservationService;
 	
@@ -32,11 +52,17 @@ public class ReservationApiController {
 		return 1;
 	}
 	
-	@GetMapping("/house/{hostId}/{houseId}")
-	public List<HostTableDto> getHouseReservation(@PathVariable int hostId, @PathVariable int houseId){
+	@GetMapping("/house/{hostId}/{houseId}/{month}")
+	public List<HostTableDto> getHouseReservation(@PathVariable int hostId, @PathVariable int houseId, @PathVariable int month){
 		System.out.println(">> "+hostId+"+" + houseId);
 		
-		List<HostTableDto> result = reservationService.getTableInfo(hostId, houseId);
+		List<HostTableDto> result = reservationService.getTableInfo(hostId, houseId, month );
+		return result;
+	}
+	
+	@GetMapping("/house/{hostId}/{month}")
+	public List<HostTableDto> getHouseReservation(@PathVariable int hostId, @PathVariable int month){
+		List<HostTableDto> result = reservationService.getTableInfo(hostId, month);
 		return result;
 	}
 	
@@ -45,5 +71,58 @@ public class ReservationApiController {
 		reservationService.cancelReservation(reservationId);
 		return reservationId;
 	}
+	
+	@PostMapping("/host/approve")
+	public ResponseDto<Integer> approveRes(@RequestBody ApproveDto approveDto) {
+		System.out.println("get    "+approveDto);
+		reservationService.changeResType(approveDto);
+		return new ResponseDto<Integer>(HttpStatus.ACCEPTED.value(), approveDto.getResId());
+	}
+	
+	@GetMapping("/guest/showRes/{resId}")
+	public Reservation showResDetail(@PathVariable int resId){
+		Reservation res = reservationService.findByResId(resId);
+		System.out.println(res);
+		return res;
+	}
+	
+	@PostMapping("/kakao")
+	public KaKaoApproveDto payForKaKao(@RequestBody ResponsePaidDto paidDto) {
+		System.out.println(paidDto);
+		KaKaoApproveDto approveDto = requestReadyForKaKaoPay(
+				paidDto.getGuestName(),
+				paidDto.getHostName(),
+				paidDto.getHouseName(),
+				paidDto.getPrice());
+		paidDto.setTid(approveDto.getTid());
+		httpSession.setAttribute(paidDto.getGuestName(), paidDto);
+		return approveDto;
+	}
+	
+	private KaKaoApproveDto requestReadyForKaKaoPay(String guestName, String hostName, String houseName, int price) {
+		RestTemplate transmitter = new RestTemplate();
+		HttpHeaders header = new HttpHeaders();
+		header.add("Authorization", "KakaoAK d8767c47b52237a1d96cea7c9e34596b");
+		header.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
+		
+		MultiValueMap<String, String> param = new LinkedMultiValueMap<>();
+		param.add("cid", "TC0ONETIME");
+		param.add("partner_order_id", hostName);
+		param.add("partner_user_id", guestName);
+		param.add("item_name", houseName);
+		param.add("quantity", String.valueOf(price));
+		param.add("total_amount", "1");
+		param.add("tax_free_amount", "0");
+		param.add("approval_url", "http://localhost:9090/test/kakao/approve");
+		param.add("cancel_url", "http://localhost:9090/test/kakao/approve");
+		param.add("fail_url", "http://localhost:9090/test/kakao/approve");
+		
+		HttpEntity<MultiValueMap<String, String>> message = new HttpEntity<>(param, header);
+		ResponseEntity<KaKaoApproveDto> response = transmitter
+				.exchange("https://kapi.kakao.com/v1/payment/ready", HttpMethod.POST, message, KaKaoApproveDto.class);
+		return response.getBody();
+	}
+
+	
 	
 }

@@ -223,8 +223,8 @@ function alreadyBookDates(date) {
 
 // -- end datePicker
 
-function reserveHouse(hostid, houseid){
-	let tempBox = [2, hostid, houseid];
+function reserveHouse(guestId,hostId, houseId){
+	let tempBox = [guestId, hostId, houseId];
 	let data ={
 		checkInDate: $("#checkIn-Date").val(),
 		checkOutDate: $("#checkOut-Date").val(),
@@ -233,6 +233,7 @@ function reserveHouse(hostid, houseid){
 		tempIdBox: tempBox
 	}
 	console.log(data);
+	
 	$.ajax({
 		type: "post",
 		url: "/test/api/reserve/house",
@@ -240,13 +241,16 @@ function reserveHouse(hostid, houseid){
 		data: JSON.stringify(data),
 		dataType: "json"
 	}).done(function(response){
+		console.log(response);
 		if(response == 1){
 			alert("예약완료")
-			location.href("/");
+			location.href="/reserveTable/user";
+			
 		}
 	}).fail(function(){
 		AlertMessage("통신 오류",`예약에 실패하였습니다.`);
 	})
+	
 
 } 
 

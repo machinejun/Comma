@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $("#user-table").hide();
+  //$("#user-table").hide();
 		
   $("#user-content").bind("click", () => {
 	isShow = $("#isUserTable").val();
@@ -9,7 +9,7 @@ $(document).ready(function(){
 		setTimeout(function() {
   			$("#user-table").hide();
 			$("#isUserTable").attr('value',0);
-		}, 3000);
+		}, 10000);
 	}else{
 		$("#user-table").hide();
 		$("#isUserTable").attr('value',0);

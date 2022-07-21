@@ -41,7 +41,7 @@
 					</p>
 					<br> <br> <br>
 					<div class="d-flex">
-						<button class="custom-btn flex-shrink-0" type="button">예약하기</button>
+						<button class="custom-btn flex-shrink-0" onclick="location.href='/user/bookForm/${house.id}'" type="button">예약하기</button>
 						<i class="bi ${not empty likeHouse.house ? exist : notExist}" style="margin-left: 25px; cursor: pointer;" id="like" onclick="clickHeart()"></i>&nbsp;&nbsp;&nbsp;&nbsp;
 
 					</div>

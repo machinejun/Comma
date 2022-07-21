@@ -14,14 +14,9 @@ body, html {
 /*---------------------------------------------*/
 a {
 	font-family: 'SUIT-Medium';
-	font-size: 25px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
-	transition: all 0.4s;
-	-webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
 }
 
 a:focus {
@@ -44,11 +39,6 @@ p {
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
-}
-
-ul, li {
-	margin: 0px;
-	list-style-type: none;
 }
 
 

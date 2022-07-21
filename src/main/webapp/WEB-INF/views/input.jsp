@@ -94,7 +94,7 @@
                   <div class="col-md-7">
                     <ul class="list-group">
 					  <li  class="list-group-item d-flex justify-content-between align-items-center">
-					    <p id="booker" class="align-items-center" style="transform: translate(0%,30%);">예약자 : ${pricipal.username}</p>				   
+					    <p id="booker" class="align-items-center" style="transform: translate(0%,30%);">예약자 : ${principal.user.username}</p>				   
 					  </li>
 					  <li class="list-group-item d-flex justify-content-between align-items-center">					  	
 					    <p id="count" class="align-items-center" style="transform: translate(0%,30%);">인원 수 : 1</p> 
@@ -142,7 +142,8 @@
                         ${house.address}
                       </li>
                     </ul>
-                    <button onclick="reserveHouse(${house.hostId.id},${house.id})" class="custom-sm-btn">예약하기</button>
+
+                    <button onclick="reserveHouse(${principal.user.id},${house.hostId.id},${house.id})" class="custom-sm-btn">예약하기</button>
                   </div>
                 </div>
               </form>
@@ -151,7 +152,7 @@
              background-repeat: no-repeat;
   			 background-position: center;
  		     background-size: cover;
-             background-image: url('https://cdn.pixabay.com/photo/2016/02/17/21/09/welcome-to-our-home-1205888_960_720.jpg');">
+             background-image: url('https://cdn.pixabay.com/photo/2016/08/26/15/06/home-1622401_960_720.jpg');">
             </div>
           </div>
         </div>  

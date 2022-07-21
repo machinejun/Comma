@@ -11,6 +11,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import com.JMThouseWeb.JMThouse.auth.PrincipalDetail;
 import com.JMThouseWeb.JMThouse.dto.DateModelDto;
 import com.JMThouseWeb.JMThouse.dto.HoustWaitDto;
 import com.JMThouseWeb.JMThouse.dto.KaKaoPayResponseDto;
@@ -46,13 +48,13 @@ public class ReservationController {
 	private ReservationService reservationService;
 
 	
-	@GetMapping("/test/user/bookForm/{id}")
-	public String reserveHouse(@PathVariable int id,Model model) {
-		House house = houseService.getHouseDetail(id);
+	@GetMapping("/user/bookForm/{houseid}")
+	public String reserveHouse(@PathVariable int houseid, Model model) {
+		House house = houseService.getHouseDetail(houseid);
 		
 		int index = 0;
 		ArrayList<DateModelDto> dates = new ArrayList<DateModelDto>();
-		for(BookedDate date : reservationService.getListBookedDate(id)) {
+		for(BookedDate date : reservationService.getListBookedDate(houseid)) {
 			DateModelDto dto = new DateModelDto();
 			dto.setDate(date.getBookedDate());
 			dto.setIndex(index);
@@ -68,20 +70,20 @@ public class ReservationController {
 	}
 	
 	
-	@GetMapping("/test/reserveTable/host/{hostid}")
-	public String reserveHostTable(@PathVariable int hostid, Model model) {
-		
-		List<HoustWaitDto> count = reservationService.getWaitCount(hostid);
-		List<House> houses =  houseService.findAllByHostId(hostid);
+	@GetMapping("/reserveTable/host")
+	public String reserveHostTable(@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
+		List<HoustWaitDto> count = reservationService.getWaitCount(principalDetail.getUser().getId());
+		List<House> houses =  houseService.findAllByHostId(principalDetail.getUser().getId());
 		System.out.println(count);
 		model.addAttribute("houses", houses);
 		model.addAttribute("count", count);
 		return "reservation/hostReserveTable";
 	}
 	
-	@GetMapping("/test/reserveTable/user/{userid}")
-	public String reserveUserTable(@PathVariable int userid, Model model) {
-		User user = userService.findByUserId(userid);
+	@GetMapping("/reserveTable/user")
+	public String reserveUserTable(@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
+		User user = userService.findByUserId(principalDetail.getUser().getId());
+		System.out.println(user);
 		List<Reservation> res = reservationService.getReservation(user);
 		model.addAttribute("reservations", res);
 		return "reservation/userReservationTable";

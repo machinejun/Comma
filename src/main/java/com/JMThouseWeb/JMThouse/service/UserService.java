@@ -5,8 +5,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.JMThouseWeb.JMThouse.model.Guest;
+import com.JMThouseWeb.JMThouse.model.Host;
 import com.JMThouseWeb.JMThouse.model.RoleType;
 import com.JMThouseWeb.JMThouse.model.User;
+import com.JMThouseWeb.JMThouse.repository.GuestRepository;
+import com.JMThouseWeb.JMThouse.repository.HostRepository;
 import com.JMThouseWeb.JMThouse.repository.UserRepository;
 
 @Service
@@ -14,10 +18,16 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private GuestRepository guestRepository;
+	
+	@Autowired
+	private HostRepository hostRepository;
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
-
+	
+	@Transactional
 	public int saveUser(User user) {
 		try {
 			String rawPassword = user.getPassword();
@@ -26,6 +36,11 @@ public class UserService {
 			user.setPassword(encPassword);
 			user.setRole(RoleType.GUEST);
 			userRepository.save(user);
+			User tempUser = userRepository.findByUsername(user.getUsername()).get();
+			System.out.println("tempUser : " + tempUser);
+			Guest guest = new Guest();
+			guest.setUser(tempUser);
+			guestRepository.save(guest);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -70,6 +85,18 @@ public class UserService {
 		// 012 3456 78910
 		String newPhoneNum = phoneNum.substring(0, 2) + "-" + phoneNum.subSequence(3, 6) + "-" + phoneNum.subSequence(7, 10);
 		return newPhoneNum;
+	}
+
+	@Transactional
+	public boolean saveHost(Host hostEntity) {	
+		try {
+			Host host = hostRepository.findById(hostEntity.getUserId()).get();
+			return true;
+		} catch (Exception e) {
+			hostRepository.save(hostEntity);
+			return false;		
+		}	
+
 	}
 
 }

@@ -88,7 +88,7 @@ function showResDetail(resId){
 function addDetailPage(response){
 	let div = 
 	`<div id="detail-img">
-		<img id="detail-div-img" src=""/>
+		<img id="detail-div-img" src="http://localhost:9090/upload/${response.houseId.image.imageUrl}"/>
 	</div>
 	<div id="detail-div" style="width: 500px; padding-left: 15px">
 		<a onclick="closeModal()" class="m-2" type="button"><span class="icon-times-circle-o" style="position: absolute; right: 2%;"></span></a>

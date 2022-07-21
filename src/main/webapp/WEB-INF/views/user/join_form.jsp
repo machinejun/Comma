@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <title>회원가입 페이지</title>
-
 <link rel="stylesheet" href="/fonts/material-icon/css/material-design-iconic-font.min.css" />
 <link rel="stylesheet" href="/css/user/style.css" />
-
 <div class="main">
 	<section class="signup">
 		<div class="container-signup">
@@ -87,4 +85,5 @@
 		}
 	}
 </script>
+
 <%@ include file="../layout/footer.jsp"%>

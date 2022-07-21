@@ -15,13 +15,32 @@ to {
 }
 
 }
+
 .text-center>h2 {
 	color: rgba(255, 149, 149, 0.7);
 }
 
 .text-center>h2::after {
 	color: rgba(255, 149, 149, 0.7);
+	content: "";
 }
+.col-xs-12 > h2::after{
+	content: "";
+}
+.custom-sm-btn {
+padding: 0px;
+	margin-left: 420px;
+	width: 135px;
+	height: 45px;
+}
+.custom-sm-btn:hover {
+	text-decoration: none;
+	color: white; 
+}
+.fa {
+	color: rgba(255, 149, 149, 0.7);
+}
+
 </style>
 <div class="section-container">
 	<div class="container">
@@ -72,7 +91,7 @@ to {
 								<p>EVERYWHERE, WEHNEVER</p>
 
 								<p>편안한 숙소에서 휴식을 취해보세요.</p>
-								<br> <a href="/house/list" class="btn btn-primary" title="">
+								<br> <a href="/house/list" class="custom-sm-btn" title="">
 									숙소 보러가기 </a>
 							</div>
 						</div>
@@ -98,7 +117,7 @@ to {
 								<p>Quisque tempor, ligula pharetra luctus elementum, arcu
 									nisl suscipit ante, pharetra commodo dui est et enim. Sed eu
 									vestibulum elit. Donec ut libero non.</p>
-								<a href="../project.html" class="btn btn-primary" title="">
+								<a href="../project.html"  class="custom-sm-btn" title="">
 									호스트 되기 </a>
 							</div>
 						</div>
@@ -119,7 +138,7 @@ to {
 		<div class="row section-container-spacer">
 
 			<div class="col-xs-12 col-md-12">
-				<h2>Best House</h2>
+				<h2 style="color: rgba(255, 149, 149, 0.7);">Best House</h2>
 				<p>
 					Praesent at feugiat est, at faucibus ipsum. Aenean condimentum
 					mauris vel malesuada pulvinar. <br>Vestibulum sit amet
@@ -137,7 +156,7 @@ to {
 						reveal img-responsive
 						reveal-contentimage-center"
 						style="width: 210px; height: 210px;"></a>
-					<h3>Best</h3>
+					<h3 style="color: rgba(255, 149, 149, 0.7);">Best</h3>
 					<h4>UX designer</h4>
 					<p>Sed elementum vehicula nisl, a egestas velit rhoncus
 						nec.Cras vel sapien tincidunt, lacinia risus vel, imperdiet neque.</p>
@@ -150,7 +169,7 @@ to {
 	<div class="container text-center">
 		<div class="row section-container-spacer">
 			<div class="col-xs-12 col-md-12">
-				<h2 class="text-center">Our Service</h2>
+				<h2 class="text-center" style="color: rgba(255, 149, 149, 0.7);">Our Service</h2>
 				<p>
 					Praesent at feugiat est, at faucibus ipsum. Aenean condimentum
 					mauris vel malesuada pulvinar. <br>Vestibulum sit amet

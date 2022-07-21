@@ -11,6 +11,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.method.P;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.JMThouseWeb.JMThouse.auth.PrincipalDetail;
 import com.JMThouseWeb.JMThouse.dto.ApproveDto;
 import com.JMThouseWeb.JMThouse.dto.HostTableDto;
 import com.JMThouseWeb.JMThouse.dto.KaKaoApproveDto;
@@ -45,7 +47,7 @@ public class ReservationApiController {
 	// /test/api/reserve/delete/${reservationId}
 	
 	@PostMapping("/house")
-	public int reserveHouse(@RequestBody Reservation reservation) {
+	public int reserveHouse(@RequestBody Reservation reservation, @AuthenticationPrincipal PrincipalDetail principal) {
 		System.out.println(reservation);
 		reservationService.makeReservation(reservation);
 		

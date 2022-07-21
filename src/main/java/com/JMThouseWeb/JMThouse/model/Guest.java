@@ -33,6 +33,7 @@ public class Guest implements Serializable{
 	 * Composite-id class must implement Serializable: com.JMThouseWeb.JMThouse.model.Guest
 	 */
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="userId")
 	private int userId;
 

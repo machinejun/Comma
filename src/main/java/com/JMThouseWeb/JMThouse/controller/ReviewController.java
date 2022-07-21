@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.JMThouseWeb.JMThouse.auth.PrincipalDetail;
 import com.JMThouseWeb.JMThouse.model.Review;
+import com.JMThouseWeb.JMThouse.service.ReservationService;
 import com.JMThouseWeb.JMThouse.service.ReviewService;
 
 @Controller
@@ -24,13 +25,16 @@ public class ReviewController {
 
 	@Autowired
 	private ReviewService reviewService;
+	
+	@Autowired
+	private ReservationService reservationService;
 
 	// 리뷰 작성 폼 호출
 	// TODO house 데이터 같이 보내야함
 	@GetMapping("/post_form")
 	public String getReviewForm(Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
 		// model.addAttribute("reservation",
-		// reservationService.getReservation(principalDetail.getUser()));
+		// reservationService.getReservation(principalDetail.getUser());
 		return "review/review_post_form";
 	}
 

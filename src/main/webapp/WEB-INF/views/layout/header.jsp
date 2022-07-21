@@ -50,11 +50,15 @@
 	src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
 
 <style>
+code{
+	display: none;
+}
 .body {
 	font-family: '' SUIT-Medium ';
 }
 
 #header-text {
+	font-family: Martel,Times New Roman,Times,serif;
 	color: rgba(255, 149, 149, 0.9);
 	font-weight: bold;
 }
@@ -62,59 +66,78 @@
 .nav-link {
 	color: rgba(255, 149, 149, 0.5);
 }
+nav{
+	background-color: rgba(255, 149, 149, 0.03)
+}
+#user-table{
+	z-index: 3;
+	position: fixed;
+	top: 2%;
+	right: 10%;
+}
+.user-btn {
+	padding: 5px;
+	font-size: 35px;
+	color: rgba(255, 149, 149, 0.7);
+}
+#header-text{
+margin-left: 200px;
+}
+.list-group >.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
 </style>
 </head>
 
 <body>
 	<input id="isNaviFocus" type="hidden" value=0 />
 	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+	<nav class="navbar navbar-expand-lg fixed-top">
 		<div id="naviBar" class="navbar-expand-lg fixed-top"
-			style="background-color: white; width: 100%;">
-			<a id="header-text" class="navbar-brand" href="#">comma</a>
+			>
+			<a id="header-text" class="navbar-brand" href="/">Comma</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarResponsive" aria-controls="navbarResponsive"
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
-					<li class="nav-item" style="margin-right: 10px;"><a
-						class="nav-link" href="/" style="color: rgba(255, 149, 149, 0.5);">둘러
-							보기</a></li>
-					<li class="nav-item"><a class="nav-link" href="/house/list">과거
-							행적</a></li>
-					<li id="user-content" class="nav-item"
-						style="position: relative; left: 1000px;"><a
-						class="btn nav-link"><span class="icon-user-circle"></span>&nbsp;&nbsp;user</a>
-						<div id="user-table" class="list-group"
-							style="width: 180px; font-size: 20px; position: fixed; left: 70%; top: 6%;">
-							<input id="isUserTable" type="hidden" value=0 /> <a
-								href="/auth/login_form"
-								class="list-group-item list-group-item-action"> <span
-								class="icon-drivers-license-o"></span>&nbsp;&nbsp;로그인
-							</a> <a href="/auth/join_form"
-								class="list-group-item list-group-item-action"> <span
-								class="icon-user-plus"></span>&nbsp;&nbsp;회원가입
-							</a>
-							<button type="button"
-								class="list-group-item list-group-item-action">
-								<span class="icon-black-tie"></span>&nbsp;&nbsp;호스트 되기
-							</button>
-							<a class="list-group-item list-group-item-action"
-								href="/reservation-history/${principal.user.id}"> <span
-								class="icon-suitcase"></span>&nbsp;&nbsp;예약 내역
-							</a>
-							<button type="button"
-								class="list-group-item list-group-item-action">
-								<span class="icon-users"></span>&nbsp;&nbsp;예약자 확인
-							</button>
-							<button type="button"
-								class="list-group-item list-group-item-action">
-								<span class="icon-gittip"></span>&nbsp;&nbsp;위시 리스트
-							</button>
-						</div></li>
-				</ul>
-			</div>
 		</div>
 	</nav>
+		<section>
+			<div id="user-table" class="list-group">
+					<a class="user-btn"><i class="bi bi-person-lines-fill"></i></a>
+					<div>
+						<input id="isUserTable" type="hidden" value=0 /> 
+						<a href="/auth/login_form" class="list-group-item list-group-item-action"> <span
+							class="icon-drivers-license-o"></span>&nbsp;&nbsp;로그인
+						</a> 
+						<a href="/auth/join_form"
+							class="list-group-item list-group-item-action"> <span
+							class="icon-user-plus"></span>&nbsp;&nbsp;회원가입
+						</a>
+						<a type="button"
+							class="list-group-item list-group-item-action" href=`/be-host`>
+							<span class="icon-black-tie"></span>&nbsp;&nbsp;${principal.user.role == 'GUEST' ? "게스트 되기" : "호스트 되기" }
+						</a>
+						<a class="list-group-item list-group-item-action"
+							href="/reserveTable/user"> <span
+							class="icon-suitcase"></span>&nbsp;&nbsp;예약 내역
+						</a>
+						<a type="button"
+							class="list-group-item list-group-item-action"
+							href="/reserveTable/host">
+							<span class="icon-users"></span>&nbsp;&nbsp;예약자 확인
+						</a>
+						<a type="button"
+							class="list-group-item list-group-item-action">
+							<span class="icon-gittip"></span>&nbsp;&nbsp;위시 리스트
+						</a>
+					</div>
+				</div>
+		</section>
+				

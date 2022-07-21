@@ -78,4 +78,11 @@ public class House {
 //	@JsonIgnoreProperties({"house"})
 //	private List<BookedDate> bookedDates;
 
+	@Override
+	public String toString() {
+		return "House [id=" + id + ", name=" + name + ", address=" + address + ", starScore=" + starScore
+				+ ", oneDayPrice=" + oneDayPrice + ", type=" + type + ", image=" + image + ", capacity=" + capacity
+				+ ", infoText=" + infoText + ", creationDate=" + creationDate + "]";
+	}
+
 }

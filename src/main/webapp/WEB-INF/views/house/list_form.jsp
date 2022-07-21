@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/house/list.css" rel="stylesheet">
 
@@ -10,7 +9,7 @@
 				<div class="col-xs-12 col-md-8 col-md-offset-2">
 					<div class="text-center">
 						<h2>Comma(,)</h2>
-						<p>어디로 떠나</p>
+						<p>어디로 떠나볼까요?</p>
 					</div>
 				</div>
 			</div>
@@ -22,7 +21,7 @@
 			<c:set var="searchedAddress" value="${searchedAddress}"></c:set>
 			<c:set var="selected" value="selected"></c:set>
 			<c:set var="notSelected" value=""></c:set>
-			<div class="form-group col-sm-4 justify-content-center">
+			<div class="form-group col-sm-4">
 				<h4>지역</h4>
 				<select class="form-control selector" name="address">
 					<option value="">전체</option>
@@ -47,8 +46,7 @@
 					<option ${searchedType eq '호텔' ? selected : notSelected}>호텔</option>
 					<option ${searchedType eq '모텔' ? selected : notSelected}>모텔</option>
 					<option ${searchedType eq '펜션' ? selected : notSelected}>펜션</option>
-					<option ${searchedType eq '게스트 하우스' ? selected : notSelected}>게스트
-						하우스</option>
+					<option ${searchedType eq '게스트 하우스' ? selected : notSelected}>게스트 하우스</option>
 				</select>
 			</div>
 			<button class="custom-btn" type="submit" style="margin-top: 33px;">검색</button>
@@ -61,13 +59,12 @@
 		<c:if test="${empty houseList}">
 			<h4>검색하신 결과가 존재하지 않습니다.</h4>
 			<br>
+			<br>
 		</c:if>
 		<div class="row">
 			<c:forEach var="house" items="${houseList}">
 				<div class="col-sm-4">
-					<a href="/house/detail/${house.id}"><img
-						class="custom-img list-img"
-						src="http://localhost:9090/upload/${house.image.imageUrl}"></a>
+					<a href="/house/detail/${house.id}"><img class="custom-img list-img" src="http://localhost:9090/upload/${house.image.imageUrl}"></a>
 					<div class="row">
 						<h4 class="multiLine d-flex" style="margin-left: 15px;">
 							<b>${house.name}</b>

@@ -7,9 +7,9 @@
 <br />
 <div class="container">
 	<h2>리뷰 수정</h2>
-	<p>즐거운 여행 되셨나요?</p>
+	<p>숙소와 호스트에 대한 솔직한 리뷰를 남겨보세요 !</p>
 	<!-- TODO 예약내역  -->
-	<br>
+	<br><br>
 	<div class="form-group">
 		<div class="form-group">
 			<input type="hidden" value="${reviewEntity.id}" id="review-id">

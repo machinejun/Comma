@@ -2,10 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <title>로그인 페이지</title>
+<!-- 
 <link rel="stylesheet" type="text/css"
 	href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+	 -->
 <link rel="stylesheet" type="text/css" href="/css/user/util.css" />
 <link rel="stylesheet" type="text/css" href="/css/user/main.css" />
+
 <div class="limiter">
 	<div class="container-login100">
 		<div class="wrap-login100">
@@ -18,7 +21,7 @@
 				<span class="login100-form-title"> Member Login </span>
 
 				<div class="wrap-input100 validate-input"
-					data-validate="Valid email is required: ex@abc.xyz">
+					data-validate="아이디를 입력하세요">
 					<input class="input100" type="text" name="username"
 						placeholder="username" value="test" /> <span
 						class="focus-input100"></span> <span class="symbol-input100">
@@ -27,7 +30,7 @@
 				</div>
 
 				<div class="wrap-input100 validate-input"
-					data-validate="Password is required">
+					data-validate="비밀번호를 입력하세요">
 					<input class="input100" type="password" id="password"
 						name="password" required placeholder="Password" value="1234" /> <span
 						class="focus-input100"></span> <span class="symbol-input100">
@@ -49,6 +52,10 @@
 		</div>
 	</div>
 </div>
+
+<script>
+
+</script>
 
 <script src="/js/user/main.js"></script>
 <%@ include file="../layout/footer.jsp"%>

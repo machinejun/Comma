@@ -66,5 +66,12 @@ public class ReviewController {
 
 		return "review/review_management_form";
 	}
+	
+	// 내가 작성한 리뷰 목록 폼 호출 (게스트)
+	@GetMapping("/my-review-list/{guestId}")
+	public String getMyReviewList(@PathVariable int guestId, Model model) {
+		model.addAttribute("reviews", reviewService.getReviewListByGuestId(guestId));
+		return "user/my_review_list_form";
+	}
 
 }

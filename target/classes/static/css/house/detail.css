@@ -1,5 +1,9 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap')
+	;
+
 .multiLine {
-	width: 150px;
+	width: 200px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;
@@ -23,13 +27,13 @@
 .bi-suit-heart {
 	font-size: 35px;
 	line-height: 25px;
-	color: crimson;
+	color: #ff5555;
 }
 
 .bi-suit-heart-fill {
 	font-size: 35px;
 	line-height: 25px;
-	color: crimson;
+	color: #ff5555;
 }
 
 .bi-reply {
@@ -53,7 +57,6 @@
 	-webkit-text-fill-color: transparent; /* 덮어써지는 색깔 */
 	-webkit-text-stroke-color: #2b2a29;
 	justify-content: center;
-	margin-left: 37px;
 }
 
 .star-ratings-fill {
@@ -92,16 +95,16 @@
 }
 
 .custom-btn {
-	font-family: Montserrat-Bold;
-	font-size: 15px;
+	font-family: 'SUIT-Medium';
+	font-size: 20px;
 	line-height: 1.5;
 	color: #fff;
 	text-transform: uppercase;
 	border: none;
-	width: 30%;
-	height: 50px;
-	border-radius: 25px;
-	background: #1763E9;
+	width: 110px;
+	height: 40px;
+	border-radius: 5px;
+	background: rgba(255, 149, 149, 0.7);
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -moz-box;
@@ -109,25 +112,24 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 0 25px;
-	-webkit-transition: all 0.4s;
-	-o-transition: all 0.4s;
-	-moz-transition: all 0.4s;
-	transition: all 0.4s;
-	width: 30%;
+	padding: 0 20px;
+}
+
+.custom-btn:hover {
+	background: rgba(255, 149, 149, 1);
 }
 
 .custom-sm-btn {
-	font-family: Montserrat-Bold;
+	font-family: 'SUIT-Medium';
 	font-size: 15px;
 	line-height: 1.5;
 	color: #fff;
 	text-transform: uppercase;
 	border: none;
-	width: 100px;
-	height: 40px;
-	border-radius: 25px;
-	background: #1763E9;
+	width: 70px;
+	height: 20px;
+	border-radius: 5px;
+	background: rgba(255, 149, 149, 0.7);
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -moz-box;
@@ -135,11 +137,14 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 0 25px;
-	-webkit-transition: all 0.4s;
-	-o-transition: all 0.4s;
-	-moz-transition: all 0.4s;
-	transition: all 0.4s;
+}
+
+.custom-sm-btn:hover {
+	background: rgba(255, 149, 149, 1);
+}
+
+.custom-btn:hover {
+	background: #ff5555;
 }
 
 .underline-text {
@@ -151,9 +156,45 @@
 	border-radius: 10px;
 }
 
-.h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-    font-family: Martel,Times New Roman,Times,serif;
-    font-weight: 900;
-    line-height: 1.1;
-    color: #000000;
+.h4, .h5, .h6, h4, h5, h6 {
+	font-family: 'SUIT-Medium';
+	font-weight: 500;
+	line-height: 1.1;
+	color: #000000;
+}
+
+h3 {
+	font-family: 'SUIT-Medium';
+	line-height: 1.1;
+	color: #000000;
+	font-weight: 600;
+}
+
+.custom-text {
+	font-family: 'SUIT-Medium';
+}
+
+h2 {
+	font-weight: 900;
+	line-height: 1.1;
+	color: #000000;
+}
+
+h2:after {
+	content: "";
+}
+
+p, span {
+	font-family: 'SUIT-Medium';
+}
+
+.page-item.active .page-link {
+	z-index: 3;
+	color: #fff;
+	background-color: rgba(255, 149, 149, 0.7);
+	border-color: rgba(255, 149, 149, 0.7);
+}
+
+.card-body {
+	padding: 0px;
 }

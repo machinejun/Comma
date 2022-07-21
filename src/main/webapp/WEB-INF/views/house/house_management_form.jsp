@@ -36,12 +36,12 @@
 	<div class="p-4 p-lg-5 bg-light rounded-3 text-center">
 		<div class="m-4 m-lg-5">
 			<c:choose>
-				<c:when test="${empty reviews}">
-					<h2 class="display-5 fw-bold">작성된 리뷰가 없습니다.</h2>
+				<c:when test="${empty houseList}">
+					<h2 class="display-5 fw-bold">등록된 숙소가 없습니다.</h2>
 					<br>
 				</c:when>
 				<c:otherwise>
-					<h2>나의 리뷰 목록</h2>
+					<h2>나의 숙소 목록</h2>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -51,23 +51,21 @@
 
 	<div class="container py-5">
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-			<c:forEach var="review" items="${reviews}">
+			<c:forEach var="house" items="${houseList}">
 				<div class="col mb-5" style="margin: 30px;">
 					<div class="h-100">
-						<a href="/house/detail/${review.houseId.id}"><img class="custom-img" src="http://localhost:9090/upload/${review.houseId.image.imageUrl}" style="width: 250px; height: 200px;"></a>
+						<img class="custom-img" src="http://localhost:9090/upload/${house.image.imageUrl}" style="width: 250px; height: 200px;">
 						<div class="p-4">
 							<div style="margin-left: 20px;">
-								<h5 class="fw-bolder">${review.houseId.name}</h5>
-								<p>숙박 기간 ${review.creationDate}</p>
-								<p>작성일 ${review.creationDate}</p>
+								<h5 class="fw-bolder">${house.name}</h5>
+								<p>${house.address}</p>
 							</div>
 							<div class="container">
-								<a class="btn btn-outline-primary btn-sm " href="/review/update_form/${review.id}">수정</a>
+								<a class="btn btn-outline-primary btn-sm " href="/house/update_form/${house.id}">수정</a>
 								<button class="btn btn-outline-danger btn-sm" id="btn-delete">삭제</button>
 							</div>
 						</div>
 						<br> <br>
-
 					</div>
 				</div>
 			</c:forEach>

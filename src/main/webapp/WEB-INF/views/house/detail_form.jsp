@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/house/detail.css" rel="stylesheet">
 
@@ -13,12 +12,13 @@
 			<input type="hidden" value="${house.id}" id="house-id">
 			<div class="container">
 				<div class="col-md-6">
-					<img class="card-img-top mb-5 mb-md-0"
-						src="http://localhost:9090/upload/${house.image.imageUrl}"
-						width="500px" height="600px" style="border-radius: 15px" />
+					<img class="card-img-top mb-5 mb-md-0" src="http://localhost:9090/upload/${house.image.imageUrl}" width="500px" height="600px" style="border-radius: 15px" />
 				</div>
 				<div class="col-md-6">
-					<i class="bi bi-geo-alt"></i>&nbsp;${house.address}
+					<div class="row">
+						<i class="bi bi-geo-alt" style="margin-top: 3px; margin-left: 10px;"></i>
+						<p>&nbsp;${house.address}</p>
+					</div>
 					<h2 class="multiLine-title">${house.name}</h2>
 					<br>
 					<div class="fs-5 mb-5 d-flex ">
@@ -32,20 +32,17 @@
 						</h3>
 						<p style="margin-top: 25px;">&nbsp;&nbsp;/ 박</p>
 					</div>
-					<br>
+					<br> <br>
 					<div class="multiLine">${house.infoText}</div>
 
-					<br> 
+					<br>
 					<p class="underline-text">
-						<a data-toggle="modal" data-target="#info-modal"
-							style="cursor: pointer;">더 보기</a>
+						<a data-toggle="modal" data-target="#info-modal" style="cursor: pointer;">더 보기</a>
 					</p>
-					<br><br>
+					<br> <br> <br>
 					<div class="d-flex">
 						<button class="custom-btn flex-shrink-0" type="button">예약하기</button>
-						<i class="bi ${not empty likeHouse.house ? exist : notExist}"
-							style="margin-left: 15px; cursor: pointer;" id="like"
-							onclick="clickHeart()"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+						<i class="bi ${not empty likeHouse.house ? exist : notExist}" style="margin-left: 25px; cursor: pointer;" id="like" onclick="clickHeart()"></i>&nbsp;&nbsp;&nbsp;&nbsp;
 
 					</div>
 				</div>
@@ -64,9 +61,9 @@
 				</div>
 
 				<div class="modal-body">
-					<h4 class="modal-title">
+					<h3 class="modal-title">
 						<b>⛪ 숙소 설명</b>
-					</h4>
+					</h3>
 					<br>
 					<p>${house.infoText}</p>
 				</div>
@@ -80,10 +77,10 @@
 		<hr>
 		<!-- 평균 별점 -->
 		<div class="d-flex">
-			<h3>리뷰</h3>
-			<h4 style="margin-top: 25px;">&nbsp;&nbsp;&nbsp;${reviewCount}개</h4>
+			<h3 class="custom-text">리뷰</h3>
+			<h4 style="margin-top: 30px;">&nbsp;&nbsp;&nbsp;${reviewCount}개</h4>
 			<div>
-				&nbsp;&nbsp;<label style="margin-top: 20px;">⭐</label>&nbsp;${avgScore}
+				&nbsp;&nbsp;<label style="margin-top: 25px;">⭐</label>&nbsp;${avgScore}
 			</div>
 		</div>
 		<br> <br>
@@ -103,18 +100,15 @@
 			<c:forEach var="review" items="${reviews.content}">
 				<div class="row" id="review-content">
 					<!-- 게스트의 리뷰 -->
-					<div class="col-lg-4 mb-5 mb-lg-0" id="bodyContents"
-						style="height: 240px; margin-right: 120px;">
+					<div class="col-lg-4 mb-5 mb-lg-0" id="bodyContents" style="height: 240px; margin-right: 120px;">
 						<input type="hidden" id="review-id" value="${review.id}">
-						<div
-							class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></div>
+						<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></div>
 						<h3>${review.guestId.username}</h3>
 						<div class="multiLine">${review.content}</div>
 						<div>
 							<br> <br>
 							<p class="underline-text">
-								<a data-toggle="modal" data-target="#review-modal"
-									style="cursor: pointer;">더 보기</a>
+								<a data-toggle="modal" data-target="#review-modal" style="cursor: pointer;">더 보기</a>
 							</p>
 						</div>
 					</div>
@@ -131,12 +125,19 @@
 							</div>
 							<div class="modal-body">
 								<h3>${review.guestId.username}</h3>
+								<div class="star-ratings">
+									<div class="star-ratings-fill" style="width: ${review.starScore * 20 * 1.4}%">
+										<span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+									</div>
+									<div class="star-ratings-base">
+										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+									</div>
+									<br>
+								</div>
 								<p>${review.content}</p>
 								<c:if test="${review.guestId.id eq principal.user.id}">
-									<button class="btn btn-outline-danger btn-sm float-right"
-										style="margin-left: 10px;" id="btn-delete">삭제</button>
-									<a class="btn btn-outline-primary btn-sm float-right"
-										id="btn-update" href="/review/update_form/${review.id}">수정</a>
+									<button class="btn btn-outline-danger btn-sm float-right" style="margin-left: 10px;" id="btn-delete">삭제</button>
+									<a class="btn btn-outline-primary btn-sm float-right" id="btn-update" href="/review/update_form/${review.id}">수정</a>
 									<br>
 								</c:if>
 								<hr>
@@ -160,23 +161,19 @@
 				<c:when test="${reviewCount > 0}">
 					<c:choose>
 						<c:when test="${reviews.first}">
-							<li class="page-item disabled"><a class="page-link"
-								href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
+							<li class="page-item disabled"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="page-item"><a class="page-link"
-								href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
+							<li class="page-item"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
 						</c:otherwise>
 					</c:choose>
 
 					<c:choose>
 						<c:when test="${reviews.last}">
-							<li class="page-item disabled"><a class="page-link"
-								href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
+							<li class="page-item disabled"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="page-item"><a class="page-link"
-								href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
+							<li class="page-item"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:when>
@@ -188,17 +185,14 @@
 
 <section class="py-5 bg-light">
 	<div class="container px-4 px-lg-5 mt-5">
-		<h3 class="fw-bolder mb-4">🏡 이런 숙소는 어때요</h3>
+		<h3 class="custom-text mb-4">이런 숙소는 어때요</h3>
 		<br>
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 ">
 			<c:forEach var="house" items="${houseList}">
 				<c:set var="avgScore" value="${house.starScore * 20}"></c:set>
 				<div class="col mb-5">
 					<div class="custom-card h-100">
-						<a href="/house/detail/${house.id}"> <img
-							class="custom-card-img"
-							src="http://localhost:9090/upload/${house.image.imageUrl}"
-							width="100%" height="160px"></a>
+						<a href="/house/detail/${house.id}"> <img class="custom-card-img" src="http://localhost:9090/upload/${house.image.imageUrl}" width="100%" height="160px"></a>
 						<div class="card-body ">
 							<div class="text-center">
 								<h4 class="multiLine">
@@ -207,8 +201,7 @@
 							</div>
 							<br>
 							<div class="star-ratings">
-								<div class="star-ratings-fill"
-									style="width: ${house.starScore * 20 * 1.4}%">
+								<div class="star-ratings-fill" style="width: ${house.starScore * 20 * 1.4}%; margin-left: 50px;">
 									<span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
 								</div>
 								<div class="star-ratings-base">

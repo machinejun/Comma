@@ -6,8 +6,8 @@ let index = {
 			this.addReply();
 		});
 
-		$("#btn-update").bind("click", () => {
-			this.clickUpdateBtn();
+		$("#edit-btn").bind("click", () => {
+			this.editText();
 		});
 
 		$("#btn-delete").bind("click", () => {
@@ -102,35 +102,17 @@ let index = {
 	}
 }
 
-function clickUpdateBtn() {
-	console.log("수정 버튼 클릭");
-	
-	// 수정 전 댓글
-	let beforeReplyRow;
-	
-	// 댓글 수정 창이 한 개만 열릴 수 있도록 만들기
-	const temp = document.querySelectorAll(".update-textarea");
-	
-	const replyRow = updateBtn.parentElement.parentElement
-	beforeReplyRow = replyRow.innerHTML;
-	
-	let beforeContent = replyRow.children[1].innerHTML;
-	replyRow.innerHTML = "";
-	
-	const textarea = document.createElement("textarea");
-	textarea.classList.add("update-textarea");
-	
-	replyRow.append(textarea);
-	
-	const replyBtnArea = document.createElement("div");
-	replyBtnArea.classList.add("reply-btn-area");
-	
-	const updateBtn = document.createElement("button");
-	updateBtn.innerText="수정";
-	updateBtn.setAttribute("onclick", "updateReply(" + replyNo + ",this)");
+function editText() {
 
-	
+	console.log("수정 버튼 클릭");
+
+	//let editForm = '<textarea class="form-control" rows="3" id="reply-edit-box" placeholder="게스트의 리뷰에 대한 답글을 남겨주세요!"></textarea>';
+
+	//$('#reply-edit-box').replaceWith(editForm);
+	//$('#reply-edit-box').focus();
+
 }
+
 
 function appendReply(reply) {
 

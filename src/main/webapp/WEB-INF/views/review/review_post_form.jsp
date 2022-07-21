@@ -7,14 +7,15 @@
 <div class="container">
 	<h2>리뷰 등록</h2>
 	<p>즐거운 여행 되셨나요?</p>
+	<br>
 	<form>
 		<!-- TODO 예약내역 뿌리기  -->
 		<div class="form-group">
 			<div class="form-group">
-				<input type="hidden" value="" id="house-id"> <label for="name"><b></b></label> <input type="text" class="form-control" id="name" disabled="disabled" />
+				<input type="hidden" value="" id="house-id"> <label for="name"><b>숙소명</b></label> <input type="text" class="form-control" id="name" disabled="disabled" />
 			</div>
 			<div class="form-group">
-				<label for="name"><b> ~ </b></label> <input type="text" class="form-control" id="name" disabled="disabled" />
+				<label for="name"><b>숙박 기간 ~ </b></label> <input type="text" class="form-control" id="name" disabled="disabled" />
 			</div>
 
 			<label><b>만족도</b></label>

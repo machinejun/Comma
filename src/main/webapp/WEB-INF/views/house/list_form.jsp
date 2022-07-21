@@ -8,8 +8,8 @@
 			<div class="row">
 				<div class="col-xs-12 col-md-8 col-md-offset-2">
 					<div class="text-center">
-						<h2>About Us</h2>
-						<p>설명</p>
+						<h2>Comma(,)</h2>
+						<p>어디로 떠나볼까요?</p>
 					</div>
 				</div>
 			</div>
@@ -21,7 +21,7 @@
 			<c:set var="searchedAddress" value="${searchedAddress}"></c:set>
 			<c:set var="selected" value="selected"></c:set>
 			<c:set var="notSelected" value=""></c:set>
-			<div class="form-group col-sm-4 justify-content-center">
+			<div class="form-group col-sm-4">
 				<h4>지역</h4>
 				<select class="form-control selector" name="address">
 					<option value="">전체</option>
@@ -54,21 +54,31 @@
 	</div>
 	<br> <br>
 	<div class="container">
+		<c:set var="notExist" value="bi-suit-heart"></c:set>
+		<c:set var="exist" value="bi-suit-heart-fill"></c:set>
 		<c:if test="${empty houseList}">
 			<h4>검색하신 결과가 존재하지 않습니다.</h4>
+			<br>
 			<br>
 		</c:if>
 		<div class="row">
 			<c:forEach var="house" items="${houseList}">
 				<div class="col-sm-4">
 					<a href="/house/detail/${house.id}"><img class="custom-img list-img" src="http://localhost:9090/upload/${house.image.imageUrl}"></a>
-					<h4 class="multiLine">
-						<b>${house.name}</b>
-					</h4>
-					<div>
-						<label class="star-score">⭐&nbsp;${house.starScore}</label>
+					<div class="row">
+						<h4 class="multiLine d-flex" style="margin-left: 15px;">
+							<b>${house.name}</b>
+						</h4>
+
+						<div class="d-flex" style="margin-top: 10px; margin-left: 35px;">
+							<label>⭐&nbsp;${house.starScore}</label>
+						</div>
 					</div>
-					<p>₩&nbsp;${house.oneDayPrice}&nbsp;&nbsp;/ 박</p>
+					<p>
+						₩&nbsp;
+						<fmt:formatNumber value="${house.oneDayPrice}" pattern="#,###" />
+						&nbsp;&nbsp;/ 박
+					</p>
 					<br>
 				</div>
 			</c:forEach>

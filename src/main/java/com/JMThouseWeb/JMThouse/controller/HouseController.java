@@ -55,7 +55,7 @@ public class HouseController {
 		} else {
 			houseList = houseService.searchHouseByAddressAndType(address, type);
 		}
-		
+
 		model.addAttribute("houseList", houseList);
 		model.addAttribute("searchedAddress", address);
 		model.addAttribute("searchedType", type);
@@ -116,6 +116,13 @@ public class HouseController {
 			@AuthenticationPrincipal PrincipalDetail principalDetail) {
 		houseService.updateHouse(houseId, requestPostDto);
 		return "redirect:/house/list";
+	}
+
+	// 숙소 관리 폼 호출 (호스트)
+	@GetMapping("/management/{hostId}")
+	public String getHouseManagementForm(@PathVariable int hostId, Model model) {
+		model.addAttribute("houseList", houseService.findAllByHostId(hostId));
+		return "house/house_management_form";
 	}
 
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link href="/css/style.css" rel="stylesheet">
 <%@ include file="../layout/header.jsp"%>
+<link href="/css/house/detail.css" rel="stylesheet">
 
 <section>
 	<div class="container">
@@ -45,7 +46,7 @@
 				</div>
 				<br> <label><b>사진 등록</b></label>
 				<div class="custom-file">
-					<input type="file" name="file" class="custom-file-input" required="required" value="${house.image.imageUrl}" /> <label class="custom-file-label">기존 : ${house.image.originFileName}</label>
+					<input type="file" name="file" class="custom-file-input" required="required" value="${house.image.imageUrl}" /> <label class="custom-file-label">${house.image.originFileName}</label>
 				</div>
 				<br> <br>
 				<div class="form-group">
@@ -54,7 +55,7 @@
 				</div>
 			</div>
 			<br>
-			<button type="submit" onsubmit="checkImageChange(${house.image.imageUrl})" class="btn btn-primary" id="btn-update">수정</button>
+			<button type="submit" onsubmit="checkImageChange(${house.image.imageUrl})" class="custom-sm-btn" id="btn-update">수정</button>
 		</form>
 	</div>
 </section>

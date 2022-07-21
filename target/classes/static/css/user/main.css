@@ -1,33 +1,5 @@
 
 
-
-
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
-
-@font-face {
-  font-family: Poppins-Regular;
-  src: url('../../fonts/poppins/Poppins-Regular.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Bold;
-  src: url('../../fonts/poppins/Poppins-Bold.ttf'); 
-}
-
-@font-face {
-  font-family: Poppins-Medium;
-  src: url('../../fonts/poppins/Poppins-Medium.ttf'); 
-}
-
-@font-face {
-  font-family: Montserrat-Bold;
-  src: url('../../fonts/montserrat/Montserrat-Bold.ttf'); 
-}
-
-/*//////////////////////////////////////////////////////////////////
-[ RESTYLE TAG ]*/
-
 * {
 	margin: 0px; 
 	padding: 0px; 
@@ -36,13 +8,13 @@
 
 body, html {
 	height: 80%;
-	font-family: Poppins-Regular, sans-serif;
+	font-family: 'SUIT-Medium';
 }
 
 /*---------------------------------------------*/
 a {
-	font-family: Poppins-Regular;
-	font-size: 14px;
+	font-family: 'SUIT-Medium';
+	font-size: 25px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
@@ -58,7 +30,7 @@ a:focus {
 
 a:hover {
 	text-decoration: none;
-  color: #57b846;
+  color: #000000;
 }
 
 /*---------------------------------------------*/
@@ -67,7 +39,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-	font-family: Poppins-Regular;
+	font-family: 'SUIT-Medium';
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -84,15 +56,6 @@ ul, li {
 input {
 	outline: none;
 	border: none;
-}
-
-textarea {
-  outline: none;
-  border: none;
-}
-
-textarea:focus, input:focus {
-  border-color: transparent !important;
 }
 
 input:focus::-webkit-input-placeholder { color:transparent; }
@@ -134,14 +97,14 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
 .txt1 {
-  font-family: Poppins-Regular;
+  font-family: 'SUIT-Medium';
   font-size: 13px;
   line-height: 1.5;
   color: #999999;
 }
 
 .txt2 {
-  font-family: Poppins-Regular;
+  font-family: 'SUIT-Medium';
   font-size: 13px;
   line-height: 1.5;
   color: #666666;
@@ -205,8 +168,8 @@ iframe {
 }
 
 .login100-form-title {
-  font-family: Poppins-Bold;
   font-size: 30px;
+  font-weight: bold;
   color: #333333;
   line-height: 1.2;
   text-align: center;
@@ -226,7 +189,6 @@ iframe {
 }
 
 .input100 {
-  font-family: Poppins-Medium;
   font-size: 15px;
   line-height: 1.5;
   color: #666666;
@@ -300,7 +262,7 @@ iframe {
 }
 
 .input100:focus + .focus-input100 + .symbol-input100 {
-  color: #57b846;
+  color: #000000;
   padding-left: 28px;
 }
 
@@ -319,8 +281,8 @@ iframe {
 }
 
 .login100-form-btn {
-  font-family: Montserrat-Bold;
-  font-size: 15px;
+  font-family: 'SUIT-Medium';
+  font-size: 20px;
   line-height: 1.5;
   color: #fff;
   text-transform: uppercase;
@@ -328,7 +290,7 @@ iframe {
   width: 100%;
   height: 50px;
   border-radius: 25px;
-  background: #1763E9;
+  background: rgba(255,149,149,0.7);
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -345,7 +307,7 @@ iframe {
 }
 
 .login100-form-btn:hover {
-  background: #333333;
+  background: rgba(255, 149, 149, 1);
 }
 
 

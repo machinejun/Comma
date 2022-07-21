@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
+<link href="/css/house/detail.css" rel="stylesheet">
 
 <section>
 	<div class="container">
@@ -56,7 +57,7 @@
 				</div>
 			</div>
 			<br>
-			<button type="submit" class="btn btn-primary" id="btn-register">등록</button>
+			<button type="submit" class="custom-sm-btn" id="btn-register">등록</button>
 		</form>
 	</div>
 </section>

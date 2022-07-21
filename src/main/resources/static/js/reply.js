@@ -6,8 +6,8 @@ let index = {
 			this.addReply();
 		});
 
-		$("#btn-update").bind("click", () => {
-			this.updateReply();
+		$("#edit-btn").bind("click", () => {
+			this.editText();
 		});
 
 		$("#btn-delete").bind("click", () => {
@@ -55,14 +55,6 @@ let index = {
 			content: $("#content").val()
 		}
 
-		document.querySelectorAll('#btn-update').forEach(function(item) {
-			item.addEventListener('click', function() {
-				const form = this.closest('form');
-				this
-			});
-		});
-
-
 		if (data.content == "" || data.content.trim() === "") {
 			alert("내용을 입력하세요.")
 		} else {
@@ -109,6 +101,18 @@ let index = {
 		}
 	}
 }
+
+function editText() {
+
+	console.log("수정 버튼 클릭");
+
+	//let editForm = '<textarea class="form-control" rows="3" id="reply-edit-box" placeholder="게스트의 리뷰에 대한 답글을 남겨주세요!"></textarea>';
+
+	//$('#reply-edit-box').replaceWith(editForm);
+	//$('#reply-edit-box').focus();
+
+}
+
 
 function appendReply(reply) {
 

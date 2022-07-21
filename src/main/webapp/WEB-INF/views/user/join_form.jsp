@@ -10,12 +10,12 @@
 		<div class="container-signup">
 			<div class="signup-content">
 				<div class="signup-form needs-validation">
-					<h2 class="form-title">Sign up</h2>
+					<h2 class="form-title">회원가입</h2>
 					<form action="/auth/joinProc" method="post" onsubmit="return joinCheck()" class="register-form" id="register-form">
 						<div class="form-group">
 							<label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label> <input type="text" name="username" id="username" placeholder="Username" required />
 						</div>
-						<button type="button" id="btn-checkUsername" class="btn btn-xs btn-primary">중복확인</button>
+						<button type="button" id="btn-checkUsername" class="custom-sm-btn">중복확인</button>
 						<br /> <br />
 
 						<div class="form-group" data-validate="Password is required">
@@ -32,7 +32,7 @@
 						<div class="form-group">
 							<label for="email"><i class="zmdi zmdi-phone"></i></label> <input type="text" name="phoneNumber" id="email" placeholder="Your Phone Number" />
 						</div>
-						<button type="submit" class="btn btn-primary btn-sm">회원가입</button>
+						<button type="submit" class="custom-btn">회원가입</button>
 					</form>
 				</div>
 

@@ -42,7 +42,7 @@
 							id="phoneNumber" placeholder="Your Phone Number" />
 					</div>
 					<button type="button" onsubmit="return passwordCheck()"
-						id="btn-update" class="btn btn-sm btn-primary">수정하기</button>
+						id="btn-update" class="custom-btn">수정하기</button>
 				</div>
 
 				<div class="signup-image" style="margin-top: 50px;">

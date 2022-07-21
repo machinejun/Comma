@@ -1,5 +1,6 @@
 package com.JMThouseWeb.JMThouse.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import com.JMThouseWeb.JMThouse.repository.HouseRepository;
 import com.JMThouseWeb.JMThouse.repository.ReplyRepository;
 import com.JMThouseWeb.JMThouse.repository.ReviewRepository;
 import com.JMThouseWeb.JMThouse.repository.StarScoreRepository;
-import com.JMThouseWeb.JMThouse.repository.UserRepository;
 
 @Service
 public class ReviewService {
@@ -109,6 +109,13 @@ public class ReviewService {
 	@Transactional(readOnly = true)
 	public List<Review> getReviewListByHouseId(int houseId) {
 		return reviewRepository.findAllByHouseId(houseId);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Review> getReviewListByGuestId(int guestId) {
+		return reviewRepository.findAllByGuestId(guestId).orElseGet(() -> {
+			return new ArrayList();
+		});
 	}
 
 }

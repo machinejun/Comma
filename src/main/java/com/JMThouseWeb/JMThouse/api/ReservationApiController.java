@@ -89,13 +89,19 @@ public class ReservationApiController {
 	@PostMapping("/kakao")
 	public KaKaoApproveDto payForKaKao(@RequestBody ResponsePaidDto paidDto) {
 		System.out.println(paidDto);
+		Reservation res = reservationService.findByResId(paidDto.getResId());
+		int price = reservationService.getRangeDay(res.getCheckInDate(), res.getCheckOutDate()) * res.getHouseId().getOneDayPrice();
+		paidDto.setPrice(price);
+		paidDto.setGuestName(res.getGuestId().getUser().getUsername());
+		paidDto.setHostName(res.getHostId().getUser().getUsername());
+		paidDto.setHouseName(res.getHouseId().getName());
 		KaKaoApproveDto approveDto = requestReadyForKaKaoPay(
 				paidDto.getGuestName(),
 				paidDto.getHostName(),
 				paidDto.getHouseName(),
 				paidDto.getPrice());
 		paidDto.setTid(approveDto.getTid());
-		httpSession.setAttribute(paidDto.getGuestName(), paidDto);
+		httpSession.setAttribute("kakao", paidDto);
 		return approveDto;
 	}
 	
@@ -110,8 +116,8 @@ public class ReservationApiController {
 		param.add("partner_order_id", hostName);
 		param.add("partner_user_id", guestName);
 		param.add("item_name", houseName);
-		param.add("quantity", String.valueOf(price));
-		param.add("total_amount", "1");
+		param.add("quantity", "1");
+		param.add("total_amount", String.valueOf(price));
 		param.add("tax_free_amount", "0");
 		param.add("approval_url", "http://localhost:9090/test/kakao/approve");
 		param.add("cancel_url", "http://localhost:9090/test/kakao/approve");

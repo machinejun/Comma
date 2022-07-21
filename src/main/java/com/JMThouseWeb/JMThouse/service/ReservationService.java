@@ -65,7 +65,7 @@ public class ReservationService {
 		Host host = hostRepository.findById(tempIdList[1]).orElseThrow(() -> {
 			return new RuntimeException("해당 호스트를 찾을 수 없습니다.");
 		});
-
+		reservation.setPrice(house.getOneDayPrice() * getRangeDay(reservation.getCheckInDate(), reservation.getCheckOutDate()));
 		reservation.setHouseId(house);
 		reservation.setGuestId(guest);
 		reservation.setHostId(host);
@@ -90,7 +90,7 @@ public class ReservationService {
 		return new java.sql.Date(date.getTime()).toLocalDate();
 	}
 
-	private int getRangeDay(Date checkinDate, Date checkOutDate) {
+	public int getRangeDay(Date checkinDate, Date checkOutDate) {
 		long sec = (checkOutDate.getTime() - checkinDate.getTime()) / 1000;
 		int result = (int) sec / (24 * 60 * 60);
 		System.out.println(result);
@@ -167,7 +167,8 @@ public class ReservationService {
 		return res;
 		
 	}
-	
+	@Modifying
+	@Transactional
 	public boolean kakaoPaymentApprove(int resId) {
 		Reservation res = reservationRepository.findById(resId).get();
 		if(res == null) {

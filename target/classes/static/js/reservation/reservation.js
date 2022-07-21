@@ -138,17 +138,17 @@ function calculatePrice(){
 
 function printPrice(price){
 	if(price < 1000){
-		$("#showPrice").text(`가격: ${price}원`);
+		$("#showPrice").text(`가격: ${price}￦`);
 	}
 	else if(price < 1000000){
 		let top = price / 1000;
 		let bottom = price % 1000 == 0 ? "000" : price % 1000;
-		$("#showPrice").text(`가격: ${top},${bottom}원`);
+		$("#showPrice").text(`가격: ${top},${bottom}￦`);
 	}else if(price < 1000000000){
 		let top = price / 1000000;
 		let middle = (price % 1000000) /1000 == 0 ? "000" : (price % 1000000) /1000;
 		let bottom = price % 1000 == 0 ? "000" : price % 1000;
-		$("#showPrice").text(`가격: ${top},${middle},${bottom}원`);  
+		$("#showPrice").text(`가격: ${top},${middle},${bottom}￦`);  
 	}
 }
 
@@ -229,7 +229,6 @@ function reserveHouse(hostid, houseid){
 		checkInDate: $("#checkIn-Date").val(),
 		checkOutDate: $("#checkOut-Date").val(),
 		headCount: count,
-		price: $("#price").val(),
 		request: $("#request").val(),
 		tempIdBox: tempBox
 	}

@@ -164,7 +164,7 @@ function addDetailPage(response){
 		</table>
 		<br/>
 		<div style="position: absolute; display: inline; bottom: 3%; right: 3%; ">
-			<button onclick="cancelAndAlert(${response.id})" class="btn btn-secondary"  style="padding: 5px; font-size: 15px; background-color: red;">예약 취소</button>
+			<button id="cancel-btn" onclick="cancelAndAlert(${response.id})" class="btn btn-secondary"  style="padding: 5px; font-size: 15px; ">예약 취소</button>
 			<button onclick="closeModal()" class="btn btn-secondary" style="padding: 5px; font-size: 15px;">닫기</button>	
 		</div>
 	</div>`;
@@ -181,13 +181,11 @@ function checkImgContain(response){
 	}
 }
 
-function payForKakao(iresId, iguestName, ihostName, ihouseName, iprice){
+function payForKakao(iresId){
+
+
 	let data = {
 		resId: iresId,
-		guestName: iguestName,
-		hostName: ihostName,
-		houseName: ihouseName,
-		price: iprice,
 	}
 	
 	$.ajax({

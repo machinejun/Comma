@@ -10,24 +10,27 @@
 .btn{
 	width: 120px;
 	height: 40px;
-	color:rgba(23,99,233,0.9) ;
+	color:rgba(255,149,149,0.7) ;
 	font-weight: bold;
 	font-size: 20px; 
 	padding: 5px;
 	background-color: white;
-	border-left: 1.5px solid rgba(23,99,233,0.55); 
-	border-top: 1.5px solid rgba(23,99,233,0.55); 
+	border-left: 1.5px solid rgba(255,149,149,0.55); 
+	border-top: 1.5px solid rgba(255,149,149,0.55); 
 	margin-right: 10px;
 	margin-top: 10px;
 	margin-bottom: 0;
 	
 }
 .btn:hover {
-	color: rgba(23,99,233,0.4);
+	color: rgba(255,149,149,0.9);
 }
 .btn-box{
 	padding-left: 60px;
 	padding-bottom: 10px;
+}
+.btn::disabled {
+	color: rgba(255,149,149,0.4);
 }
 #month{
 	font-size: 15px;
@@ -35,10 +38,10 @@
 	height: 30px; 
 	border: 0px; 
 	background-color: transparent;
-	color: rgba(23,99,233,0.65); 
+	color: rgba(255,149,149,0.65); 
 	position: absolute; 
 	left: 15px; 
-	border-bottom: 1.5px solid rgba(23,99,233,0.55); 
+	border-bottom: 1.5px solid rgba(255,149,149,0.55); 
 	top: 45px;
 }
 .table-in-btn{

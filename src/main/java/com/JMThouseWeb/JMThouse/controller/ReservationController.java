@@ -18,10 +18,12 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import com.JMThouseWeb.JMThouse.dto.DateModelDto;
 import com.JMThouseWeb.JMThouse.dto.HoustWaitDto;
+import com.JMThouseWeb.JMThouse.dto.KaKaoPayResponseDto;
 import com.JMThouseWeb.JMThouse.dto.ResponsePaidDto;
 import com.JMThouseWeb.JMThouse.model.BookedDate;
 import com.JMThouseWeb.JMThouse.model.House;
@@ -86,18 +88,26 @@ public class ReservationController {
 	}
 	
 	@GetMapping("/test/kakao/approve")
-	public String approve(@RequestParam String pg_token) {
-		ResponsePaidDto paidDto = (ResponsePaidDto) httpSession.getAttribute("tttt");
-		ResponseEntity<String> response = requestKakaoPaymentApprove(pg_token, paidDto);
+	public String approve(@RequestParam String pg_token, Model model) {
+		System.out.println("sdfsdfsdfsdfsdsdjlksjfslkfjd");
+		ResponsePaidDto paidDto = (ResponsePaidDto) httpSession.getAttribute("kakao");
+		ResponseEntity<KaKaoPayResponseDto> response = requestKakaoPaymentApprove(pg_token, paidDto);
+		KaKaoPayResponseDto dto = response.getBody();
+
 		if(response.getStatusCode() == HttpStatus.OK) {
 			reservationService.kakaoPaymentApprove(paidDto.getResId());
-			return "redirect:/test/reserveTable/user/2";
+			Reservation res = reservationService.findByResId(paidDto.getResId());
+			dto.setApproved_at(dto.getApproved_at().replace("T", " "));
+			model.addAttribute("kakao", dto);
+			model.addAttribute("reservation", res);
+			
+			return "/reservation/paymentCompletePage";
 		}else {
 			return "erroPage";
 		}	
 	}
 	
-	private ResponseEntity<String> requestKakaoPaymentApprove(String pg_token, ResponsePaidDto paidDto) {
+	private ResponseEntity<KaKaoPayResponseDto> requestKakaoPaymentApprove(String pg_token, ResponsePaidDto paidDto) {
 		String pgtoken = pg_token;
 		RestTemplate transmitter = new RestTemplate();
 		HttpHeaders header = new HttpHeaders();
@@ -112,8 +122,15 @@ public class ReservationController {
 		param.add("pg_token", pgtoken);
 	
 		HttpEntity<MultiValueMap<String, String>> message = new HttpEntity<>(param, header);
-		ResponseEntity<String> response = transmitter.exchange("https://kapi.kakao.com/v1/payment/approve", HttpMethod.POST, message, String.class);
+		
+		ResponseEntity<KaKaoPayResponseDto> response = transmitter.exchange("https://kapi.kakao.com/v1/payment/approve", HttpMethod.POST, message, KaKaoPayResponseDto.class);
+		System.out.println(response);
 		return response;
+	}
+	
+	@GetMapping("/test/complete")
+	public String completePayment() {
+		return "/reservation/paymentCompletePage";
 	}
 
 }

@@ -22,6 +22,7 @@ public class UserService {
 		try {
 			String rawPassword = user.getPassword();
 			String encPassword = encoder.encode(rawPassword);
+			user.setPhoneNumber(changePhoneNumFormat(user.getPhoneNumber()));
 			user.setPassword(encPassword);
 			user.setRole(RoleType.GUEST);
 			userRepository.save(user);
@@ -60,6 +61,15 @@ public class UserService {
 	
 	public User findByUserId(int id) {
 		return userRepository.findById(id).get();
+	}
+	
+	private String changePhoneNumFormat(String phoneNum) {
+		if(phoneNum.length() != 11) {
+			return phoneNum;
+		}
+		// 012 3456 78910
+		String newPhoneNum = phoneNum.substring(0, 2) + "-" + phoneNum.subSequence(3, 6) + "-" + phoneNum.subSequence(7, 10);
+		return newPhoneNum;
 	}
 
 }

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Erro Erro Error Erro Erro Error Erro Erro Error</h1>
+	<img src="https://cdn.pixabay.com/photo/2017/03/09/12/31/error-2129569_960_720.jpg"/>
 </body>
 </html>

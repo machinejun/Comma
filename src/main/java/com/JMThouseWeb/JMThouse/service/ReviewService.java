@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.JMThouseWeb.JMThouse.dto.HouseScoreDto;
+import com.JMThouseWeb.JMThouse.model.House;
 import com.JMThouseWeb.JMThouse.model.Reply;
 import com.JMThouseWeb.JMThouse.model.Review;
 import com.JMThouseWeb.JMThouse.model.User;
@@ -36,10 +37,12 @@ public class ReviewService {
 	@Transactional
 	public Review postReview(Review review, User user) {
 
-		// 리뷰 작성할때마다 별점 저장해서 평균 내기
-		// test
-		houseRepository.findById(1).get().setStarScore(starScoreRepository.getAvgStarScoreByHouse(1).getScore());
+		// 저장된 별점 데이터 꺼내서 평점 계산
+		House houseEntity = houseRepository.findById(review.getHouseId().getId()).get();
+		double avgStarScore = starScoreRepository.getAvgStarScoreByHouse(houseEntity.getId()).getScore();
+		houseEntity.setStarScore(avgStarScore);
 		review.setGuestId(user);
+
 		Review reviewEntity = reviewRepository.save(review);
 		return reviewEntity;
 	}
@@ -58,6 +61,7 @@ public class ReviewService {
 		});
 
 		requestReply.setReviewId(reviewEntity);
+		reviewEntity.getReplies().add(requestReply);
 
 		Reply replyEntity = replyRepository.save(requestReply);
 		return replyEntity;
@@ -86,7 +90,7 @@ public class ReviewService {
 
 	@Transactional
 	public void deleteReply(int replyId) {
-		replyRepository.deleteById(replyId);
+		replyRepository.deleteByReplyId(replyId);
 	}
 
 	@Transactional

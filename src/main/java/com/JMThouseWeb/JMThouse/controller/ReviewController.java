@@ -1,6 +1,7 @@
 package com.JMThouseWeb.JMThouse.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,16 +26,15 @@ public class ReviewController {
 
 	@Autowired
 	private ReviewService reviewService;
-	
+
 	@Autowired
 	private ReservationService reservationService;
 
 	// 리뷰 작성 폼 호출
-	// TODO house 데이터 같이 보내야함
-	@GetMapping("/post_form")
-	public String getReviewForm(Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
-		// model.addAttribute("reservation",
-		// reservationService.getReservation(principalDetail.getUser());
+	@GetMapping("/post_form/{reservationId}")
+	public String getReviewForm(@PathVariable int reservationId,
+			@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
+		model.addAttribute("reservation", reservationService.findByResId(reservationId));
 		return "review/review_post_form";
 	}
 
@@ -70,7 +70,7 @@ public class ReviewController {
 
 		return "review/review_management_form";
 	}
-	
+
 	// 내가 작성한 리뷰 목록 폼 호출 (게스트)
 	@GetMapping("/my-review-list/{guestId}")
 	public String getMyReviewList(@PathVariable int guestId, Model model) {

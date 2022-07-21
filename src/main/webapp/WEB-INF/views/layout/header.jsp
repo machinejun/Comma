@@ -134,8 +134,8 @@ margin-left: 200px;
 							<span class="icon-users"></span>&nbsp;&nbsp;예약자 확인
 						</a>
 						<a type="button"
-							class="list-group-item list-group-item-action">
-							<span class="icon-gittip"></span>&nbsp;&nbsp;위시 리스트
+							class="list-group-item list-group-item-action" href="/wish-list/${principal.user.id}">
+							<span class="icon-gittip"></span>&nbsp;&nbsp;위시리스트
 						</a>
 					</div>
 				</div>

@@ -6,16 +6,13 @@
 	animation: box-ani 0.5s linear forwards;
 }
 
-@keyframes box-ani{
-from { transform:translate(0, 0);
-	
+@keyframes box-ani {
+	from { transform:translate(0, 0);
+		
+	}to {
+		transform: translate(0, -15px);
+	}
 }
-to {
-	transform: translate(0, -15px);
-}
-
-}
-
 .text-center>h2 {
 	color: rgba(255, 149, 149, 0.7);
 }
@@ -24,23 +21,30 @@ to {
 	color: rgba(255, 149, 149, 0.7);
 	content: "";
 }
-.col-xs-12 > h2::after{
+
+.col-xs-12>h2::after {
 	content: "";
 }
+
 .custom-sm-btn {
-padding: 0px;
+	padding: 0px;
 	margin-left: 420px;
 	width: 135px;
 	height: 45px;
 }
+
 .custom-sm-btn:hover {
 	text-decoration: none;
-	color: white; 
+	color: white;
 }
+
 .fa {
 	color: rgba(255, 149, 149, 0.7);
 }
 
+p {
+	font-family: 'SUIT-Medium';
+}
 </style>
 <div class="section-container">
 	<div class="container">
@@ -114,10 +118,7 @@ padding: 0px;
 								<p>누구나 호스트가 될 수 있습니다.</p>
 								<p>숙소를 등록하고 최고의 호스트가 되어보세요.</p>
 								<br>
-								<p>Quisque tempor, ligula pharetra luctus elementum, arcu
-									nisl suscipit ante, pharetra commodo dui est et enim. Sed eu
-									vestibulum elit. Donec ut libero non.</p>
-								<a href="../project.html"  class="custom-sm-btn" title="">
+								<a href="../project.html" class="custom-sm-btn" title="">
 									호스트 되기 </a>
 							</div>
 						</div>
@@ -169,7 +170,8 @@ padding: 0px;
 	<div class="container text-center">
 		<div class="row section-container-spacer">
 			<div class="col-xs-12 col-md-12">
-				<h2 class="text-center" style="color: rgba(255, 149, 149, 0.7);">Our Service</h2>
+				<h2 class="text-center" style="color: rgba(255, 149, 149, 0.7);">Our
+					Service</h2>
 				<p>
 					Praesent at feugiat est, at faucibus ipsum. Aenean condimentum
 					mauris vel malesuada pulvinar. <br>Vestibulum sit amet

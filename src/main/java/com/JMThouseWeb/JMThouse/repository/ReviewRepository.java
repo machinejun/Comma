@@ -21,6 +21,7 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
 	@Query(value = "SELECT COUNT(*) FROM review WHERE houseId = ?", nativeQuery = true)
 	Optional<Integer> getReviewCount(int houseId);
 	
+	@Query(value = "SELECT * FROM review WHERE houseId = ?", nativeQuery = true)
 	List<Review> findAllByHouseId(int houseId);
 
 	@Query(value = "SELECT * FROM review WHERE guestId = ?", nativeQuery = true)

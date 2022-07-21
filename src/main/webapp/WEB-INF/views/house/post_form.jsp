@@ -57,7 +57,7 @@
 				</div>
 			</div>
 			<br>
-			<button type="submit" class="custom-sm-btn" id="btn-register">등록</button>
+			<button type="submit" class="custom-btn" id="btn-register">등록</button>
 		</form>
 	</div>
 </section>

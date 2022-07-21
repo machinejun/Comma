@@ -18,6 +18,7 @@ import com.JMThouseWeb.JMThouse.auth.PrincipalDetail;
 import com.JMThouseWeb.JMThouse.dto.ResponseDto;
 import com.JMThouseWeb.JMThouse.model.Reply;
 import com.JMThouseWeb.JMThouse.model.Review;
+import com.JMThouseWeb.JMThouse.service.HouseService;
 import com.JMThouseWeb.JMThouse.service.ReviewService;
 
 @RestController
@@ -26,11 +27,15 @@ public class ReviewApiController {
 
 	@Autowired
 	private ReviewService reviewService;
+	
+	@Autowired
+	private HouseService houseService;
 
 	// 리뷰 작성 기능
-	@PostMapping("/post")
-	public ResponseDto<Review> postReview(@RequestBody Review review,
+	@PostMapping("/post/{houseId}")
+	public ResponseDto<Review> postReview(@RequestBody Review review, @PathVariable int houseId,
 			@AuthenticationPrincipal PrincipalDetail principalDetail) {
+		review.setHouseId(houseService.findById(houseId));
 		Review reviewEntity = reviewService.postReview(review, principalDetail.getUser());
 		return new ResponseDto<Review>(HttpStatus.OK.value(), reviewEntity);
 	}

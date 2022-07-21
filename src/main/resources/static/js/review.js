@@ -56,7 +56,7 @@ let index = {
 
 	deleteReview: function() {
 		let reviewId = $("#review-id").val();
-		let houseId = $("#house-id").val();
+		let guestId = $("#guest-id").val();
 		let deleteCheck = confirm("삭제하시겠습니까?");
 		console.log(reviewId);
 
@@ -66,8 +66,8 @@ let index = {
 				url: "/review/" + reviewId,
 			}).done(function(response) {
 				if (response.status == 200) {
-					//alert("리뷰가 삭제되었습니다.");
-					location.href = "/house/detail/" + houseId;
+					alert("리뷰가 삭제되었습니다.");
+					location.href = "/review/my-review-list/" + guestId;
 				} else {
 					alert("리뷰가 삭제되지 않았습니다.");
 				}

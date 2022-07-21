@@ -39,5 +39,10 @@ public class Reply implements Serializable {
 
 	@Lob
 	private String content;
+
+	@Override
+	public String toString() {
+		return "Reply [id=" + id + ", content=" + content + "]";
+	}
 	
 }

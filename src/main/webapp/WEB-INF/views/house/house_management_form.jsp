@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/house/detail.css" rel="stylesheet">
 <style>
@@ -30,6 +31,12 @@
 .custom-btn:hover {
 	background: rgba(255, 149, 149, 1);
 }
+
+.end-line {
+	border: 0;
+	height: 1px;
+	background: #ccc;
+}
 </style>
 
 <div class="container">
@@ -47,30 +54,40 @@
 		</div>
 	</div>
 	<div></div>
-	<br>
+	<br> <br>
 
-	<div class="container py-5">
-		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-			<c:forEach var="house" items="${houseList}">
-				<div class="col mb-5" style="margin: 30px;">
-					<div class="h-100">
-						<img class="custom-img" src="http://localhost:9090/upload/${house.image.imageUrl}" style="width: 250px; height: 200px;">
-						<div class="p-4">
-							<div style="margin-left: 20px;">
-								<h5 class="fw-bolder">${house.name}</h5>
-								<p>${house.address}</p>
-							</div>
-							<div class="container">
-								<a class="btn btn-outline-primary btn-sm " href="/house/update_form/${house.id}">수정</a>
-								<button class="btn btn-outline-danger btn-sm" id="btn-delete">삭제</button>
-							</div>
+	<div class="container">
+		<c:forEach var="house" items="${houseList}">
+			<div class="col-xl">
+				<div class="row">
+					<img src="http://localhost:9090/upload/${house.image.imageUrl}"
+						style="width: 200px; height: 200px;">
+					<div style="margin-left: 10px;">
+						<div class="col">
+							<h3>${house.name},&nbsp;${house.address}</h3>
 						</div>
-						<br> <br>
+						<br>
+						<p class="col">
+							등록일 :
+							<fmt:formatDate pattern="yyyy-MM-dd"
+								value="${house.creationDate}" />
+						</p>
+					</div>
+					<div class="col">
+						<a class="btn btn-outline-primary btn-sm "
+							href="/house/update_form/${house.id}">수정</a>
+						<button class="btn btn-outline-danger btn-sm" id="btn-delete">삭제</button>
+						<a class="btn btn-outline-primary btn-sm "
+							href="/review/management/${house.id}">리뷰 관리</a>
 					</div>
 				</div>
-			</c:forEach>
-		</div>
+
+			</div>
+			<hr class="end-line">
+		</c:forEach>
 	</div>
+	<br> <br>
+
 </div>
 
 <script src="/js/review.js"></script>

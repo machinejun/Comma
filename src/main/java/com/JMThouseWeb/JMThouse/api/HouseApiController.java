@@ -64,7 +64,6 @@ public class HouseApiController {
 			@PageableDefault(size = 3, sort = "id", direction = Direction.DESC) Pageable pageable) {
 
 		// 조회한 숙소의 리뷰 목록
-		System.out.println("리뷰 페이지 불러오기");
 		return reviewService.getReviewPageByHouseId(houseId, pageable);
 	}
 }

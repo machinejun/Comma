@@ -197,4 +197,11 @@ public class HouseService {
 		
 	}
 
+	@Transactional
+	public House findById(int houseId) {
+		return houseRepository.findById(houseId).orElseThrow(() -> {
+			return new IllegalArgumentException("해당 숙소는 존재하지 않습니다.");
+		});
+	}
+
 }

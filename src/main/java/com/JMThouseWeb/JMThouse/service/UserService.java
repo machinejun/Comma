@@ -1,5 +1,8 @@
 package com.JMThouseWeb.JMThouse.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -64,6 +67,15 @@ public class UserService {
 	
 	public User findByUserId(int id) {
 		return userRepository.findById(id).get();
+	}
+	
+	public List<User> showAllUser() {
+		return userRepository.findAll();
+	}
+	
+	@Transactional
+	public Optional<User> searchUserByUsername(String username){
+		return userRepository.findByUsername(username);
 	}
 
 }

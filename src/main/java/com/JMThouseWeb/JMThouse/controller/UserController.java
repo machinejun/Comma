@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.JMThouseWeb.JMThouse.model.User;
 import com.JMThouseWeb.JMThouse.service.LikeHouseService;
-import com.JMThouseWeb.JMThouse.service.ReviewService;
 import com.JMThouseWeb.JMThouse.service.UserService;
 
 @Controller
@@ -74,9 +73,25 @@ public class UserController {
 		return "user/wish_list_form";
 	}
 	
-	// 관리자페이지 호출
+	// 관리자페이지 호출 
 	@GetMapping("/admin_form")
-	public String adminForm() {
+	public String adminForm(Model model) {
+		
+		model.addAttribute(userService.showAllUser());
+		return "user/admin_form";
+	}
+	
+	// 유저 검색
+	@GetMapping("/user/search")
+	public String searchUser(String q, Model model) {
+		
+		String searchUser = q == null ? "" : q;
+		User  user = userService.searchUserByUsername(searchUser).get();
+		
+		model.addAttribute("user", user);
+		
+		System.out.println(userService.searchUserByUsername(searchUser));
+		
 		return "user/admin_form";
 	}
 

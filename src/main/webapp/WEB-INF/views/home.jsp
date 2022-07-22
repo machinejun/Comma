@@ -5,6 +5,7 @@
 	animation: box-ani 0.5s linear forwards;
 }
 
+<<<<<<< HEAD
 @
 keyframes box-ani {from { transform:translate(0, 0);
 	
@@ -15,6 +16,15 @@ to {
 }
 
 }
+=======
+@keyframes box-ani {
+	from { transform:translate(0, 0);
+		
+	}to {
+		transform: translate(0, -15px);
+	}
+}
+>>>>>>> c883e65e359a0c8487ef492bdaf8fe32793f0b92
 .text-center>h2 {
 	color: rgba(255, 149, 149, 0.7);
 }
@@ -47,11 +57,14 @@ to {
 p {
 	font-family: 'SUIT-Medium';
 }
+<<<<<<< HEAD
 .img-responsive{
 	width: 600px;
 	height: 600px;
 
 }
+=======
+>>>>>>> c883e65e359a0c8487ef492bdaf8fe32793f0b92
 </style>
 <div class="section-container">
 	<div class="container">
@@ -101,7 +114,13 @@ p {
 								</a>
 								<p>누구나 호스트가 될 수 있습니다.</p>
 								<p>숙소를 등록하고 최고의 호스트가 되어보세요.</p>
+<<<<<<< HEAD
 								<br> <a href="../project.html" class="custom-sm-btn" title=""> 호스트 되기 </a>
+=======
+								<br>
+								<a href="../project.html" class="custom-sm-btn" title="">
+									호스트 되기 </a>
+>>>>>>> c883e65e359a0c8487ef492bdaf8fe32793f0b92
 							</div>
 						</div>
 					</div>
@@ -147,7 +166,8 @@ p {
 	<div class="container text-center">
 		<div class="row section-container-spacer">
 			<div class="col-xs-12 col-md-12">
-				<h2 class="text-center" style="color: rgba(255, 149, 149, 0.7);">Our Service</h2>
+				<h2 class="text-center" style="color: rgba(255, 149, 149, 0.7);">Our
+					Service</h2>
 				<p>
 					Praesent at feugiat est, at faucibus ipsum. Aenean condimentum mauris vel malesuada pulvinar. <br>Vestibulum sit amet hendrerit leo, quis vehicula mi.
 				</p>

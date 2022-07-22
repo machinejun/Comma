@@ -1,6 +1,7 @@
 package com.CommaWeb.Comma.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,9 +31,12 @@ public class ReviewController {
 	private ReservationService reservationService;
 
 	// 리뷰 작성 폼 호출
+<<<<<<< HEAD:src/main/java/com/CommaWeb/Comma/controller/ReviewController.java
 
 	// TODO house 데이터 같이 보내야함
 
+=======
+>>>>>>> c883e65e359a0c8487ef492bdaf8fe32793f0b92:src/main/java/com/JMThouseWeb/JMThouse/controller/ReviewController.java
 	@GetMapping("/post_form/{reservationId}")
 	public String getReviewForm(@PathVariable int reservationId,
 			@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {

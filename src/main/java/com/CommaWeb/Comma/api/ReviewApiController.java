@@ -14,12 +14,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+<<<<<<< HEAD:src/main/java/com/CommaWeb/Comma/api/ReviewApiController.java
 import com.CommaWeb.Comma.auth.PrincipalDetail;
 import com.CommaWeb.Comma.dto.ResponseDto;
 import com.CommaWeb.Comma.model.Reply;
 import com.CommaWeb.Comma.model.Review;
 import com.CommaWeb.Comma.service.HouseService;
 import com.CommaWeb.Comma.service.ReviewService;
+=======
+import com.JMThouseWeb.JMThouse.auth.PrincipalDetail;
+import com.JMThouseWeb.JMThouse.dto.ResponseDto;
+import com.JMThouseWeb.JMThouse.model.Reply;
+import com.JMThouseWeb.JMThouse.model.Review;
+import com.JMThouseWeb.JMThouse.service.HouseService;
+import com.JMThouseWeb.JMThouse.service.ReviewService;
+>>>>>>> c883e65e359a0c8487ef492bdaf8fe32793f0b92:src/main/java/com/JMThouseWeb/JMThouse/api/ReviewApiController.java
 
 @RestController
 @RequestMapping("/review")

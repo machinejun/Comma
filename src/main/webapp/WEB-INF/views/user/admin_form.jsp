@@ -1,10 +1,11 @@
 <head><%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link href="/css/reservationStyle/reservationStyle.css" rel="stylesheet">
-<%@ include file="../layout/header.jsp" %></head>
+<%@ include file="../layout/header.jsp" %>
+</head>
 <body>
 <div class="section-container contact-container" >
-	<div id="inputPage" class="container" style="background-color: rgba(255,149,149,0.7);">
+	<div id="inputPage" class="container" style="background-color: white;">
 		<div class="row" >
 			<div class="col-xs-12 col-md-12" >
 				<div id="page-container">
@@ -19,10 +20,21 @@
 					</div>	
 
 								<div class="d-flex flex-row-reverse">
-										<form class="form-inline" action="/user/search" method="get">
-												  <input type="text" class="form-control" name="q" value="${searchUser}" placeholder="검색어를 입력해주세요" >
-												  <button type="submit" class="btn btn-primary ml-2" id="btn-search">검색</button>
+										
+										<form class="form-inline" action="/user/searchUsername" method="get">
+													<select name="role" style="width: 130px; height: 40px; margin: 10px; margin-top: 12px;">
+														<option value="">전체</option>
+														<option value="guest">GUEST</option>
+														<option value="host">HOST</option>
+													</select>
+												  <input type="text" class="form-control" style="margin: 10px" name="q" value="${searchUser}" placeholder="검색어를 입력하세요" >
+												  <button type="submit" class="custom-sm-btn" id="btn-search" style="font-size: 20px">검색</button>
+												  
+											
 										</form>
+										
+										
+										
 								</div>
 					
 						 <div class="container">
@@ -36,22 +48,28 @@
 									      <th scope="col">전화번호</th>
 									      <th scope="col">회원구분</th>
 									      <th scope="col">username</th>
+									      <th scope="col">예약 / 숙소정보</th>
 						            </tr>
 						        </thead>
 						        <tbody>
-						            <c:choose>
-						            		<c:when test="${1 > 0}">
-						            					<tr>
+						            
+						             <c:if test="${1>0}">
+						             			<tr>
 										                    <td>${ user.id }</td>
 										                    <td>${ user.creationDate }</td>
 										                    <td>${ user.email }</td>
 										                    <td>${ user.phoneNumber }</td>
 										                    <td>${ user.role }</td>
 										                    <td>${ user.username }</td>
-										                </tr>
-						            		</c:when>
-						            		<c:otherwise>
-						            				<c:forEach var="user" items="${ userList }">
+										                    <c:if test= "${user.role eq 'GUEST' }">
+										                    <td><button type="submit" class="custom-sm-btn"  >예약확인</button></td>
+										                    </c:if>
+										                    <c:if test= "${user.role eq 'HOST' }">
+										                    <td><button type="submit" class="custom-sm-btn" >숙소정보</button></td>
+										                    </c:if>
+										         </tr>
+						             </c:if>
+						             <c:forEach var="user" items="${ userList }">
 										                <tr>
 										                    <td>${ user.id }</td>
 										                    <td>${ user.creationDate }</td>
@@ -59,10 +77,14 @@
 										                    <td>${ user.phoneNumber }</td>
 										                    <td>${ user.role }</td>
 										                    <td>${ user.username }</td>
+										                    <c:if test= "${user.role eq 'GUEST' }">
+										                    <td><button type="submit" class="custom-sm-btn" >예약확인</button></td>
+										                    </c:if>
+										                    <c:if test= "${user.role eq 'HOST' }">
+										                    <td><button type="submit" class="custom-sm-btn" >숙소정보</button></td>
+										                    </c:if>
 										                </tr>
-										            </c:forEach>
-						            		</c:otherwise>
-						            </c:choose>
+									</c:forEach>
 						        </tbody>
 						    </table>
 						</div>

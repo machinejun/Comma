@@ -1,5 +1,6 @@
 package com.JMThouseWeb.JMThouse.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -76,6 +77,38 @@ public class UserService {
 	@Transactional
 	public Optional<User> searchUserByUsername(String username){
 		return userRepository.findByUsername(username);
+	}
+	
+	@Transactional
+	public Optional<User> searchUserByEmail(String email){
+		return userRepository.findByEmail(email);
+	}
+	
+	@Transactional
+	public Optional<User> searchUserByCreationDate(Timestamp creationDate){
+		return userRepository.findByCreationDate(creationDate);
+	}
+	
+	@Transactional
+	public Optional<User> searchUserByPhoneNumber(String phoneNumber){
+		return userRepository.findByPhoneNumber(phoneNumber);
+	}
+	
+	@Transactional
+	public Optional<User> searchUserByRole(RoleType role){
+		return userRepository.findByRole(role);
+	}
+	
+	@Transactional
+	public List<User> searchRoleAndUser(String role, String name){
+		System.out.println(userRepository.findByRoleAndUserName(role, name));
+		return userRepository.findByRoleAndUserName(role, name);
+	}
+	
+	@Transactional
+	public List<User> searchUserOnly(String name){
+		System.out.println(userRepository.findByUserName(name));
+		return userRepository.findByUserName(name);
 	}
 
 }

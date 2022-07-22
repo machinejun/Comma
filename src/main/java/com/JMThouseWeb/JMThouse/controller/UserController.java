@@ -1,5 +1,7 @@
 package com.JMThouseWeb.JMThouse.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.JMThouseWeb.JMThouse.model.User;
 import com.JMThouseWeb.JMThouse.service.LikeHouseService;
@@ -72,27 +75,102 @@ public class UserController {
 		model.addAttribute("wishList", likeHouseService.getWishListById(guestId));
 		return "user/wish_list_form";
 	}
-	
-	// 관리자페이지 호출 
+
+	// 관리자페이지 호출
 	@GetMapping("/admin_form")
 	public String adminForm(Model model) {
-		
+
 		model.addAttribute(userService.showAllUser());
 		return "user/admin_form";
 	}
-	
+
 	// 유저 검색
-	@GetMapping("/user/search")
-	public String searchUser(String q, Model model) {
-		
-		String searchUser = q == null ? "" : q;
-		User  user = userService.searchUserByUsername(searchUser).get();
-		
-		model.addAttribute("user", user);
-		
-		System.out.println(userService.searchUserByUsername(searchUser));
-		
+	@GetMapping("/user/searchUsername")
+	public String searchUsername(@RequestParam Map<String, String> map, Model model) {
+
+		String role = map.get("role") == null ? "" : map.get("role");
+		String q = map.get("q") == null ? "" : map.get("q");
+
+//		try {
+//			user = userService.searchUserByUsername(searchUser).orElseThrow(() -> new Exception("해당유저가 없습니다"));
+//			model.addAttribute("user", user);
+//			System.out.println(userService.searchUserByUsername(searchUser));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+
+		if (role.equals("") || role == null) {
+			model.addAttribute("q", userService.searchUserOnly(q));
+			System.out.println("3333333333333333");
+		} else {
+			model.addAttribute("q", userService.searchRoleAndUser(role, q));
+			System.out.println("44444444444444444");
+		}
 		return "user/admin_form";
 	}
+
+//	// 유저 검색
+//	@GetMapping("/user/search")
+//	public String searchCreationDate(String q, Model model) {
+//
+//		TimeStamp searchUser = q == null ? "" : q;
+//		User user;
+//		try {
+//			user = userService.searchUserByCreationDate(searchUser).orElseThrow(() -> new Exception("해당유저가 없습니다"));
+//			model.addAttribute("user", user);
+//			System.out.println(userService.searchUserByCreationDate(searchUser));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return "user/admin_form";
+//	}
+
+	// 유저 검색
+	@GetMapping("/user/searchEmail")
+	public String searchEmail(String q, Model model) {
+
+		String searchUser = q == null ? "" : q;
+		User user;
+		try {
+			user = userService.searchUserByEmail(searchUser).orElseThrow(() -> new Exception("해당유저가 없습니다"));
+			model.addAttribute("user", user);
+			System.out.println(userService.searchUserByEmail(searchUser));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "user/admin_form";
+	}
+
+	// 유저 검색
+	@GetMapping("/user/searchPhoneNumber")
+	public String searchPhoneNumber(String q, Model model) {
+
+		String searchUser = q == null ? "" : q;
+		User user;
+		try {
+			user = userService.searchUserByPhoneNumber(searchUser).orElseThrow(() -> new Exception("해당유저가 없습니다"));
+			model.addAttribute("user", user);
+			System.out.println(userService.searchUserByPhoneNumber(searchUser));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "user/admin_form";
+	}
+
+//	// 유저 검색
+//	@GetMapping("/user/search")
+//	public String searchRole(String q, Model model) {
+//
+//		String searchUser = q == null ? "" : q;
+//		User user;
+//		try {
+//			user = userService.searchUserByRole(searchUser).orElseThrow(() -> new Exception("해당유저가 없습니다"));
+//			model.addAttribute("user", user);
+//			System.out.println(userService.searchUserByRole(searchUser));
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return "user/admin_form";
+//	}
 
 }

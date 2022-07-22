@@ -179,17 +179,22 @@ padding: 0px;
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-md-4">
-				<i class="bi bi-person-check" style="width: 210px; height: 210px;"></i>
+			<a href="/">
+				<i class="bi bi-calendar-check" style="font-size: 170px; color: rgba(255, 149, 149, 0.7);"></i></a>
+				<h3 style="color: rgba(255, 149, 149, 0.7);">예약하기</h3>
 			</div>
 			<div class="col-xs-12 col-md-4">
-				<img src="../assets/images/logo-02.png" alt=""
-					class="img-responsive reveal-content image-center">
+			<a href="/">
+				<i class="bi bi-house-fill" style="font-size: 170px; color: rgba(255, 149, 149, 0.7);"></i></a>
+				<h3 style="color: rgba(255, 149, 149, 0.7);">예약하기</h3>
 			</div>
 			<div class="col-xs-12 col-md-4">
-				<img src="../assets/images/logo-03.png" alt=""
-					class="img-responsive reveal-content image-center">
+			<a href="/">
+				<i class="bi bi-card-list" style="font-size: 170px; color: rgba(255, 149, 149, 0.7);"></i></a>
+				<h3 style="color: rgba(255, 149, 149, 0.7);">예약하기</h3>
 			</div>
 		</div>
+		<br/>
 	</div>
 </div>
 <%@ include file="layout/footer.jsp"%>

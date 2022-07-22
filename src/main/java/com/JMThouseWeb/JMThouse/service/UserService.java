@@ -91,10 +91,10 @@ public class UserService {
 	public boolean saveHost(Host hostEntity) {	
 		try {
 			Host host = hostRepository.findById(hostEntity.getUserId()).get();
-			return true;
+			return false;
 		} catch (Exception e) {
 			hostRepository.save(hostEntity);
-			return false;		
+			return true;		
 		}	
 
 	}

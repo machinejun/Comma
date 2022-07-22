@@ -1,3 +1,5 @@
+let token = $("meta[name='_csrf']").attr("content");
+let header = $("meta[name='_csrf_header']").attr("content");
 
 let index = {
 
@@ -16,9 +18,9 @@ let index = {
 		let starScore;
 		let starLength = $("#rating").length;
 		let reviewId = $("#review-id").val();
-		
-		for(let i = 0; i < starLength; i++) {
-			if($("#rating")[i].checked == true) {
+
+		for (let i = 0; i < starLength; i++) {
+			if ($("#rating")[i].checked == true) {
 				starScore = $("#rating")[i].val();
 			}
 		}
@@ -35,6 +37,11 @@ let index = {
 			alert("내용을 입력하세요.")
 		} else {
 			$.ajax({
+				beforeSend: function(xhr) {
+					console.log("xhr: " + xhr)
+					xhr.setRequestHeader(header, token)
+				},
+
 				type: "PUT",
 				url: "/review/" + reviewId,
 				data: JSON.stringify(data),
@@ -62,6 +69,12 @@ let index = {
 
 		if (deleteCheck) {
 			$.ajax({
+
+				beforeSend: function(xhr) {
+					console.log("xhr: " + xhr)
+					xhr.setRequestHeader(header, token)
+				},
+
 				type: "DELETE",
 				url: "/review/" + reviewId,
 			}).done(function(response) {

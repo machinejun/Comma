@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import com.JMThouseWeb.JMThouse.auth.PrincipalDetailService;
 
@@ -34,10 +35,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable()
+		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+				.and()
 				.authorizeRequests()
 				.antMatchers("/auth/**", "/user/**", "/", "/js/**", "/css/**", "/assets/**", "/images/**", "/test/**", "/fonts/**", "/upload/**")
 				.permitAll()
+				//.antMatchers("/reserveTable/host", "/house/post_form","/house/update", "/house/management").access("ROLE_HOST")
 				.anyRequest()
 				.authenticated()
 			.and()

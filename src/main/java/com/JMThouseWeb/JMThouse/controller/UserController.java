@@ -73,6 +73,9 @@ public class UserController {
 	}
 
 	// 위시리스트 페이지 호출
+	/*
+	 * secu
+	 */
 	@GetMapping("/wish-list/{guestId}")
 	public String getWishList(@PathVariable int guestId, Model model) {
 		model.addAttribute("wishList", likeHouseService.getWishListById(guestId));

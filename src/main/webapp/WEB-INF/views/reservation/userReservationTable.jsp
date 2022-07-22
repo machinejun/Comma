@@ -45,6 +45,15 @@ img {
 	background-color: rgba(254,32,32, 0.3);
 	color: white;
 }
+.detail-show-btn{
+	font-weight: bold;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.detail-show-btn:hover {
+	color: rgba(255,149,149,0.7);
+	text-decoration: underline;
+}
 
 </style>
 <script type="text/javascript" src="/js/reservation/userReserveTable.js"></script>
@@ -58,30 +67,30 @@ img {
 							  <thead>
 							    <tr>
 							      <th scope="col">예약 id</th>
-							      <th scope="col">숙소명</th>
-							      <th scope="col">예약 일</th>										
+							      <th scope="col" style="width: 350px">숙소명</th>
+							      <th scope="col" style="width: 300px">예약 일</th>										
 							      <th scope="col">상태</th>
 							      <th scope="col" style="text-align: center;">결제</th>
-							      <th scope="col" style="text-align: center;">상세보기</th>
+							      <th scope="col" style="text-align: center;">리뷰쓰기</th>
 							    </tr>
 							  </thead>
 							  <tbody id="table-body">
 								  <c:forEach var="reservation" items="${reservations}">
 								  
 								  	<tr>
-								      <td scope="row">${reservation.id}</td>
-								      <td>${reservation.houseId.name}</td>
+								      <td  scope="row">${reservation.id}</td>
+								      <td class="detail-show-btn"><a onclick="showResDetail(${reservation.id})">${reservation.houseId.name}</a></td>
 								      <td>${reservation.checkInDate} ~ ${reservation.checkOutDate}</td>
-								      <td style="font-weight: bold;">${reservation.approvalStatus}</td>
+								      <td>${reservation.approvalStatus}</td>
 								      <c:choose>
-								      	<c:when test="${reservation.approvalStatus eq 'WAITING'}">
+								      	<c:when test="${reservation.approvalStatus eq 'APPROVED'}">
 								      		<td style="text-align: center;"><a type="button" style="border-color: white;" onclick="payForKakao(${reservation.id})" ><img src="/assets/payment_small.png"></img></a></td>
 								      	</c:when>
 								      	<c:otherwise>
-								      		<td style="text-align: center;"><a type="button"  style="border-color: white;" onclick="payForKakao(${reservation.id})" ><img style="width: 80px" src="/assets/payment_small.png"></img></a></td>
+								      		<td style="text-align: center;"><a type="button" class="disabled" style="border-color: white;" onclick="payForKakao(${reservation.id})" ><img style="width: 80px" src="/assets/payment_small.png"></img></a></td>
 								      	</c:otherwise>
 								      </c:choose>
-								      <td style="text-align: center;"><button onclick="showResDetail(${reservation.id})" class="btn" style="">detail</button></td>
+								      <td style="text-align: center;"><button onclick="location.href='/review/post_form?houseId=${reservation.houseId.id}'" class="btn" style="">리뷰 쓰러가기</button></td>
 								    </tr>
 								  </c:forEach>
 							  </tbody>

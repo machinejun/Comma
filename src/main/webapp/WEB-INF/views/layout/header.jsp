@@ -16,6 +16,8 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="${_csrf.parameterName}" content="${_csrf.token}">
+    <meta name="_csrf_header" content="${_csrf.headerName}">
 <meta name="description" content="">
 <meta name="author" content="">
 <title>Comma - 쉼표를 찍는 공간</title>
@@ -67,18 +69,27 @@ code{
 	color: rgba(255, 149, 149, 0.5);
 }
 nav{
+	position: relative;
+	z-index: 1;
 	background-color: rgba(255, 149, 149, 0.03)
 }
 #user-table{
-	z-index: 3;
+	z-index: 4;
 	position: fixed;
 	top: 2%;
-	right: 10%;
+	right: 8%;
 }
 .user-btn {
+	width: 180px;
+	z-index: 4;
 	padding: 5px;
 	font-size: 35px;
 	color: rgba(255, 149, 149, 0.7);
+}
+.user-btn:hover {
+	padding: 5px;
+	font-size: 35px;
+	color: rgba(255, 149, 149, 0.9);
 }
 #header-text{
 margin-left: 200px;
@@ -91,14 +102,18 @@ margin-left: 200px;
     background-color: #fff;
     border: 1px solid #ddd;
 }
+#user-box-header{
+	display: none;
+}
+
 </style>
 </head>
 
 <body>
 	<input id="isNaviFocus" type="hidden" value=0 />
 	<!-- Navigation -->
-	<nav class="navbar navbar-expand-lg fixed-top">
-		<div id="naviBar" class="navbar-expand-lg fixed-top"
+	<nav class="navbar navbar-expand-lg">
+		<div id="naviBar" class="navbar-expand-lg "
 			>
 			<a id="header-text" class="navbar-brand" href="/">Comma</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -107,37 +122,62 @@ margin-left: 200px;
 				<span class="navbar-toggler-icon"></span>
 			</button>
 		</div>
+		
 	</nav>
-		<section>
-			<div id="user-table" class="list-group">
-					<a class="user-btn"><i class="bi bi-person-lines-fill"></i></a>
-					<div>
+	<div id="user-table" class="list-group">
+		<a onclick="openUserBox()" id="user-btn-header" class="user-btn"><i class="bi bi-person-lines-fill"></i></a>
+		<div id="user-box-header">
 						<input id="isUserTable" type="hidden" value=0 /> 
-						<a href="/auth/login_form" class="list-group-item list-group-item-action"> <span
-							class="icon-drivers-license-o"></span>&nbsp;&nbsp;로그인
-						</a> 
-						<a href="/auth/join_form"
-							class="list-group-item list-group-item-action"> <span
-							class="icon-user-plus"></span>&nbsp;&nbsp;회원가입
+						<c:choose><c:when test="${empty principal}">
+							<a href="/auth/login_form" class="list-group-item list-group-item-action"> <span
+								class="icon-drivers-license-o"></span>&nbsp;&nbsp;로그인
+							</a> 
+							<a href="/auth/join_form"
+								class="list-group-item list-group-item-action"> <span
+								class="icon-user-plus"></span>&nbsp;&nbsp;회원가입
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a class="list-group-item list-group-item-action"
+								href="/logout"> <span
+								class="icon-suitcase"></span>&nbsp;&nbsp;로그아웃
+							</a>
+						
+						</c:otherwise>
+						</c:choose>
+						
+						<sec:authorize access="hasRole('ROLE_GUEST')">
+							<a type="button"
+								class="list-group-item list-group-item-action" href="/be-host">
+								<span class="icon-black-tie"></span>&nbsp;&nbsp;호스트 되기
+							</a>
+							<a class="list-group-item list-group-item-action"
+								href="/reserveTable/user"> <span
+								class="icon-suitcase"></span>&nbsp;&nbsp;예약 내역
+							</a>
+							<a type="button" href="/wish-list/${principal.user.id}"
+							class="list-group-item list-group-item-action">
+							<span class="icon-gittip"></span>&nbsp;&nbsp;위시 리스트
 						</a>
-						<a type="button"
-							class="list-group-item list-group-item-action" href=`/be-host`>
-							<span class="icon-black-tie"></span>&nbsp;&nbsp;${principal.user.role == 'GUEST' ? "게스트 되기" : "호스트 되기" }
-						</a>
-						<a class="list-group-item list-group-item-action"
-							href="/reserveTable/user"> <span
-							class="icon-suitcase"></span>&nbsp;&nbsp;예약 내역
-						</a>
-						<a type="button"
+						</sec:authorize>
+						<sec:authorize access="hasRole('ROLE_HOST')">
+							<a type="button"
+								class="list-group-item list-group-item-action" href="/be-guest">
+								<span class="icon-black-tie"></span>&nbsp;&nbsp;게스트 되기
+							</a>
+							<a type="button"
 							class="list-group-item list-group-item-action"
 							href="/reserveTable/host">
 							<span class="icon-users"></span>&nbsp;&nbsp;예약자 확인
 						</a>
-						<a type="button"
-							class="list-group-item list-group-item-action">
-							<span class="icon-gittip"></span>&nbsp;&nbsp;위시 리스트
-						</a>
-					</div>
-				</div>
-		</section>
+						</sec:authorize>
+						
+						
+						
+						
+				</div>			
+	</div>
+				
+			
+	
 				

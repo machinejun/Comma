@@ -1,22 +1,14 @@
-$(document).ready(function(){
-  //$("#user-table").hide();
-		
-  $("#user-content").bind("click", () => {
+function openUserBox(){
 	isShow = $("#isUserTable").val();
 	if(isShow == 0 ){
-		$("#user-table").show();
+		$("#user-box-header").show();
 		$("#isUserTable").attr('value',1);
-		setTimeout(function() {
-  			$("#user-table").hide();
-			$("#isUserTable").attr('value',0);
-		}, 10000);
-	}else{
-		$("#user-table").hide();
-		$("#isUserTable").attr('value',0);
-	}
-  })
-});
 
+	}else{
+		$("#user-box-header").hide();
+		$("#isUserTable").attr('value',0);
+	}	
+}
 
 function upnav () {
 	document.addEventListener('scroll', onScroll, { passive: true });
@@ -28,6 +20,7 @@ function upnav () {
 			isShow = $("#isNaviFocus").val();
 			if (scrollposition < headerheight + 100){
 				$("#naviBar").show();
+				$("#user-btn-header").show();
 				return;
 			}
 			else if (scrollposition > last || scrollposition<= headerheight) {
@@ -35,11 +28,14 @@ function upnav () {
 					return;
 				}
 				$("#naviBar").hide();
+				$("#user-btn-header").hide();
+				$("#user-box-header").hide();
 			}else if (scrollposition<last) {	
 				if(isShow != 0){
 					return;
 				}
 				$("#naviBar").show();
+				$("#user-btn-header").show();
 			}
 			last = scrollposition; 
 		}

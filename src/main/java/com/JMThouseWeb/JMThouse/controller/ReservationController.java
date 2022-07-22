@@ -89,7 +89,7 @@ public class ReservationController {
 		return "reservation/userReservationTable";
 	}
 	
-	@GetMapping("/test/kakao/approve")
+	@GetMapping("/kakao/approve")
 	public String approve(@RequestParam String pg_token, Model model) {
 		System.out.println("sdfsdfsdfsdfsdsdjlksjfslkfjd");
 		ResponsePaidDto paidDto = (ResponsePaidDto) httpSession.getAttribute("kakao");
@@ -129,10 +129,4 @@ public class ReservationController {
 		System.out.println(response);
 		return response;
 	}
-	
-	@GetMapping("/test/complete")
-	public String completePayment() {
-		return "/reservation/paymentCompletePage";
-	}
-
 }

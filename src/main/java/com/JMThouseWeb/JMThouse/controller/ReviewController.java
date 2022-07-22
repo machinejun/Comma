@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.JMThouseWeb.JMThouse.auth.PrincipalDetail;
 import com.JMThouseWeb.JMThouse.model.Review;
@@ -32,7 +33,7 @@ public class ReviewController {
 	// 리뷰 작성 폼 호출
 	// TODO house 데이터 같이 보내야함
 	@GetMapping("/post_form")
-	public String getReviewForm(Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+	public String getReviewForm(Model model, @AuthenticationPrincipal PrincipalDetail principalDetail, @RequestParam int houseId) {
 		// model.addAttribute("reservation",
 		// reservationService.getReservation(principalDetail.getUser());
 		return "review/review_post_form";

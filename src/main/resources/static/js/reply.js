@@ -1,3 +1,5 @@
+let token = $("meta[name='_csrf']").attr("content");
+let header = $("meta[name='_csrf_header']").attr("content");
 
 let index = {
 
@@ -30,6 +32,11 @@ let index = {
 			alert("내용을 입력하세요.");
 		} else {
 			$.ajax({
+				beforeSend: function(xhr) {
+					console.log("xhr: " + xhr)
+					xhr.setRequestHeader(header, token)
+				},
+
 				type: "POST",
 				url: "/review/reply/" + reviewId,
 				data: JSON.stringify(data),
@@ -59,6 +66,11 @@ let index = {
 			alert("내용을 입력하세요.")
 		} else {
 			$.ajax({
+				beforeSend: function(xhr) {
+					console.log("xhr: " + xhr)
+					xhr.setRequestHeader(header, token)
+				},
+
 				type: "PUT",
 				url: "/review/reply/" + replyId,
 				data: JSON.stringify(data),
@@ -85,6 +97,11 @@ let index = {
 
 		if (deleteCheck) {
 			$.ajax({
+				beforeSend: function(xhr) {
+					console.log("xhr: " + xhr)
+					xhr.setRequestHeader(header, token)
+				},
+
 				type: "DELETE",
 				url: "/review/reply/" + replyId,
 			}).done(function(response) {

@@ -95,6 +95,7 @@
                     <ul class="list-group">
 					  <li  class="list-group-item d-flex justify-content-between align-items-center">
 					    <p id="booker" class="align-items-center" style="transform: translate(0%,30%);">예약자 : ${principal.user.username}</p>				   
+					   				   
 					  </li>
 					  <li class="list-group-item d-flex justify-content-between align-items-center">					  	
 					    <p id="count" class="align-items-center" style="transform: translate(0%,30%);">인원 수 : 1</p> 

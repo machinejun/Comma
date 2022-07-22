@@ -13,6 +13,7 @@
 
 			<form class="login100-form validate-form" action="/auth/loginProc"
 				method="post" class="needs-validation" novalidate>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> 
 				<span class="login100-form-title"> Member Login </span>
 
 				<div class="wrap-input100 validate-input"

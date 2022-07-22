@@ -44,9 +44,9 @@ h2::after {
 			      <th scope="row">숙소 정보</th>
 			    	<td>
 			    		<ul style="list-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 0px; margin-bottom: 0px;">
-			    			<li>${kakao.item_name }</li>
-			    			<li>${reservation.houseId.address}</li>
-			    			<li>${reservation.hostId.user.phoneNumber}</li>
+			    			<li>숙 소    명: ${kakao.item_name }</li>
+			    			<li>숙소   주소: ${reservation.houseId.address}</li>
+			    			<li>호스트 번호: ${reservation.hostId.user.phoneNumber}</li>
 			    		</ul>
 					</td>
 			    </tr>
@@ -54,10 +54,10 @@ h2::after {
 			      <th scope="row">결제 정보</th>
 			      <td colspan="2">
 			      	  <ul style="list-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 0px; margin-bottom: 0px;">
-			    			<li>${kakao.partner_order_id}</li>
-			    			<li>${kakao.payment_method_type}</li>
-			    			<li>${kakao.amount.total}</li>
-			    			<li>${kakao.approved_at }</li>
+			    			<li>예 약 자 : ${kakao.partner_order_id}</li>
+			    			<li>결제 타입: ${kakao.payment_method_type}</li>
+			    			<li>결제 금액: ${kakao.amount.total} 원</li>
+			    			<li>승인 시간: ${kakao.approved_at }</li>
 			    	  </ul>
 			      </td>
 			    </tr>

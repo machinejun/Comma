@@ -1,93 +1,101 @@
 let istableShow = 0;
 
+let token = $("meta[name='_csrf']").attr("content");
+let header = $("meta[name='_csrf_header']").attr("content");
+
 // 화면 이벤트
-function startModal(){
-	if(istableShow == 0){
+function startModal() {
+	if (istableShow == 0) {
 		showModal();
 		console.log(bookedDays);
-	}else{
+	} else {
 		closeModal();
 	}
 }
 
-function showModal(){
+function showModal() {
 	istableShow = 1;
 	disableScrolling();
 	$(".detail").fadeIn();
-	$("#isNaviFocus").attr('value',1);
+	$("#isNaviFocus").attr('value', 1);
 }
 
-function closeModal(){
+function closeModal() {
 	$(".detail").fadeOut();
 	istableShow = 0;
 	enableScrolling()
-	$("#isNaviFocus").attr('value',0);
+	$("#isNaviFocus").attr('value', 0);
 }
 
-function disableScrolling(){
-    var x=window.scrollX;
-    var y=window.scrollY;
-    window.onscroll=function(){window.scrollTo(x, y);};
+function disableScrolling() {
+	var x = window.scrollX;
+	var y = window.scrollY;
+	window.onscroll = function() { window.scrollTo(x, y); };
 }
 
-function enableScrolling(){
-    window.onscroll=function(){};
+function enableScrolling() {
+	window.onscroll = function() { };
 }
 
-function alertMessage(title, text, icon){
+function alertMessage(title, text, icon) {
 	Swal.fire(
-	  title,
-	  text,
-	  icon
+		title,
+		text,
+		icon
 	)
 }
 // end 화면 이벤트
 
 // 예약 취소
-function cancelAndAlert(reservationId){
+function cancelAndAlert(reservationId) {
 	Swal.fire({
-	  title: '정말 예약을 취소시키겠습니까 ?',
-	  text: "예약을 취소시킨다면 다시 복구 할 수 없습니다.",
-	  icon: 'warning',
-	  showCancelButton: true,
-	  confirmButtonColor: '#3085d6',
-	  cancelButtonColor: '#d33',
-	  confirmButtonText: 'OK'
-	}).then((result) => {	
-	  if (result.isConfirmed) {
-		$.ajax({
-		type: "delete",
-		url: `/test/api/reserve/delete/${reservationId}`,
-		contentType: "application/json; charset=utf-8",
-		dataType: "json"
-		}).done(function(response) {
-			closeModal();
-			location.reload();
-		}).fail(function(){
-			alertMessage("error", "예약 취소에 실패하였습니다","error");
-			return;
-		})	
-	  }
+		title: '정말 예약을 취소시키겠습니까 ?',
+		text: "예약을 취소시킨다면 다시 복구 할 수 없습니다.",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'OK'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			$.ajax({
+				beforeSend: function(xhr) {
+					console.log("xhr: " + xhr)
+					xhr.setRequestHeader(header, token)
+				},
+
+				type: "delete",
+				url: `/api/reservation/delete/${reservationId}`,
+				contentType: "application/json; charset=utf-8",
+				dataType: "json"
+			}).done(function(response) {
+				closeModal();
+				location.reload();
+			}).fail(function() {
+				alertMessage("error", "예약 취소에 실패하였습니다", "error");
+				return;
+			})
+		}
 	})
 }
 
 // 유저 예약 테이블 표시
-function showResDetail(resId){
+function showResDetail(resId) {
 	$.ajax({
 		type: "get",
-		url: `/test/api/reserve/guest/showRes/${resId}`,
+		url: `/api/reservation/detail?resId=${resId}`,
 		dataType: "json"
-		}).done(function(response) {
-			console.log(response)
-			addDetailPage(response)
-		}).fail(function(err){
-			console.log(err)
-		})
+	}).done(function(response) {
+		console.log(response)
+		addDetailPage(response)
+	}).fail(function(err) {
+		console.log(err)
+	})
 }
 
-function addDetailPage(response){
-	let div = 
-	`<div id="detail-img">
+function addDetailPage(response) {
+	let div =
+		`<div id="detail-img">
 		<img id="detail-div-img" src="http://localhost:9090/upload/${response.houseId.image.imageUrl}"/>
 	</div>
 	<div id="detail-div" style="width: 500px; padding-left: 15px">
@@ -168,38 +176,42 @@ function addDetailPage(response){
 			<button onclick="closeModal()" class="btn btn-secondary" style="padding: 5px; font-size: 15px;">닫기</button>	
 		</div>
 	</div>`;
-	$("#userTableDetail").append(div);
 	checkImgContain(response);
+	$("#userTableDetail").append(div);
 	showModal();
 }
 
-function checkImgContain(response){
-	if(response.houseId.image == undefined || response.houseId.image == null ){
-		$("#detail-div-img").attr("src","https://cdn.pixabay.com/photo/2012/04/24/16/19/room-40309_960_720.png")
-	}else{
-		$("#detail-div-img").attr("src",`${response.houseId.image.imageUrl}`)
+function checkImgContain(response) {
+	if (response.houseId.image == undefined || response.houseId.image == null) {
+		$("#detail-div-img").attr("src", "https://cdn.pixabay.com/photo/2012/04/24/16/19/room-40309_960_720.png")
+	} else {
+		$("#detail-div-img").attr("src", `${response.houseId.image.imageUrl}`)
+		//$("#detail-div-img").attr("src", `https://gifburg.com/images/gifs/loading/webp/0012.webp`)
 	}
 }
 
-function payForKakao(iresId){
+function payForKakao(iresId) {
 
 
 	let data = {
 		resId: iresId,
 	}
-	
+
 	$.ajax({
-		type:"post",
-		url:`/test/api/reserve/kakao`,
+		beforeSend: function(xhr) {
+					xhr.setRequestHeader(header, token)
+				},
+		type: "post",
+		url: `/api/reservation/kakao`,
 		contentType: "application/json; charset=utf-8",
 		dataType: "json",
 		data: JSON.stringify(data)
-	}).done(function (res){
+	}).done(function(res) {
 		console.log(res.next_redirect_pc_url);
 		window.location.replace(res.next_redirect_pc_url);
-		
-	}).fail(function(){
-		
+
+	}).fail(function() {
+
 	})
 }
 

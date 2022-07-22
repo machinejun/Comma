@@ -5,6 +5,8 @@
 .multiLine {
 	width: 200px;
 	overflow: hidden;
+	line-height: 1.1;
+	margin-left: 5px;
 	text-overflow: ellipsis;
 	display: -webkit-box;
 	-webkit-line-clamp: 3;

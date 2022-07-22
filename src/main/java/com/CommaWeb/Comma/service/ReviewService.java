@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-<<<<<<< HEAD:src/main/java/com/CommaWeb/Comma/service/ReviewService.java
 import com.CommaWeb.Comma.dto.HouseScoreDto;
 import com.CommaWeb.Comma.model.House;
 import com.CommaWeb.Comma.model.Reply;
@@ -19,17 +18,6 @@ import com.CommaWeb.Comma.repository.HouseRepository;
 import com.CommaWeb.Comma.repository.ReplyRepository;
 import com.CommaWeb.Comma.repository.ReviewRepository;
 import com.CommaWeb.Comma.repository.StarScoreRepository;
-=======
-import com.JMThouseWeb.JMThouse.dto.HouseScoreDto;
-import com.JMThouseWeb.JMThouse.model.House;
-import com.JMThouseWeb.JMThouse.model.Reply;
-import com.JMThouseWeb.JMThouse.model.Review;
-import com.JMThouseWeb.JMThouse.model.User;
-import com.JMThouseWeb.JMThouse.repository.HouseRepository;
-import com.JMThouseWeb.JMThouse.repository.ReplyRepository;
-import com.JMThouseWeb.JMThouse.repository.ReviewRepository;
-import com.JMThouseWeb.JMThouse.repository.StarScoreRepository;
->>>>>>> c883e65e359a0c8487ef492bdaf8fe32793f0b92:src/main/java/com/JMThouseWeb/JMThouse/service/ReviewService.java
 
 @Service
 public class ReviewService {
@@ -50,23 +38,15 @@ public class ReviewService {
 	public Review postReview(Review review, User user) {
 
 		// 저장된 별점 데이터 꺼내서 평점 계산
-<<<<<<< HEAD:src/main/java/com/CommaWeb/Comma/service/ReviewService.java
-=======
-		House houseEntity = houseRepository.findById(review.getHouseId().getId()).get();
-		double avgStarScore = starScoreRepository.getAvgStarScoreByHouse(houseEntity.getId()).getScore();
-		houseEntity.setStarScore(avgStarScore);
-		review.setGuestId(user);
-
->>>>>>> c883e65e359a0c8487ef492bdaf8fe32793f0b92:src/main/java/com/JMThouseWeb/JMThouse/service/ReviewService.java
 		Review reviewEntity = reviewRepository.save(review);
-		
+
 		House houseEntity = houseRepository.findById(review.getHouseId().getId()).get();
 		double avgStarScore = starScoreRepository.getAvgStarScoreByHouse(houseEntity.getId()).get(0).getScore();
 		System.out.println(avgStarScore);
 		houseEntity.setStarScore(avgStarScore);
 		System.out.println("postReive: " + houseEntity);
 		review.setGuestId(user);
-		
+
 		return reviewEntity;
 	}
 
@@ -102,7 +82,7 @@ public class ReviewService {
 		} catch (IndexOutOfBoundsException e) {
 			return null;
 		}
-		
+
 	}
 
 	@Transactional

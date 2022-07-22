@@ -69,17 +69,15 @@
 			<c:set var="notExist" value="bi-suit-heart"></c:set>
 			<c:set var="exist" value="bi-suit-heart-fill"></c:set>
 			<c:forEach var="house" items="${wishList}">
-			<input type="hidden" value="${house.house.id}" id="house-id">
+				<input type="hidden" value="${house.house.id}" id="house-id">
 				<div class="col mb-5" style="margin: 30px;">
 					<div class="h-100">
 						<a href="/house/detail/${house.house.id}"><img class="custom-img" src="http://localhost:9090/upload/${house.house.image.imageUrl}" style="width: 300px; height: 250px;"></a>
 						<div class="p-4">
-							<div class="container d-flex" >
-								<h5 class="fw-bolder" >${house.house.name}</h5>
-								<i class="bi ${not empty house ? exist : notExist}" style="margin-left: 170px; margin-top: 10px; cursor: pointer;" id="like" onclick="clickHeart()"></i>
-							</div>
-							<div>
-								<p style="margin-left: 13px;">${house.house.address}</p>
+							<div class="container" style="position: relative; width: 240px;">
+								<h5 class="fw-bolder" style="position: absolute; left: 0%">${house.house.name}</h5>
+								<i class="bi ${not empty house ? exist : notExist}" style="margin-top: 10px; cursor: pointer; position: absolute; right: 0%" id="like-${house.house.id}" onclick="clickHeart(${house.house.id})"></i>
+								<p style=" position: absolute; top: 45px">${house.house.address}</p>
 							</div>
 						</div>
 						<br> <br>
@@ -92,15 +90,24 @@
 </div>
 
 <script>
-	function clickHeart() {
+	function clickHeart(houseId) {
+		let token = $("meta[name='_csrf']").attr("content");
+		let header = $("meta[name='_csrf_header']").attr("content");
+	
 
 		let data = {
-			id : $("#house-id").val()
+			id : houseId
 		}
 
 		// 빈 하트를 눌렀을때
-		if ($("#like").attr("class") == "bi bi-suit-heart") {
+		if ($("#like-" + houseId).attr("class") == "bi bi-suit-heart") {
+
+			console.log("위시리스트 추가 확인 : " + houseId);
 			$.ajax({
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(header, token)
+				},
+
 				url : "/api/house/wish-list",
 				type : "POST",
 				data : JSON.stringify(data),
@@ -112,12 +119,18 @@
 				console.log(error);
 			});
 			// 채워진 하트로 바꾸기
-			document.getElementById("like").className = "bi bi-suit-heart-fill";
+			document.getElementById("like-" + houseId).className = "bi bi-suit-heart-fill";
 
 			// 채워진 하트를 눌렀을 때
-		} else if ($("#like").attr("class") == "bi bi-suit-heart-fill") {
-			let houseId = $("#house-id").val();
+		} else if ($("#like-" + houseId).attr("class") == "bi bi-suit-heart-fill") {
+
+			console.log("위시리스트 삭제 확인 : " + houseId);
+
 			$.ajax({
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(header, token)
+				},
+
 				url : "/api/house/wish-list/" + houseId,
 				type : "DELETE",
 			}).done(function() {
@@ -125,8 +138,9 @@
 			}).fail(function() {
 			});
 			// 빈 하트로 바꾸기
-			document.getElementById("like").className = "bi bi-suit-heart";
+			document.getElementById("like-" + houseId).className = "bi bi-suit-heart";
 		}
 
 	}
 </script>
+<%@ include file="../layout/footer.jsp"%>

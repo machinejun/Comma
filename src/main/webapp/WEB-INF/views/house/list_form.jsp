@@ -9,7 +9,7 @@
 				<div class="col-xs-12 col-md-8 col-md-offset-2">
 					<div class="text-center">
 						<h2>Comma(,)</h2>
-						<p>어디로 떠나볼까요?</p>
+						<p>당신의 쉼표를 찍을 공간을 찾아보세요</p>
 					</div>
 				</div>
 			</div>

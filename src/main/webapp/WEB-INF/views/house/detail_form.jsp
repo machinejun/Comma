@@ -18,15 +18,10 @@
 						width="500px" height="600px" style="border-radius: 15px" />
 				</div>
 				<div class="col-md-6">
-					<div class="row">
-						<i class="bi bi-geo-alt"
-							style="margin-top: 3px; margin-left: 10px;"></i>
-						<p>&nbsp;${house.address}</p>
-					</div>
 					<h2 class="multiLine-title">${house.name}</h2>
 					<br>
 					<div class="fs-5 mb-5 d-flex ">
-						<span class="text-decoration-line-through flex-shrink-0">&nbsp;${house.type}</span>
+						<span class="text-decoration-line-through flex-shrink-0">#${house.address}&nbsp;#${house.type}</span>
 					</div>
 					<br>
 					<div class="d-flex">
@@ -45,7 +40,7 @@
 							style="cursor: pointer;">더 보기</a>
 					</p>
 					<br> <br>
-					<div class="d-flex">
+					<div class="d-flex" style="position: absolute; bottom: -25%;">
 						<button class="custom-btn flex-shrink-0"
 							onclick="location.href='/user/bookForm/${house.id}'"
 							type="button">예약하기</button>
@@ -274,6 +269,10 @@
 		} else if ($("#like").attr("class") == "bi bi-suit-heart-fill") {
 			let houseId = $("#house-id").val();
 			$.ajax({
+				beforeSend : function(xhr) {
+					xhr.setRequestHeader(header, token)
+				},
+				
 				url : "/api/house/wish-list/" + houseId,
 				type : "DELETE",
 			}).done(function() {

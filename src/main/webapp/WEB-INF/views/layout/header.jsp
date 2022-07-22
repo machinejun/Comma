@@ -17,6 +17,7 @@
 <meta name="_csrf_header" content="${_csrf.headerName}">
 <meta name="description" content="">
 <meta name="author" content="">
+<link rel="favicon" href="/favicon.ico" >
 <title>Comma - 쉼표를 찍는 공간</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
@@ -113,7 +114,6 @@ nav {
 		</div>
 
 	</nav>
-<<<<<<< HEAD
 	<div id="user-table" class="list-group">
 		<a onclick="openUserBox()" id="user-btn-header" class="user-btn"><i class="bi bi-person-lines-fill"></i></a>
 		<div id="user-box-header">
@@ -126,6 +126,8 @@ nav {
 					</a>
 				</c:when>
 				<c:otherwise>
+					<a href="/auth/update_form" class="list-group-item list-group-item-action"> <span class="icon-user-plus"></span>&nbsp;&nbsp;회원정보 수정
+					</a>
 					<a class="list-group-item list-group-item-action" href="/logout"> <span class="icon-suitcase"></span>&nbsp;&nbsp;로그아웃
 					</a>
 
@@ -152,38 +154,3 @@ nav {
 			</sec:authorize>
 		</div>
 	</div>
-=======
-		<section>
-			<div id="user-table" class="list-group">
-					<a class="user-btn"><i class="bi bi-person-lines-fill"></i></a>
-					<div>
-						<input id="isUserTable" type="hidden" value=0 /> 
-						<a href="/auth/login_form" class="list-group-item list-group-item-action"> <span
-							class="icon-drivers-license-o"></span>&nbsp;&nbsp;로그인
-						</a> 
-						<a href="/auth/join_form"
-							class="list-group-item list-group-item-action"> <span
-							class="icon-user-plus"></span>&nbsp;&nbsp;회원가입
-						</a>
-						<a type="button"
-							class="list-group-item list-group-item-action" href=`/be-host`>
-							<span class="icon-black-tie"></span>&nbsp;&nbsp;${principal.user.role == 'GUEST' ? "게스트 되기" : "호스트 되기" }
-						</a>
-						<a class="list-group-item list-group-item-action"
-							href="/reserveTable/user"> <span
-							class="icon-suitcase"></span>&nbsp;&nbsp;예약 내역
-						</a>
-						<a type="button"
-							class="list-group-item list-group-item-action"
-							href="/reserveTable/host">
-							<span class="icon-users"></span>&nbsp;&nbsp;예약자 확인
-						</a>
-						<a type="button"
-							class="list-group-item list-group-item-action" href="/wish-list/${principal.user.id}">
-							<span class="icon-gittip"></span>&nbsp;&nbsp;위시리스트
-						</a>
-					</div>
-				</div>
-		</section>
-				
->>>>>>> c883e65e359a0c8487ef492bdaf8fe32793f0b92

@@ -1,30 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="layout/header.jsp"%>
 <style>
-.custom-img:hover {
+.ranking-list:hover {
 	animation: box-ani 0.5s linear forwards;
 }
 
-<<<<<<< HEAD
-@
-keyframes box-ani {from { transform:translate(0, 0);
+@keyframes box-ani {
+from {
+transform:translate(0, 0);
 	
-}
-
-to {
+} to {
 	transform: translate(0, -15px);
 }
 
 }
-=======
-@keyframes box-ani {
-	from { transform:translate(0, 0);
-		
-	}to {
-		transform: translate(0, -15px);
-	}
-}
->>>>>>> c883e65e359a0c8487ef492bdaf8fe32793f0b92
 .text-center>h2 {
 	color: rgba(255, 149, 149, 0.7);
 }
@@ -40,7 +29,6 @@ to {
 
 .custom-sm-btn {
 	padding: 0px;
-	margin-left: 420px;
 	width: 135px;
 	height: 45px;
 }
@@ -57,14 +45,15 @@ to {
 p {
 	font-family: 'SUIT-Medium';
 }
-<<<<<<< HEAD
-.img-responsive{
+
+.img-responsive {
 	width: 600px;
 	height: 600px;
-
 }
-=======
->>>>>>> c883e65e359a0c8487ef492bdaf8fe32793f0b92
+
+.custom-img {
+	border-radius: 10px;
+}
 </style>
 <div class="section-container">
 	<div class="container">
@@ -73,7 +62,7 @@ p {
 				<div class="text-center">
 					<h2>Comma(,)</h2>
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas luctus at sem quis varius. <br> Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus iaculis magna sagittis elit sagittis, at hendrerit lorem venenatis. Morbi accumsan iaculis blandit. Cras ultrices hendrerit nisl.
+						콤마(Comma)는 쉼표를 의미합니다. <br> 쉼표가 문장 안에서 짧은 휴지를 나타내는 것처럼, 우리 일상 속에서도 쉼표를 찍을 순간이 필요합니다. <br> 콤마를 통해 
 					</p>
 				</div>
 			</div>
@@ -114,13 +103,8 @@ p {
 								</a>
 								<p>누구나 호스트가 될 수 있습니다.</p>
 								<p>숙소를 등록하고 최고의 호스트가 되어보세요.</p>
-<<<<<<< HEAD
 								<br> <a href="../project.html" class="custom-sm-btn" title=""> 호스트 되기 </a>
-=======
-								<br>
-								<a href="../project.html" class="custom-sm-btn" title="">
-									호스트 되기 </a>
->>>>>>> c883e65e359a0c8487ef492bdaf8fe32793f0b92
+
 							</div>
 						</div>
 					</div>
@@ -146,19 +130,23 @@ p {
 				</p>
 			</div>
 		</div>
-		
+
 		<div class="row">
 			<c:forEach var="house" items="${houses}">
-			<%! int number = 1;  %>
-				<div class="col-xs-12 col-md-4">
+				<%!int number = 1;%>
+				<div class="ranking-list col-xs-12 col-md-4">
 					<a href="/house/detail/${house.id}"> <img class="custom-img" src="http://localhost:9090/upload/${house.image.imageUrl}" class="
 						reveal img-responsive
 						reveal-contentimage-center" style="width: 210px; height: 210px;"></a>
-					<h3 style="color: rgba(255, 149, 149, 0.7);">Best <%=number++%></h3>
+					<h3 style="color: rgba(255, 149, 149, 0.7);">
+						Best
+						<%=number++%></h3>
 
 				</div>
 			</c:forEach>
-			<% number = 1; %>
+			<%
+			number = 1;
+			%>
 		</div>
 	</div>
 </div>
@@ -166,8 +154,7 @@ p {
 	<div class="container text-center">
 		<div class="row section-container-spacer">
 			<div class="col-xs-12 col-md-12">
-				<h2 class="text-center" style="color: rgba(255, 149, 149, 0.7);">Our
-					Service</h2>
+				<h2 class="text-center" style="color: rgba(255, 149, 149, 0.7);">Our Service</h2>
 				<p>
 					Praesent at feugiat est, at faucibus ipsum. Aenean condimentum mauris vel malesuada pulvinar. <br>Vestibulum sit amet hendrerit leo, quis vehicula mi.
 				</p>
@@ -176,15 +163,15 @@ p {
 		<div class="row">
 			<div class="col-xs-12 col-md-4">
 				<a href="/"> <i class="bi bi-calendar-check" style="font-size: 170px; color: rgba(255, 149, 149, 0.7);"></i></a>
-				<h3 style="color: rgba(255, 149, 149, 0.7);">예약하기</h3>
+				<h4 style="color: rgba(255, 149, 149, 0.7);">예약하기</h4>
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<a href="/"> <i class="bi bi-house-fill" style="font-size: 170px; color: rgba(255, 149, 149, 0.7);"></i></a>
-				<h3 style="color: rgba(255, 149, 149, 0.7);">예약하기</h3>
+				<h4 style="color: rgba(255, 149, 149, 0.7);">예약하기</h4>
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<a href="/"> <i class="bi bi-card-list" style="font-size: 170px; color: rgba(255, 149, 149, 0.7);"></i></a>
-				<h3 style="color: rgba(255, 149, 149, 0.7);">예약하기</h3>
+				<h4 style="color: rgba(255, 149, 149, 0.7);">예약하기</h4>
 			</div>
 		</div>
 		<br />

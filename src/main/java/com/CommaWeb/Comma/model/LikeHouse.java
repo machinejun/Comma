@@ -16,7 +16,8 @@ import lombok.Data;
 @Data
 @IdClass(LikeId.class)
 public class LikeHouse implements Serializable {
-	
+
+
 	@Id
 	@Column(name="house")
 	private int houseId;

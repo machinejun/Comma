@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/house/detail.css" rel="stylesheet">
 <style>
@@ -85,31 +84,26 @@
 		<input type="hidden" value="${review.id}" id="review-id">
 		<div class="col-xl">
 			<div class="row">
-				<a href="/house/detail/${review.houseId.id}"><img class="col"
-					src="http://localhost:9090/upload/${review.houseId.image.imageUrl}"
-					style="width: 150px; height: 100px;"></a>
+				<a href="/house/detail/${review.houseId.id}"><img class="col" src="http://localhost:9090/upload/${review.houseId.image.imageUrl}" style="width: 150px; height: 100px;"></a>
 				<div>
 					<p class="col">
 						작성일 :
-						<fmt:formatDate pattern="yyyy-MM-dd"
-							value="${review.creationDate}" />
+						<fmt:formatDate pattern="yyyy-MM-dd" value="${review.creationDate}" />
 					</p>
 					<div class="col">
 						<p>숙소명 : ${review.houseId.name}</p>
 					</div>
 
 				</div>
-				<div class="col">
-					<a class="btn btn-outline-primary btn-sm "
-						href="/review/update_form/${review.id}">수정</a>
+				<div class="col" style="position: absolute; left: 85%;">
+					<a class="btn btn-outline-primary btn-sm " href="/review/update_form/${review.id}">수정</a>
 					<button class="btn btn-outline-danger btn-sm" id="btn-delete">삭제</button>
 				</div>
 			</div>
 			<hr>
 			<div class="row">
 				<div class="star-ratings">
-					<div class="star-ratings-fill"
-						style="width: ${review.starScore * 20 * 1.4}%">
+					<div class="star-ratings-fill" style="width: ${review.starScore * 20 * 1.4}%">
 						<span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
 					</div>
 					<div class="star-ratings-base">
@@ -117,6 +111,7 @@
 					</div>
 				</div>
 			</div>
+			<br>
 			<div>${review.content}</div>
 		</div>
 		<br>
@@ -129,10 +124,12 @@
 				</div>
 			</c:forEach>
 		</div>
+
 		<hr class="end-line">
 		<br>
 	</c:forEach>
 
 </div>
-
+<br>
+<%@ include file="../layout/footer.jsp"%>
 <script src="/js/review.js"></script>

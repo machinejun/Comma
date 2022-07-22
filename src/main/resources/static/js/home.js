@@ -18,7 +18,7 @@ function upnav () {
 		function onScroll(){
 			const scrollposition = pageYOffset;
 			isShow = $("#isNaviFocus").val();
-			if (scrollposition < headerheight + 100){
+			if (scrollposition < headerheight + 50){
 				$("#naviBar").show();
 				$("#user-btn-header").show();
 				return;

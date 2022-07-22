@@ -7,6 +7,7 @@
 /* 말줄임 표시 */
 .multiLine {
 	width: 200px;
+	line-height: 1.3;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	display: -webkit-box;

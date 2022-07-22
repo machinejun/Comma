@@ -90,7 +90,7 @@ img {
 								      		<td style="text-align: center;"><a type="button" class="disabled" style="border-color: white;" onclick="payForKakao(${reservation.id})" ><img style="width: 80px" src="/assets/payment_small.png"></img></a></td>
 								      	</c:otherwise>
 								      </c:choose>
-								      <td style="text-align: center;"><button onclick="location.href='/review/post_form?houseId=${reservation.houseId.id}'" class="btn" style="">리뷰 쓰러가기</button></td>
+								      <td style="text-align: center;"><button onclick="location.href='/review/post_form/${reservation.id}'" class="btn" style="">리뷰 쓰러가기</button></td>
 								    </tr>
 								  </c:forEach>
 							  </tbody>

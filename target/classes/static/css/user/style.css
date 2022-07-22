@@ -603,11 +603,11 @@ label.valid:after {
 
 .custom-sm-btn {
 	font-family: 'SUIT-Medium';
-	font-size: 15px;
+	font-size: 14px;
 	color: #fff;
 	text-transform: uppercase;
 	border: none;
-	width: 80px;
+	width: 90px;
 	height: 30px;
 	border-radius: 5px;
 	background: rgba(255, 149, 149, 0.7);
@@ -639,3 +639,4 @@ h2:after {
 	font-family: 'SUIT-Medium';
 	content:"";
 }
+

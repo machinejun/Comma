@@ -1,3 +1,5 @@
+let token = $("meta[name='_csrf']").attr("content");
+let header = $("meta[name='_csrf_header']").attr("content");
 
 let index = {
 
@@ -26,6 +28,11 @@ let index = {
 			alert("비밀번호를 입력하세요.");
 		} else {
 			$.ajax({
+				beforeSend: function(xhr) {
+					console.log("xhr: " + xhr)
+					xhr.setRequestHeader(header, token)
+				},
+				
 				type: "PUT",
 				url: "/user/update",
 				data: JSON.stringify(data),
@@ -46,6 +53,15 @@ let index = {
 
 	}
 
+}
+
+
+function alertMessage(title, text, icon) {
+	Swal.fire(
+		title,
+		text,
+		icon
+	)
 }
 
 index.init();

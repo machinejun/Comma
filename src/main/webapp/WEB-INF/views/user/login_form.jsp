@@ -53,5 +53,6 @@
 
 </script>
 
+<script src="/js/user/user.js"></script>
 <script src="/js/user/main.js"></script>
 <%@ include file="../layout/footer.jsp"%>

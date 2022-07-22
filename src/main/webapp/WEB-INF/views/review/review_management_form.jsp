@@ -5,6 +5,18 @@
 .table>tbody>tr>td, .table>thead>tr>th {
 	text-align: center;
 }
+
+.custom-sm-btn {
+	padding: 0px;
+	margin-left: 420px;
+	width: 80px;
+	height: 30px;
+}
+
+.custom-sm-btn:hover {
+	text-decoration: none;
+	color: white;
+}
 </style>
 <section class="py-5 border-bottom" id="features">
 	<div class="container">
@@ -21,6 +33,7 @@
 
 				<div class="table-wrap">
 					<div class="table-responsive">
+						<input type="hidden" id="house-id" value="${houseId}">
 						<table class="table custom-table justify-content-center">
 							<thead>
 								<tr>
@@ -35,7 +48,7 @@
 							</thead>
 							<tbody>
 								<c:forEach var="review" items="${reviews.content}">
-									<input type="hidden" id="house-id" value="${houseId}">
+									<input type="hidden" value="${review.id}" id="review-id">
 									<tr>
 										<td id="review-id">${review.id}</td>
 										<td>${review.guestId.username}</td>
@@ -64,22 +77,24 @@
 														<div class="card-body">
 															<h4>호스트 댓글</h4>
 															<form class="mb-5">
-																<textarea class="form-control" rows="3" id="reply-edit-box" placeholder="게스트의 리뷰에 대한 답글을 남겨주세요!"></textarea>
+																<textarea class="form-control" rows="3" id="reply-content" placeholder="게스트의 리뷰에 대한 답글을 남겨주세요!"></textarea>
 															</form>
 															<br>
 															<div>
-																<button type="button" id="btn-reply" class="custom-btn float-right">등록</button>
+																<button type="button" id="btn-reply" class="custom-sm-btn float-right">등록</button>
 															</div>
 															<br> <br>
 															<c:forEach var="reply" items="${review.replies}">
-																<input type="hidden" id="reply-id" value="${reply.id}">
-																<div class="mb-4" id="reply--box">
+																<div class="mb-4" id="reply-box">
 
 																	<div class="d-flex">
+																		<input type="hidden" id="reply-id" value="${reply.id}">
 																		<div class="ms-3">
-																			<p>${reply.content}</p>
-																			<button class="btn btn-outline-danger btn-sm float-right" style="margin-left: 10px;" id="btn-delete">삭제</button>
-																			<button type="button" class="btn btn-outline-primary btn-sm float-right" id="edit-btn">수정</button>
+																			<p id="reply-edit-box">${reply.content}</p>
+																			<div id="btn-container">
+																				<button class="btn btn-outline-danger btn-sm float-right" style="margin-left: 10px;" onclick="index.deleteReply(${reply.id});">삭제</button>
+																				<button type="button" class="btn btn-outline-primary btn-sm float-right" onclick="index.editText(${reply.id}, ${reply.content});">수정</button>
+																			</div>
 																		</div>
 																	</div>
 																	<br>

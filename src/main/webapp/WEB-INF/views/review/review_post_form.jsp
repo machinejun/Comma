@@ -9,13 +9,14 @@
 	<p>즐거운 여행 되셨나요?</p>
 	<br>
 	<form>
-		<!-- TODO 예약내역 뿌리기  -->
 		<div class="form-group">
 			<div class="form-group">
-				<input type="hidden" value="" id="house-id"> <label for="name"><b>숙소명</b></label> <input type="text" class="form-control" id="name" disabled="disabled" />
+			<input type="hidden" id="house-id" value="${reservation.houseId.id}">
+			<input type="hidden" id="guest-id" value="${principal.user.id}">
+				<input type="hidden" value="" id="house-id"> <label for="name"><b>숙소명</b></label> <input type="text" class="form-control" id="name" disabled="disabled" value="${reservation.houseId.name}"/>
 			</div>
 			<div class="form-group">
-				<label for="name"><b>숙박 기간 ~ </b></label> <input type="text" class="form-control" id="name" disabled="disabled" />
+				<label for="name"><b>숙박 기간</b></label> <input type="text" class="form-control" id="name" disabled="disabled" value="${reservation.checkInDate} ~ ${reservation.checkOutDate}"/>
 			</div>
 
 			<label><b>만족도</b></label>
@@ -36,8 +37,14 @@
 <script>
 
 function postReview() {
+	let token = $("meta[name='_csrf']").attr("content");
+	let header = $("meta[name='_csrf_header']").attr("content");
+	
 	let starScore;
 	let starLength = document.getElementsByName("rating").length;
+	let houseId = document.getElementById("house-id").value;
+	let guestId = document.getElementById("guest-id").value;
+	console.log(guestId);
 	  
      for (let i=0; i < starLength; i++) {
          if (document.getElementsByName("rating")[i].checked == true) {
@@ -54,18 +61,20 @@ function postReview() {
 	} else if (starScore === 0) {
 		alert("별점을 선택하세요.");
 	} else {
-		// TODO houseId 넣어서 수정
 		console.log(data.starScore);
-		fetch("/review/post", {
+		fetch("/review/post/" + houseId, {
 			method: "post",
 			headers: {
+				"X-XSRF-TOKEN": token,
 				'content-type': 'application/json; charset=utf-8'
 			},
 			body: JSON.stringify(data)
 		})
 		.then(res => {
-				alert("리뷰 등록이 완료되었습니다.");
-				location.href = "/";
+			if(res.status == 200) {
+				alert("리뷰 등록이 완료되었습니다.");				
+				location.href = "/review/my-review-list/" + guestId;			
+			}
 		});
 	}
 }

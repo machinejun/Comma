@@ -8,19 +8,10 @@
 <div class="container">
 	<h2>리뷰 수정</h2>
 	<p>숙소와 호스트에 대한 솔직한 리뷰를 남겨보세요 !</p>
-	<!-- TODO 예약내역  -->
-	<br><br>
+	<br> <br>
 	<div class="form-group">
-		<div class="form-group">
-			<input type="hidden" value="${reviewEntity.id}" id="review-id">
-			<label for="name"><b>숙소명</b></label> <input type="text"
-				class="form-control" id="name" disabled="disabled" />
-		</div>
-		<div class="form-group">
-			<label for="name"><b>숙박 기간</b></label> <input type="text"
-				class="form-control" id="name" disabled="disabled" />
-		</div>
-
+		<input type="hidden" value="${principal.user.id}" id="guest-id">
+		<input type="hidden" value="${reviewEntity.id}" id="review-id">
 		<label><b>만족도</b></label>
 		<div class="form-group star-rating">
 			<input type="radio" id="5-stars" name="rating" value="5" /> <label
@@ -45,7 +36,8 @@
 function updateReview() {
 	let starScore;
 	let starLength = document.getElementsByName("rating").length;
-	let reviewId = document.querySelector("#review-id").value;
+	let reviewId = document.getElementById("review-id").value;
+	let guestId = document.getElementById("guest-id").value;
 	  
      for (let i=0; i < starLength; i++) {
          if (document.getElementsByName("rating")[i].checked == true) {
@@ -77,7 +69,7 @@ function updateReview() {
 		.then(res => {
 			if(res.status == 200) {
 			alert("리뷰 수정이 완료되었습니다.");
-			location.href = "/";
+			location.href = "/review/my-review-list/" + guestId;
 			} else {
 			alert("리뷰 수정이 완료되지 않았습니다.");
 			}

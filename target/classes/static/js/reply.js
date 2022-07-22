@@ -8,24 +8,24 @@ let index = {
 			this.addReply();
 		});
 
-		$("#edit-btn").bind("click", () => {
-			this.editText();
-		});
-
 		$("#btn-delete").bind("click", () => {
 			this.deleteReply();
+		});
+
+		$("#btn-update").bind("click", () => {
+			this.updateReply();
 		});
 
 	},
 
 	addReply: function() {
-		let reviewId = $("#review-id").text();
-		let houseId = $("#house-id").text();
+		let reviewId = $("#review-id").val();
+		let houseId = $("#house-id").val();
 
 		console.log("houseId : " + houseId);
 
 		let data = {
-			content: $("#content").val()
+			content: $("#reply-content").val()
 		}
 
 		if (data.content == "" || data.content.trim() === "") {
@@ -55,11 +55,10 @@ let index = {
 		}
 	},
 
-	updateReply: function() {
-		let replyId = $("#reply-id").val();
+	updateReply: function(replyId) {
 
 		let data = {
-			content: $("#content").val()
+			content: $("#reply-edit-box").val()
 		}
 
 		if (data.content == "" || data.content.trim() === "") {
@@ -79,6 +78,8 @@ let index = {
 			}).done(function(response) {
 				if (response.status == 200) {
 					alert("댓글이 수정되었습니다.")
+					appendReply(response.data);
+					$('#btn-container').remove();
 				}
 
 			}).fail(function(error) {
@@ -90,8 +91,7 @@ let index = {
 
 	},
 
-	deleteReply: function() {
-		let replyId = $("#reply-id").val();
+	deleteReply: function(replyId) {
 		let houseId = $("#house-id").val();
 		let deleteCheck = confirm("삭제하시겠습니까?");
 
@@ -116,31 +116,36 @@ let index = {
 				console.log(error);
 			});
 		}
+	},
+
+	editText: function(replyId, content) {
+		console.log("수정 버튼 클릭");
+		let editForm;
+
+		editForm += "<textarea class='form-control' rows='3'>" + content + "</textarea>";
+		editForm += `<div>
+																<button type="button" onclick="index.updateReply(${replyId})"
+																	class="custom-sm-btn float-right">수정</button>
+															</div>`;
+		$('#reply-edit-box').replaceWith(editForm);
+		$('#btn-container').remove()
+		$('#reply-edit-box').focus();
 	}
-}
-
-function editText() {
-
-	console.log("수정 버튼 클릭");
-
-	//let editForm = '<textarea class="form-control" rows="3" id="reply-edit-box" placeholder="게스트의 리뷰에 대한 답글을 남겨주세요!"></textarea>';
-
-	//$('#reply-edit-box').replaceWith(editForm);
-	//$('#reply-edit-box').focus();
-
 }
 
 
 function appendReply(reply) {
 
-	let childElement = `<div class=" d-flex">
+	let childElement = `<div class="d-flex">
+																		<input type="hidden" id="reply-id" value="${reply.id}">
 																		<div class="ms-3">
 																			<p>${reply.content}</p>
 																			<button
 																				class="btn btn-outline-danger btn-sm float-right"
-																				style="margin-left: 10px;" id="btn-delete">삭제</button>
-																			<a class="btn btn-outline-primary btn-sm float-right"
-																				id="btn-update" href="">수정</a>
+																				style="margin-left: 10px;" onclick="index.deleteReply(${reply.id});">삭제</button>
+																			<button type="button"
+																				class="btn btn-outline-primary btn-sm float-right"
+																				onclick="index.editText(${reply.id}, ${reply.content});">수정</button>
 																		</div>
 																	</div>
 																	<br>`;

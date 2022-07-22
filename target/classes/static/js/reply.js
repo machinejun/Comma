@@ -66,8 +66,8 @@ let index = {
 			}).done(function(response) {
 				if (response.status == 200) {
 					alert("댓글이 수정되었습니다.")
-					$('#reply-edit-box').remove();
 					appendReply(response.data);
+					$('#btn-container').remove();
 				}
 
 			}).fail(function(error) {
@@ -105,12 +105,13 @@ let index = {
 		console.log("수정 버튼 클릭");
 		let editForm;
 
-		editForm += "<textarea class='form-control' rows='3' id='reply-edit-box'>" + content + "</textarea>";
+		editForm += "<textarea class='form-control' rows='3'>" + content + "</textarea>";
 		editForm += `<div>
 																<button type="button" onclick="index.updateReply(${replyId})"
 																	class="custom-sm-btn float-right">수정</button>
 															</div>`;
 		$('#reply-edit-box').replaceWith(editForm);
+		$('#btn-container').remove()
 		$('#reply-edit-box').focus();
 	}
 }

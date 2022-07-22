@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/house/detail.css" rel="stylesheet">
 <style>
@@ -8,27 +7,15 @@
 }
 
 .custom-sm-btn {
-	font-family: 'SUIT-Medium';
-	font-size: 15px;
-	line-height: 1.5;
-	color: #fff;
-	text-transform: uppercase;
-	border: none;
-	width: 70px;
-	height: 20px;
-	border-radius: 5px;
-	background: rgba(255, 149, 149, 0.7);
-	display: -webkit-box;
-	display: -webkit-flex;
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	padding: 0px;
+	margin-left: 420px;
+	width: 80px;
+	height: 30px;
 }
 
 .custom-sm-btn:hover {
-	background: rgba(255, 149, 149, 1);
+	text-decoration: none;
+	color: white;
 }
 </style>
 <section class="py-5 border-bottom" id="features">
@@ -69,8 +56,7 @@
 										<td>${review.content}</td>
 										<td>${review.creationDate}</td>
 										<td>${not empty review.replies ? 'Y' : 'N'}</td>
-										<td><a class="custom-sm-btn" data-toggle="modal"
-											data-target="#replyModal" style="cursor: pointer;">답글 관리</a></td>
+										<td><a class="custom-sm-btn" data-toggle="modal" data-target="#replyModal" style="cursor: pointer;">답글 관리</a></td>
 									</tr>
 
 									<div class="modal" id="replyModal">
@@ -91,29 +77,24 @@
 														<div class="card-body">
 															<h4>호스트 댓글</h4>
 															<form class="mb-5">
-																<textarea class="form-control" rows="3"
-																	id="reply-content" placeholder="게스트의 리뷰에 대한 답글을 남겨주세요!"></textarea>
+																<textarea class="form-control" rows="3" id="reply-content" placeholder="게스트의 리뷰에 대한 답글을 남겨주세요!"></textarea>
 															</form>
 															<br>
 															<div>
-																<button type="button" id="btn-reply"
-																	class="custom-sm-btn float-right">등록</button>
+																<button type="button" id="btn-reply" class="custom-sm-btn float-right">등록</button>
 															</div>
 															<br> <br>
 															<c:forEach var="reply" items="${review.replies}">
-																<div class="mb-4" id="reply--box">
+																<div class="mb-4" id="reply-box">
 
 																	<div class="d-flex">
 																		<input type="hidden" id="reply-id" value="${reply.id}">
 																		<div class="ms-3">
 																			<p id="reply-edit-box">${reply.content}</p>
-																			<button
-																				class="btn btn-outline-danger btn-sm float-right"
-																				style="margin-left: 10px;"
-																				onclick="index.deleteReply(${reply.id});">삭제</button>
-																			<button type="button"
-																				class="btn btn-outline-primary btn-sm float-right"
-																				onclick="index.editText(${reply.id}, ${reply.content});">수정</button>
+																			<div id="btn-container">
+																				<button class="btn btn-outline-danger btn-sm float-right" style="margin-left: 10px;" onclick="index.deleteReply(${reply.id});">삭제</button>
+																				<button type="button" class="btn btn-outline-primary btn-sm float-right" onclick="index.editText(${reply.id}, ${reply.content});">수정</button>
+																			</div>
 																		</div>
 																	</div>
 																	<br>
@@ -136,26 +117,20 @@
 							<c:set var="isAbled" value=""></c:set>
 							<c:set var="isNowPage" value="active"></c:set>
 
-							<li class="page-item ${reviews.first ? isDisabled : isAbled}"><a
-								class="page-link"
-								href="/review/management/${houseId}?page=${reviews.number - 1}">Prev</a></li>
+							<li class="page-item ${reviews.first ? isDisabled : isAbled}"><a class="page-link" href="/review/management/${houseId}?page=${reviews.number - 1}">Prev</a></li>
 
 							<c:forEach var="num" items="${pageNumbers}">
 								<c:choose>
 									<c:when test="${reviews.number + 1 eq num}">
-										<li class="page-item active"><a class="page-link"
-											href="/review/management/${houseId}?page=${num - 1}">${num}</a></li>
+										<li class="page-item active"><a class="page-link" href="/review/management/${houseId}?page=${num - 1}">${num}</a></li>
 									</c:when>
 									<c:otherwise>
-										<li class="page-item"><a class="page-link"
-											href="/review/management/${houseId}?page=${num - 1}">${num}</a></li>
+										<li class="page-item"><a class="page-link" href="/review/management/${houseId}?page=${num - 1}">${num}</a></li>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 
-							<li class="page-item ${reviews.last ? isDisabled : isAbled}"><a
-								class="page-link"
-								href="/review/management/${houseId}?page=${reviews.number + 1}">Next</a></li>
+							<li class="page-item ${reviews.last ? isDisabled : isAbled}"><a class="page-link" href="/review/management/${houseId}?page=${reviews.number + 1}">Next</a></li>
 
 						</ul>
 					</div>

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/house/detail.css" rel="stylesheet">
 <style>
@@ -60,6 +61,10 @@
 	height: 2px;
 	background: #ccc;
 }
+
+div {
+	font-family: 'SUIT-Medium';
+}
 </style>
 
 <div class="container">
@@ -84,26 +89,31 @@
 		<input type="hidden" value="${review.id}" id="review-id">
 		<div class="col-xl">
 			<div class="row">
-				<a href="/house/detail/${review.houseId.id}"><img class="col" src="http://localhost:9090/upload/${review.houseId.image.imageUrl}" style="width: 150px; height: 100px;"></a>
+				<a href="/house/detail/${review.houseId.id}"><img class="col"
+					src="http://localhost:9090/upload/${review.houseId.image.imageUrl}"
+					style="width: 150px; height: 100px;"></a>
 				<div>
-					<p class="col">
+					<div class="col">
 						작성일 :
-						<fmt:formatDate pattern="yyyy-MM-dd" value="${review.creationDate}" />
-					</p>
+						<fmt:formatDate pattern="yyyy-MM-dd"
+							value="${review.creationDate}" />
+					</div>
 					<div class="col">
 						<p>숙소명 : ${review.houseId.name}</p>
 					</div>
 
 				</div>
 				<div class="col" style="position: absolute; left: 85%;">
-					<a class="btn btn-outline-primary btn-sm " href="/review/update_form/${review.id}">수정</a>
+					<a class="btn btn-outline-primary btn-sm"
+						href="/review/update_form/${review.id}">수정</a>
 					<button class="btn btn-outline-danger btn-sm" id="btn-delete">삭제</button>
 				</div>
 			</div>
 			<hr>
 			<div class="row">
 				<div class="star-ratings">
-					<div class="star-ratings-fill" style="width: ${review.starScore * 20 * 1.4}%">
+					<div class="star-ratings-fill"
+						style="width: ${review.starScore * 20 * 1.4}%">
 						<span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
 					</div>
 					<div class="star-ratings-base">
@@ -116,15 +126,26 @@
 		</div>
 		<br>
 		<div class="container bg-light">
-			<h4>호스트의 댓글</h4>
-			<br>
-			<c:forEach var="reply" items="${review.replies}">
-				<div>
-					<p>${reply.content}</p>
-				</div>
-			</c:forEach>
-		</div>
+			<h4>호스트의 답글</h4>
+			<!-- 댓글 목록 -->
+			<ul class="list-group" id="reply-list-${review.id}">
+				<c:forEach var="reply" items="${review.replies}">
+					<li class="list-group-item d-flex justify-content-between"
+						id="reply--${reply.id}">
+						<div>${reply.content}</div>
+						<div class="d-flex">
+							<div>
+								작성일:
+								<fmt:formatDate pattern="yyyy-MM-dd"
+									value="${reply.creationDate}" />
+								&nbsp;&nbsp;
+							</div>
+						</div>
+					</li>
+				</c:forEach>
+			</ul>
 
+		</div>
 		<hr class="end-line">
 		<br>
 	</c:forEach>

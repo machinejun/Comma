@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/house/list.css" rel="stylesheet">
 
@@ -46,7 +47,8 @@
 					<option ${searchedType eq '호텔' ? selected : notSelected}>호텔</option>
 					<option ${searchedType eq '모텔' ? selected : notSelected}>모텔</option>
 					<option ${searchedType eq '펜션' ? selected : notSelected}>펜션</option>
-					<option ${searchedType eq '게스트 하우스' ? selected : notSelected}>게스트 하우스</option>
+					<option ${searchedType eq '게스트 하우스' ? selected : notSelected}>게스트
+						하우스</option>
 				</select>
 			</div>
 			<button class="custom-btn" type="submit" style="margin-top: 33px;">검색</button>
@@ -64,7 +66,9 @@
 		<div class="row">
 			<c:forEach var="house" items="${houseList}">
 				<div class="col-sm-4">
-					<a href="/house/detail/${house.id}"><img class="custom-img list-img" src="http://localhost:9090/upload/${house.image.imageUrl}"></a>
+					<a href="/house/detail/${house.id}"><img
+						class="custom-img list-img"
+						src="http://localhost:9090/upload/${house.image.imageUrl}"></a>
 					<div class="row">
 						<h4 class="multiLine d-flex" style="margin-left: 15px;">
 							<b>${house.name}</b>

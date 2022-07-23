@@ -4,28 +4,17 @@ let header = $("meta[name='_csrf_header']").attr("content");
 let index = {
 
 	init: function() {
-		$("#btn-reply").bind("click", () => {
-			this.addReply();
-		});
-
-		$("#btn-delete").bind("click", () => {
-			this.deleteReply();
-		});
-
-		$("#btn-update").bind("click", () => {
-			this.updateReply();
-		});
 
 	},
 
-	addReply: function() {
-		let reviewId = $("#review-id").val();
+	addReply: function(reviewId) {
 		let houseId = $("#house-id").val();
 
 		console.log("houseId : " + houseId);
+		console.log("reviewId : " + reviewId);
 
 		let data = {
-			content: $("#reply-content").val()
+			content: $("#reply-content-" + reviewId).val()
 		}
 
 		if (data.content == "" || data.content.trim() === "") {
@@ -33,7 +22,6 @@ let index = {
 		} else {
 			$.ajax({
 				beforeSend: function(xhr) {
-					console.log("xhr: " + xhr)
 					xhr.setRequestHeader(header, token)
 				},
 
@@ -46,7 +34,6 @@ let index = {
 				if (response.status == 200) {
 					appendReply(response.data);
 					alert("댓글이 등록되었습니다.");
-					location.href = "/review/management/" + houseId
 				}
 			}).fail(function(error) {
 				alert("댓글이 등록되지 않았습니다.");
@@ -55,18 +42,19 @@ let index = {
 		}
 	},
 
-	updateReply: function(replyId) {
+	updateReply: function(reviewId, replyId) {
 
 		let data = {
-			content: $("#reply-edit-box").val()
+			content: $("#reply-edit-" + reviewId).val()
 		}
 
-		if (data.content == "" || data.content.trim() === "") {
+		console.log("update : " + data.content);
+
+		if (data.content == "") {
 			alert("내용을 입력하세요.")
 		} else {
 			$.ajax({
 				beforeSend: function(xhr) {
-					console.log("xhr: " + xhr)
 					xhr.setRequestHeader(header, token)
 				},
 
@@ -77,9 +65,9 @@ let index = {
 				dataType: "json"
 			}).done(function(response) {
 				if (response.status == 200) {
-					alert("댓글이 수정되었습니다.")
-					appendReply(response.data);
-					$('#btn-container').remove();
+					//appendEditedReply(response.data);
+					alert("댓글이 수정되었습니다.");
+					location.href="/review/management/" + response.data.reviewId.houseId.id;
 				}
 
 			}).fail(function(error) {
@@ -118,40 +106,60 @@ let index = {
 		}
 	},
 
-	editText: function(replyId, content) {
-		console.log("수정 버튼 클릭");
-		let editForm;
+	editText: function(replyId, replyContent, reviewId) {
+		console.log("수정 버튼 클릭" + replyContent);
 
-		editForm += "<textarea class='form-control' rows='3'>" + content + "</textarea>";
-		editForm += `<div>
-																<button type="button" onclick="index.updateReply(${replyId})"
-																	class="custom-sm-btn float-right">수정</button>
-															</div>`;
-		$('#reply-edit-box').replaceWith(editForm);
-		$('#btn-container').remove()
-		$('#reply-edit-box').focus();
+		let editForm = "";
+
+		editForm += `<div id="reply-edit-form-${replyId}"><form class="mb-5">
+					<textarea class="form-control" rows="3"
+						id="reply-edit-${reviewId}">${replyContent}</textarea>
+				</form>
+				<div>
+					<button type="button" id="btn-save-reply"
+						class="custom-sm-btn float-right"
+						onclick="index.updateReply('${reviewId}','${replyId}');">수정</button>
+				</div></div><br>`;
+
+		$('#reply--' + replyId).replaceWith(editForm);
+		$('#reply--' + replyId).focus();
 	}
 }
 
+function appendEditedReply(reply) {
+
+	let editedForm = `<li class="list-group-item d-flex justify-content-between" id="reply--${reply.id}">
+			<div>${reply.content}</div>
+			<div class="d-flex">
+				<div>작성일 : <fmt:formatDate pattern="yyyy-MM-dd"
+										value="${reply.creationDate}" />
+									&nbsp;&nbsp;</div>
+				<button class="badge badge-danger"
+									onclick="index.editText('${reply.id}', '${reply.content}', '${reply.reviewId.id}');">수정</button>
+					<button class="badge badge-danger" onclick="index.deleteReply(${reply.id});">삭제</button>				
+			</div>
+		</li>`;
+
+	$("#reply-edit-form-" + reply.id).replaceWith(editedForm);
+
+}
 
 function appendReply(reply) {
 
-	let childElement = `<div class="d-flex">
-																		<input type="hidden" id="reply-id" value="${reply.id}">
-																		<div class="ms-3">
-																			<p>${reply.content}</p>
-																			<button
-																				class="btn btn-outline-danger btn-sm float-right"
-																				style="margin-left: 10px;" onclick="index.deleteReply(${reply.id});">삭제</button>
-																			<button type="button"
-																				class="btn btn-outline-primary btn-sm float-right"
-																				onclick="index.editText(${reply.id}, ${reply.content});">수정</button>
-																		</div>
-																	</div>
-																	<br>`;
-
-	$("#reply--box").append(childElement);
-	$("#content").val("");
+	let childElement = `<li class="list-group-item d-flex justify-content-between" id="reply--${reply.id}">
+			<div>${reply.content}</div>
+			<div class="d-flex">
+				<div>작성일 : <fmt:formatDate pattern="yyyy-MM-dd"
+										value="${reply.creationDate}" />
+									&nbsp;&nbsp;</div>
+				<button class="badge badge-danger"
+									onclick="index.editText('${reply.id}', '${reply.content}', '${reply.reviewId.id}');">수정</button>
+					<button class="badge badge-danger" onclick="index.deleteReply(${reply.id});">삭제</button>				
+			</div>
+		</li>`;
+	console.log("append 확인" + reply.reviewId.id);
+	$("#reply-list-" + reply.reviewId.id).prepend(childElement);
+	$("#reply-content-" + reply.reviewId.id).val("");
 }
 
 index.init();

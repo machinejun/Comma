@@ -4,7 +4,7 @@
 <link href="/css/house/detail.css" rel="stylesheet">
 <style>
 .custom-img {
-	border-radius: 20px;
+	border-radius: 10px;
 }
 
 .custom-btn {
@@ -30,6 +30,8 @@
 
 .custom-btn:hover {
 	background: rgba(255, 149, 149, 1);
+	text-decoration: none;
+	color: white;
 }
 
 .end-line {
@@ -51,6 +53,11 @@
 					<h2>나의 숙소 목록</h2>
 				</c:otherwise>
 			</c:choose>
+			<br>
+			<div style="position: absolute; left: 46%">
+				<a class="custom-btn" href="/house/post_form">숙소 등록하기</a>
+			</div>
+			<br>
 		</div>
 	</div>
 	<div></div>
@@ -60,11 +67,13 @@
 		<c:forEach var="house" items="${houseList}">
 			<div class="col-xl">
 				<div class="row">
-					<img src="http://localhost:9090/upload/${house.image.imageUrl}"
-						style="width: 200px; height: 200px;">
+					<a data-toggle="modal" data-target="#info-modal"
+						style="cursor: pointer;"> <img class="custom-img"
+						src="http://localhost:9090/upload/${house.image.imageUrl}"
+						style="width: 200px; height: 200px;"></a>
 					<div style="margin-left: 10px;">
 						<div class="col">
-							<h3>${house.name},&nbsp;${house.address}</h3>
+							<h3>${house.name}</h3>
 						</div>
 						<br>
 						<p class="col">
@@ -73,10 +82,10 @@
 								value="${house.creationDate}" />
 						</p>
 					</div>
-					<div class="col">
-						<a class="btn btn-outline-primary btn-sm "
+					<div class="col" style="position: absolute; bottom: 5%; left: 18%">
+						<a class="btn btn-outline-primary btn-sm"
 							href="/house/update_form/${house.id}">수정</a>
-						<button class="btn btn-outline-danger btn-sm" id="btn-delete">삭제</button>
+						<button class="btn btn-outline-primary btn-sm" id="btn-delete">삭제</button>
 						<a class="btn btn-outline-primary btn-sm "
 							href="/review/management/${house.id}">리뷰 관리</a>
 					</div>
@@ -88,6 +97,20 @@
 	</div>
 	<br> <br>
 
-</div>
+	<div class="modal fade" id="info-modal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+				</div>
+				<div class="modal-header">
+					<h4 class="modal-title">Modal Heading</h4>
+				</div>
 
+				<div class="modal-body">Modal body..</div>
+			</div>
+		</div>
+	</div>
+</div>
 <script src="/js/review.js"></script>
+<%@ include file="../layout/footer.jsp"%>

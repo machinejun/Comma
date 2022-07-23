@@ -40,7 +40,7 @@
 							style="cursor: pointer;">더 보기</a>
 					</p>
 					<br> <br>
-					<div class="d-flex" style="position: absolute; bottom: -25%;">
+					<div class="d-flex" style="position: absolute; bottom: -17%;">
 						<button class="custom-btn flex-shrink-0"
 							onclick="location.href='/user/bookForm/${house.id}'"
 							type="button">예약하기</button>

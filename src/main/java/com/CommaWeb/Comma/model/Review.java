@@ -15,6 +15,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
@@ -42,7 +43,7 @@ public class Review {
 
 	@ManyToOne
 	@JoinColumn(name = "houseId")
-	@JsonIgnoreProperties({"reviews"})
+	@JsonIgnoreProperties({ "reviews" })
 	private House houseId;
 
 	@ManyToOne
@@ -54,12 +55,13 @@ public class Review {
 
 	@ColumnDefault("0.0")
 	private double starScore;
-	
+
 	@CreationTimestamp
 	private Timestamp creationDate;
 
 	@OneToMany(mappedBy = "reviewId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({"reviewId"})
+	@JsonIgnoreProperties({ "reviewId" })
+	@OrderBy("id DESC")
 	private List<Reply> replies;
 
 }

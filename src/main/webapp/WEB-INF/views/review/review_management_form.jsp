@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/house/detail.css" rel="stylesheet">
 <style>
@@ -15,11 +16,14 @@
 
 .custom-sm-btn:hover {
 	text-decoration: none;
-	color: white;
+}
+
+div {
+	font-family: 'SUIT-Medium';
 }
 </style>
-<section class="py-5 border-bottom" id="features">
-	<div class="container">
+<div class="py-5" id="features">
+	<div class="container bg-light">
 		<div class="row justify-content-center">
 			<h2>리뷰 관리</h2>
 		</div>
@@ -27,117 +31,121 @@
 		<div class="row justify-content-center">
 			<p>게스트들이 남긴 리뷰에 답글을 남겨보세요 !</p>
 		</div>
-		<br> <br>
-		<div class="row">
-			<div class="col-md-12">
+	</div>
+	<br> <br>
+	<div class="container">
+		<input type="hidden" value="${houseId}" id="house-id">
+		<c:forEach var="review" items="${reviews.content}">
+			<input type="hidden" value="${review.id}" id="review-id">
+			<div class="col-xl">
+				<div class="row">
+					<a href="/house/detail/${review.houseId.id}"><img class="col"
+						src="http://localhost:9090/upload/${review.houseId.image.imageUrl}"
+						style="width: 150px; height: 100px;"></a>
+					<div>
+						<div class="col">
+							<p>게스트 ID : ${review.guestId.username}</p>
+						</div>
+						<p class="col">
+							작성일 :
+							<fmt:formatDate pattern="yyyy-MM-dd"
+								value="${review.creationDate}" />
+						</p>
 
-				<div class="table-wrap">
-					<div class="table-responsive">
-						<input type="hidden" id="house-id" value="${houseId}">
-						<table class="table custom-table justify-content-center">
-							<thead>
-								<tr>
-									<th>No</th>
-									<th>작성자</th>
-									<th>평점</th>
-									<th>내용</th>
-									<th>작성일</th>
-									<th>답글 여부</th>
-									<th>&nbsp;</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="review" items="${reviews.content}">
-									<input type="hidden" value="${review.id}" id="review-id">
-									<tr>
-										<td id="review-id">${review.id}</td>
-										<td>${review.guestId.username}</td>
-										<td>⭐&nbsp;${review.starScore}</td>
-										<td>${review.content}</td>
-										<td>${review.creationDate}</td>
-										<td>${not empty review.replies ? 'Y' : 'N'}</td>
-										<td><a class="custom-sm-btn" data-toggle="modal" data-target="#replyModal" style="cursor: pointer;">답글 관리</a></td>
-									</tr>
-
-									<div class="modal" id="replyModal">
-										<div class="modal-dialog modal-lg">
-											<div class="modal-content">
-
-												<div class="modal-header">
-													<h3 class="modal-body">${review.guestId.username}님의리뷰</h3>
-													<h6>${review.creationDate}</h6>
-													<button type="button" class="close" data-dismiss="modal">&times;</button>
-												</div>
-
-												<div class="modal-body">${review.content}</div>
-												<hr>
-
-												<div class="modal-body mb-5">
-													<div class="card bg-light" style="padding: 20px;">
-														<div class="card-body">
-															<h4>호스트 댓글</h4>
-															<form class="mb-5">
-																<textarea class="form-control" rows="3" id="reply-content" placeholder="게스트의 리뷰에 대한 답글을 남겨주세요!"></textarea>
-															</form>
-															<br>
-															<div>
-																<button type="button" id="btn-reply" class="custom-sm-btn float-right">등록</button>
-															</div>
-															<br> <br>
-															<c:forEach var="reply" items="${review.replies}">
-																<div class="mb-4" id="reply-box">
-
-																	<div class="d-flex">
-																		<input type="hidden" id="reply-id" value="${reply.id}">
-																		<div class="ms-3">
-																			<p id="reply-edit-box">${reply.content}</p>
-																			<div id="btn-container">
-																				<button class="btn btn-outline-danger btn-sm float-right" style="margin-left: 10px;" onclick="index.deleteReply(${reply.id});">삭제</button>
-																				<button type="button" class="btn btn-outline-primary btn-sm float-right" onclick="index.editText(${reply.id}, ${reply.content});">수정</button>
-																			</div>
-																		</div>
-																	</div>
-																	<br>
-																</div>
-															</c:forEach>
-														</div>
-													</div>
-													<hr>
-												</div>
-											</div>
-										</div>
-									</div>
-								</c:forEach>
-							</tbody>
-						</table>
-
-						<ul class="pagination justify-content-center">
-
-							<c:set var="isDisabled" value="disabled"></c:set>
-							<c:set var="isAbled" value=""></c:set>
-							<c:set var="isNowPage" value="active"></c:set>
-
-							<li class="page-item ${reviews.first ? isDisabled : isAbled}"><a class="page-link" href="/review/management/${houseId}?page=${reviews.number - 1}">Prev</a></li>
-
-							<c:forEach var="num" items="${pageNumbers}">
-								<c:choose>
-									<c:when test="${reviews.number + 1 eq num}">
-										<li class="page-item active"><a class="page-link" href="/review/management/${houseId}?page=${num - 1}">${num}</a></li>
-									</c:when>
-									<c:otherwise>
-										<li class="page-item"><a class="page-link" href="/review/management/${houseId}?page=${num - 1}">${num}</a></li>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-
-							<li class="page-item ${reviews.last ? isDisabled : isAbled}"><a class="page-link" href="/review/management/${houseId}?page=${reviews.number + 1}">Next</a></li>
-
-						</ul>
 					</div>
 				</div>
+				<hr>
+				<div class="row">
+					<div class="star-ratings" style="margin-left: 10px;">
+						<div class="star-ratings-fill"
+							style="width: ${review.starScore * 20 * 1.4}%">
+							<span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+						</div>
+						<div class="star-ratings-base">
+							<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+						</div>
+					</div>
+				</div>
+				<br>
+				<div>${review.content}</div>
 			</div>
-		</div>
-	</div>
-</section>
+			<br>
+			<div class="container bg-light">
+				<h4>호스트 답글 남기기</h4>
+				<br>
+				<form class="mb-5">
+					<textarea class="form-control" rows="3"
+						id="reply-content-${review.id}"
+						placeholder="게스트의 리뷰에 대한 답글을 남겨주세요!"></textarea>
+				</form>
+				<div>
+					<button type="button" id="btn-save-reply"
+						class="custom-sm-btn float-right"
+						onclick="index.addReply(${review.id})">등록</button>
+				</div>
+				<br> <br>
+				<!-- 댓글 목록 -->
+				<ul class="list-group" id="reply-list-${review.id}">
+					<c:forEach var="reply" items="${review.replies}">
+						<li class="list-group-item d-flex justify-content-between"
+							id="reply--${reply.id}">
+							<div>${reply.content}</div>
+							<div class="d-flex">
+								<div style="font-size: 15px; margin-top: 7px;">
+									작성일 :
+									<fmt:formatDate pattern="yyyy-MM-dd"
+										value="${reply.creationDate}" />
+									&nbsp;&nbsp;
+								</div>
+								<button class="btn btn-outline-primary btn-sm"
+									onclick="index.editText('${reply.id}', '${reply.content}', '${review.id}');">수정</button>
+								&nbsp;&nbsp;
+								<button class="btn btn-outline-danger btn-sm"
+									onclick="index.deleteReply(${reply.id});">삭제</button>
+							</div>
+						</li>
+					</c:forEach>
+				</ul>
 
+			</div>
+			<hr class="end-line">
+			<br>
+		</c:forEach>
+	</div>
+</div>
+<br>
+
+<div class="container justify-content-center">
+	<ul class="pagination justify-content-center">
+
+		<c:set var="isDisabled" value="disabled"></c:set>
+		<c:set var="isAbled" value=""></c:set>
+		<c:set var="isNowPage" value="active"></c:set>
+
+		<li class="page-item ${reviews.first ? isDisabled : isAbled}"><a
+			class="page-link"
+			href="/review/management/${houseId}?page=${reviews.number - 1}">Prev</a></li>
+
+		<c:forEach var="num" items="${pageNumbers}">
+			<c:choose>
+				<c:when test="${reviews.number + 1 eq num}">
+					<li class="page-item active"><a class="page-link"
+						href="/review/management/${houseId}?page=${num - 1}">${num}</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link"
+						href="/review/management/${houseId}?page=${num - 1}">${num}</a></li>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+
+		<li class="page-item ${reviews.last ? isDisabled : isAbled}"><a
+			class="page-link"
+			href="/review/management/${houseId}?page=${reviews.number + 1}">Next</a></li>
+
+	</ul>
+</div>
+
+
+<%@ include file="../layout/footer.jsp"%>
 <script src="/js/reply.js"></script>

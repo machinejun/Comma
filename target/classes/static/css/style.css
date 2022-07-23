@@ -1,7 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap');
-.body{
-	font-family: 'Dongle';
-}
 
 @font-face {
     font-family: 'ParkYongJun';
@@ -53,4 +50,12 @@
 }
 .custom-sm-btn:hover {
     background: rgba(255,149,149,1);
+}
+
+.body{
+	font-family: 'SUIT-Medium';
+}
+
+div {
+	font-family: 'SUIT-Medium';
 }

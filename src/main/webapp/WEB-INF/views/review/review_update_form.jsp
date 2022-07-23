@@ -34,6 +34,9 @@
 <script>
 
 function updateReview() {
+	let token = $("meta[name='_csrf']").attr("content");
+	let header = $("meta[name='_csrf_header']").attr("content");
+	
 	let starScore;
 	let starLength = document.getElementsByName("rating").length;
 	let reviewId = document.getElementById("review-id").value;
@@ -62,6 +65,7 @@ function updateReview() {
 		fetch("/review/" + reviewId, {
 			method: "put",
 			headers: {
+				"X-XSRF-TOKEN": token,
 				'content-type': 'application/json; charset=utf-8'
 			},
 			body: JSON.stringify(data)

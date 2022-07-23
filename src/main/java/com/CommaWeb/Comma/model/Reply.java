@@ -1,6 +1,7 @@
 package com.CommaWeb.Comma.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -39,6 +42,9 @@ public class Reply implements Serializable {
 
 	@Lob
 	private String content;
+	
+	@CreationTimestamp
+	private Timestamp creationDate;
 
 	@Override
 	public String toString() {

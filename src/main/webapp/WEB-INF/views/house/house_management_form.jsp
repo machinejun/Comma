@@ -75,7 +75,6 @@
 						<div class="col">
 							<h3>${house.name}</h3>
 						</div>
-						<br>
 						<p class="col">
 							등록일 :
 							<fmt:formatDate pattern="yyyy-MM-dd"
@@ -85,7 +84,8 @@
 					<div class="col" style="position: absolute; bottom: 5%; left: 18%">
 						<a class="btn btn-outline-primary btn-sm"
 							href="/house/update_form/${house.id}">수정</a>
-						<button class="btn btn-outline-primary btn-sm" id="btn-delete">삭제</button>
+						<button class="btn btn-outline-primary btn-sm"
+							onclick="index.deleteHouse('${house.id}')">삭제</button>
 						<a class="btn btn-outline-primary btn-sm "
 							href="/review/management/${house.id}">리뷰 관리</a>
 					</div>
@@ -93,24 +93,44 @@
 
 			</div>
 			<hr class="end-line">
+			<div class="modal" id="info-modal">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">×</button>
+						</div>
+						<div class="modal-header">
+							<h3 class="modal-title">숙소 등록 정보</h3>
+						</div>
+						<div class="modal-body row">
+							<div class="container">
+								<div class="col-sm-6">
+									<img src="http://localhost:9090/upload/${house.image.imageUrl}"
+										style="width: 350px; height: 350px; border-radius: 10px; margin-bottom: 10px;">
+								</div>
+								<div class="col-sm=6">
+									<h3>${house.name}</h3>
+									<br>
+									<h4>지역&nbsp;:&nbsp;${house.address}</h4>
+									<h4>숙소 유형&nbsp;:&nbsp;${house.type}</h4>
+									<h4>최대 수용 인원&nbsp;:&nbsp;${house.capacity}</h4>
+									<h4>
+										숙박 가격&nbsp;:&nbsp; ₩
+										<fmt:formatNumber value="${house.oneDayPrice}" pattern="#,###" />
+										&nbsp;(박)
+									</h4>
+									<h4>숙소 소개:&nbsp;</h4>
+									<h4>${house.infoText}</h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</c:forEach>
 	</div>
 	<br> <br>
 
-	<div class="modal fade" id="info-modal">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">×</button>
-				</div>
-				<div class="modal-header">
-					<h4 class="modal-title">Modal Heading</h4>
-				</div>
-
-				<div class="modal-body">Modal body..</div>
-			</div>
-		</div>
-	</div>
 </div>
-<script src="/js/review.js"></script>
+<script src="/js/house.js"></script>
 <%@ include file="../layout/footer.jsp"%>

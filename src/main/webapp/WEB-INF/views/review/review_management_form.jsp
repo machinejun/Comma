@@ -28,9 +28,19 @@ div {
 			<h2>리뷰 관리</h2>
 		</div>
 		<br>
-		<div class="row justify-content-center">
-			<p>게스트들이 남긴 리뷰에 답글을 남겨보세요 !</p>
-		</div>
+		<c:choose>
+			<c:when test="${reviewCount eq 0}">
+				<div class="row justify-content-center">
+					<p>아직 등록된 리뷰가 없습니다.</p>
+				</div>
+			</c:when>
+			<c:otherwise>
+
+				<div class="row justify-content-center">
+					<p>게스트들이 남긴 리뷰에 답글을 남겨보세요 !</p>
+				</div>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<br> <br>
 	<div class="container">
@@ -91,12 +101,6 @@ div {
 							id="reply--${reply.id}">
 							<div>${reply.content}</div>
 							<div class="d-flex">
-								<div style="font-size: 15px; margin-top: 7px;">
-									작성일 :
-									<fmt:formatDate pattern="yyyy-MM-dd"
-										value="${reply.creationDate}" />
-									&nbsp;&nbsp;
-								</div>
 								<button class="btn btn-outline-primary btn-sm"
 									onclick="index.editText('${reply.id}', '${reply.content}', '${review.id}');">수정</button>
 								&nbsp;&nbsp;
@@ -116,36 +120,37 @@ div {
 <br>
 
 <div class="container justify-content-center">
-	<ul class="pagination justify-content-center">
+	<c:if test="${reviewCount ne 0}">
+		<ul class="pagination justify-content-center">
 
-		<c:set var="isDisabled" value="disabled"></c:set>
-		<c:set var="isAbled" value=""></c:set>
-		<c:set var="isNowPage" value="active"></c:set>
+			<c:set var="isDisabled" value="disabled"></c:set>
+			<c:set var="isAbled" value=""></c:set>
+			<c:set var="isNowPage" value="active"></c:set>
 
-		<li class="page-item ${reviews.first ? isDisabled : isAbled}"><a
-			class="page-link"
-			href="/review/management/${houseId}?page=${reviews.number - 1}">Prev</a></li>
+			<li class="page-item ${reviews.first ? isDisabled : isAbled}"><a
+				class="page-link"
+				href="/review/management/${houseId}?page=${reviews.number - 1}">Prev</a></li>
 
-		<c:forEach var="num" items="${pageNumbers}">
-			<c:choose>
-				<c:when test="${reviews.number + 1 eq num}">
-					<li class="page-item active"><a class="page-link"
-						href="/review/management/${houseId}?page=${num - 1}">${num}</a></li>
-				</c:when>
-				<c:otherwise>
-					<li class="page-item"><a class="page-link"
-						href="/review/management/${houseId}?page=${num - 1}">${num}</a></li>
-				</c:otherwise>
-			</c:choose>
-		</c:forEach>
+			<c:forEach var="num" items="${pageNumbers}">
+				<c:choose>
+					<c:when test="${reviews.number + 1 eq num}">
+						<li class="page-item active"><a class="page-link"
+							href="/review/management/${houseId}?page=${num - 1}">${num}</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item"><a class="page-link"
+							href="/review/management/${houseId}?page=${num - 1}">${num}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<li class="page-item ${reviews.last ? isDisabled : isAbled}"><a
+				class="page-link"
+				href="/review/management/${houseId}?page=${reviews.number + 1}">Next</a></li>
 
-		<li class="page-item ${reviews.last ? isDisabled : isAbled}"><a
-			class="page-link"
-			href="/review/management/${houseId}?page=${reviews.number + 1}">Next</a></li>
-
-	</ul>
+		</ul>
+	</c:if>
 </div>
 
 
-<%@ include file="../layout/footer.jsp"%>
 <script src="/js/reply.js"></script>
+<%@ include file="../layout/footer.jsp"%>

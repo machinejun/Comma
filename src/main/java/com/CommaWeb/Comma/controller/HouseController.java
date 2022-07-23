@@ -87,7 +87,7 @@ public class HouseController {
 		model.addAttribute("likeHouse", likeHouseEntity);
 		model.addAttribute("reviewCount", reviewCount);
 		model.addAttribute("avgScore", houseScoreDto.getScore());
-
+		System.out.println("디테일 화면 호출" + houseEntity);
 		return "house/detail_form";
 	}
 

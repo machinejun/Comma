@@ -125,13 +125,17 @@
 						<div class="modal-content">
 
 							<div class="modal-header">
-								<h5>
-									<b>📝 리뷰 상세보기</b>
-								</h5>
+								<h4>
+									<b>리뷰 상세보기</b>
+								</h4>
 								<button type="button" class="close" data-dismiss="modal">×</button>
 							</div>
 							<div class="modal-body">
-								<h3>${review.guestId.username}</h3>
+								<h4><b>${review.guestId.username}님의&nbsp;리뷰</b></h4>
+								<p>
+									<fmt:formatDate pattern="yyyy-MM-dd"
+										value="${review.creationDate}" />
+								</p>
 								<div class="star-ratings">
 									<div class="star-ratings-fill"
 										style="width: ${review.starScore * 20 * 1.4}%">
@@ -143,20 +147,15 @@
 									<br>
 								</div>
 								<p>${review.content}</p>
-								<c:if test="${review.guestId.id eq principal.user.id}">
-									<button class="btn btn-outline-danger btn-sm float-right"
-										style="margin-left: 10px;" id="btn-delete">삭제</button>
-									<a class="btn btn-outline-primary btn-sm float-right"
-										id="btn-update" href="/review/update_form/${review.id}">수정</a>
-									<br>
-								</c:if>
 								<hr>
-								<h5>
-									<b>호스트의 댓글</b>
-								</h5>
-								<c:forEach var="reply" items="${review.replies}">
-									<p>${reply.content}</p>
-								</c:forEach>
+								<c:if test="${not empty review.replies}">
+									<h5>
+										<b>호스트의 댓글</b>
+									</h5>
+									<c:forEach var="reply" items="${review.replies}">
+										<h4>${reply.content}</h4>
+									</c:forEach>
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -168,7 +167,7 @@
 			<c:set var="isDisabled" value="disabled"></c:set>
 
 			<c:choose>
-				<c:when test="${reviewCount > 0}">
+				<c:when test="${reviewCount ne 0}">
 					<c:choose>
 						<c:when test="${reviews.first}">
 							<li class="page-item disabled"><a class="page-link"
@@ -209,8 +208,8 @@
 						<a href="/house/detail/${house.id}"> <img
 							class="custom-card-img"
 							src="http://localhost:9090/upload/${house.image.imageUrl}"
-							width="100%" height="160px"></a>
-						<div class="card-body ">
+							width="240px;" height="160px"></a>
+						<div class="card-body">
 							<div class="text-center">
 								<h4 class="multiLine">
 									<b>${house.name}</b>
@@ -239,19 +238,19 @@
 	function clickHeart() {
 		let token = $("meta[name='_csrf']").attr("content");
 		let header = $("meta[name='_csrf_header']").attr("content");
-		
+
 		let data = {
 			id : $("#house-id").val()
 		}
 
 		// 빈 하트를 눌렀을때
 		if ($("#like").attr("class") == "bi bi-suit-heart") {
-			
+
 			$.ajax({
-				beforeSend: function(xhr) {
+				beforeSend : function(xhr) {
 					xhr.setRequestHeader(header, token)
 				},
-				
+
 				url : "/api/house/wish-list",
 				type : "POST",
 				data : JSON.stringify(data),
@@ -272,7 +271,7 @@
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader(header, token)
 				},
-				
+
 				url : "/api/house/wish-list/" + houseId,
 				type : "DELETE",
 			}).done(function() {

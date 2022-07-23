@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.CommaWeb.Comma.auth.PrincipalDetail;
 import com.CommaWeb.Comma.model.Review;
+import com.CommaWeb.Comma.service.HouseService;
 import com.CommaWeb.Comma.service.ReservationService;
 import com.CommaWeb.Comma.service.ReviewService;
 
@@ -25,6 +26,9 @@ public class ReviewController {
 
 	@Autowired
 	private ReviewService reviewService;
+
+	@Autowired
+	private HouseService houseService;
 
 	@Autowired
 	private ReservationService reservationService;
@@ -55,6 +59,8 @@ public class ReviewController {
 		int startPage = Math.max(nowPage - 2, 1);
 		int endPage = Math.min(nowPage + 2, reviews.getTotalPages());
 
+		int reviewCount = houseService.getReviewCount(houseId);
+
 		// 페이지 번호 배열에 담기
 		ArrayList<Integer> pageNumbers = new ArrayList<>();
 		for (int i = startPage; i <= endPage; i++) {
@@ -65,6 +71,7 @@ public class ReviewController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("pageNumbers", pageNumbers);
 		model.addAttribute("reviews", reviews);
+		model.addAttribute("reviewCount", reviewCount);
 		model.addAttribute("houseId", houseId);
 
 		return "review/review_management_form";

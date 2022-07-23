@@ -150,10 +150,10 @@ nav {
 				<c:otherwise>
 					<a href="/auth/update_form"
 						class="list-group-item list-group-item-action"> <span
-						class="icon-user-plus"></span>&nbsp;&nbsp;회원정보 수정
+						class="icon-user"></span>&nbsp;&nbsp;회원정보 수정
 					</a>
 					<a class="list-group-item list-group-item-action" href="/logout">
-						<span class="icon-suitcase"></span>&nbsp;&nbsp;로그아웃
+						<span class="icon-drivers-license-o"></span>&nbsp;&nbsp;로그아웃
 					</a>
 
 				</c:otherwise>
@@ -174,7 +174,7 @@ nav {
 				</a>
 				<a type="button" href="/review/my-review-list/${principal.user.id}"
 					class="list-group-item list-group-item-action"> <span
-					class="icon-gittip"></span>&nbsp;&nbsp;리뷰 관리
+					class="icon-note"></span>&nbsp;&nbsp;리뷰 관리
 				</a>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_HOST')">
@@ -187,7 +187,7 @@ nav {
 					확인
 				</a>
 				<a type="button" class="list-group-item list-group-item-action"
-					href="/house/management"> <span class="icon-plus"></span>&nbsp;&nbsp;숙소
+					href="/house/management"> <span class="icon-home"></span>&nbsp;&nbsp;숙소
 					관리
 				</a>
 			</sec:authorize>

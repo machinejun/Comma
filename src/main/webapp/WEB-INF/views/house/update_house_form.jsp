@@ -42,6 +42,11 @@
 				</div>
 				<br>
 				<div class="form-group">
+					<label><b>최대 수용 인원</b></label><input type="number"
+						class="form-control" name="capacity" value="${house.capacity}" />
+				</div>
+				<br>
+				<div class="form-group">
 					<label for="price"><b>숙박 가격 (1인 / 1박 기준)</b></label> <input type="text" class="form-control" name="oneDayPrice" value="${house.oneDayPrice}" />
 				</div>
 				<br> <label><b>사진 등록</b></label>

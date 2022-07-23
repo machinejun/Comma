@@ -80,6 +80,7 @@ public class HouseService {
 		houseEntity.setInfoText(requestPostDto.getInfoText());
 		houseEntity.setType(requestPostDto.getType());
 		houseEntity.setOneDayPrice(requestPostDto.getOneDayPrice());
+		houseEntity.setCapacity(requestPostDto.getCapacity());
 		houseEntity.setHostId(user);
 
 		String imageFileName = UUID.randomUUID() + "_" + "image"; // 한글이름 파일 저장시 오류 방지
@@ -138,7 +139,6 @@ public class HouseService {
 	@Transactional
 	public List<House> findAllByHostId(int hostId) {
 		List<House> houses = houseRepository.findAllByHostId(hostId);
-		System.out.println(houses);
 		return houses;
 	}
 
@@ -194,7 +194,7 @@ public class HouseService {
 	@Transactional
 	public List<House> getHouseOrderByStarScore() {
 		return houseRepository.findAllByStarScore();
-		
+
 	}
 
 	@Transactional

@@ -3,10 +3,6 @@ let header = $("meta[name='_csrf_header']").attr("content");
 
 let index = {
 
-	init: function() {
-
-	},
-
 	addReply: function(reviewId) {
 		let houseId = $("#house-id").val();
 
@@ -149,12 +145,9 @@ function appendReply(reply) {
 	let childElement = `<li class="list-group-item d-flex justify-content-between" id="reply--${reply.id}">
 			<div>${reply.content}</div>
 			<div class="d-flex">
-				<div>작성일 : <fmt:formatDate pattern="yyyy-MM-dd"
-										value="${reply.creationDate}" />
-									&nbsp;&nbsp;</div>
-				<button class="badge badge-danger"
+				<button class="btn btn-outline-primary btn-sm"
 									onclick="index.editText('${reply.id}', '${reply.content}', '${reply.reviewId.id}');">수정</button>
-					<button class="badge badge-danger" onclick="index.deleteReply(${reply.id});">삭제</button>				
+					<button class="btn btn-outline-danger btn-sm" onclick="index.deleteReply(${reply.id});">삭제</button>				
 			</div>
 		</li>`;
 	console.log("append 확인" + reply.reviewId.id);

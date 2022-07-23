@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.CommaWeb.Comma.auth.PrincipalDetail;
+import com.CommaWeb.Comma.dto.ResponseDto;
 import com.CommaWeb.Comma.model.House;
 import com.CommaWeb.Comma.model.Review;
 import com.CommaWeb.Comma.service.HouseService;
@@ -40,9 +42,10 @@ public class HouseApiController {
 	}
 
 	@DeleteMapping("/{houseId}")
-	public void deleteHouse(@PathVariable int houseId) {
+	public ResponseDto<Integer> deleteHouse(@PathVariable int houseId) {
 		// 숙소 삭제 기능
 		houseService.deleteHouse(houseId);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 
 	@PostMapping("/wish-list")

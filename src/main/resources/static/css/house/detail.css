@@ -1,0 +1,202 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&display=swap')
+	;
+
+.multiLine {
+	width: 200px;
+	overflow: hidden;
+	line-height: 1.1;
+	margin-left: 5px;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+.multiLine-title {
+	width: 350px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+.card-img {
+	border-radius: 10px;
+}
+
+.bi-suit-heart {
+	font-size: 35px;
+	line-height: 25px;
+	color: #ff5555;
+}
+
+.bi-suit-heart-fill {
+	font-size: 35px;
+	line-height: 25px;
+	color: #ff5555;
+}
+
+.bi-reply {
+	font-size: 20px;
+}
+
+.bi-reply-fill:hover {
+	font-size: 20px;
+	color: black;
+}
+
+.my-underline {
+	text-decoration: underline;
+}
+
+.star-ratings {
+	color: #aaa9a9;
+	position: relative;
+	unicode-bidi: bidi-override;
+	width: max-content;
+	-webkit-text-fill-color: transparent; /* 덮어써지는 색깔 */
+	-webkit-text-stroke-color: #2b2a29;
+	justify-content: center;
+}
+
+.star-ratings-fill {
+	color: #ffc107;
+	padding: 0;
+	position: absolute;
+	z-index: 1;
+	display: flex;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	-webkit-text-fill-color: #ffc107;
+}
+
+.star-ratings-base {
+	z-index: 0;
+	padding: 0;
+}
+
+.multiLine-house {
+	width: 400px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	-webkit-box-orient: vertical;
+}
+
+.multiLine-recommand {
+	width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.custom-btn {
+	font-family: 'SUIT-Medium';
+	font-size: 20px;
+	line-height: 1.5;
+	color: #fff;
+	text-transform: uppercase;
+	border: none;
+	width: 110px;
+	height: 40px;
+	border-radius: 5px;
+	background: rgba(255, 149, 149, 0.7);
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 20px;
+}
+
+.custom-btn:hover {
+	background: rgba(255, 149, 149, 1);
+}
+
+.custom-sm-btn {
+	font-family: 'SUIT-Medium';
+	font-size: 15px;
+	line-height: 1.5;
+	color: #fff;
+	text-transform: uppercase;
+	border: none;
+	width: 70px;
+	height: 20px;
+	border-radius: 5px;
+	background: rgba(255, 149, 149, 0.7);
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.custom-sm-btn:hover {
+	background: rgba(255, 149, 149, 1);
+}
+
+.custom-btn:hover {
+	background: #ff5555;
+}
+
+.underline-text {
+	font-size: 15px;
+	text-decoration: underline;
+}
+
+.custom-card-img {
+	border-radius: 10px;
+}
+
+.h4, .h5, .h6, h4, h5, h6 {
+	font-family: 'SUIT-Medium';
+	font-weight: 500;
+	line-height: 1.1;
+	color: #000000;
+}
+
+h3 {
+	font-family: 'SUIT-Medium';
+	line-height: 1.1;
+	color: #000000;
+	font-weight: 600;
+}
+
+.custom-text {
+	font-family: 'SUIT-Medium';
+}
+
+h2 {
+	font-weight: 900;
+	line-height: 1.1;
+	color: #000000;
+}
+
+h2:after {
+	content: "";
+}
+
+p, span {
+	font-family: 'SUIT-Medium';
+}
+
+.page-item.active .page-link {
+	z-index: 3;
+	color: #fff;
+	background-color: rgba(255, 149, 149, 0.7);
+	border-color: rgba(255, 149, 149, 0.7);
+}
+
+.card-body {
+	padding: 0px;
+}

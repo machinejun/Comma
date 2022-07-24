@@ -15,7 +15,7 @@ spring:
       
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/jmthouse?serverTime=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/comma?serverTime=Asia/Seoul
     username: ten
     password: 1q2w3e4r5t!
     
@@ -26,7 +26,7 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       use-new-id-generator-mappings: false
-    show-sql: true
+    show-sql: false
     properties:
       hibernate.format_sql: true
       
@@ -41,8 +41,8 @@ spring:
       
   servlet:
     multipart:
-      max-file-size: 20MB # 파일 하나의 최대 용량
-      max-request-size: 200MB # 한 번에 동시에 보낼 수 있는 파일 용량
+      max-file-size: 20MB 
+      max-request-size: 200MB 
       
 file:
   path: C:/houseImgDir/upload/

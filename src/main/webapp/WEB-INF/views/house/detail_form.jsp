@@ -114,13 +114,13 @@
 						<div>
 							<br> <br>
 							<p class="underline-text">
-								<a data-toggle="modal" data-target="#review-modal"
+								<a data-toggle="modal" data-target="#review-modal-${review.id}"
 									style="cursor: pointer;">더 보기</a>
 							</p>
 						</div>
 					</div>
 				</div>
-				<div class="modal" id="review-modal">
+				<div class="modal" id="review-modal-${review.id}">
 					<div class="modal-dialog modal-dialog-scrollable">
 						<div class="modal-content">
 
@@ -131,7 +131,9 @@
 								<button type="button" class="close" data-dismiss="modal">×</button>
 							</div>
 							<div class="modal-body">
-								<h4><b>${review.guestId.username}님의&nbsp;리뷰</b></h4>
+								<h4>
+									<b>${review.guestId.username}님의&nbsp;리뷰</b>
+								</h4>
 								<p>
 									<fmt:formatDate pattern="yyyy-MM-dd"
 										value="${review.creationDate}" />

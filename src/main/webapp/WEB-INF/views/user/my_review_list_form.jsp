@@ -126,7 +126,9 @@ div {
 		</div>
 		<br>
 		<div class="container bg-light">
-			<h4>호스트의 답글</h4>
+			<c:if test="${not empty review.replies}">
+				<h4>호스트의 답글</h4>
+			</c:if>
 			<!-- 댓글 목록 -->
 			<ul class="list-group" id="reply-list-${review.id}">
 				<c:forEach var="reply" items="${review.replies}">

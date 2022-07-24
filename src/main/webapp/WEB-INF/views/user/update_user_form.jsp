@@ -21,8 +21,9 @@
 							disabled />
 					</div>
 					<div class="form-group">
-						<label for="password"><i class="zmdi zmdi-lock-outline"></i></label> <input
-							type="password" id="password" placeholder="Password" required />
+						<label for="password"><i class="zmdi zmdi-lock-outline"></i></label>
+						<input type="password" id="password" placeholder="Password"
+							required />
 					</div>
 					<div class="form-group">
 						<label for="password"><i class="zmdi zmdi-lock-outline"></i></label>
@@ -41,8 +42,7 @@
 							type="text" value="${principal.user.phoneNumber}"
 							id="phoneNumber" placeholder="Your Phone Number" />
 					</div>
-					<button type="button" onsubmit="return passwordCheck()"
-						id="btn-update" class="custom-btn">수정하기</button>
+					<button type="button" id="btn-update" class="custom-btn">수정하기</button>
 				</div>
 
 				<div class="signup-image" style="margin-top: 50px;">
@@ -54,19 +54,6 @@
 		</div>
 	</section>
 </div>
-<script>
-
-function passwordCheck() {
-    let password = $("#password").val();
-    let passwordCheck = $("#re-password").val();
-
-    if (password != "" || passwordCheck != "") {
-      if (password != passwordCheck) {
-        alert("입력하신 비밀번호가 일치하지 않습니다.");
-        return false;
-      }
-    }
-</script>
 
 <script src="/js/user/user.js"></script>
 <script src="/vendor/jquery/jquery.min.js"></script>

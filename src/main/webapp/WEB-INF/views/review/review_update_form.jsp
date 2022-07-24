@@ -41,6 +41,8 @@ function updateReview() {
 	let starLength = document.getElementsByName("rating").length;
 	let reviewId = document.getElementById("review-id").value;
 	let guestId = document.getElementById("guest-id").value;
+	
+	console.log("guestId : " + guestId);
 	  
      for (let i=0; i < starLength; i++) {
          if (document.getElementsByName("rating")[i].checked == true) {

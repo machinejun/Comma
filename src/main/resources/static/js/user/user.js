@@ -26,13 +26,14 @@ let index = {
 		} else if (data.password == "" || data.password.trim() == "" ||
 			rePassword == "" || rePassword.trim() == "") {
 			alert("비밀번호를 입력하세요.");
+		} else if (data.phoneNumber.indexOf("-") != -1) {
+			alert("하이픈(-)을 제외한 번호를 입력해주세요.");
 		} else {
 			$.ajax({
 				beforeSend: function(xhr) {
-					console.log("xhr: " + xhr)
 					xhr.setRequestHeader(header, token)
 				},
-				
+
 				type: "PUT",
 				url: "/user/update",
 				data: JSON.stringify(data),
@@ -54,7 +55,6 @@ let index = {
 	}
 
 }
-
 
 function alertMessage(title, text, icon) {
 	Swal.fire(

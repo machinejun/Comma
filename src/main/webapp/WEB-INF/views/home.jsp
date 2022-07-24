@@ -6,10 +6,12 @@
 	animation: box-ani 0.5s linear forwards;
 }
 
-@keyframes box-ani {
-from { transform:translate(0, 0);
+@
+keyframes box-ani {from { transform:translate(0, 0);
 	
-}to {
+}
+
+to {
 	transform: translate(0, -15px);
 }
 
@@ -62,9 +64,8 @@ p {
 				<div class="text-center">
 					<h2>Comma(,)</h2>
 					<p>
-						콤마(Comma)는 쉼표를 의미합니다. <br> 쉼표가 문장 안에서 잠시 쉬어가는 시간을 주듯이,
-						<br> 우리의 일상 속에서도 쉼표가 필요합니다. <br> 콤마와 함께 일상에 쉼표를
-						찍어보세요.
+						콤마(Comma)는 쉼표를 의미합니다. <br> 쉼표가 문장 안에서 잠시 쉬어가는 시간을 주듯이, <br>
+						우리의 일상 속에서도 쉼표가 필요합니다. <br> 콤마와 함께 일상에 쉼표를 찍어보세요.
 					</p>
 				</div>
 			</div>
@@ -187,17 +188,18 @@ p {
 			<div class="col-xs-12 col-md-4">
 				<a href="/"> <i class="bi bi-calendar-check"
 					style="font-size: 170px; color: rgba(255, 149, 149, 0.7);"></i></a>
-				<h4 style="color: rgba(255, 149, 149, 0.7);"></h4>
+				<h3 style="color: rgba(255, 149, 149, 0.7);">Reservations</h3>
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<a href="/"> <i class="bi bi-house-fill"
 					style="font-size: 170px; color: rgba(255, 149, 149, 0.7);"></i></a>
-				<h4 style="color: rgba(255, 149, 149, 0.7);"></h4>
+				<h3 style="color: rgba(255, 149, 149, 0.7);">Hosting</h3>
 			</div>
 			<div class="col-xs-12 col-md-4">
 				<a href="/"> <i class="bi bi-card-list"
 					style="font-size: 170px; color: rgba(255, 149, 149, 0.7);"></i></a>
-				<h4 style="color: rgba(255, 149, 149, 0.7); font-style: bold;"></h4>
+				<h3 style="color: rgba(255, 149, 149, 0.7); font-style: bold;">Browse
+				</h3>
 			</div>
 		</div>
 		<br />

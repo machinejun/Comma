@@ -67,7 +67,7 @@
 		<c:forEach var="house" items="${houseList}">
 			<div class="col-xl">
 				<div class="row">
-					<a data-toggle="modal" data-target="#info-modal"
+					<a data-toggle="modal" data-target="#info-modal-${house.id}"
 						style="cursor: pointer;"> <img class="custom-img"
 						src="http://localhost:9090/upload/${house.image.imageUrl}"
 						style="width: 200px; height: 200px;"></a>
@@ -93,7 +93,7 @@
 
 			</div>
 			<hr class="end-line">
-			<div class="modal" id="info-modal">
+			<div class="modal" id="info-modal-${house.id}">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">

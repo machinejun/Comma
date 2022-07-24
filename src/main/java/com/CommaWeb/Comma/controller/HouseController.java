@@ -87,7 +87,6 @@ public class HouseController {
 		model.addAttribute("likeHouse", likeHouseEntity);
 		model.addAttribute("reviewCount", reviewCount);
 		model.addAttribute("avgScore", houseScoreDto.getScore());
-		System.out.println("디테일 화면 호출" + houseEntity);
 		return "house/detail_form";
 	}
 
@@ -108,7 +107,7 @@ public class HouseController {
 	@PostMapping("/post")
 	public String postHouse(RequestPostDto requestPostDto, @AuthenticationPrincipal PrincipalDetail principalDetail) {
 		houseService.postHouse(requestPostDto, principalDetail.getUser());
-		return "redirect:/house/list";
+		return "redirect:/house/management";
 	}
 
 	@PostMapping("/update/{houseId}")

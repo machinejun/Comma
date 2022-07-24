@@ -75,9 +75,9 @@
 						<a href="/house/detail/${house.house.id}"><img class="custom-img" src="http://localhost:9090/upload/${house.house.image.imageUrl}" style="width: 300px; height: 250px;"></a>
 						<div class="p-4">
 							<div class="container" style="position: relative; width: 240px;">
-								<h5 class="fw-bolder" style="position: absolute; left: 0%">${house.house.name}</h5>
-								<i class="bi ${not empty house ? exist : notExist}" style="margin-top: 10px; cursor: pointer; position: absolute; right: 0%" id="like-${house.house.id}" onclick="clickHeart(${house.house.id})"></i>
-								<p style=" position: absolute; top: 45px">${house.house.address}</p>
+								<h5 class="fw-bolder" style="position: absolute;">${house.house.name}</h5>
+								<i class="bi ${not empty house ? exist : notExist}" style="margin-top: 10px; cursor: pointer; position: absolute; right: -5%" id="like-${house.house.id}" onclick="clickHeart(${house.house.id})"></i>
+								<p style=" position: absolute; top: 45px">${house.house.type},&nbsp;${house.house.address}</p>
 							</div>
 						</div>
 						<br> <br>

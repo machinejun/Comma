@@ -10,6 +10,7 @@
 				<div class="signup-form needs-validation">
 					<h2 class="form-title">회원가입</h2>
 					<form action="/auth/joinProc" method="post" onsubmit="return joinCheck()" class="register-form" id="register-form">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<div class="form-group">
 							<label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label> <input type="text" name="username" id="username" placeholder="Username" required />
 						</div>
@@ -47,12 +48,21 @@
 
 
 <script>
+	let token = $("meta[name='_csrf']").attr("content");
+	let header = $("meta[name='_csrf_header']").attr("content");
 	let usernameCheck = false;
 	$("#btn-checkUsername").bind("click", function() {
+		console.log("버튼 클릭도미");
 		let data = {
 			username : $("#username").val(),
 		};
+		console.log(data);
 		$.ajax({
+			beforeSend: function(xhr) {
+				xhr.setRequestHeader(header, token)
+			},
+
+			
 			type : "POST",
 			url : "/auth/username-check",
 			data : JSON.stringify(data),

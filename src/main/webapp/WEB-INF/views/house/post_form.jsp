@@ -38,11 +38,7 @@
 				</div>
 				<br>
 				<div class="form-group">
-<<<<<<< HEAD
 					<label><b>최대 수용 인원</b></label><input type="number" class="form-control" name="capacity" value="1" />
-=======
-					<label><b>최대 수용 인원</b></label><input type="number" class="form-control" name="oneDayPrice" value="1" />
->>>>>>> c883e65e359a0c8487ef492bdaf8fe32793f0b92
 				</div>
 				<br>
 				<div class="form-group">

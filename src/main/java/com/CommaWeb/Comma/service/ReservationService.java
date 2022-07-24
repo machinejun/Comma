@@ -104,6 +104,7 @@ public class ReservationService {
 		}
 		return reservation;
 	}
+	
 
 	@Transactional(readOnly = true)
 	public List<HostTableDto> getTableInfo(int hostId, int houseId, int month) {
@@ -145,8 +146,8 @@ public class ReservationService {
 		case "WAITING":
 			enumType = ReservationType.WAITING;
 			break;
-		case "CANCELED":
-			enumType = ReservationType.CANCELED;
+		case "PAID":
+			enumType = ReservationType.PAID;
 			break;
 		case "APPROVED":
 			enumType = ReservationType.APPROVED;
@@ -171,7 +172,7 @@ public class ReservationService {
 		if(res == null) {
 			return false;
 		}
-		res.setApprovalStatus(ReservationType.COMPLETED);
+		res.setApprovalStatus(ReservationType.PAID);
 		return true;
 	}
 

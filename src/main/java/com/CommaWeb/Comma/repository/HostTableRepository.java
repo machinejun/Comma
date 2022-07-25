@@ -9,7 +9,7 @@ import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 
 import com.CommaWeb.Comma.dto.HostTableDto;
-import com.CommaWeb.Comma.dto.HoustWaitDto;
+import com.CommaWeb.Comma.dto.HouseWaitDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -55,7 +55,7 @@ public class HostTableRepository {
 		
 	}
 	
-	public List<HoustWaitDto> getWaitCount(int id) {
+	public List<HouseWaitDto> getWaitCount(int id) {
 	
 		String sql="select count(id) as wait, houseId\r\n"
 				+ "from reservation\r\n"
@@ -65,7 +65,7 @@ public class HostTableRepository {
 		
 		Query nativeQuery = entityManager.createNativeQuery(sql);
 		JpaResultMapper jpaResultMapper = new JpaResultMapper();
-		return jpaResultMapper.list(nativeQuery, HoustWaitDto.class);
+		return jpaResultMapper.list(nativeQuery, HouseWaitDto.class);
 		
 	}
 

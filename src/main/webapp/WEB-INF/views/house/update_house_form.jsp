@@ -60,10 +60,11 @@
 				</div>
 			</div>
 			<br>
-			<button type="submit" onsubmit="checkImageChange(${house.image.imageUrl})" class="custom-sm-btn" id="btn-update">수정</button>
+			<button type="submit" onsubmit="checkImageChange(${house.image.imageUrl})" class="custom-btn" id="btn-update">수정</button>
 		</form>
 	</div>
 </section>
+<br>
 
 <script>
 	$(".custom-file-input").on(

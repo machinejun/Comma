@@ -61,8 +61,7 @@ let index = {
 
 	},
 
-	deleteReview: function() {
-		let reviewId = $("#review-id").val();
+	deleteReview: function(reviewId) {
 		let guestId = $("#guest-id").val();
 		let deleteCheck = confirm("삭제하시겠습니까?");
 		console.log(reviewId);
@@ -71,7 +70,6 @@ let index = {
 			$.ajax({
 
 				beforeSend: function(xhr) {
-					console.log("xhr: " + xhr)
 					xhr.setRequestHeader(header, token)
 				},
 

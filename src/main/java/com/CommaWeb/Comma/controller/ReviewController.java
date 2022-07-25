@@ -52,7 +52,7 @@ public class ReviewController {
 	// 리뷰 관리 폼 호출 (호스트)
 	@GetMapping("/management/{houseId}")
 	public String getMyHouseReviewList(@PathVariable int houseId, Model model,
-			@PageableDefault(size = 5, sort = "id", direction = Direction.DESC) Pageable pageable) {
+			@PageableDefault(size = 5, sort = "creationDate", direction = Direction.DESC) Pageable pageable) {
 		Page<Review> reviews = reviewService.getReviewPageByHouseId(houseId, pageable);
 
 		int nowPage = reviews.getPageable().getPageNumber() + 1;
@@ -61,7 +61,7 @@ public class ReviewController {
 
 		int reviewCount = houseService.getReviewCount(houseId);
 
-		// 페이지 번호 배열에 담기
+		// 페이지 번호
 		ArrayList<Integer> pageNumbers = new ArrayList<>();
 		for (int i = startPage; i <= endPage; i++) {
 			pageNumbers.add(i);
@@ -79,8 +79,24 @@ public class ReviewController {
 
 	// 내가 작성한 리뷰 목록 폼 호출 (게스트)
 	@GetMapping("/my-review-list/{guestId}")
-	public String getMyReviewList(@PathVariable int guestId, Model model) {
-		model.addAttribute("reviews", reviewService.getReviewListByGuestId(guestId));
+	public String getMyReviewList(@PathVariable int guestId, Model model,
+			@PageableDefault(size = 5, sort = "creationDate", direction = Direction.DESC) Pageable pageable) {
+		Page<Review> reviews = reviewService.getReviewListByGuestId(guestId, pageable);
+		
+		int nowPage = reviews.getPageable().getPageNumber() + 1;
+		int startPage = Math.max(nowPage - 2, 1);
+		int endPage = Math.min(nowPage + 2, reviews.getTotalPages());
+
+		ArrayList<Integer> pageNumbers = new ArrayList<>();
+		for (int i = startPage; i <= endPage; i++) {
+			pageNumbers.add(i);
+		}
+
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+		model.addAttribute("pageNumbers", pageNumbers);
+		model.addAttribute("reviews", reviews);
+		
 		return "user/my_review_list_form";
 	}
 

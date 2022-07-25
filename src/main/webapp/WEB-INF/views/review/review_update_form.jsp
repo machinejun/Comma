@@ -3,8 +3,8 @@
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/review/review.css" rel="stylesheet">
 
-<br />
-<br />
+<br>
+<br>
 <div class="container">
 	<h2>리뷰 수정</h2>
 	<p>숙소와 호스트에 대한 솔직한 리뷰를 남겨보세요 !</p>
@@ -31,8 +31,8 @@
 	<button type="button" onclick="updateReview()" class="custom-sm-btn"
 		id="btn-update">수정</button>
 </div>
+<br>
 <script>
-
 function updateReview() {
 	let token = $("meta[name='_csrf']").attr("content");
 	let header = $("meta[name='_csrf_header']").attr("content");

@@ -65,10 +65,14 @@
 div {
 	font-family: 'SUIT-Medium';
 }
+
+#title {
+	background-color: rgba(255, 149, 149, 0.05);
+}
 </style>
 
 <div class="container">
-	<div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+	<div class="p-4 p-lg-5 rounded-3 text-center" id="title">
 		<input type="hidden" id="guest-id" value="${principal.user.id}">
 		<div class="m-4 m-lg-5">
 			<c:choose>
@@ -85,7 +89,7 @@ div {
 	<div></div>
 	<br>
 
-	<c:forEach var="review" items="${reviews}">
+	<c:forEach var="review" items="${reviews.content}">
 		<input type="hidden" value="${review.id}" id="review-id">
 		<div class="col-xl">
 			<div class="row">
@@ -104,9 +108,8 @@ div {
 
 				</div>
 				<div class="col" style="position: absolute; left: 85%;">
-					<a class="btn btn-outline-primary btn-sm"
-						href="/review/update_form/${review.id}">수정</a>
-					<button class="btn btn-outline-danger btn-sm" id="btn-delete">삭제</button>
+					<a href="/review/update_form/${review.id}" style="margin-right: 10px;">수정</a>
+					<a id="btn-delete" onclick="index.deleteReview(${review.id})" style="color: red">삭제</a>
 				</div>
 			</div>
 			<hr>
@@ -125,7 +128,7 @@ div {
 			<div>${review.content}</div>
 		</div>
 		<br>
-		<div class="container bg-light">
+		<div class="container" id="title">
 			<c:if test="${not empty review.replies}">
 				<h4>호스트의 답글</h4>
 			</c:if>
@@ -153,6 +156,39 @@ div {
 	</c:forEach>
 
 </div>
+<br>
+<div class="container justify-content-center" style="margin-left: 47%">
+	<c:if test="${not empty reviews}">
+		<ul class="pagination justify-content-center">
+
+			<c:set var="isDisabled" value="disabled"></c:set>
+			<c:set var="isAbled" value=""></c:set>
+			<c:set var="isNowPage" value="active"></c:set>
+
+			<li class="page-item ${reviews.first ? isDisabled : isAbled}"><a
+				class="page-link"
+				href="/review/my-review-list/${principal.user.id}?page=${reviews.number - 1}">Prev</a></li>
+
+			<c:forEach var="num" items="${pageNumbers}">
+				<c:choose>
+					<c:when test="${reviews.number + 1 eq num}">
+						<li class="page-item active"><a class="page-link"
+							href="/review/my-review-list/${principal.user.id}?page=${num - 1}">${num}</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item"><a class="page-link"
+							href="/review/my-review-list/${principal.user.id}?page=${num - 1}">${num}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<li class="page-item ${reviews.last ? isDisabled : isAbled}"><a
+				class="page-link"
+				href="/review/my-review-list/${principal.user.id}?page=${reviews.number + 1}">Next</a></li>
+
+		</ul>
+	</c:if>
+</div>
+
 <br>
 <%@ include file="../layout/footer.jsp"%>
 <script src="/js/review.js"></script>

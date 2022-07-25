@@ -29,19 +29,12 @@ function upnav () {
 				if(isShow != 0){
 					return;
 				}
-				console.log("hid = scrollpositon: " +scrollposition); 
-				console.log("hid = last :" +last); 
-				console.log("hid = last :" +headerheight); 
-
 				$("#user-btn-header").hide();
 				$("#user-box-header").hide();
 			}else if (scrollposition<last) {	
 				if(isShow != 0){
 					return;
-				}
-				console.log("sho = scrollpositon: " +scrollposition); 
-				console.log("sho = last :" +last); 
-
+				}	
 				$("#user-btn-header").show();
 			}
 			last = scrollposition;

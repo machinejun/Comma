@@ -63,11 +63,14 @@
 						<select id="month" class="form-select" aria-label="Default select example" style="">
 							     <% LocalDate now = LocalDate.now();
 							     	int month = now.getMonthValue();%>
-							     	<option value="<%=month +1%>"><%=month+1%>월</option>
-							     	<option value="<%=month%>"><%=month%>월</option>
+							     	
+							     
+							     	
 							     <% for( int i = 1; i < month; i++){ %>
 							     		<option value="<%= i %>"><%= i %>월</option>
-							     <% } %>	
+							     <% } %>
+							     	<option selected value="<%=month%>"><%=month%>월</option>	
+							     	<option value="<%=month +1%>"><%=month+1%>월</option>
 						</select>
 							
 						<div class="btn-box">

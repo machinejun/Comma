@@ -28,6 +28,10 @@ let index = {
 			alert("비밀번호를 입력하세요.");
 		} else if (data.phoneNumber.indexOf("-") != -1) {
 			alert("하이픈(-)을 제외한 번호를 입력해주세요.");
+		} else if(data.phoneNumber.length != 11) {
+			alert("휴대폰 번호 11자리를 입력해주세요.");
+		} else if(data.phoneNumber.charAt(0) != 0 || data.phoneNumber.charAt(1) != 1 || data.phoneNumber.charAt(2) != 0) {
+			alert("휴대폰 번호의 형식은 010으로 시작해야 합니다.");
 		} else {
 			$.ajax({
 				beforeSend: function(xhr) {

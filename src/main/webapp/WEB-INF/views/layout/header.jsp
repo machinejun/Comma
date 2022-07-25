@@ -183,8 +183,7 @@ nav {
 					되기
 				</a>
 				<a type="button" class="list-group-item list-group-item-action"
-					href="/reserveTable/host"> <span class="icon-users"></span>&nbsp;&nbsp;예약자
-					확인
+					href="/reserveTable/host"> <span class="icon-users"></span>&nbsp;&nbsp;예약 관리
 				</a>
 				<a type="button" class="list-group-item list-group-item-action"
 					href="/house/management"> <span class="icon-home"></span>&nbsp;&nbsp;숙소

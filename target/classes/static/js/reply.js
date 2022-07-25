@@ -130,9 +130,11 @@ function appendEditedReply(reply) {
 				<div>작성일 : <fmt:formatDate pattern="yyyy-MM-dd"
 										value="${reply.creationDate}" />
 									&nbsp;&nbsp;</div>
-				<button class="badge badge-danger"
-									onclick="index.editText('${reply.id}', '${reply.content}', '${reply.reviewId.id}');">수정</button>
-					<button class="badge badge-danger" onclick="index.deleteReply(${reply.id});">삭제</button>				
+				<a class="host-review-update"
+									onclick="index.editText('${reply.id}', '${reply.content}', '${review.id}');" style="cursor: pointer;">수정</a>
+								&nbsp;&nbsp;
+								<a class="host-review-delete" style="color: red"
+									onclick="index.deleteReply(${reply.id});" style="cursor: pointer;">삭제</a>				
 			</div>
 		</li>`;
 
@@ -145,9 +147,11 @@ function appendReply(reply) {
 	let childElement = `<li class="list-group-item d-flex justify-content-between" id="reply--${reply.id}">
 			<div>${reply.content}</div>
 			<div class="d-flex">
-				<button class="btn btn-outline-primary btn-sm"
-									onclick="index.editText('${reply.id}', '${reply.content}', '${reply.reviewId.id}');">수정</button>
-					<button class="btn btn-outline-danger btn-sm" onclick="index.deleteReply(${reply.id});">삭제</button>				
+				<a class="host-review-update"
+									onclick="index.editText('${reply.id}', '${reply.content}', '${review.id}');" style="cursor: pointer;">수정</a>
+								&nbsp;&nbsp;
+								<a class="host-review-delete" style="color: red"
+									onclick="index.deleteReply(${reply.id});" style="cursor: pointer;">삭제</a>				
 			</div>
 		</li>`;
 	console.log("append 확인" + reply.reviewId.id);

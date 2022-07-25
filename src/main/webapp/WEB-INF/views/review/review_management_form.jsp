@@ -21,11 +21,17 @@
 div {
 	font-family: 'SUIT-Medium';
 }
+
+#title{
+	border-radius: 10px;
+	background-color: rgba(255, 149, 149, 0.05);
+}
+
 </style>
 <div class="py-5" id="features">
-	<div class="container bg-light">
+	<div id="title" class="container">
 		<div class="row justify-content-center">
-			<h2>리뷰 관리</h2>
+			<h2 style="font-family: ">리뷰 관리</h2>
 		</div>
 		<br>
 		<c:choose>
@@ -35,7 +41,6 @@ div {
 				</div>
 			</c:when>
 			<c:otherwise>
-
 				<div class="row justify-content-center">
 					<p>게스트들이 남긴 리뷰에 답글을 남겨보세요 !</p>
 				</div>
@@ -61,7 +66,6 @@ div {
 							<fmt:formatDate pattern="yyyy-MM-dd"
 								value="${review.creationDate}" />
 						</p>
-
 					</div>
 				</div>
 				<hr>
@@ -80,7 +84,7 @@ div {
 				<div>${review.content}</div>
 			</div>
 			<br>
-			<div class="container bg-light">
+			<div id="title" class="container">
 				<h4>호스트 답글 남기기</h4>
 				<br>
 				<form class="mb-5">
@@ -101,11 +105,11 @@ div {
 							id="reply--${reply.id}">
 							<div>${reply.content}</div>
 							<div class="d-flex">
-								<button class="btn btn-outline-primary btn-sm"
-									onclick="index.editText('${reply.id}', '${reply.content}', '${review.id}');">수정</button>
+								<a class="host-review-update"
+									onclick="index.editText('${reply.id}', '${reply.content}', '${review.id}');" style="cursor: pointer;">수정</a>
 								&nbsp;&nbsp;
-								<button class="btn btn-outline-danger btn-sm"
-									onclick="index.deleteReply(${reply.id});">삭제</button>
+								<a class="host-review-delete" style="color: red"
+									onclick="index.deleteReply(${reply.id});" style="cursor: pointer;">삭제</a>
 							</div>
 						</li>
 					</c:forEach>
@@ -119,7 +123,7 @@ div {
 </div>
 <br>
 
-<div class="container justify-content-center">
+<div class="container justify-content-center" style="margin-left: 45%">
 	<c:if test="${reviewCount ne 0}">
 		<ul class="pagination justify-content-center">
 

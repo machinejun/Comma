@@ -124,10 +124,8 @@ public class ReviewService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Review> getReviewListByGuestId(int guestId) {
-		return reviewRepository.findAllByGuestId(guestId).orElseGet(() -> {
-			return new ArrayList();
-		});
+	public Page<Review> getReviewListByGuestId(int guestId, Pageable pageable) {
+		return reviewRepository.findAllByGuestId(guestId, pageable);
 	}
 
 }

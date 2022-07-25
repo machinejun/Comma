@@ -73,7 +73,6 @@ public class House {
 
 	@OneToMany(mappedBy = "houseId", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({ "houseId" })
-	@OrderBy("id DESC")
 	private List<Review> reviews;
 
 //	@OneToMany(mappedBy ="house", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

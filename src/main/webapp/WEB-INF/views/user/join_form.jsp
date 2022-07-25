@@ -11,16 +11,11 @@
 			<div class="signup-content">
 				<div class="signup-form needs-validation">
 					<h2 class="form-title">회원가입</h2>
-<<<<<<< HEAD
 					<form action="/auth/joinProc" method="post"
 						onsubmit="return joinCheck()" class="register-form"
 						id="register-form">
 						<input type="hidden" name="${_csrf.parameterName}"
 							value="${_csrf.token}">
-=======
-					<form action="/auth/joinProc" method="post" onsubmit="return joinCheck()" class="register-form" id="register-form">
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
->>>>>>> main
 						<div class="form-group">
 							<label for="name"><i
 								class="zmdi zmdi-account material-icons-name"></i></label> <input
@@ -72,30 +67,18 @@
 <script>
 	let token = $("meta[name='_csrf']").attr("content");
 	let header = $("meta[name='_csrf_header']").attr("content");
-<<<<<<< HEAD
 
-=======
->>>>>>> main
 	let usernameCheck = false;
 	$("#btn-checkUsername").bind("click", function() {
-		console.log("버튼 클릭도미");
 		let data = {
 			username : $("#username").val(),
 		};
 		console.log(data);
 		$.ajax({
-<<<<<<< HEAD
-			beforeSend : function(xhr) {
-				xhr.setRequestHeader(header, token)
-			},
 
-=======
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader(header, token)
 			},
-
-			
->>>>>>> main
 			type : "POST",
 			url : "/auth/username-check",
 			data : JSON.stringify(data),
@@ -134,6 +117,19 @@
 			alert("하이픈(-)을 제외한 번호를 입력해주세요.");
 			return false;
 		}
+		
+		if(phoneNumber.length != 11){
+			alert("휴대폰 번호 11자리를 입력해주세요.");
+			return false;
+		}
+		
+		if(phoneNumber.charAt(0) != 0 || phoneNumber.charAt(1) != 1 || phoneNumber.charAt(2) != 0 ){
+			alert("휴대폰 번호의 형식은 010으로 시작해야 합니다.");
+			return false;
+		}
+		
+		
+		
 	}
 </script>
 

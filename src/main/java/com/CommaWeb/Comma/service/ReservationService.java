@@ -1,7 +1,10 @@
 package com.CommaWeb.Comma.service;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.CommaWeb.Comma.dto.ApproveDto;
 import com.CommaWeb.Comma.dto.HostTableDto;
-import com.CommaWeb.Comma.dto.HoustWaitDto;
+import com.CommaWeb.Comma.dto.HouseWaitDto;
 import com.CommaWeb.Comma.model.BookedDate;
 import com.CommaWeb.Comma.model.Guest;
 import com.CommaWeb.Comma.model.Host;
@@ -90,29 +93,47 @@ public class ReservationService {
 	public int getRangeDay(Date checkinDate, Date checkOutDate) {
 		long sec = (checkOutDate.getTime() - checkinDate.getTime()) / 1000;
 		int result = (int) sec / (24 * 60 * 60);
-		System.out.println(result);
 		return result;
 	}
-
+	
+	@Modifying
 	@Transactional(readOnly = true)
 	public List<Reservation> getReservation(User user) {
 		List<Reservation> reservation;
-		if (user.getRole() == RoleType.GUEST) {
-			reservation = reservationRepository.findByGuestId(user.getId());
-		} else {
-			reservation = reservationRepository.findByHostId(user.getId());
-		}
+		reservation = reservationRepository.findByGuestId(user.getId());	
+		changeCompletedType(reservation);
 		return reservation;
 	}
-	
 
-	@Transactional(readOnly = true)
+	private void changeCompletedType(List<Reservation> listRes) {
+		System.out.println("실행됨");
+		LocalDate nowtime = LocalDate.now();
+		Date nowDate = Date.valueOf(nowtime);
+		
+		for (Reservation reservation : listRes) {
+			if(reservation.getApprovalStatus() != ReservationType.PAID) {
+				return;
+			}
+			
+			if(getRangeDay(reservation.getCheckOutDate(), nowDate) > 0 ) {
+				reservation.setApprovalStatus(ReservationType.COMPLETED);
+			}
+		}
+	}
+	
+	@Modifying
+	@Transactional
 	public List<HostTableDto> getTableInfo(int hostId, int houseId, int month) {
+		List<Reservation> reservation = reservationRepository.findByHostId(hostId);
+		changeCompletedType(reservation);
 		return hostTableRepository.getlist(hostId, houseId, month);
 	}
 	
-	@Transactional(readOnly = true)
+	@Modifying
+	@Transactional
 	public List<HostTableDto> getTableInfo(int hostId, int month) {
+		List<Reservation> reservation = reservationRepository.findByHostId(hostId);
+		changeCompletedType(reservation);
 		return hostTableRepository.getlist(hostId, month);
 	}
 
@@ -123,7 +144,7 @@ public class ReservationService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<HoustWaitDto> getWaitCount(int hostid) {
+	public List<HouseWaitDto> getWaitCount(int hostid) {
 		return hostTableRepository.getWaitCount(hostid);
 	}
 

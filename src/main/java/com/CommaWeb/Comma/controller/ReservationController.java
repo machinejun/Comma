@@ -23,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.CommaWeb.Comma.auth.PrincipalDetail;
 import com.CommaWeb.Comma.dto.DateModelDto;
-import com.CommaWeb.Comma.dto.HoustWaitDto;
+import com.CommaWeb.Comma.dto.HouseWaitDto;
 import com.CommaWeb.Comma.dto.KaKaoPayResponseDto;
 import com.CommaWeb.Comma.dto.ResponsePaidDto;
 import com.CommaWeb.Comma.model.BookedDate;
@@ -71,7 +71,7 @@ public class ReservationController {
 	
 	@GetMapping("/reserveTable/host")
 	public String reserveHostTable(@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
-		List<HoustWaitDto> count = reservationService.getWaitCount(principalDetail.getUser().getId());
+		List<HouseWaitDto> count = reservationService.getWaitCount(principalDetail.getUser().getId());
 		List<House> houses =  houseService.findAllByHostId(principalDetail.getUser().getId());
 		System.out.println(count);
 		model.addAttribute("houses", houses);

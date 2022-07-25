@@ -1,4 +1,4 @@
-package com.JMThouseWeb.JMThouse.dto;
+package com.CommaWeb.Comma.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

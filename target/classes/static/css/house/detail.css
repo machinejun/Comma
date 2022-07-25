@@ -13,6 +13,16 @@
 	-webkit-box-orient: vertical;
 }
 
+.review-multiLine {
+	width: 200px;
+	overflow: hidden;
+	line-height: 1.1;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
 .multiLine-title {
 	width: 350px;
 	overflow: hidden;

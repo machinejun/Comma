@@ -82,12 +82,12 @@
 						</p>
 					</div>
 					<div class="col" style="position: absolute; bottom: 5%; left: 18%">
-						<a class="btn btn-outline-primary btn-sm"
-							href="/house/update_form/${house.id}">수정</a>
-						<button class="btn btn-outline-primary btn-sm"
-							onclick="index.deleteHouse('${house.id}')">삭제</button>
-						<a class="btn btn-outline-primary btn-sm "
-							href="/review/management/${house.id}">리뷰 관리</a>
+						<a
+							href="/house/update_form/${house.id}" style="margin-right: 5px;">수정</a>
+						<a
+							onclick="index.deleteHouse('${house.id}')" style="color: red; margin-right: 5px;">삭제</a>
+						<a
+							href="/review/management/${house.id}" style="color: black">리뷰 관리</a>
 					</div>
 				</div>
 

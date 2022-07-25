@@ -110,7 +110,7 @@
 						<div
 							class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></div>
 						<h3>${review.guestId.username}</h3>
-						<div class="multiLine">${review.content}</div>
+						<div class="review-multiLine">${review.content}</div>
 						<div>
 							<br> <br>
 							<p class="underline-text">
@@ -199,6 +199,7 @@
 </section>
 
 <section class="py-5 bg-light">
+<c:if test="${not empty houseList}">
 	<div class="container px-4 px-lg-5 mt-5">
 		<h3 class="custom-text mb-4">이런 숙소는 어때요</h3>
 		<br>
@@ -213,12 +214,12 @@
 							width="240px;" height="160px"></a>
 						<div class="card-body">
 							<div class="text-center">
-								<h4 class="multiLine">
+								<h4 class="multiLine" style="margin-left: 10px;">
 									<b>${house.name}</b>
 								</h4>
 							</div>
 							<br>
-							<div class="star-ratings">
+							<div class="star-ratings" style="margin-left: 5px;">
 								<div class="star-ratings-fill"
 									style="width: ${house.starScore * 20 * 1.4}%; margin-left: 50px;">
 									<span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
@@ -234,7 +235,7 @@
 			</c:forEach>
 		</div>
 	</div>
-
+</c:if>
 </section>
 <script>
 	function clickHeart() {

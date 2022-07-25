@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class HoustWaitDto {
+public class HouseWaitDto {
 	private BigInteger wait;
 	private Integer houseId;
 }

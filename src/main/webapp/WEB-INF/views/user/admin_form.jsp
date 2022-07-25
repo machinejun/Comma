@@ -6,6 +6,13 @@
 .section-container{
 	font-family: 'SUIT-Medium'
 }
+
+h2 {
+	color: rgba(255,149,149,0.7);
+}
+h2::after {
+	color: rgba(255,149,149,0.7);
+}
 </style>
 </head>
 <body>
@@ -16,7 +23,7 @@
 				<div id="page-container">
 					<div class="jumbotron jumbotron-fluid" style="margin: 10px">
 					  <div class="container">
-					    <h1 style="font-family: SUIT-Medium;">관리자님 환영합니다.</h1>
+					    <h2 style="font-family: SUIT-Medium;">관리자님 환영합니다.</h2>
 					    <p class="lead">회원 리스트입니다. <br/>
 					    
 					    </p>

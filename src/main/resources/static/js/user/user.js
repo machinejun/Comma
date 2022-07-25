@@ -12,6 +12,7 @@ let index = {
 
 	update: function() {
 		let rePassword = $("#re-password").val();
+		let loginType = $("#loginType").val();
 
 		let data = {
 			id: $("#user-id").val(),
@@ -21,10 +22,11 @@ let index = {
 			phoneNumber: $("#phoneNumber").val()
 		}
 
-		if (data.password != rePassword) {
+		
+		if (loginType == "ORIGIN" && data.password != rePassword) {
 			alert("입력하신 비밀번호가 일치하지 않습니다.");
-		} else if (data.password == "" || data.password.trim() == "" ||
-			rePassword == "" || rePassword.trim() == "") {
+		} else if (loginType == "ORIGIN" && (data.password == "" || data.password.trim() == "" ||
+			rePassword == "" || rePassword.trim() == "")) {
 			alert("비밀번호를 입력하세요.");
 		} else if (data.phoneNumber.indexOf("-") != -1) {
 			alert("하이픈(-)을 제외한 번호를 입력해주세요.");

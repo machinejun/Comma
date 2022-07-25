@@ -46,3 +46,6 @@ spring:
       
 file:
   path: C:/houseImgDir/upload/
+  
+kakao:
+  key: 1234

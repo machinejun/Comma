@@ -13,11 +13,13 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -43,5 +45,8 @@ public class User {
 	
 	@Enumerated(EnumType.STRING)
 	private RoleType role;
+	
+	@Enumerated(EnumType.STRING)
+	private LoginType loginType;
 	
 }

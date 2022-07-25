@@ -191,13 +191,11 @@ nav {
 					관리
 				</a>
 			</sec:authorize>
-			<c:choose>
-					<c:when  test="${principal.user.role eq 'ADMIN'}">
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
 							<a class="list-group-item list-group-item-action" href="/admin_form">
 								<span class="icon-server"></span>&nbsp;&nbsp;관리자 상세
 							</a>
-					</c:when>
-			</c:choose>
+			</sec:authorize>
 			
 		</div>
 	</div>

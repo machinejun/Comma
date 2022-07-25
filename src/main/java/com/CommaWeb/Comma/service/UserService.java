@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.CommaWeb.Comma.model.Guest;
 import com.CommaWeb.Comma.model.Host;
+import com.CommaWeb.Comma.model.LoginType;
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.repository.GuestRepository;
@@ -21,6 +22,7 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
 	@Autowired
 	private GuestRepository guestRepository;
 	
@@ -38,6 +40,7 @@ public class UserService {
 			user.setPhoneNumber(changePhoneNumFormat(user.getPhoneNumber()));
 			user.setPassword(encPassword);
 			user.setRole(RoleType.GUEST);
+			user.setLoginType(LoginType.ORIGIN);
 			userRepository.save(user);
 			User tempUser = userRepository.findByUsername(user.getUsername()).get();
 			System.out.println("tempUser : " + tempUser);
@@ -53,18 +56,25 @@ public class UserService {
 	}
 
 	@Transactional
-	public void updateUserInfo(User user) {
+	public User updateUserInfo(User user) {
 
 		User userEntity = userRepository.findById(user.getId()).orElseThrow(() -> {
 			return new IllegalArgumentException("존재하지 않는 회원입니다.");
 		});
-
-		String rawPassword = user.getPassword();
-		String hashPassword = encoder.encode(rawPassword);
-
-		userEntity.setPassword(hashPassword);
-		userEntity.setEmail(user.getEmail());
-		userEntity.setPhoneNumber(user.getPhoneNumber());
+		System.out.println("update : " + userEntity);
+		if(userEntity.getLoginType() == LoginType.KAKAO) {
+			userEntity.setEmail(user.getEmail());
+			userEntity.setPhoneNumber(user.getPhoneNumber());
+			
+		}else {
+			String rawPassword = user.getPassword();
+			String hashPassword = encoder.encode(rawPassword);
+			userEntity.setPassword(hashPassword);
+			userEntity.setEmail(user.getEmail());
+			userEntity.setPhoneNumber(user.getPhoneNumber());
+		}
+		return userEntity;
+		
 
 	}
 
@@ -141,4 +151,5 @@ public class UserService {
 		}); 
 		return users;
 	}
+
 }

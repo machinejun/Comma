@@ -13,6 +13,9 @@
 			<div class="signup-content">
 				<div class="signup-form">
 					<h2 class="form-title">회원정보 수정</h2>
+					<input type="hidden" value="${principal.user.loginType}" id="login-type">
+					<c:set var="isDisabled" value="disabled"/>
+					<c:set var="isAbled" value=""/>
 					<div class="form-group">
 						<input value="${principal.user.id}" id="user-id" type="hidden">
 						<label for="name"><i
@@ -23,12 +26,13 @@
 					<div class="form-group">
 						<label for="password"><i class="zmdi zmdi-lock-outline"></i></label>
 						<input type="password" id="password" placeholder="Password"
-							required />
+							 ${principal.user.loginType == 'KAKAO' ? isDisabled : isAbled} />
 					</div>
+					<input type="hidden" id="loginType" value="${principal.user.loginType}">
 					<div class="form-group">
 						<label for="password"><i class="zmdi zmdi-lock-outline"></i></label>
 						<input type="password" id="re-password"
-							placeholder="Repeat your password" required />
+							placeholder="Repeat your password" ${principal.user.loginType == 'KAKAO' ? isDisabled : isAbled } />
 					</div>
 
 					<div class="form-group">

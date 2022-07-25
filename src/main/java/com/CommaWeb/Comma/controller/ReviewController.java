@@ -82,7 +82,7 @@ public class ReviewController {
 	public String getMyReviewList(@PathVariable int guestId, Model model,
 			@PageableDefault(size = 5, sort = "creationDate", direction = Direction.DESC) Pageable pageable) {
 		Page<Review> reviews = reviewService.getReviewListByGuestId(guestId, pageable);
-		
+
 		int nowPage = reviews.getPageable().getPageNumber() + 1;
 		int startPage = Math.max(nowPage - 2, 1);
 		int endPage = Math.min(nowPage + 2, reviews.getTotalPages());
@@ -92,11 +92,14 @@ public class ReviewController {
 			pageNumbers.add(i);
 		}
 
+		int reviewCount = houseService.getReviewCountByGuestId(guestId);
+
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("pageNumbers", pageNumbers);
 		model.addAttribute("reviews", reviews);
-		
+		model.addAttribute("reviewCount", reviewCount);
+
 		return "user/my_review_list_form";
 	}
 

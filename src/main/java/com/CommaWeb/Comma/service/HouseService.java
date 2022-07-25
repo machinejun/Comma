@@ -204,4 +204,11 @@ public class HouseService {
 		});
 	}
 
+	@Transactional(readOnly = true)
+	public int getReviewCountByGuestId(int guestId) {
+		return reviewRepository.getReviewCountByGuestId(guestId).orElseGet(() -> {
+			return 0;
+		});
+	}
+
 }

@@ -29,7 +29,7 @@ div {
 
 </style>
 <div class="py-5" id="features">
-	<div id="title" class="container">
+	<div id="title" class="container bg-light">
 		<div class="row justify-content-center">
 			<h2 style="font-family: ">리뷰 관리</h2>
 		</div>

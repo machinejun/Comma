@@ -1,7 +1,6 @@
 package com.CommaWeb.Comma.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -96,7 +95,7 @@ public class UserService {
 			return phoneNum;
 		}
 		// 012 3456 78910
-		String newPhoneNum = phoneNum.substring(0, 2) + "-" + phoneNum.subSequence(3, 6) + "-" + phoneNum.subSequence(7, 10);
+		String newPhoneNum = phoneNum.substring(0, 3) + "-" + phoneNum.subSequence(3, 7) + "-" + phoneNum.subSequence(7, 11);
 		return newPhoneNum;
 	}
 

@@ -74,9 +74,6 @@ public class UserApiController {
 		collectors.forEach((element) -> {
 			element.getAuthority().replace("HOST", "GUEST");
 		});
-
-//		SecurityContextHolder.getContext().getAuthentication().getAuthorities().addAll();
-
 		return "<script>alert('게스트가 되셨습니다');" + "location.href='/'</script>";
 	}
 }

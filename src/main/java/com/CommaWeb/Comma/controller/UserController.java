@@ -99,18 +99,13 @@ public class UserController {
 		String role = map.get("role") == null ? "" : map.get("role");
 		String q = map.get("q") == null ? "" : map.get("q");
 		System.out.println(role + "/" + q);
-		// User user; <------ List<User>
 		List<User> user;
 		System.out.println("aaaaaaaaaaa");
 		if (role.equals("") || role == null) {
 			try {
 				user = userService.searchUserOnly(q);
-				System.out.println("userlist: " + user);
 				model.addAttribute("users", user);
-				System.out.println("3333333333333333");
 			} catch (Exception e) {
-
-				System.out.println("bbbbbbbbbbbbb");
 				e.printStackTrace();
 			}
 
@@ -118,11 +113,8 @@ public class UserController {
 			System.out.println("cccccccccccc");
 			try {
 				user = userService.searchRoleAndUser(role, q);
-				System.out.println("userlist: " + user);
 				model.addAttribute("users", user);
-				System.out.println("44444444444444444");
 			} catch (Exception e) {
-				System.out.println("dddddddddd");
 				e.printStackTrace();
 			}
 

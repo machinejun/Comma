@@ -35,6 +35,11 @@
 				</div>
 
 				<div class="container-login100-form-btn">
+					<button type="submit" class="login100-form-btn">Login</button>
+					<button type="submit" class="login100-form-btn" style="background-color: yellow; margin-top: 20px">카카오 로그인</button>
+					<!-- 
+						<span class="txt1"> 계정이 없으신가요? </span> <a href="https://kauth.kakao.com/oauth/authorize?client_id=1e0d85577dad20bb9104174f24adbfb7&redirect_uri=http://localhost:9090/auth/kakao/callback&response_type=code"> 카카오 로그인 </a>
+					 -->
 					<button type="submit" class="login100-form-btn" style="margin-right: 25px;">Login</button>
 					<button href="#" class="login100-form-btn" style="background-image: Url('/assets/kakao_login_large.png'); background-position: center; background-size: cover;"></button>
 				</div>

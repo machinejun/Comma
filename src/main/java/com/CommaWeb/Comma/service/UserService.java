@@ -94,7 +94,6 @@ public class UserService {
 		if(phoneNum.length() != 11) {
 			return phoneNum;
 		}
-		// 012 3456 78910
 		String newPhoneNum = phoneNum.substring(0, 3) + "-" + phoneNum.subSequence(3, 7) + "-" + phoneNum.subSequence(7, 11);
 		return newPhoneNum;
 	}
@@ -115,16 +114,6 @@ public class UserService {
 	public List<User> showAllUser() {
 		return userRepository.findAll();
 	}
-	
-//	@Transactional
-//	public List<User> searchUserByUsername(String username){
-//		return userRepository.findByUsername(username);
-//	}
-//	
-//	@Transactional
-//	public Optional<User> searchUserByRole(RoleType role){
-//		return userRepository.findByRole(role);
-//	}
 	
 	@Transactional
 	public List<User> searchRoleAndUser(String role, String name){

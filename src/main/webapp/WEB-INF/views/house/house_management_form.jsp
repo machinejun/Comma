@@ -42,7 +42,7 @@
 </style>
 
 <div class="container">
-	<div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+	<div class="p-4 p-lg-5 rounded-3 text-center" style="background-color: rgba(255, 149, 149, 0.05);">
 		<div class="m-4 m-lg-5">
 			<c:choose>
 				<c:when test="${empty houseList}">

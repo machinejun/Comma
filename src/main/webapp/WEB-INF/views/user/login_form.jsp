@@ -40,12 +40,14 @@
 					<!-- 
 						<span class="txt1"> 계정이 없으신가요? </span> <a href="https://kauth.kakao.com/oauth/authorize?client_id=1e0d85577dad20bb9104174f24adbfb7&redirect_uri=http://localhost:9090/auth/kakao/callback&response_type=code"> 카카오 로그인 </a>
 					 -->
+					<button type="submit" class="login100-form-btn" style="margin-right: 25px;">Login</button>
+					<button href="#" class="login100-form-btn" style="background-image: Url('/assets/kakao_login_large.png'); background-position: center; background-size: cover;"></button>
 				</div>
 				<br />
 
 				<div class="text-center p-t-50">
 					<h4>
-						<a class="txt2" href="/auth/join_form"> 계정이 없으신가요? </a>
+						<a class="txt2" href="/auth/join_form" style="font-size: 15px;"> 계정이 없으신가요? </a><br>
 					</h4>
 				</div>
 			</form>

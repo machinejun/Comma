@@ -24,7 +24,7 @@ div {
 
 #title{
 	border-radius: 10px;
-	background-color: rgba(255, 149, 149, 0.05);
+	background-color: white;
 }
 
 </style>

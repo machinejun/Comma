@@ -67,7 +67,7 @@ div {
 }
 
 #title {
-	background-color: rgba(255, 149, 149, 0.05);
+	background-color: white;
 }
 </style>
 

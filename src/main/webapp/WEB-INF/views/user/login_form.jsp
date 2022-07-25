@@ -35,13 +35,14 @@
 				</div>
 
 				<div class="container-login100-form-btn">
-					<button type="submit" class="login100-form-btn">Login</button>
+					<button type="submit" class="login100-form-btn" style="margin-right: 25px;">Login</button>
+					<button href="#" class="login100-form-btn" style="background-image: Url('/assets/kakao_login_large.png'); background-position: center; background-size: cover;"></button>
 				</div>
 				<br />
 
 				<div class="text-center p-t-50">
 					<h4>
-						<a class="txt2" href="/auth/join_form"> 계정이 없으신가요? </a>
+						<a class="txt2" href="/auth/join_form" style="font-size: 15px;"> 계정이 없으신가요? </a><br>
 					</h4>
 				</div>
 			</form>

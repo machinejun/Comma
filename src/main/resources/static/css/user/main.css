@@ -277,7 +277,7 @@ iframe {
   color: #fff;
   text-transform: uppercase;
 
-  width: 100%;
+  width: 130px; 
   height: 50px;
   border-radius: 25px;
   background: rgba(255,149,149,0.7);

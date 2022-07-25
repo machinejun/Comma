@@ -42,6 +42,7 @@
 	line-height: 25px;
 	color: #ff5555;
 }
+
 </style>
 
 <div class="container">
@@ -143,4 +144,4 @@
 
 	}
 </script>
-<%@ include file="../layout/footer.jsp"%>
+<script type="text/javascript" src="/js/home.js"></script>

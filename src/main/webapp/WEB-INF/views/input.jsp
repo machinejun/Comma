@@ -69,7 +69,7 @@
 
 </style>
 
-<input id="oneDayPrice" type="hidden" value="${house.oneDayPrice}">
+<input id="oneDayPrice" type=" hidden" value="${house.oneDayPrice}">
 <input id="capacity" type="hidden" value="${house.capacity}">
 <input id="size" value="${size}" type="hidden" />
 <c:forEach var="date" items="${bookedDates}">

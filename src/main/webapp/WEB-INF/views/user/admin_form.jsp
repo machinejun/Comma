@@ -2,6 +2,11 @@
     pageEncoding="UTF-8"%>
 <link href="/css/reservationStyle/reservationStyle.css" rel="stylesheet">
 <%@ include file="../layout/header.jsp" %>
+<style>
+.section-container{
+	font-family: 'SUIT-Medium'
+}
+</style>
 </head>
 <body>
 <div class="section-container contact-container" >
@@ -11,7 +16,7 @@
 				<div id="page-container">
 					<div class="jumbotron jumbotron-fluid" style="margin: 10px">
 					  <div class="container">
-					    <h1 class="display-4">관리자님 환영합니다.</h1>
+					    <h1 style="font-family: SUIT-Medium;">관리자님 환영합니다.</h1>
 					    <p class="lead">회원 리스트입니다. <br/>
 					    
 					    </p>
@@ -21,7 +26,7 @@
 
 								<div class="d-flex flex-row-reverse">
 										
-										<form class="form-inline" onsubmit= "return searchCheck()" action="/user/searchUsername" method="get">
+										<form class="form-inline"  action="/user/searchUsername" method="get">
 													<select name="role" style="width: 130px; height: 40px; margin: 10px; margin-top: 12px;">
 														<option value="">전체</option>
 														<option value="guest">GUEST</option>
@@ -74,15 +79,6 @@
   	</div>
 </div>
 
-<script>
-function searchCheck() {
-	let users = $("#users").val();
-	if (users == null) {
-		alert("검색한 회원이 존재하지 않습니다.");
-		return false;
-	}
-}
-</script>
 
 </body>
 </html>

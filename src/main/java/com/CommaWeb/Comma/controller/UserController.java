@@ -1,5 +1,8 @@
 package com.CommaWeb.Comma.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.service.HouseService;
@@ -26,7 +30,7 @@ public class UserController {
 
 	@Autowired
 	private LikeHouseService likeHouseService;
-	
+
 	@Autowired
 	private HouseService houseService;
 
@@ -80,6 +84,50 @@ public class UserController {
 	public String getWishList(@PathVariable int guestId, Model model) {
 		model.addAttribute("wishList", likeHouseService.getWishListById(guestId));
 		return "user/wish_list_form";
+	}
+
+	// 관리자페이지 호출
+	@GetMapping("/admin_form")
+	public String adminForm() {
+		return "user/admin_form";
+	}
+
+	// 유저 검색
+	@GetMapping("/user/searchUsername")
+	public String searchUsername(@RequestParam Map<String, String> map, Model model) {
+
+		String role = map.get("role") == null ? "" : map.get("role");
+		String q = map.get("q") == null ? "" : map.get("q");
+		System.out.println(role + "/" + q);
+		// User user; <------ List<User>
+		List<User> user;
+		System.out.println("aaaaaaaaaaa");
+		if (role.equals("") || role == null) {
+			try {
+				user = userService.searchUserOnly(q);
+				System.out.println("userlist: " + user);
+				model.addAttribute("users", user);
+				System.out.println("3333333333333333");
+			} catch (Exception e) {
+
+				System.out.println("bbbbbbbbbbbbb");
+				e.printStackTrace();
+			}
+
+		} else {
+			System.out.println("cccccccccccc");
+			try {
+				user = userService.searchRoleAndUser(role, q);
+				System.out.println("userlist: " + user);
+				model.addAttribute("users", user);
+				System.out.println("44444444444444444");
+			} catch (Exception e) {
+				System.out.println("dddddddddd");
+				e.printStackTrace();
+			}
+
+		}
+		return "user/admin_form";
 	}
 
 }

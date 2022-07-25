@@ -117,7 +117,6 @@ public class UserController {
 				user = userService.searchUserOnly(q);
 				model.addAttribute("users", user);
 			} catch (Exception e) {
-
 				e.printStackTrace();
 			}
 

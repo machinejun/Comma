@@ -21,7 +21,7 @@
 
 								<div class="d-flex flex-row-reverse">
 										
-										<form class="form-inline" action="/user/searchUsername" method="get">
+										<form class="form-inline" onsubmit= "return searchCheck()" action="/user/searchUsername" method="get">
 													<select name="role" style="width: 130px; height: 40px; margin: 10px; margin-top: 12px;">
 														<option value="">전체</option>
 														<option value="guest">GUEST</option>
@@ -74,7 +74,16 @@
   	</div>
 </div>
 
-<!-- <script type="text/javascript" src="/js/user/user.js"></script></body> -->
+<script>
+function searchCheck() {
+	let users = $("#users").val();
+	if (users == null) {
+		alert("검색한 회원이 존재하지 않습니다.");
+		return false;
+	}
+}
+</script>
+
 </body>
 </html>
 <%@ include file="../layout/footer.jsp" %>

@@ -1,6 +1,7 @@
 package com.JMThouseWeb.JMThouse.service;
 
 import java.sql.Timestamp;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -101,14 +102,27 @@ public class UserService {
 	
 	@Transactional
 	public List<User> searchRoleAndUser(String role, String name){
-		System.out.println(userRepository.findByRoleAndUserName(role, name));
-		return userRepository.findByRoleAndUserName(role, name);
+		List<User> users = userRepository.findByRoleAndUserName(role, name);
+		return sortUserList(users);
 	}
 	
 	@Transactional
 	public List<User> searchUserOnly(String name){
-		System.out.println(userRepository.findByUserName(name));
-		return userRepository.findByUserName(name);
+		List<User> users = userRepository.findByUsernameContaining(name);
+		return sortUserList(users);
+	}
+	
+	private List<User> sortUserList(List<User> users) {
+		users.sort( (o1, o2) -> {
+			if(o1.getId() < o2.getId()) {
+				return 1;
+			}else if(o1.getId() > o2.getId()){
+				return -1;
+			}else {
+				return 0;
+			}
+		}); 
+		return users;
 	}
 
 }

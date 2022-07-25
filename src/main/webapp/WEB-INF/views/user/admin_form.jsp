@@ -28,13 +28,10 @@
 														<option value="host">HOST</option>
 													</select>
 												  <input type="text" class="form-control" style="margin: 10px" name="q" value="${searchUser}" placeholder="검색어를 입력하세요" >
-												  <button type="submit" class="custom-sm-btn" id="btn-search" style="font-size: 20px">검색</button>
+												  <button  type="submit" class="custom-sm-btn" id="btn-search" style="font-size: 20px">검색</button>
 												  
 											
-										</form>
-										
-										
-										
+										</form>								
 								</div>
 					
 						 <div class="container">
@@ -52,39 +49,22 @@
 						            </tr>
 						        </thead>
 						        <tbody>
-						            
-						             <c:if test="${1>0}">
-						             			<tr>
-										                    <td>${ user.id }</td>
-										                    <td>${ user.creationDate }</td>
-										                    <td>${ user.email }</td>
-										                    <td>${ user.phoneNumber }</td>
-										                    <td>${ user.role }</td>
-										                    <td>${ user.username }</td>
-										                    <c:if test= "${user.role eq 'GUEST' }">
-										                    <td><button type="submit" class="custom-sm-btn"  >예약확인</button></td>
-										                    </c:if>
-										                    <c:if test= "${user.role eq 'HOST' }">
-										                    <td><button type="submit" class="custom-sm-btn" >숙소정보</button></td>
-										                    </c:if>
-										         </tr>
-						             </c:if>
-						             <c:forEach var="user" items="${ userList }">
-										                <tr>
-										                    <td>${ user.id }</td>
-										                    <td>${ user.creationDate }</td>
-										                    <td>${ user.email }</td>
-										                    <td>${ user.phoneNumber }</td>
-										                    <td>${ user.role }</td>
-										                    <td>${ user.username }</td>
-										                    <c:if test= "${user.role eq 'GUEST' }">
-										                    <td><button type="submit" class="custom-sm-btn" >예약확인</button></td>
-										                    </c:if>
-										                    <c:if test= "${user.role eq 'HOST' }">
-										                    <td><button type="submit" class="custom-sm-btn" >숙소정보</button></td>
-										                    </c:if>
-										                </tr>
-									</c:forEach>
+						             		<c:forEach var="user" items="${ users }">
+									                <tr>
+									                    <td>${ user.id }</td>
+									                    <td>${ user.creationDate }</td>
+									                    <td>${ user.email }</td>
+									                    <td>${ user.phoneNumber }</td>
+									                    <td>${ user.role }</td>
+									                    <td>${ user.username }</td>
+									                    <c:if test= "${user.role eq 'GUEST' }">
+									                    <td><button type="submit" class="custom-sm-btn" >예약확인</button></td>
+									                    </c:if>
+									                    <c:if test= "${user.role eq 'HOST' }">
+									                    <td><button type="submit" class="custom-sm-btn" >숙소정보</button></td>
+									                    </c:if>
+									                </tr>
+									         </c:forEach>						  
 						        </tbody>
 						    </table>
 						</div>

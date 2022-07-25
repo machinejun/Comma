@@ -1,6 +1,8 @@
 package com.JMThouseWeb.JMThouse.controller;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -87,24 +89,37 @@ public class UserController {
 	// 유저 검색
 	@GetMapping("/user/searchUsername")
 	public String searchUsername(@RequestParam Map<String, String> map, Model model) {
-
+		
 		String role = map.get("role") == null ? "" : map.get("role");
 		String q = map.get("q") == null ? "" : map.get("q");
-
-//		try {
-//			user = userService.searchUserByUsername(searchUser).orElseThrow(() -> new Exception("해당유저가 없습니다"));
-//			model.addAttribute("user", user);
-//			System.out.println(userService.searchUserByUsername(searchUser));
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-
+		System.out.println(role +"/" +q);
+		// User user; <------ List<User>
+		List<User> user;
+		System.out.println("aaaaaaaaaaa");
 		if (role.equals("") || role == null) {
-			model.addAttribute("q", userService.searchUserOnly(q));
-			System.out.println("3333333333333333");
+			try {
+				user = userService.searchUserOnly(q);
+				System.out.println("userlist: " + user);
+				model.addAttribute("users", user);
+				System.out.println("3333333333333333");
+			} catch (Exception e) {
+				
+				System.out.println("bbbbbbbbbbbbb");
+				e.printStackTrace();
+			}
+			
 		} else {
-			model.addAttribute("q", userService.searchRoleAndUser(role, q));
-			System.out.println("44444444444444444");
+			System.out.println("cccccccccccc");
+			try {
+				user = userService.searchRoleAndUser(role, q);
+				System.out.println("userlist: " + user);
+				model.addAttribute("users", user);
+				System.out.println("44444444444444444");
+			} catch (Exception e) {
+				System.out.println("dddddddddd");
+				e.printStackTrace();
+			}
+			
 		}
 		return "user/admin_form";
 	}

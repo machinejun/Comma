@@ -34,7 +34,7 @@ h2::after {
 								<div class="d-flex flex-row-reverse">
 										
 										<form class="form-inline"  action="/user/searchUsername" method="get">
-													<select name="role" style="width: 130px; height: 40px; margin: 10px; margin-top: 12px;">
+													<select name="role" style="width: 130px; height: 40px; margin: 10px; margin-top: 12px; border-radius: 10px;">
 														<option value="">전체</option>
 														<option value="guest">GUEST</option>
 														<option value="host">HOST</option>
@@ -70,10 +70,10 @@ h2::after {
 									                    <td>${ user.role }</td>
 									                    <td>${ user.username }</td>
 									                    <c:if test= "${user.role eq 'GUEST' }">
-									                    <td><button type="submit" class="custom-sm-btn" style="font-size: 17px">예약확인</button></td>
+									                    <td><button type="submit" onclick="location.href='/reserveTable/user';" class="custom-sm-btn" style="font-size: 17px">예약확인</button></td>
 									                    </c:if>
 									                    <c:if test= "${user.role eq 'HOST' }">
-									                    <td><button type="submit" class="custom-sm-btn"  style="font-size: 17px">숙소정보</button></td>
+									                    <td><button type="submit" onclick="location.href='/house/management';" class="custom-sm-btn"  style="font-size: 17px">숙소정보</button></td>
 									                    </c:if>
 									                </tr>
 									         </c:forEach>						  

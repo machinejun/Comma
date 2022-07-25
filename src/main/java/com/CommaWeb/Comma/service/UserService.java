@@ -1,5 +1,8 @@
 package com.CommaWeb.Comma.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -99,4 +102,43 @@ public class UserService {
 
 	}
 
+	@Transactional
+	public List<User> showAllUser() {
+		return userRepository.findAll();
+	}
+	
+//	@Transactional
+//	public List<User> searchUserByUsername(String username){
+//		return userRepository.findByUsername(username);
+//	}
+//	
+//	@Transactional
+//	public Optional<User> searchUserByRole(RoleType role){
+//		return userRepository.findByRole(role);
+//	}
+	
+	@Transactional
+	public List<User> searchRoleAndUser(String role, String name){
+		List<User> users = userRepository.findByRoleAndUserName(role, name);
+		return sortUserList(users);
+	}
+	
+	@Transactional
+	public List<User> searchUserOnly(String name){
+		List<User> users = userRepository.findByUsernameContaining(name);
+		return sortUserList(users);
+	}
+	
+	private List<User> sortUserList(List<User> users) {
+		users.sort( (o1, o2) -> {
+			if(o1.getId() < o2.getId()) {
+				return 1;
+			}else if(o1.getId() > o2.getId()){
+				return -1;
+			}else {
+				return 0;
+			}
+		}); 
+		return users;
+	}
 }

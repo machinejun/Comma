@@ -68,7 +68,7 @@
 				<div class="col-sm-4">
 					<a href="/house/detail/${house.id}"><img
 						class="custom-img list-img"
-						src="http://localhost:9090/upload/${house.image.imageUrl}"></a>
+						src="http://localhost:9090/upload/${house.image.imageUrl}" style="object-fit: cover;"></a>
 					<div class="row">
 						<h4 class="d-flex" style="margin-left: 15px;">
 							<b class="multiLine">${house.name}</b>

@@ -95,7 +95,7 @@ div {
 			<div class="row">
 				<a href="/house/detail/${review.houseId.id}"><img class="col"
 					src="http://localhost:9090/upload/${review.houseId.image.imageUrl}"
-					style="width: 150px; height: 100px;"></a>
+					style="width: 150px; height: 100px; object-fit: cover;"></a>
 				<div>
 					<div class="col">
 						작성일 :

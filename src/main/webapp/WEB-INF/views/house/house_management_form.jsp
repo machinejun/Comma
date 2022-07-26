@@ -81,7 +81,7 @@
 					<a data-toggle="modal" data-target="#info-modal-${house.id}"
 						style="cursor: pointer;"> <img class="custom-img"
 						src="http://localhost:9090/upload/${house.image.imageUrl}"
-						style="width: 200px; height: 200px;"></a>
+						style="width: 200px; height: 200px; object-fit: cover;"></a>
 					<div style="margin-left: 10px;">
 						<div class="col">
 							<h3>${house.name}</h3>
@@ -117,7 +117,7 @@
 							<div class="container">
 								<div class="col-sm-6">
 									<img src="http://localhost:9090/upload/${house.image.imageUrl}"
-										style="width: 350px; height: 350px; border-radius: 10px; margin-bottom: 10px;">
+										style="width: 350px; height: 350px; border-radius: 10px; margin-bottom: 10px; object-fit: cover;">
 								</div>
 								<div class="col-sm=6">
 									<h3>${house.name}</h3>

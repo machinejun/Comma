@@ -43,12 +43,10 @@
 				</div>
 				<br>
 				<div class="form-group">
-<<<<<<< HEAD
+
 					<label><b>최대 수용 인원</b></label><input type="number"
 						class="form-control" name="capacity" value="1" />
-=======
-					<label><b>최대 수용 인원</b></label><input type="number" class="form-control" name="capacity" value="1" />
->>>>>>> main
+
 				</div>
 				<br>
 				<div class="form-group">

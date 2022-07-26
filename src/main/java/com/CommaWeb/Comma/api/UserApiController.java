@@ -1,6 +1,8 @@
 package com.CommaWeb.Comma.api;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.CommaWeb.Comma.auth.PrincipalDetail;
+import com.CommaWeb.Comma.dto.BestHouseDto;
 import com.CommaWeb.Comma.dto.KakaoProfile;
 import com.CommaWeb.Comma.dto.OAuthToken;
 import com.CommaWeb.Comma.dto.ResponseDto;
@@ -78,10 +81,10 @@ public class UserApiController {
 			element.getAuthority().replace("GUEST", "HOST");
 		});
 
-		if (!userService.saveHost(hostEntity)) {
-			return "<script>location.href='/house/post_form'</script>";
-		}
-		return "<script>alert('호스트가 되셨습니다');" + "location.href='/'</script>";
+		
+		return "<script>location.href='/user/behost'</script>";
+		
+		
 	}
 
 	@GetMapping("/be-guest")
@@ -93,6 +96,13 @@ public class UserApiController {
 		collectors.forEach((element) -> {
 			element.getAuthority().replace("HOST", "GUEST");
 		});
-		return "<script>alert('게스트가 되셨습니다');" + "location.href='/'</script>";
+		return "<script>location.href='/user/beguest'</script>";
 	}
+	
+	@GetMapping("/user/adminTable")
+	public ArrayList<BestHouseDto> loadTableData(@RequestParam String month, @RequestParam int limit){
+		ArrayList<BestHouseDto> list = (ArrayList<BestHouseDto>) userService.loadHouseDtolist(month, limit);
+		return list;
+	}
+
 }

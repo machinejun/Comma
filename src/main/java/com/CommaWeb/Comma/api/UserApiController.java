@@ -2,7 +2,6 @@ package com.CommaWeb.Comma.api;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,15 +16,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.CommaWeb.Comma.auth.PrincipalDetail;
-<<<<<<< HEAD
 import com.CommaWeb.Comma.dto.BestHouseDto;
-import com.CommaWeb.Comma.dto.KakaoProfile;
-import com.CommaWeb.Comma.dto.OAuthToken;
-=======
->>>>>>> 5d4880eeff1e3347af85feaa73990f7b676ead13
 import com.CommaWeb.Comma.dto.ResponseDto;
 import com.CommaWeb.Comma.model.Host;
 import com.CommaWeb.Comma.model.RoleType;

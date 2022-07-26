@@ -27,10 +27,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
-import com.CommaWeb.Comma.auth.PrincipalDetail;
 import com.CommaWeb.Comma.auth.PrincipalDetailService;
 import com.CommaWeb.Comma.dto.KakaoProfile;
-import com.CommaWeb.Comma.dto.KakaoProfile.KakaoAccount;
 import com.CommaWeb.Comma.dto.OAuthToken;
 import com.CommaWeb.Comma.model.LoginType;
 import com.CommaWeb.Comma.model.RoleType;
@@ -38,7 +36,6 @@ import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.service.HouseService;
 import com.CommaWeb.Comma.service.LikeHouseService;
 import com.CommaWeb.Comma.service.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class UserController {
@@ -207,7 +204,7 @@ public class UserController {
 		}
 		
 		// 시큐리티 세션에 유저 정보 저장
-		User user = userService.checkUsername(kakaoUser.getUsername());
+		// User user = userService.checkUsername(kakaoUser.getUsername());
 		detailService.loadUserByUsername(kakaoUser.getUsername());
 		
 		

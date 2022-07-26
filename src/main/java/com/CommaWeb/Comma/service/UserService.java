@@ -38,8 +38,10 @@ public class UserService {
 			String encPassword = encoder.encode(rawPassword);
 			user.setPhoneNumber(changePhoneNumFormat(user.getPhoneNumber()));
 			user.setPassword(encPassword);
+			if(!user.getUsername().startsWith("kakao_")) {
+				user.setLoginType(LoginType.ORIGIN);				
+			}
 			user.setRole(RoleType.GUEST);
-			user.setLoginType(LoginType.ORIGIN);
 			userRepository.save(user);
 			User tempUser = userRepository.findByUsername(user.getUsername()).get();
 			System.out.println("tempUser : " + tempUser);

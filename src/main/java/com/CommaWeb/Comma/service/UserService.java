@@ -7,11 +7,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.CommaWeb.Comma.dto.BestHouseDto;
 import com.CommaWeb.Comma.model.Guest;
 import com.CommaWeb.Comma.model.Host;
 import com.CommaWeb.Comma.model.LoginType;
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
+import com.CommaWeb.Comma.repository.BestHoustDtoRepository;
 import com.CommaWeb.Comma.repository.GuestRepository;
 import com.CommaWeb.Comma.repository.HostRepository;
 import com.CommaWeb.Comma.repository.UserRepository;
@@ -27,6 +29,9 @@ public class UserService {
 	
 	@Autowired
 	private HostRepository hostRepository;
+	
+	@Autowired
+	private BestHoustDtoRepository bestHoustDtoRepository;
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -140,6 +145,10 @@ public class UserService {
 			}
 		}); 
 		return users;
+	}
+	
+	public List<BestHouseDto> loadHouseDtolist(String month, int limit){
+		return bestHoustDtoRepository.findByMonthBestHouse(month, limit);
 	}
 
 }

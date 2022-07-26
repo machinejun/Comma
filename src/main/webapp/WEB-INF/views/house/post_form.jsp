@@ -38,7 +38,14 @@
 				</div>
 				<br>
 				<div class="form-group">
+<<<<<<< HEAD
+
+					<label><b>최대 수용 인원</b></label><input type="number"
+						class="form-control" name="capacity" value="1" />
+
+=======
 					<label><b>최대 수용 인원</b></label><input type="number" class="form-control" name="capacity" value="1" />
+>>>>>>> 5d4880eeff1e3347af85feaa73990f7b676ead13
 				</div>
 				<br>
 				<div class="form-group">

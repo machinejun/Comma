@@ -108,6 +108,7 @@ public class ReservationService {
 	private void changeCompletedType(List<Reservation> listRes) {
 		System.out.println("실행됨");
 		LocalDate nowtime = LocalDate.now();
+		//nowtime.plusDays(5);
 		Date nowDate = Date.valueOf(nowtime);
 		
 		for (Reservation reservation : listRes) {

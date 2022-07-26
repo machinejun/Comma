@@ -43,10 +43,19 @@
 	color: #ff5555;
 }
 
+.multiLine {
+	width: 200px;
+	line-height: 1.3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+}
 </style>
 
 <div class="container">
-	<div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+	<div class="p-4 p-lg-5 rounded-3 text-center" style="background-color: rgba(255, 149, 149, 0.05);">
 		<div class="m-4 m-lg-5">
 			<c:choose>
 				<c:when test="${empty wishList}">
@@ -73,12 +82,12 @@
 				<input type="hidden" value="${house.house.id}" id="house-id">
 				<div class="col mb-5" style="margin: 30px;">
 					<div class="h-100">
-						<a href="/house/detail/${house.house.id}"><img class="custom-img" src="http://localhost:9090/upload/${house.house.image.imageUrl}" style="width: 300px; height: 250px;"></a>
+						<a href="/house/detail/${house.house.id}"><img class="custom-img" src="http://localhost:9090/upload/${house.house.image.imageUrl}" style="width: 300px; height: 250px; object-fit: cover;"></a>
 						<div class="p-4">
 							<div class="container" style="position: relative; width: 240px;">
-								<h5 class="fw-bolder" style="position: absolute;">${house.house.name}</h5>
+								<h5 class="fw-bolder multiLine" style="position: absolute;">${house.house.name}</h5>
 								<i class="bi ${not empty house ? exist : notExist}" style="margin-top: 10px; cursor: pointer; position: absolute; right: -5%" id="like-${house.house.id}" onclick="clickHeart(${house.house.id})"></i>
-								<p style=" position: absolute; top: 45px">${house.house.type},&nbsp;${house.house.address}</p>
+								<p style="position: absolute; top: 45px">${house.house.type},&nbsp;${house.house.address}</p>
 							</div>
 						</div>
 						<br> <br>

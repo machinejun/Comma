@@ -72,11 +72,11 @@ div {
 </style>
 
 <div class="container">
-	<div class="p-4 p-lg-5 rounded-3 text-center" id="title">
+	<div class="p-4 p-lg-5 rounded-3 text-center" id="title" style="background-color: rgba(255, 149, 149, 0.05);">
 		<input type="hidden" id="guest-id" value="${principal.user.id}">
 		<div class="m-4 m-lg-5">
 			<c:choose>
-				<c:when test="${empty reviews}">
+				<c:when test="${reviewCount eq 0}">
 					<h2 class="display-5 fw-bold">작성한 리뷰가 없습니다.</h2>
 					<br>
 				</c:when>
@@ -95,7 +95,7 @@ div {
 			<div class="row">
 				<a href="/house/detail/${review.houseId.id}"><img class="col"
 					src="http://localhost:9090/upload/${review.houseId.image.imageUrl}"
-					style="width: 150px; height: 100px;"></a>
+					style="width: 150px; height: 100px; object-fit: cover;"></a>
 				<div>
 					<div class="col">
 						작성일 :
@@ -158,7 +158,7 @@ div {
 </div>
 <br>
 <div class="container justify-content-center" style="margin-left: 47%">
-	<c:if test="${not empty reviews}">
+	<c:if test="${reviewCount ne 0}">
 		<ul class="pagination justify-content-center">
 
 			<c:set var="isDisabled" value="disabled"></c:set>

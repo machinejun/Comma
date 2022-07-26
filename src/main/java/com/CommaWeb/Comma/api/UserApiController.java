@@ -6,39 +6,31 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import com.CommaWeb.Comma.auth.PrincipalDetail;
+<<<<<<< HEAD
 import com.CommaWeb.Comma.dto.BestHouseDto;
 import com.CommaWeb.Comma.dto.KakaoProfile;
 import com.CommaWeb.Comma.dto.OAuthToken;
+=======
+>>>>>>> 5d4880eeff1e3347af85feaa73990f7b676ead13
 import com.CommaWeb.Comma.dto.ResponseDto;
 import com.CommaWeb.Comma.model.Host;
-import com.CommaWeb.Comma.model.LoginType;
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.service.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 public class UserApiController {

@@ -39,6 +39,17 @@
 	height: 1px;
 	background: #ccc;
 }
+
+.multiLine {
+	width: 200px;
+	line-height: 1.3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
 </style>
 
 <div class="container">
@@ -70,7 +81,7 @@
 					<a data-toggle="modal" data-target="#info-modal-${house.id}"
 						style="cursor: pointer;"> <img class="custom-img"
 						src="http://localhost:9090/upload/${house.image.imageUrl}"
-						style="width: 200px; height: 200px;"></a>
+						style="width: 200px; height: 200px; object-fit: cover;"></a>
 					<div style="margin-left: 10px;">
 						<div class="col">
 							<h3>${house.name}</h3>
@@ -106,7 +117,7 @@
 							<div class="container">
 								<div class="col-sm-6">
 									<img src="http://localhost:9090/upload/${house.image.imageUrl}"
-										style="width: 350px; height: 350px; border-radius: 10px; margin-bottom: 10px;">
+										style="width: 350px; height: 350px; border-radius: 10px; margin-bottom: 10px; object-fit: cover;">
 								</div>
 								<div class="col-sm=6">
 									<h3>${house.name}</h3>
@@ -120,7 +131,7 @@
 										&nbsp;(박)
 									</h4>
 									<h4>숙소 소개:&nbsp;</h4>
-									<h4>${house.infoText}</h4>
+									<h4 class="multiLine">${house.infoText}</h4>
 								</div>
 							</div>
 						</div>
@@ -133,4 +144,4 @@
 
 </div>
 <script src="/js/house.js"></script>
-<%@ include file="../layout/footer.jsp"%>
+<script type="text/javascript" src="/js/home.js"></script>

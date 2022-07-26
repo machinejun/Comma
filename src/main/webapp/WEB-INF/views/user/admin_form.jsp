@@ -70,10 +70,10 @@ h2::after {
 									                    <td>${ user.role }</td>
 									                    <td>${ user.username }</td>
 									                    <c:if test= "${user.role eq 'GUEST' }">
-									                    <td><button type="submit" class="custom-sm-btn" style="font-size: 17px">예약확인</button></td>
+									                    <td><button type="submit" class="custom-sm-btn" onclick="location.href='/reserveTable/user';" style="font-size: 17px">예약확인</button></td>
 									                    </c:if>
 									                    <c:if test= "${user.role eq 'HOST' }">
-									                    <td><button type="submit" class="custom-sm-btn"  style="font-size: 17px">숙소정보</button></td>
+									                    <td><button type="submit" class="custom-sm-btn" onclick="location.href='/house/management';" style="font-size: 17px">숙소정보</button></td>
 									                    </c:if>
 									                </tr>
 									         </c:forEach>						  

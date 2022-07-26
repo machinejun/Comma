@@ -40,14 +40,6 @@ h2:after {
 	border-radius: 10px;
 }
 
-/*
-.list-img:hover {
-    transform: scale(1.1);
-	transition: all 1s;
-	cursor: pointer;
-}
-*/
-
 p, select {
 	font-family: 'SUIT-Medium';
 }

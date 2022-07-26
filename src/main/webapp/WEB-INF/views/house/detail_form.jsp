@@ -15,7 +15,7 @@
 				<div class="col-md-6">
 					<img class="card-img-top mb-5 mb-md-0"
 						src="http://localhost:9090/upload/${house.image.imageUrl}"
-						width="500px" height="600px" style="border-radius: 15px" />
+						width="500px" height="600px" style="border-radius: 15px; object-fit: cover;" />
 				</div>
 				<div class="col-md-6">
 					<h2 class="multiLine-title">${house.name}</h2>
@@ -198,7 +198,7 @@
 	</div>
 </section>
 
-<section class="py-5 bg-light">
+<section class="py-5" style="background-color: rgba(255, 149, 149, 0.05);">
 <c:if test="${not empty houseList}">
 	<div class="container px-4 px-lg-5 mt-5">
 		<h3 class="custom-text mb-4">이런 숙소는 어때요</h3>
@@ -211,7 +211,7 @@
 						<a href="/house/detail/${house.id}"> <img
 							class="custom-card-img"
 							src="http://localhost:9090/upload/${house.image.imageUrl}"
-							width="240px;" height="160px"></a>
+							style="width: 240px; height:160px; object-fit: cover;"></a>
 						<div class="card-body">
 							<div class="text-center">
 								<h4 class="multiLine" style="margin-left: 10px;">

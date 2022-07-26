@@ -34,7 +34,7 @@ h2::after {
 								<div class="d-flex flex-row-reverse">
 										
 										<form class="form-inline"  action="/user/searchUsername" method="get">
-													<select name="role" style="width: 130px; height: 40px; margin: 10px; margin-top: 12px;">
+													<select name="role" style="width: 130px; height: 40px; margin: 10px; margin-top: 12px; border-radius: 5px">
 														<option value="">전체</option>
 														<option value="guest">GUEST</option>
 														<option value="host">HOST</option>

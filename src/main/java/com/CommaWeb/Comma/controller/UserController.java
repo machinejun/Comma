@@ -216,5 +216,25 @@ public class UserController {
 		
 		return "redirect:/";			
 	}
+	
+	@GetMapping("/user/behost")
+	public String behost() {
+		return "/user/beHost";
+	}
+	
+	@GetMapping("/user/beguest")
+	public String beguest() {
+		return "/user/beGuest";
+	}
+	
+	@GetMapping("/test/error")
+	public String error() {
+		return "errorPage";
+	}
+	
+	@GetMapping("/test/adminTable")
+	public String getAdminTable() {
+		return "/user/admin_table";
+	}
 
 }

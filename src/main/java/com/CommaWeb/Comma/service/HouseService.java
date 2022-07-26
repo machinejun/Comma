@@ -154,21 +154,25 @@ public class HouseService {
 		houseEntity.setInfoText(requestPostDto.getInfoText());
 		houseEntity.setType(requestPostDto.getType());
 		houseEntity.setOneDayPrice(requestPostDto.getOneDayPrice());
-
+		
 		String imageFileName = UUID.randomUUID() + "_" + "image";
 		String newFileName = (imageFileName.trim()).replaceAll("\\s", "");
 
 		Path imageFilePath = Paths.get(uploadFolder + newFileName);
+		System.out.println("originFileName : " + requestPostDto.getFile().getOriginalFilename());
 
 		try {
-			Files.write(imageFilePath, requestPostDto.getFile().getBytes());
+			Image imageEntity;
+			if (requestPostDto.getFile().getOriginalFilename() != "") {
+				Files.write(imageFilePath, requestPostDto.getFile().getBytes());
+				imageEntity = requestPostDto.toEntity(newFileName);
+				imageRepository.save(imageEntity);
+				houseEntity.setImage(imageEntity);
+			} 
 
-			Image imageEntity = requestPostDto.toEntity(newFileName);
-			imageRepository.save(imageEntity);
-			houseEntity.setImage(imageEntity);
 			houseRepository.save(houseEntity);
-
-		} catch (IOException e) {
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 

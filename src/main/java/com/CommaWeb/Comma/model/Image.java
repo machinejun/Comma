@@ -23,7 +23,7 @@ public class Image {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	private String imageUrl;
 	
@@ -31,5 +31,12 @@ public class Image {
 	
 	@CreationTimestamp
 	private Timestamp creationDate;
+
+	public Image(Object[] obj) {
+		this.id = ((Integer)obj[0]).intValue();
+		this.imageUrl = (String)obj[1];
+		this.originFileName = (String)obj[2];
+		this.creationDate = (Timestamp)obj[3];
+	}
 
 }

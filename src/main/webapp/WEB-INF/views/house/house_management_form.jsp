@@ -39,6 +39,17 @@
 	height: 1px;
 	background: #ccc;
 }
+
+.multiLine {
+	width: 200px;
+	line-height: 1.3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
 </style>
 
 <div class="container">
@@ -120,7 +131,7 @@
 										&nbsp;(박)
 									</h4>
 									<h4>숙소 소개:&nbsp;</h4>
-									<h4>${house.infoText}</h4>
+									<h4 class="multiLine">${house.infoText}</h4>
 								</div>
 							</div>
 						</div>
@@ -133,4 +144,4 @@
 
 </div>
 <script src="/js/house.js"></script>
-<%@ include file="../layout/footer.jsp"%>
+<script type="text/javascript" src="/js/home.js"></script>

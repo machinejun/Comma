@@ -72,7 +72,7 @@ div {
 </style>
 
 <div class="container">
-	<div class="p-4 p-lg-5 rounded-3 bg-light text-center" id="title">
+	<div class="p-4 p-lg-5 rounded-3 text-center" id="title" style="background-color: rgba(255, 149, 149, 0.05);">
 		<input type="hidden" id="guest-id" value="${principal.user.id}">
 		<div class="m-4 m-lg-5">
 			<c:choose>

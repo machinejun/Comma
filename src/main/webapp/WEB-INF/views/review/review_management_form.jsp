@@ -29,7 +29,7 @@ div {
 
 </style>
 <div class="py-5" id="features">
-	<div id="title" class="container bg-light">
+	<div id="title" class="container" style="background-color: rgba(255, 149, 149, 0.05);">
 		<div class="row justify-content-center">
 			<h2 style="font-family: ">리뷰 관리</h2>
 		</div>
@@ -157,4 +157,4 @@ div {
 
 
 <script src="/js/reply.js"></script>
-<%@ include file="../layout/footer.jsp"%>
+<script type="text/javascript" src="/js/home.js"></script>

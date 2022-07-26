@@ -70,8 +70,8 @@
 						class="custom-img list-img"
 						src="http://localhost:9090/upload/${house.image.imageUrl}"></a>
 					<div class="row">
-						<h4 class="multiLine d-flex" style="margin-left: 15px;">
-							<b>${house.name}</b>
+						<h4 class="d-flex" style="margin-left: 15px;">
+							<b class="multiLine">${house.name}</b>
 						</h4>
 
 						<div class="d-flex" style="margin-top: 10px; margin-left: 35px;">

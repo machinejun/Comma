@@ -131,7 +131,7 @@ function appendEditedReply(reply) {
 										value="${reply.creationDate}" />
 									&nbsp;&nbsp;</div>
 				<a class="host-review-update"
-									onclick="index.editText('${reply.id}', '${reply.content}', '${review.id}');" style="cursor: pointer;">수정</a>
+									onclick="index.editText('${reply.id}', '${reply.content}', '${reply.reviewId.id}');" style="cursor: pointer;">수정</a>
 								&nbsp;&nbsp;
 								<a class="host-review-delete" style="color: red"
 									onclick="index.deleteReply(${reply.id});" style="cursor: pointer;">삭제</a>				
@@ -148,7 +148,7 @@ function appendReply(reply) {
 			<div>${reply.content}</div>
 			<div class="d-flex">
 				<a class="host-review-update"
-									onclick="index.editText('${reply.id}', '${reply.content}', '${review.id}');" style="cursor: pointer;">수정</a>
+									onclick="index.editText('${reply.id}', '${reply.content}', '${reply.reviewId.id}');" style="cursor: pointer;">수정</a>
 								&nbsp;&nbsp;
 								<a class="host-review-delete" style="color: red"
 									onclick="index.deleteReply(${reply.id});" style="cursor: pointer;">삭제</a>				

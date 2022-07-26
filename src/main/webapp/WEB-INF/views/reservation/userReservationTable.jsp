@@ -86,11 +86,11 @@ img {
 								      	<c:when test="${reservation.approvalStatus eq 'APPROVED'}">
 								      		<td style="text-align: center;"><a type="button" style="border-color: white;" onclick="payForKakao(${reservation.id})" ><img src="/assets/payment_small.png"></img></a></td>
 								      	</c:when>
-								      	<c:when test= "${reservation.approvalStatus eq 'COMPLETED'}">
-								      		<td style="text-align: center;"></td>
+								      	<c:when test= "${reservation.approvalStatus eq 'WAITING'}">
+								      		<td style="text-align: center;">승인 대기중</td>
 								      	</c:when>
 								      	<c:otherwise>
-								      		<td style="text-align: center;">승인 대기중</td>
+								      		<td style="text-align: center;"></td>
 								      	</c:otherwise>
 								      </c:choose>
 								      <td style="text-align: center;">

@@ -75,8 +75,15 @@
 ![메인1](https://user-images.githubusercontent.com/96460131/181153554-252fc86e-7bc7-4d18-813f-3bbaf25f5955.png)
 ![메인2](https://user-images.githubusercontent.com/96460131/181153584-d80b0445-e416-4e65-aa18-220e94921140.png)
 ![메인3](https://user-images.githubusercontent.com/96460131/181153595-ff403ffc-2d44-4f4d-8b86-2be4ccb41450.png)
-![메인4](https://user-images.githubusercontent.com/96460131/181153613-961e406c-817e-482a-910e-113f4731dbea.png)
+
+#### 회원가입
+![image](https://user-images.githubusercontent.com/96460131/181155537-b59d9586-2e17-4a0d-a7f6-e07b7bdd08e4.png)
+
+#### 로그인
 ![메인5](https://user-images.githubusercontent.com/96460131/181153622-5f4ed15a-dbb5-4c16-a36c-8e6e627337d6.png)
+
+#### 회원정보 수정
+![회원정보 수정](https://user-images.githubusercontent.com/96460131/181155179-d6bda3b1-48b5-4283-b6a5-e0f9260c0df2.png)
 
 
 ### 숙소 리스트
@@ -84,10 +91,14 @@
 ![리스트2](https://user-images.githubusercontent.com/96460131/181153666-024a0a80-16ff-4dad-b022-af69de2b5d72.png)
 
 ### 숙소 검색
+#### 숙소 유형, 지역별 조회
 ![검색1](https://user-images.githubusercontent.com/96460131/181153715-4066c0eb-f062-4f41-b0ea-f37b16cc7dfb.png)
 ![검색2](https://user-images.githubusercontent.com/96460131/181153732-daca7bb9-4c82-4add-a76a-2e98bdb51987.png)
 
 ### 숙소 상세정보 조회
+#### 해당 숙소의 상세 설명, 별점, 리뷰 조회
+#### 예약 페이지 연결
+#### 하트 아이콘 클릭시 위시리스트 추가
 ![숙소상세1](https://user-images.githubusercontent.com/96460131/181153776-dcad94b4-0062-4351-bfc5-41ae0e9378c3.png)
 ![숙소상세2](https://user-images.githubusercontent.com/96460131/181153784-0c60beae-bc0c-4a08-8f56-e49fcd4cb5cb.png)
 
@@ -95,6 +106,7 @@
 ## 게스트
 
 ### 숙소 예약
+#### 숙소를 예약하면 먼저 WAITING 상태가 되고, 호스트가 해당 예약을 승인해야만 APPROVED 상태가 되어 해당 예약이 확정됨
 ![예약1](https://user-images.githubusercontent.com/96460131/181153824-95a567d8-5a88-448c-865c-0edfd9ad1607.png)
 ![예약2](https://user-images.githubusercontent.com/96460131/181153838-be92492e-a70d-47a1-8cea-21957e65a0d9.png)
 ![예약3](https://user-images.githubusercontent.com/96460131/181153846-14e4f4f0-5e2a-46f5-aedf-d552a09e55b8.png)
@@ -103,7 +115,12 @@
 ![예약내역1](https://user-images.githubusercontent.com/96460131/181153898-224285d1-1679-41c3-9000-4f0024f9ced5.png)
 ![예약내역2](https://user-images.githubusercontent.com/96460131/181153904-8b5805e6-9280-4b08-b864-6803ac0e9ad7.png)
 
+### 결제
+![카카오페이 결제](https://user-images.githubusercontent.com/96460131/181154799-264297b8-ad33-48cf-9d4c-63e48fec3b18.png)
+
+
 ### 리뷰 작성, 리뷰 
+### 예약 종료일이 되면 APPROVED 상태가 COMPLETED 상태가 되어 리뷰 작성 가능 (이전엔 작성 불가)
 ![리뷰1](https://user-images.githubusercontent.com/96460131/181153934-10ca8218-6faf-4976-9d45-1e50686a3947.png)
 ![리뷰2](https://user-images.githubusercontent.com/96460131/181153938-a841361e-b0a7-4249-8707-aefdd5b65edc.png)
 
@@ -125,10 +142,14 @@
 
 
 ### 에약 내역 조회
+#### WAITING 상태인 게스트의 예약 승인 처리
 ![호스트예약테이블1](https://user-images.githubusercontent.com/96460131/181154410-ce8d4035-f553-460e-b2d1-8c90fa4cf3ca.png)
-![호스트예약테이블2](https://user-images.githubusercontent.com/96460131/181154418-a0fee679-8fa2-4dfe-8023-1868e51a8fe0.png)
+![호스트예약테이블2](https://user-images.githubusercontent.com/96460131/181155043-34bb8958-80e1-4ef8-ba8b-85bdf5609780.png)
+
 
 
 ## 관리자
 
+### 회원 조회
+![관리자](https://user-images.githubusercontent.com/96460131/181155327-950b3b21-2568-4d37-bb3f-bc7d8db105b1.png)
 

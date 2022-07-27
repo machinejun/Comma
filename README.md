@@ -108,12 +108,18 @@
 ![예약2](https://user-images.githubusercontent.com/96460131/181153838-be92492e-a70d-47a1-8cea-21957e65a0d9.png)
 ![예약3](https://user-images.githubusercontent.com/96460131/181153846-14e4f4f0-5e2a-46f5-aedf-d552a09e55b8.png)
 
+
 ### 예약 내역 조회
 ![예약내역1](https://user-images.githubusercontent.com/96460131/181153898-224285d1-1679-41c3-9000-4f0024f9ced5.png)
 ![예약내역2](https://user-images.githubusercontent.com/96460131/181153904-8b5805e6-9280-4b08-b864-6803ac0e9ad7.png)
 
+
 ### 결제
 ![카카오페이 결제](https://user-images.githubusercontent.com/96460131/181154799-264297b8-ad33-48cf-9d4c-63e48fec3b18.png)
+
+
+### 결제 완료
+![예약완료](https://user-images.githubusercontent.com/96460131/181170884-827f773f-c97a-4df2-9bbd-15f59cc1b3dd.png)
 
 
 ### 리뷰 작성, 리뷰 

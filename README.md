@@ -92,7 +92,7 @@
 
 ### 숙소 검색
 - 숙소 유형, 지역별 조회
-![검색1](https://user-images.githubusercontent.com/96460131/181153715-4066c0eb-f062-4f41-b0ea-f37b16cc7dfb.png)
+![검색1](https://user-images.githubusercontent.com/96460131/181165467-365706ce-f994-4eef-bd1a-bcd30271f6c0.png)
 ![검색2](https://user-images.githubusercontent.com/96460131/181153732-daca7bb9-4c82-4add-a76a-2e98bdb51987.png)
 
 ### 숙소 상세정보 조회
@@ -100,7 +100,7 @@
 - 예약 페이지 연결
 - 하트 아이콘 클릭시 위시리스트 추가
 ![숙소상세1](https://user-images.githubusercontent.com/96460131/181153776-dcad94b4-0062-4351-bfc5-41ae0e9378c3.png)
-![숙소상세2](https://user-images.githubusercontent.com/96460131/181153784-0c60beae-bc0c-4a08-8f56-e49fcd4cb5cb.png)
+![숙소상세2](https://user-images.githubusercontent.com/96460131/181165537-17fc78be-53d0-4421-ac96-be5f9763bb00.png)
 
 
 ## 게스트
@@ -125,6 +125,7 @@
 ![리뷰2](https://user-images.githubusercontent.com/96460131/181153938-a841361e-b0a7-4249-8707-aefdd5b65edc.png)
 
 ### 위시리스트
+- 하트 아이콘 클릭시 위시리스트에서 삭제
 ![위시리스트1](https://user-images.githubusercontent.com/96460131/181154074-643d2d4c-9920-431e-be3c-7d330d1f6db4.png)
 ![위시리스트2](https://user-images.githubusercontent.com/96460131/181154077-d1b4983d-464b-4eb6-8c2c-4bf0bb7ab3ce.png)
 
@@ -142,7 +143,7 @@
 
 
 ### 에약 내역 조회
-- WAITING 상태인 게스트의 예약 승인 처리
+- WAITING 상태인 게스트의 예약 승인 처리, 예약 취소 
 ![호스트예약테이블1](https://user-images.githubusercontent.com/96460131/181154410-ce8d4035-f553-460e-b2d1-8c90fa4cf3ca.png)
 ![호스트예약테이블2](https://user-images.githubusercontent.com/96460131/181156586-fe49a21c-f1fd-4074-825e-d7283693062f.png)
 

@@ -57,9 +57,9 @@
 
 ## 사용한 기술
 
-> 프론트: bootStrap5, Jquery, html5, css
+> 프론트: bootStrap5, JSP, Jquery, html5, css
 
-> 서버 : JAVA ,Spring boot, Mysql, JPA
+> 서버 : JAVA ,Spring boot, Mysql, JPA, Qlrm
 
 > 보안 : security, Csrf
 

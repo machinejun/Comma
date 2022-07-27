@@ -1,5 +1,7 @@
 # Project - Comma
 
+</br>
+
 ## 숙박 서비스 선정 이유
 
 코로나 이후로 꼭 여행지를 가지 않더라도 프라이빗한 공간에서 자신들만의 여행을 즐기는 사람들이 늘어나면서, 숙박 서비스를 이용률이 증가하고 있습니다.
@@ -7,12 +9,14 @@
 숙박 업소 뿐만 아니라 일반 원룸 같은 장소를 기존 숙박 시설보다
 저렴하게 빌려주거나 빌릴 수 있는 서비스가 있었으면 했습니다. 따라서 이러한 시스템과 가장 유사한 AirBnb 서비스를 참고하여 프로젝트를 진행하게 되었습니다.
 
+</br>
 
 ## 프로젝트 기간
-2022-07-04 ~ 2022-07-25
+2022.07.05 ~ 2022.07.25
 
+</br>
 
-## 프로젝트 기능
+## 기능 
 
 #### 공통기능
 
@@ -57,15 +61,19 @@
 
 ## 사용한 기술
 
-> 프론트: bootStrap5, JSP, Jquery, html5, css
+- 프론트: bootStrap5, JSP, Jquery, html5, css
 
-> 서버 : JAVA ,Spring boot, Mysql, JPA, Qlrm
+- 서버 : JAVA ,Spring boot, Mysql, JPA, Qlrm
 
-> 보안 : security, Csrf
+- 보안 : security, Csrf
 
 ---
 
+</br>
+
 ## 페이지 구성
+
+</br>
 
 ## 메인
 ![메인1](https://user-images.githubusercontent.com/96460131/181153554-252fc86e-7bc7-4d18-813f-3bbaf25f5955.png)
@@ -76,7 +84,13 @@
 ![image](https://user-images.githubusercontent.com/96460131/181155537-b59d9586-2e17-4a0d-a7f6-e07b7bdd08e4.png)
 
 ### 로그인
+- 일반 로그인
 ![메인5](https://user-images.githubusercontent.com/96460131/181153622-5f4ed15a-dbb5-4c16-a36c-8e6e627337d6.png)
+
+- 소셜 로그인 (카카오)
+![Screenshot_1](https://user-images.githubusercontent.com/96460131/181230665-39709807-77c2-4db4-bce1-be042133fb4f.png)
+
+</br>
 
 ### 회원정보 수정
 ![회원정보 수정](https://user-images.githubusercontent.com/96460131/181155179-d6bda3b1-48b5-4283-b6a5-e0f9260c0df2.png)
@@ -98,6 +112,7 @@
 ![숙소상세1](https://user-images.githubusercontent.com/96460131/181153776-dcad94b4-0062-4351-bfc5-41ae0e9378c3.png)
 ![숙소상세2](https://user-images.githubusercontent.com/96460131/181165537-17fc78be-53d0-4421-ac96-be5f9763bb00.png)
 
+</br>
 
 ## 게스트
 
@@ -131,6 +146,7 @@
 ![위시리스트1](https://user-images.githubusercontent.com/96460131/181154074-643d2d4c-9920-431e-be3c-7d330d1f6db4.png)
 ![위시리스트2](https://user-images.githubusercontent.com/96460131/181154077-d1b4983d-464b-4eb6-8c2c-4bf0bb7ab3ce.png)
 
+</br>
 
 ## 호스트
 
@@ -149,7 +165,7 @@
 ![호스트예약테이블1](https://user-images.githubusercontent.com/96460131/181154410-ce8d4035-f553-460e-b2d1-8c90fa4cf3ca.png)
 ![호스트예약테이블2](https://user-images.githubusercontent.com/96460131/181156586-fe49a21c-f1fd-4074-825e-d7283693062f.png)
 
-
+</br>
 
 ## 관리자
 

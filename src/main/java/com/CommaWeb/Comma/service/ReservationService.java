@@ -32,12 +32,13 @@ import com.CommaWeb.Comma.repository.ReservationRepository;
 
 @Service
 public class ReservationService {
-	public static String tid;
+	
+	// 리뷰 테스트 용
+	public static int REVIEW_TEST = 5;
 	
 	@Autowired
 	private HostTableRepository hostTableRepository;
 
-	// User레파지 스토리도 필요하다
 	@Autowired
 	private GuestRepository guestRepository;
 
@@ -92,12 +93,12 @@ public class ReservationService {
 
 	public int getRangeDay(Date checkinDate, Date checkOutDate) {
 		long sec = (checkOutDate.getTime() - checkinDate.getTime()) / 1000;
-		int result = (int) sec / (24 * 60 * 60);
+		int result = ((int) sec / (24 * 60 * 60)) + REVIEW_TEST;
 		return result;
 	}
 	
 	@Modifying
-	@Transactional(readOnly = true)
+	@Transactional
 	public List<Reservation> getReservation(User user) {
 		List<Reservation> reservation;
 		reservation = reservationRepository.findByGuestId(user.getId());	
@@ -108,15 +109,15 @@ public class ReservationService {
 	private void changeCompletedType(List<Reservation> listRes) {
 		System.out.println("실행됨");
 		LocalDate nowtime = LocalDate.now();
-		//nowtime.plusDays(5);
 		Date nowDate = Date.valueOf(nowtime);
 		
 		for (Reservation reservation : listRes) {
 			if(reservation.getApprovalStatus() != ReservationType.PAID) {
-				return;
+				continue;
 			}
 			
 			if(getRangeDay(reservation.getCheckOutDate(), nowDate) > 0 ) {
+				System.out.println("ddfjkfjdkf");
 				reservation.setApprovalStatus(ReservationType.COMPLETED);
 			}
 		}

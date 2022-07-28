@@ -66,17 +66,9 @@ public class House {
 	@CreationTimestamp
 	private Timestamp creationDate;
 
-//	@OneToMany(mappedBy = "houseId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-//	@JsonIgnoreProperties({"reservations", "houseId"})
-//	private List<Reservation> reservations;
-
 	@OneToMany(mappedBy = "houseId", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	@JsonIgnoreProperties({ "houseId" })
 	private List<Review> reviews;
-
-//	@OneToMany(mappedBy ="house", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	@JsonIgnoreProperties({"house"})
-//	private List<BookedDate> bookedDates;
 
 	@Override
 	public String toString() {

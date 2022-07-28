@@ -88,7 +88,10 @@ img {
 								      	</c:when>
 								      	<c:when test= "${reservation.approvalStatus eq 'WAITING'}">
 								      		<td style="text-align: center;">승인 대기중</td>
+<<<<<<< HEAD
 								      		
+=======
+>>>>>>> 3a81e0d0ae71a700218f384461019258d152c68b
 								      	</c:when>
 								      	<c:otherwise>
 								      		<td style="text-align: center;"></td>

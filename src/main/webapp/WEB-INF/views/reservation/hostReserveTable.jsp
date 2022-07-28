@@ -4,15 +4,24 @@
 <%@ page import = "java.time.LocalDate" %>
 <%@ include file="../layout/header.jsp" %>
 <style>
+.multiLine {
+	width: 150px;
+	overflow: hidden;
+	line-height: 1.1;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+}
+
 .section-container{
 	font-family: 'SUIT-Medium'
 }
 .btn{
-	width: 120px;
+	width: 180px;
 	height: 40px;
 	color:rgba(255,149,149,0.7) ;
 	font-weight: bold;
-	font-size: 20px; 
+	font-size: 15px; 
 	padding: 5px;
 	background-color: white;
 	border-left: 1.5px solid rgba(255,149,149,0.55); 
@@ -76,7 +85,7 @@
 						<div class="btn-box">
 							<c:if test="${empty houses}"><br/><br/></c:if>
 							<c:forEach var="house" items="${houses}">				
-						    	<a type="button" class="btn" id="${house.name}" onclick="checkHouseReservation(${house.hostId.id},${house.id})" style="">${house.name}
+						    	<a type="button" class="btn " id="${house.name}" onclick="checkHouseReservation(${house.hostId.id},${house.id})" style=""><span class="multiLine">${house.name}</span>
 						    		<c:forEach var="houseCount" items="${count}">
 						    			<c:if test="${houseCount.houseId eq house.id }">
 						    			<span style="color: red; font-size: 15px; padding: 0">(${houseCount.wait})</span>

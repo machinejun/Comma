@@ -100,9 +100,6 @@ public class UserController {
 	}
 
 	// 위시리스트 페이지 호출
-	/*
-	 * secu
-	 */
 	@GetMapping("/wish-list/{guestId}")
 	public String getWishList(@PathVariable int guestId, Model model) {
 		model.addAttribute("wishList", likeHouseService.getWishListById(guestId));
@@ -203,8 +200,6 @@ public class UserController {
 			return "redirect:/auth/update_form/";
 		}
 		
-		// 시큐리티 세션에 유저 정보 저장
-		// User user = userService.checkUsername(kakaoUser.getUsername());
 		detailService.loadUserByUsername(kakaoUser.getUsername());
 		
 		

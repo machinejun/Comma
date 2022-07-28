@@ -25,13 +25,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class Guest implements Serializable{
-	/*
-	 * org.springframework.beans.factory.BeanCreationException: 
-	 * Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]:
-	 * Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory;
-	 * nested exception is org.hibernate.MappingException:
-	 * Composite-id class must implement Serializable: com.JMThouseWeb.JMThouse.model.Guest
-	 */
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="userId")
@@ -40,9 +34,5 @@ public class Guest implements Serializable{
 	@OneToOne
 	@JoinColumn(name="userId")
 	private User user;
-	
-//	@OneToMany(mappedBy = "guestId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-//	@JsonIgnoreProperties({"guestId"})
-//	private List<Reservation> reservations;
 
 }

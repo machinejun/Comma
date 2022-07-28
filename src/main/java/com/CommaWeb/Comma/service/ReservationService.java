@@ -32,13 +32,13 @@ import com.CommaWeb.Comma.repository.ReservationRepository;
 
 @Service
 public class ReservationService {
-	// 리뷰 테스트 용으로 달아놓은 것이기 때문에 나중에 삭제하면 됩니다.
+	
+	// 리뷰 테스트 용
 	public static int REVIEW_TEST = 5;
 	
 	@Autowired
 	private HostTableRepository hostTableRepository;
 
-	// User레파지 스토리도 필요하다
 	@Autowired
 	private GuestRepository guestRepository;
 
@@ -109,7 +109,6 @@ public class ReservationService {
 	private void changeCompletedType(List<Reservation> listRes) {
 		System.out.println("실행됨");
 		LocalDate nowtime = LocalDate.now();
-		//nowtime.plusDays(5);
 		Date nowDate = Date.valueOf(nowtime);
 		
 		for (Reservation reservation : listRes) {

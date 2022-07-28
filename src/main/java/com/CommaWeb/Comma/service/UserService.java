@@ -111,6 +111,7 @@ public class UserService {
 			Host host = hostRepository.findById(hostEntity.getUserId()).get();
 			return false;
 		} catch (Exception e) {
+			// 찾는 id의 호스트가 없을 경우 NoSuchElementException 발생
 			hostRepository.save(hostEntity);
 			return true;		
 		}	

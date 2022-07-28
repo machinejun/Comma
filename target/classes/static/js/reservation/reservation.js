@@ -241,7 +241,7 @@ function reserveHouse(guestId, hostId, houseId) {
 		data: JSON.stringify(data),
 		dataType: "json"
 	}).done(function() {
-		location.href = "/";
+		location.href = "http://localhost:9090/";
 	}).fail(function() {
 		AlertMessage("통신 오류", `예약에 실패하였습니다.`);
 	})

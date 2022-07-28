@@ -82,7 +82,7 @@
 ![image](https://user-images.githubusercontent.com/99931188/181579722-6554cdbf-1ed2-42ba-b4e1-a8087371d3e9.png)
 
 ## git flow 전략
-   - Main : 탬플릿 결정, 완성본
+   - Main : 탬플릿 결정, 완성본, md 
    - Developer : 통합, 통합 테스트
    - Feature_** : 각자의 기능 구현 완료 후 Developer에 Merge 
 

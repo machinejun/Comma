@@ -172,3 +172,20 @@
 ### 회원 조회
 ![관리자](https://user-images.githubusercontent.com/96460131/181155327-950b3b21-2568-4d37-bb3f-bc7d8db105b1.png)
 
+## Detail page
+- Error Page
+![image](https://user-images.githubusercontent.com/99931188/181435642-2ca681cd-6bed-4c49-9517-6c1da0beffcb.png)
+
+#### 호스트 모드 이용 안내
+![image](https://user-images.githubusercontent.com/99931188/181435818-569bc8b9-4a8c-41ef-a79f-be3dfc2ed8b7.png)
+
+#### 게스트 모드 이용 안내
+![image](https://user-images.githubusercontent.com/99931188/181435937-9514bdc1-2a91-486f-adca-d67d2c25c5e3.png)
+
+#### 예약 안내
+![image](https://user-images.githubusercontent.com/99931188/181436220-a8603903-4f86-4a25-bf52-c8caa03c690d.png)
+
+
+
+
+

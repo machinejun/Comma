@@ -18,12 +18,13 @@ img{
 	font-family: 'SUIT-Medium';
 	position: absolute;
 	top: 50%;
-	left: 30%;
+	left: 22%;
 }
 .text > p {
 	font-size: 20px;
 }
 .text > p > span {
+	margin-left: 15px;
 	font-size: 25px;
 }
 h2 {
@@ -38,12 +39,12 @@ h2 {
 </style>
 </head>
 <body>
-	<img src="https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_960_720.png"/>
+	<img src="/assets/error_img.png"/>
 	<div class="text">
-		<h2>Error Occured</h2>
-		<p><span>에러 클래스</span> : ${error.errorClass}<p>
-		<p><span>에러 메세지</span> : ${error.errorMessage}<p>
-		<p><span>에러 원인</span> : ${error.errorCause}<p>
+		<h2>무엇인가 잘못된거 같습니다</h2>
+		<p><span>아래의 버튼을 누르시면 메인으로 가실 수 있습니다</span><p>
+		<p><span>다시 한번 요청을 부탁드릴게요 </span><p>
+		
 		<button onclick="location.href='/'" class="custom-sm-btn">홈으로 돌아가기</button>
 	</div>
 	

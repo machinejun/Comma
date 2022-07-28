@@ -219,22 +219,24 @@ public class UserController {
 	
 	@GetMapping("/user/behost")
 	public String behost() {
-		return "/user/beHost";
+		return "/advice/beHost";
 	}
 	
 	@GetMapping("/user/beguest")
 	public String beguest() {
-		return "/user/beGuest";
+		return "/advice/beGuest";
 	}
 	
-	@GetMapping("/test/error")
+	@GetMapping("/user/error")
 	public String error() {
-		return "errorPage";
+		return "/advice/errorPage";
 	}
 	
 	@GetMapping("/test/adminTable")
 	public String getAdminTable() {
 		return "/user/admin_table";
 	}
+	
+
 
 }

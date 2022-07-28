@@ -45,11 +45,11 @@ public class ReservationApiController {
 	// /test/api/reserve/delete/${reservationId}
 
 	@PostMapping("/")
-	public int reserveHouse(@RequestBody Reservation reservation, @AuthenticationPrincipal PrincipalDetail principal) {
+	public ResponseDto<String> reserveHouse(@RequestBody Reservation reservation, @AuthenticationPrincipal PrincipalDetail principal) {
 		System.out.println(reservation);
 		reservationService.makeReservation(reservation);
 
-		return 1;
+		return new ResponseDto<String>(HttpStatus.OK.value(), "OK");
 	}
 
 	@GetMapping("/house/{houseId}/{hostId}")

@@ -128,4 +128,9 @@ public class ReservationController {
 		System.out.println(response);
 		return response;
 	}
+	
+	@GetMapping("/user/advice")
+	public String showAdvice() {
+		return "/advice/reservationAdvice";
+	}
 }

@@ -81,7 +81,8 @@
 </br>
 ## ERD 다이어그램
 
-![image](https://user-images.githubusercontent.com/99931188/181525419-100229e1-934f-4fda-8a7c-25c77828224a.png)
+![image](https://user-images.githubusercontent.com/99931188/181579722-6554cdbf-1ed2-42ba-b4e1-a8087371d3e9.png)
+
 
 
 ## 페이지 구성

@@ -16,19 +16,16 @@ import com.CommaWeb.Comma.dto.ApproveDto;
 import com.CommaWeb.Comma.dto.HostTableDto;
 import com.CommaWeb.Comma.dto.HouseWaitDto;
 import com.CommaWeb.Comma.model.BookedDate;
-import com.CommaWeb.Comma.model.Guest;
-import com.CommaWeb.Comma.model.Host;
 import com.CommaWeb.Comma.model.House;
 import com.CommaWeb.Comma.model.Reservation;
 import com.CommaWeb.Comma.model.ReservationType;
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.repository.BookedDateRepository;
-import com.CommaWeb.Comma.repository.GuestRepository;
-import com.CommaWeb.Comma.repository.HostRepository;
 import com.CommaWeb.Comma.repository.HostTableRepository;
 import com.CommaWeb.Comma.repository.HouseRepository;
 import com.CommaWeb.Comma.repository.ReservationRepository;
+import com.CommaWeb.Comma.repository.UserRepository;
 
 @Service
 public class ReservationService {
@@ -39,10 +36,7 @@ public class ReservationService {
 
 	// User레파지 스토리도 필요하다
 	@Autowired
-	private GuestRepository guestRepository;
-
-	@Autowired
-	private HostRepository hostRepository;
+	private UserRepository userRepository;
 
 	@Autowired
 	private BookedDateRepository bookedDateRepository;
@@ -59,10 +53,10 @@ public class ReservationService {
 		House house = houseRepository.findById(tempIdList[2]).orElseThrow(() -> {
 			return new RuntimeException("해당 숙소를 찾을 수 없습니다.");
 		});
-		Guest guest = guestRepository.findById(tempIdList[0]).orElseThrow(() -> {
+		User guest = userRepository.findById(tempIdList[0]).orElseThrow(() -> {
 			return new RuntimeException("해당 게스트를 찾을 수 없습니다.");
 		});
-		Host host = hostRepository.findById(tempIdList[1]).orElseThrow(() -> {
+		User host = userRepository.findById(tempIdList[1]).orElseThrow(() -> {
 			return new RuntimeException("해당 호스트를 찾을 수 없습니다.");
 		});
 		reservation.setPrice(house.getOneDayPrice() * getRangeDay(reservation.getCheckInDate(), reservation.getCheckOutDate()));

@@ -94,8 +94,8 @@ public class ReservationApiController {
 		int price = reservationService.getRangeDay(res.getCheckInDate(), res.getCheckOutDate())
 				* res.getHouseId().getOneDayPrice();
 		paidDto.setPrice(price);
-		paidDto.setGuestName(res.getGuestId().getUser().getUsername());
-		paidDto.setHostName(res.getHostId().getUser().getUsername());
+		paidDto.setGuestName(res.getGuestId().getUsername());
+		paidDto.setHostName(res.getHostId().getUsername());
 		paidDto.setHouseName(res.getHouseId().getName());
 		KaKaoApproveDto approveDto = requestReadyForKaKaoPay(paidDto.getGuestName(), paidDto.getHostName(),
 				paidDto.getHouseName(), paidDto.getPrice());

@@ -6,14 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.CommaWeb.Comma.model.Guest;
-import com.CommaWeb.Comma.model.Host;
 import com.CommaWeb.Comma.model.LoginType;
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
-import com.CommaWeb.Comma.repository.GuestRepository;
-import com.CommaWeb.Comma.repository.HostRepository;
 import com.CommaWeb.Comma.repository.UserRepository;
 
 @Service
@@ -22,12 +17,6 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Autowired
-	private GuestRepository guestRepository;
-	
-	@Autowired
-	private HostRepository hostRepository;
-
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 	
@@ -41,12 +30,6 @@ public class UserService {
 			user.setRole(RoleType.GUEST);
 			user.setLoginType(LoginType.ORIGIN);
 			userRepository.save(user);
-			User tempUser = userRepository.findByUsername(user.getUsername()).get();
-			System.out.println("tempUser : " + tempUser);
-			Guest guest = new Guest();
-			guest.setUser(tempUser);
-			guestRepository.save(guest);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
@@ -97,18 +80,6 @@ public class UserService {
 		// 012 3456 78910
 		String newPhoneNum = phoneNum.substring(0, 3) + "-" + phoneNum.subSequence(3, 7) + "-" + phoneNum.subSequence(7, 11);
 		return newPhoneNum;
-	}
-
-	@Transactional
-	public boolean saveHost(Host hostEntity) {	
-		try {
-			Host host = hostRepository.findById(hostEntity.getUserId()).get();
-			return false;
-		} catch (Exception e) {
-			hostRepository.save(hostEntity);
-			return true;		
-		}	
-
 	}
 
 	@Transactional

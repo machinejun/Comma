@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.CommaWeb.Comma.auth.PrincipalDetail;
 import com.CommaWeb.Comma.dto.BestHouseDto;
 import com.CommaWeb.Comma.dto.ResponseDto;
-import com.CommaWeb.Comma.model.Host;
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.service.UserService;
@@ -59,19 +58,17 @@ public class UserApiController {
 
 	@GetMapping("/be-host")
 	public String beHost(@AuthenticationPrincipal PrincipalDetail principalDetail) {
-		Host hostEntity = new Host();
+		User hostEntity = new User();
 		principalDetail.getUser().setRole(RoleType.HOST);
-		hostEntity.setUser(principalDetail.getUser());
+		hostEntity = principalDetail.getUser();
 		Collection<GrantedAuthority> collectors = (Collection<GrantedAuthority>) SecurityContextHolder.getContext()
 				.getAuthentication().getAuthorities();
 		collectors.forEach((element) -> {
 			element.getAuthority().replace("GUEST", "HOST");
 		});
 
-		
 		return "<script>location.href='/user/behost'</script>";
-		
-		
+
 	}
 
 	@GetMapping("/be-guest")

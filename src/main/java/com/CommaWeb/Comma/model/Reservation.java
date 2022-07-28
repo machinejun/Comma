@@ -36,12 +36,12 @@ public class Reservation {
 	@ManyToOne
 	@JoinColumn(name = "guestId")
 	@JsonIgnoreProperties({"reservations"})
-	private Guest guestId;
+	private User guestId;
 	
 	@ManyToOne
 	@JoinColumn(name = "hostId")
 	@JsonIgnoreProperties({"reservations"})
-	private Host hostId;
+	private User hostId;
 	
 	@ManyToOne
 	@JoinColumn(name = "houseId")

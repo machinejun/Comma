@@ -42,8 +42,8 @@ public class ReservationApiController {
 	@Autowired
 	private ReservationService reservationService;
 
-	// /test/api/reserve/delete/${reservationId}
-
+	
+	// 예약을 하는 기능
 	@PostMapping("/")
 	public ResponseDto<String> reserveHouse(@RequestBody Reservation reservation, @AuthenticationPrincipal PrincipalDetail principal) {
 		System.out.println(reservation);
@@ -51,7 +51,8 @@ public class ReservationApiController {
 
 		return new ResponseDto<String>(HttpStatus.OK.value(), "OK");
 	}
-
+	
+	// 호스트 예약관리 테이블에 정보를 가져오는 기능
 	@GetMapping("/house/{houseId}/{hostId}")
 	public List<HostTableDto> getHouseReservation(@PathVariable int hostId, @PathVariable int houseId,
 			@RequestParam int month) {
@@ -66,27 +67,31 @@ public class ReservationApiController {
 		List<HostTableDto> result = reservationService.getTableInfo(hostId, month);
 		return result;
 	}
-
+	
+	// 호스트 측 예약 취소 기능
 	@DeleteMapping("/delete/{reservationId}")
 	public int deleteReservation(@PathVariable int reservationId) {
 		reservationService.cancelReservation(reservationId);
 		return reservationId;
 	}
-
+	
+	// 호스트 예약 승인 기능
 	@PostMapping("/approve")
 	public ResponseDto<Integer> approveRes(@RequestBody ApproveDto approveDto) {
 		System.out.println("get    " + approveDto);
 		reservationService.changeResType(approveDto);
 		return new ResponseDto<Integer>(HttpStatus.ACCEPTED.value(), approveDto.getResId());
 	}
-
+	
+	// 예약에 대한 디테일 정보를 가져오는 기능
 	@GetMapping("/detail")
 	public Reservation showResDetail(@RequestParam int resId) {
 		Reservation res = reservationService.findByResId(resId);
 		System.out.println(res);
 		return res;
 	}
-
+	
+	// 결제를 요청하는 기능
 	@PostMapping("/kakao")
 	public KaKaoApproveDto payForKaKao(@RequestBody ResponsePaidDto paidDto) {
 		System.out.println(paidDto);
@@ -103,7 +108,8 @@ public class ReservationApiController {
 		httpSession.setAttribute("kakao", paidDto);
 		return approveDto;
 	}
-
+	
+	// 카카오 API를 사용하여서 카카오 측에게 Post Message를 던지는 
 	private KaKaoApproveDto requestReadyForKaKaoPay(String guestName, String hostName, String houseName, int price) {
 		RestTemplate transmitter = new RestTemplate();
 		HttpHeaders header = new HttpHeaders();

@@ -166,7 +166,7 @@
 | ![댓글달기](https://user-images.githubusercontent.com/96460131/181455213-0518ff6b-9aed-44e5-8219-57804da10943.gif) | ![댓글삭제](https://user-images.githubusercontent.com/96460131/181470956-83113b58-66ac-4353-bfae-29431a96c18a.gif) |
 
 
-### 에약 내역 관리
+### 예약 내역 관리
 - WAITING 상태인 게스트의 예약 승인 처리, 예약 취소 
 
 ![52e4db5932b999e3](https://user-images.githubusercontent.com/96460131/181471128-b8eed06b-1575-4431-9ffd-9843d1356a72.gif)

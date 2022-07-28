@@ -80,13 +80,17 @@
 |--|--|
 | ![메인](https://user-images.githubusercontent.com/96460131/181459606-47496bc1-556c-4da7-b50a-f2972366961b.gif) | ![리스트상세보기](https://user-images.githubusercontent.com/96460131/181457881-03bd1737-976b-4555-9c41-fe203ec563c7.gif) |
 
+### 로그인
+- 처음 접속하는 소셜 유저에게는 폰 번호를 받을 수 있도록 바로 회원정보 수정 페이지로 이동
+- 이후 접속시 일반 로그인과 동일하게 홈 화면으로 이동
+
 | 일반 로그인 | 소셜 로그인 |
 |--|--|
-|![로그인](https://user-images.githubusercontent.com/96460131/181457030-820771eb-48d8-4b8e-a9cb-f9902ddd3a3a.gif)  | <img src="https://user-images.githubusercontent.com/96460131/181490830-c91f662b-069a-446d-8a0f-169067ba935d.png" width=70% height=70%/> |
+|![로그인](https://user-images.githubusercontent.com/96460131/181457030-820771eb-48d8-4b8e-a9cb-f9902ddd3a3a.gif)  | ![소셜로그인](https://user-images.githubusercontent.com/96460131/181501469-eac0a891-edb8-4415-9332-f82dd0edf876.gif) |
 
 |회원가입|회원정보 수정|
 |--|--|
-| ![회원가입](https://user-images.githubusercontent.com/96460131/181457008-0c1b10d3-0327-43c2-902e-cfd844f8e67e.gif) | ![회원가입](https://user-images.githubusercontent.com/96460131/181457008-0c1b10d3-0327-43c2-902e-cfd844f8e67e.gif) |
+| ![회원가입](https://user-images.githubusercontent.com/96460131/181457008-0c1b10d3-0327-43c2-902e-cfd844f8e67e.gif) | ![회원정보수정](https://user-images.githubusercontent.com/96460131/181501578-0bf6555b-4443-4cd0-b396-0e7f552a45cc.gif) |
 
 </br>
 
@@ -117,7 +121,7 @@
 
 ### 리뷰 작성, 리뷰 
 
-|리뷰 등록|리뷰 수정,삭제|
+|리뷰 등록|리뷰 수정, 삭제|
 |--|--|
 | ![리뷰등록](https://user-images.githubusercontent.com/96460131/181460869-247fd745-023e-4454-822d-017488a2d274.gif) | ![리뷰수정](https://user-images.githubusercontent.com/96460131/181459149-7da8f0f9-0d1f-4319-9917-09d0aea59d26.gif) |
 
@@ -136,9 +140,9 @@
 
 ### 숙소 관리
 
-|등록|수정|
-|--|--|
-| ![숙소등록](https://user-images.githubusercontent.com/96460131/181459021-59208100-ec6f-4507-b30f-ec2aa4828da8.gif) |  |
+|등록|수정|삭제|
+|--|--|--|
+| ![숙소등록](https://user-images.githubusercontent.com/96460131/181459021-59208100-ec6f-4507-b30f-ec2aa4828da8.gif) | ![ezgif com-gif-maker (3)](https://user-images.githubusercontent.com/96460131/181504618-6f13f3d0-89bb-495c-bebc-d9abcab31842.gif) |![ezgif com-gif-maker](https://user-images.githubusercontent.com/96460131/181504013-517c7849-a11d-4216-bc73-148dff8a85f7.gif)|
 
 
 
@@ -164,12 +168,14 @@
 
 ## Detail page
 
+
 | 에러 페이지 |호스트 모드|게스트 모드 |
 |--|--|--|
 | ![에러페이지](https://user-images.githubusercontent.com/96460131/181458756-73942d34-6f6a-4fe4-8f1d-4b7c1af0bc43.gif) | ![호스트되기](https://user-images.githubusercontent.com/96460131/181458686-7cecac67-bf97-4146-9de2-ee73851cf9e7.gif) | ![게스트되기](https://user-images.githubusercontent.com/96460131/181458714-3fc76e9f-6afb-47b3-b8eb-0d90034213cc.gif) |
 
+<br/>
 
+- 예약 안내
 
-#### 예약 안내
 ![image](https://user-images.githubusercontent.com/99931188/181436220-a8603903-4f86-4a25-bf52-c8caa03c690d.png)
 

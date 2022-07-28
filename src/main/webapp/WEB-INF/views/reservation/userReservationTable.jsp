@@ -62,51 +62,48 @@ img {
 		<div class="row" >
 			<div class="col-xs-12 col-md-12" >
 				<div id="page-container">
-						<h2 style="font-family: SUIT-Medium;">${reservations[0].guestId.user.username} 님 안녕하세요</h2>
-						<table class="table">
-							  <thead>
-							    <tr>
-							      <th scope="col">예약 id</th>
-							      <th scope="col" style="width: 350px">숙소명</th>
-							      <th scope="col" style="width: 300px">예약 일</th>										
-							      <th scope="col">상태</th>
-							      <th scope="col" style="text-align: center;">결제</th>
-							      <th scope="col" style="text-align: center;">리뷰쓰기</th>
-							    </tr>
-							  </thead>
-							  <tbody id="table-body">
-								  <c:forEach var="reservation" items="${reservations}">
-								  
-								  	<tr>
-								      <td  scope="row">${reservation.id}</td>
-								      <td class="detail-show-btn"><a onclick="showResDetail(${reservation.id})">${reservation.houseId.name}</a></td>
-								      <td>${reservation.checkInDate} ~ ${reservation.checkOutDate}</td>
-								      <td>${reservation.approvalStatus}</td>
-								      <c:choose>
-								      	<c:when test="${reservation.approvalStatus eq 'APPROVED'}">
-								      		<td style="text-align: center;"><a type="button" style="border-color: white;" onclick="payForKakao(${reservation.id})" ><img src="/assets/payment_small.png"></img></a></td>
-								      	</c:when>
-								      	<c:when test= "${reservation.approvalStatus eq 'WAITING'}">
-								      		<td style="text-align: center;">승인 대기중</td>
-    									</c:when>
-								      	<c:otherwise>
-								      		<td style="text-align: center;"></td>
-								      	</c:otherwise>
-								      </c:choose>
-								      <td style="text-align: center;">
-								      	<c:if test="${reservation.approvalStatus eq 'COMPLETED'}">								      	
-									      	<button onclick="location.href='/review/post_form/${reservation.id}'" class="btn" style="">리뷰 쓰러가기</button>
-								      	</c:if>
-								      	</td>
-								    </tr>
-								  </c:forEach>
-							  </tbody>
-						</table>		
-				</div>
-				
-				
+					<h2 style="font-family: SUIT-Medium;">${reservations[0].guestId.user.username} 님 안녕하세요</h2>
+					<table class="table">
+						<thead>
+							<tr>
+							  <th scope="col">예약 id</th>
+							  <th scope="col" style="width: 350px">숙소명</th>
+							  <th scope="col" style="width: 300px">예약 일</th>										
+							  <th scope="col">상태</th>
+							  <th scope="col" style="text-align: center;">결제</th>
+							  <th scope="col" style="text-align: center;">리뷰쓰기</th>
+							 </tr>
+						</thead>
+						<tbody id="table-body">
+						    <c:forEach var="reservation" items="${reservations}">								  
+							<tr>
+							  <td  scope="row">${reservation.id}</td>
+							  <td class="detail-show-btn"><a onclick="showResDetail(${reservation.id})">${reservation.houseId.name}</a></td>
+							  <td>${reservation.checkInDate} ~ ${reservation.checkOutDate}</td>
+							  <td>${reservation.approvalStatus}</td>
+							  <c:choose>
+							      <c:when test="${reservation.approvalStatus eq 'APPROVED'}">
+							        <td style="text-align: center;"><a type="button" style="border-color: white;" onclick="payForKakao(${reservation.id})" ><img src="/assets/payment_small.png"></img></a></td>
+							      </c:when>
+							      <c:when test= "${reservation.approvalStatus eq 'WAITING'}">
+						      		<td style="text-align: center;">승인 대기중</td>
+    							      </c:when>
+							      <c:otherwise>
+								<td style="text-align: center;"></td>
+							      </c:otherwise>
+							      </c:choose>
+								 <td style="text-align: center;">
+							      <c:if test="${reservation.approvalStatus eq 'COMPLETED'}">								      	
+								 <button onclick="location.href='/review/post_form/${reservation.id}'" class="btn" style="">리뷰 쓰러가기</button>
+							      </c:if>
+								 </td>
+							  </tr>
+						       </c:forEach>
+						</tbody>
+					</table>		
+				</div>	
 			</div>	
-    	</div>
+    		</div>
   	</div>
 </div>
 

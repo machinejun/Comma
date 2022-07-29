@@ -135,9 +135,9 @@
 
 ### 리뷰 작성, 리뷰 
 
-|리뷰 등록|리뷰 수정, 삭제|
-|--|--|
-| ![리뷰등록](https://user-images.githubusercontent.com/96460131/181460869-247fd745-023e-4454-822d-017488a2d274.gif) | ![리뷰수정](https://user-images.githubusercontent.com/96460131/181459149-7da8f0f9-0d1f-4319-9917-09d0aea59d26.gif) |
+| 리뷰 등록 | 리뷰 수정 | 리뷰 삭제 |
+|--|--|--|
+| ![리뷰등록](https://user-images.githubusercontent.com/96460131/181460869-247fd745-023e-4454-822d-017488a2d274.gif) | ![리뷰수정](https://user-images.githubusercontent.com/96460131/181656824-385dda00-841a-4e3c-b0e9-6a8fd6bdf808.gif) | ![리뷰삭제](https://user-images.githubusercontent.com/96460131/181656807-7dff361f-89bf-456f-b5af-56769de21738.gif) |
 
 
 
@@ -145,7 +145,10 @@
 ### 위시리스트
 - 하트 아이콘 클릭시 추가, 삭제
 
-![위시리스트](https://user-images.githubusercontent.com/96460131/181457691-c149ec6a-07a6-4ecc-a736-a5e4a653eba4.gif)
+| 위시리스트 추가 | 위시리스트 삭제 |
+|--|--|
+| ![위시리스트추가](https://user-images.githubusercontent.com/96460131/181657351-e290ee03-335b-437f-ab02-a7330ee4bad6.gif) | ![위시리스트삭제](https://user-images.githubusercontent.com/96460131/181657366-5103f714-ac01-450e-a86c-00736a183afe.gif) |
+
 
 
 </br>
@@ -162,15 +165,18 @@
 
 ### 리뷰 관리
 
-| 댓글 등록, 수정 | 댓글 삭제 |
-|--|--|
-| ![댓글달기](https://user-images.githubusercontent.com/96460131/181455213-0518ff6b-9aed-44e5-8219-57804da10943.gif) | ![댓글삭제](https://user-images.githubusercontent.com/96460131/181470956-83113b58-66ac-4353-bfae-29431a96c18a.gif) |
+| 댓글 등록 | 댓글 수정 | 댓글 삭제 |
+|--|--|--|
+| ![댓글달기](https://user-images.githubusercontent.com/96460131/181455213-0518ff6b-9aed-44e5-8219-57804da10943.gif) | ![댓글수정](https://user-images.githubusercontent.com/96460131/181656397-885c8895-02de-4fc9-8dc5-dc54b4defb27.gif) | ![댓글삭제](https://user-images.githubusercontent.com/96460131/181470956-83113b58-66ac-4353-bfae-29431a96c18a.gif) |
 
 
 ### 예약 내역 관리
 - WAITING 상태인 게스트의 예약 승인 처리, 예약 취소 
 
-![52e4db5932b999e3](https://user-images.githubusercontent.com/96460131/181471128-b8eed06b-1575-4431-9ffd-9843d1356a72.gif)
+|예약 승인|예약 취소|
+|--|--|
+| ![예약승인](https://user-images.githubusercontent.com/96460131/181657823-fdcc40aa-54c5-4871-bd5d-c3a825bfcbb0.gif) | ![예약취소](https://user-images.githubusercontent.com/96460131/181657812-37422562-f387-4722-953a-4badb71c63a4.gif) |
+
 
 
 </br>

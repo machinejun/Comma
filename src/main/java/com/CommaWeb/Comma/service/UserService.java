@@ -8,14 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.CommaWeb.Comma.dto.BestHouseDto;
-import com.CommaWeb.Comma.model.Guest;
-import com.CommaWeb.Comma.model.Host;
 import com.CommaWeb.Comma.model.LoginType;
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.repository.BestHoustDtoRepository;
-import com.CommaWeb.Comma.repository.GuestRepository;
-import com.CommaWeb.Comma.repository.HostRepository;
 import com.CommaWeb.Comma.repository.UserRepository;
 
 @Service
@@ -24,11 +20,7 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	@Autowired
-	private GuestRepository guestRepository;
-	
-	@Autowired
-	private HostRepository hostRepository;
+
 	
 	@Autowired
 	private BestHoustDtoRepository bestHoustDtoRepository;
@@ -48,12 +40,6 @@ public class UserService {
 			}
 			user.setRole(RoleType.GUEST);
 			userRepository.save(user);
-			User tempUser = userRepository.findByUsername(user.getUsername()).get();
-			System.out.println("tempUser : " + tempUser);
-			Guest guest = new Guest();
-			guest.setUser(tempUser);
-			guestRepository.save(guest);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -1;
@@ -105,20 +91,9 @@ public class UserService {
 		return newPhoneNum;
 	}
 
-	@Transactional
-	public boolean saveHost(Host hostEntity) {	
-		try {
-			Host host = hostRepository.findById(hostEntity.getUserId()).get();
-			return false;
-		} catch (Exception e) {
-			// 찾는 id의 호스트가 없을 경우 NoSuchElementException 발생
-			hostRepository.save(hostEntity);
-			return true;		
-		}	
-
-	}
 
 	@Transactional
+
 	public List<User> showAllUser() {
 		return userRepository.findAll();
 	}

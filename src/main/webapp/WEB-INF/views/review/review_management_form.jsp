@@ -159,8 +159,8 @@ div {
 						<li class="list-group-item d-flex justify-content-between" id="reply--${reply.id}">
 							<div>${reply.content}</div>
 							<div class="d-flex">
-								<a class="host-review-update" onclick="index.editText('${reply.id}', '${reply.content}', '${review.id}');" style="cursor: pointer;">수정</a> &nbsp;&nbsp; <a class="host-review-delete" style="color: red"
-									onclick="index.deleteReply(${reply.id});" style="cursor: pointer;">삭제</a>
+								<a class="host-review-update" onclick="index.editText('${reply.id}', '${reply.content}', '${review.id}');" style="cursor: pointer; color: rgb(17, 56, 147)">수정</a> &nbsp;&nbsp; <a class="host-review-delete" style="color: red"
+									onclick="index.deleteReply(${reply.id});" style="cursor: pointer; color: rgb(203, 0, 0);">삭제</a>
 							</div>
 						</li>
 					</c:forEach>

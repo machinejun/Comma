@@ -126,5 +126,10 @@ public class UserService {
 	public List<BestHouseDto> loadHouseDtolist(String month, int limit){
 		return bestHoustDtoRepository.findByMonthBestHouse(month, limit);
 	}
+	
+	@Transactional
+	public void deleteById(int id) {
+		userRepository.deleteById(id);
+	}
 
 }

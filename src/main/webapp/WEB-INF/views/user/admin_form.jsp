@@ -34,11 +34,7 @@ h2::after {
 								<div class="d-flex flex-row-reverse">
 										
 										<form class="form-inline"  action="/user/searchUsername" method="get">
-<<<<<<< HEAD
-													<select name="role" style="width: 130px; height: 40px; margin: 10px; margin-top: 12px; border-radius: 5px">
-=======
 													<select name="role" style="width: 130px; height: 40px; margin: 10px; margin-top: 12px; border-radius: 10px;">
->>>>>>> 8186c74defe72093a46e137bf42b95729b152a11
 														<option value="">전체</option>
 														<option value="guest">GUEST</option>
 														<option value="host">HOST</option>
@@ -61,7 +57,7 @@ h2::after {
 									      <th scope="col">전화번호</th>
 									      <th scope="col">회원구분</th>
 									      <th scope="col">username</th>
-									      <th scope="col">예약 / 숙소정보</th>
+									      <th scope="col">회원삭제</th>
 						            </tr>
 						        </thead>
 						        <tbody>
@@ -73,19 +69,7 @@ h2::after {
 									                    <td>${ user.phoneNumber }</td>
 									                    <td>${ user.role }</td>
 									                    <td>${ user.username }</td>
-									                    <c:if test= "${user.role eq 'GUEST' }">
-<<<<<<< HEAD
-									                    <td><button type="submit" class="custom-sm-btn" onclick="location.href='/reserveTable/user';" style="font-size: 17px">예약확인</button></td>
-									                    </c:if>
-									                    <c:if test= "${user.role eq 'HOST' }">
-									                    <td><button type="submit" class="custom-sm-btn" onclick="location.href='/house/management';" style="font-size: 17px">숙소정보</button></td>
-=======
-									                    <td><button type="submit" onclick="location.href='/reserveTable/user';" class="custom-sm-btn" style="font-size: 17px">예약확인</button></td>
-									                    </c:if>
-									                    <c:if test= "${user.role eq 'HOST' }">
-									                    <td><button type="submit" onclick="location.href='/house/management';" class="custom-sm-btn"  style="font-size: 17px">숙소정보</button></td>
->>>>>>> 8186c74defe72093a46e137bf42b95729b152a11
-									                    </c:if>
+									                    <td><button type="button" class="custom-sm-btn" id="btn-delete" style="font-size: 17px">삭제하기</button></td>
 									                </tr>
 									         </c:forEach>						  
 						        </tbody>
@@ -96,7 +80,34 @@ h2::after {
     	</div>
   	</div>
 </div>
-
+<script>
+let index = {
+		init : function(){
+			$("#btn-delete").bind("click", () => {
+				this.deleteById();
+			});
+		},
+		
+		deleteById: function() {
+			let q = $("#searchUser").text();
+			$.ajax({
+				type:"DELETE",
+				url:"/user/searchUsername?role=&q=" + q //?
+			})
+			.done(function(data){
+				if(data.status){
+					alert("삭제가 완료되었습니다.");
+					location.href = "/user/searchUsername?role=&q=";
+				}
+			})
+			.fail(function(){
+				alert("삭제 실패");
+			});
+		}
+		
+	}
+	index.init();
+</script>
 
 </body>
 </html>

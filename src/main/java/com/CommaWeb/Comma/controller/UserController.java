@@ -227,9 +227,19 @@ public class UserController {
 		return "/advice/errorPage";
 	}
 	
+	@GetMapping("/test/service")
+	public String intoCustomerService() {
+		return "/customerService/customerService";
+	}
+	
 	@GetMapping("/test/adminTable")
 	public String getAdminTable() {
 		return "/user/admin_table";
+	}
+	
+	@GetMapping("/test/service/write")
+	public String writeCustomerBoard() {
+		return "/customerService/customerBoardwrite";
 	}
 	
 

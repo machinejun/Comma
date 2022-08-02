@@ -22,9 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.CommaWeb.Comma.auth.PrincipalDetail;
 import com.CommaWeb.Comma.dto.BestHouseDto;
 import com.CommaWeb.Comma.dto.ResponseDto;
-
-import com.CommaWeb.Comma.model.LoginType;
-
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.service.UserService;

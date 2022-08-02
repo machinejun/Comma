@@ -33,7 +33,6 @@
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link href="/css/style.css" rel="stylesheet">
-
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
@@ -51,10 +50,17 @@ code {
 	font-family: Martel, Times New Roman, Times, serif;
 	color: rgba(255, 149, 149, 0.9);
 	font-weight: bold;
+	margin-left: 200px;
 }
 
 .nav-link {
-	color: rgba(255, 149, 149, 0.5);
+	font-family: 'SUIT-Medium';	
+	color: rgba(255, 149, 149, 1);
+	margin-left: 30px;
+}
+.nav-link:hover {
+   /* transform: translate(1px, -2%); */
+	color: rgba(255, 100, 100, 0.9);
 }
 
 nav {
@@ -81,12 +87,9 @@ nav {
 .user-btn:hover {
 	padding: 5px;
 	font-size: 35px;
-	color: rgba(255, 149, 149, 0.9);
+	color: rgba(255, 100, 100, 0.9);
 }
 
-#header-text {
-	margin-left: 200px;
-}
 
 .list-group>.list-group-item {
 	position: relative;
@@ -112,6 +115,12 @@ nav {
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
+
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="#">숙소 보기</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">고객 센터</a></li>
+			</ul>
+
 		</div>
 
 	</nav>

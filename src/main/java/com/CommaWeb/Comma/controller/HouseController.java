@@ -114,7 +114,7 @@ public class HouseController {
 	public String updateHouse(@PathVariable int houseId, RequestPostDto requestPostDto,
 			@AuthenticationPrincipal PrincipalDetail principalDetail) {
 		houseService.updateHouse(houseId, requestPostDto);
-		return "redirect:/house/list";
+		return "redirect:/house/management";
 	}
 
 	// 숙소 관리 폼 호출 (호스트)

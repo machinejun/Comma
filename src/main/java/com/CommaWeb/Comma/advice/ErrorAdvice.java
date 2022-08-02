@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ErrorAdvice {
 	
-	@ExceptionHandler(value = NullPointerException.class)
-	public String showError() {
-		return "";
+	@ExceptionHandler(value = Exception.class)
+	public String showError(Exception e) {
+		return "/advice/errorPage";
 	}
 }

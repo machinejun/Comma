@@ -27,10 +27,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
-import com.CommaWeb.Comma.auth.PrincipalDetail;
 import com.CommaWeb.Comma.auth.PrincipalDetailService;
 import com.CommaWeb.Comma.dto.KakaoProfile;
-import com.CommaWeb.Comma.dto.KakaoProfile.KakaoAccount;
 import com.CommaWeb.Comma.dto.OAuthToken;
 import com.CommaWeb.Comma.model.LoginType;
 import com.CommaWeb.Comma.model.RoleType;
@@ -38,7 +36,6 @@ import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.service.HouseService;
 import com.CommaWeb.Comma.service.LikeHouseService;
 import com.CommaWeb.Comma.service.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class UserController {
@@ -103,9 +100,6 @@ public class UserController {
 	}
 
 	// 위시리스트 페이지 호출
-	/*
-	 * secu
-	 */
 	@GetMapping("/wish-list/{guestId}")
 	public String getWishList(@PathVariable int guestId, Model model) {
 		model.addAttribute("wishList", likeHouseService.getWishListById(guestId));
@@ -206,8 +200,6 @@ public class UserController {
 			return "redirect:/auth/update_form/";
 		}
 		
-		// 시큐리티 세션에 유저 정보 저장
-		User user = userService.checkUsername(kakaoUser.getUsername());
 		detailService.loadUserByUsername(kakaoUser.getUsername());
 		
 		
@@ -219,5 +211,27 @@ public class UserController {
 		
 		return "redirect:/";			
 	}
+	
+	@GetMapping("/user/behost")
+	public String behost() {
+		return "/advice/beHost";
+	}
+	
+	@GetMapping("/user/beguest")
+	public String beguest() {
+		return "/advice/beGuest";
+	}
+	
+	@GetMapping("/user/error")
+	public String error() {
+		return "/advice/errorPage";
+	}
+	
+	@GetMapping("/test/adminTable")
+	public String getAdminTable() {
+		return "/user/admin_table";
+	}
+	
+
 
 }

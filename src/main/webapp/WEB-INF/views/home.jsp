@@ -95,7 +95,7 @@ p {
 							</div>
 						</div>
 						<div class="item">
-							<img class="img-responsive" src="https://cdn.pixabay.com/photo/2014/12/28/09/52/friends-581753_960_720.jpg" style="height: 700px; width: 800px">
+							<img class="img-responsive" src="https://cdn.pixabay.com/photo/2014/12/28/09/52/friends-581753_960_720.jpg" style="height: 700px; width: 800px; object-fit: cover;">
 							<div class="carousel-caption card-shadow reveal">
 
 								<h3>Be Host</h3>
@@ -136,7 +136,7 @@ p {
 				<div class="ranking-list col-xs-12 col-md-4">
 					<a href="/house/detail/${house.id}"> <img class="custom-img" src="http://localhost:9090/upload/${house.image.imageUrl}" class="
 						reveal img-responsive
-						reveal-contentimage-center" style="width: 210px; height: 210px;"></a>
+						reveal-contentimage-center" style="width: 210px; height: 210px; object-fit: cover;"></a>
 					<h3 style="color: rgba(255, 149, 149, 0.7);">
 						Best
 						<%=number++%></h3>

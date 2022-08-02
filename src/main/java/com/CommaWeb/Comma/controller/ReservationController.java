@@ -90,8 +90,8 @@ public class ReservationController {
 	
 	@GetMapping("/kakao/approve")
 	public String approve(@RequestParam String pg_token, Model model) {
-		System.out.println("sdfsdfsdfsdfsdsdjlksjfslkfjd");
 		ResponsePaidDto paidDto = (ResponsePaidDto) httpSession.getAttribute("kakao");
+		httpSession.removeAttribute("kakao");
 		ResponseEntity<KaKaoPayResponseDto> response = requestKakaoPaymentApprove(pg_token, paidDto);
 		KaKaoPayResponseDto dto = response.getBody();
 
@@ -127,5 +127,10 @@ public class ReservationController {
 		ResponseEntity<KaKaoPayResponseDto> response = transmitter.exchange("https://kapi.kakao.com/v1/payment/approve", HttpMethod.POST, message, KaKaoPayResponseDto.class);
 		System.out.println(response);
 		return response;
+	}
+	
+	@GetMapping("/user/advice")
+	public String showAdvice() {
+		return "/advice/reservationAdvice";
 	}
 }

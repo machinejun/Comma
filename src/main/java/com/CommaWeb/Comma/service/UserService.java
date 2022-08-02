@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.CommaWeb.Comma.dto.BestHouseDto;
 import com.CommaWeb.Comma.model.LoginType;
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
+import com.CommaWeb.Comma.repository.BestHoustDtoRepository;
 import com.CommaWeb.Comma.repository.UserRepository;
 
 @Service
@@ -17,6 +20,11 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
+
+	
+	@Autowired
+	private BestHoustDtoRepository bestHoustDtoRepository;
+
 	@Autowired
 	private BCryptPasswordEncoder encoder;
 	
@@ -27,8 +35,10 @@ public class UserService {
 			String encPassword = encoder.encode(rawPassword);
 			user.setPhoneNumber(changePhoneNumFormat(user.getPhoneNumber()));
 			user.setPassword(encPassword);
+			if(!user.getUsername().startsWith("kakao_")) {
+				user.setLoginType(LoginType.ORIGIN);				
+			}
 			user.setRole(RoleType.GUEST);
-			user.setLoginType(LoginType.ORIGIN);
 			userRepository.save(user);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,25 +87,16 @@ public class UserService {
 		if(phoneNum.length() != 11) {
 			return phoneNum;
 		}
-		// 012 3456 78910
 		String newPhoneNum = phoneNum.substring(0, 3) + "-" + phoneNum.subSequence(3, 7) + "-" + phoneNum.subSequence(7, 11);
 		return newPhoneNum;
 	}
 
+
 	@Transactional
+
 	public List<User> showAllUser() {
 		return userRepository.findAll();
 	}
-	
-//	@Transactional
-//	public List<User> searchUserByUsername(String username){
-//		return userRepository.findByUsername(username);
-//	}
-//	
-//	@Transactional
-//	public Optional<User> searchUserByRole(RoleType role){
-//		return userRepository.findByRole(role);
-//	}
 	
 	@Transactional
 	public List<User> searchRoleAndUser(String role, String name){
@@ -120,6 +121,10 @@ public class UserService {
 			}
 		}); 
 		return users;
+	}
+	
+	public List<BestHouseDto> loadHouseDtolist(String month, int limit){
+		return bestHoustDtoRepository.findByMonthBestHouse(month, limit);
 	}
 
 }

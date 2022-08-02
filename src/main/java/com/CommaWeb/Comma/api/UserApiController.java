@@ -1,40 +1,33 @@
 package com.CommaWeb.Comma.api;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import com.CommaWeb.Comma.auth.PrincipalDetail;
-import com.CommaWeb.Comma.dto.KakaoProfile;
-import com.CommaWeb.Comma.dto.OAuthToken;
+import com.CommaWeb.Comma.dto.BestHouseDto;
 import com.CommaWeb.Comma.dto.ResponseDto;
+
 import com.CommaWeb.Comma.model.LoginType;
+
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.service.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 public class UserApiController {
@@ -77,7 +70,8 @@ public class UserApiController {
 			element.getAuthority().replace("GUEST", "HOST");
 		});
 
-		return "<script>alert('호스트가 되셨습니다');" + "location.href='/'</script>";
+		return "<script>location.href='/user/behost'</script>";
+
 	}
 
 	@GetMapping("/be-guest")
@@ -89,6 +83,13 @@ public class UserApiController {
 		collectors.forEach((element) -> {
 			element.getAuthority().replace("HOST", "GUEST");
 		});
-		return "<script>alert('게스트가 되셨습니다');" + "location.href='/'</script>";
+		return "<script>location.href='/user/beguest'</script>";
 	}
+	
+	@GetMapping("/user/adminTable")
+	public ArrayList<BestHouseDto> loadTableData(@RequestParam String month, @RequestParam int limit){
+		ArrayList<BestHouseDto> list = (ArrayList<BestHouseDto>) userService.loadHouseDtolist(month, limit);
+		return list;
+	}
+
 }

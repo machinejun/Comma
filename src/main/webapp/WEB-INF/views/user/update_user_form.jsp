@@ -26,7 +26,7 @@
 					<div class="form-group">
 						<label for="password"><i class="zmdi zmdi-lock-outline"></i></label>
 						<input type="password" id="password" placeholder="Password"
-							 ${principal.user.loginType == 'KAKAO' ? isDisabled : isAbled} />
+							 ${principal.user.loginType == 'KAKAO' ? isDisabled : isAbled}/>
 					</div>
 					<input type="hidden" id="loginType" value="${principal.user.loginType}">
 					<div class="form-group">

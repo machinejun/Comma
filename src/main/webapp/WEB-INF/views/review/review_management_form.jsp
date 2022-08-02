@@ -29,7 +29,7 @@ div {
 
 </style>
 <div class="py-5" id="features">
-	<div id="title" class="container">
+	<div id="title" class="container" style="background-color: rgba(255, 149, 149, 0.05);">
 		<div class="row justify-content-center">
 			<h2 style="font-family: ">리뷰 관리</h2>
 		</div>
@@ -56,7 +56,7 @@ div {
 				<div class="row">
 					<a href="/house/detail/${review.houseId.id}"><img class="col"
 						src="http://localhost:9090/upload/${review.houseId.image.imageUrl}"
-						style="width: 150px; height: 100px;"></a>
+						style="width: 150px; height: 100px; object-fit: cover;"></a>
 					<div>
 						<div class="col">
 							<p>게스트 ID : ${review.guestId.username}</p>
@@ -157,4 +157,4 @@ div {
 
 
 <script src="/js/reply.js"></script>
-<%@ include file="../layout/footer.jsp"%>
+<script type="text/javascript" src="/js/home.js"></script>

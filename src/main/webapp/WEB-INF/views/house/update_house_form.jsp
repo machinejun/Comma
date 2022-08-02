@@ -8,6 +8,7 @@
 		<h2>나의 숙소 정보 수정</h2>
 		<br> <br>
 		<form action="/house/update/${house.id}" enctype="multipart/form-data" method="post">
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<div class="form-group">
 				<div class="form-group">
 					<label for="name"><b>이름</b></label> <input type="text" class="form-control" id="name" name="name" value="${house.name}" />
@@ -32,7 +33,7 @@
 				</div>
 				<br>
 				<div class="form-group">
-				<c:set var="selectedtype" value="${house.type}"></c:set>
+					<c:set var="selectedtype" value="${house.type}"></c:set>
 					<label><b>숙소 유형</b></label> <select class="form-control" name="type">
 						<option ${selectedtype eq '호텔' ? selected : notSelected}>호텔</option>
 						<option ${selectedtype eq '모텔' ? selected : notSelected}>모텔</option>
@@ -42,8 +43,7 @@
 				</div>
 				<br>
 				<div class="form-group">
-					<label><b>최대 수용 인원</b></label><input type="number"
-						class="form-control" name="capacity" value="${house.capacity}" />
+					<label><b>최대 수용 인원</b></label><input type="number" class="form-control" name="capacity" value="${house.capacity}" />
 				</div>
 				<br>
 				<div class="form-group">
@@ -51,7 +51,7 @@
 				</div>
 				<br> <label><b>사진 등록</b></label>
 				<div class="custom-file">
-					<input type="file" name="file" class="custom-file-input" required="required" value="${house.image.imageUrl}" /> <label class="custom-file-label">${house.image.originFileName}</label>
+					<input type="file" name="file" class="custom-file-input" value="${house.image.originFileName}" /> <label class="custom-file-label">${house.image.originFileName}</label>
 				</div>
 				<br> <br>
 				<div class="form-group">

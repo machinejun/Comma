@@ -46,7 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 				.and()
 				.authorizeRequests()
-				.antMatchers("/auth/**", "/oauth/**", "/user/**", "/**", "/js/**", "/css/**", "/assets/**", "/images/**", "/test/**", "/fonts/**", "/upload/**", "/oauth/**")
+				.antMatchers("/auth/**", "/oauth/**", "/user/**", "/**", "/js/**",
+						"/css/**", "/assets/**", "/images/**","/user/error",
+						"/test/**", "/fonts/**", "/upload/**", "/oauth/**")
 				.permitAll()
 				.anyRequest()
 				.authenticated()

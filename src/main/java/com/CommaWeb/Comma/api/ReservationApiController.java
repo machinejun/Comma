@@ -45,11 +45,11 @@ public class ReservationApiController {
 	// /test/api/reserve/delete/${reservationId}
 
 	@PostMapping("/")
-	public int reserveHouse(@RequestBody Reservation reservation, @AuthenticationPrincipal PrincipalDetail principal) {
+	public ResponseDto<String> reserveHouse(@RequestBody Reservation reservation, @AuthenticationPrincipal PrincipalDetail principal) {
 		System.out.println(reservation);
 		reservationService.makeReservation(reservation);
 
-		return 1;
+		return new ResponseDto<String>(HttpStatus.OK.value(), "OK");
 	}
 
 	@GetMapping("/house/{houseId}/{hostId}")
@@ -119,8 +119,8 @@ public class ReservationApiController {
 		param.add("total_amount", String.valueOf(price));
 		param.add("tax_free_amount", "0");
 		param.add("approval_url", "http://localhost:9090/kakao/approve");
-		param.add("cancel_url", "http://localhost:9090/kakao/approve");
-		param.add("fail_url", "http://localhost:9090/kakao/approve");
+		param.add("cancel_url", "http://localhost:9090/user/cancel");
+		param.add("fail_url", "http://localhost:9090/user/error");
 
 		HttpEntity<MultiValueMap<String, String>> message = new HttpEntity<>(param, header);
 		ResponseEntity<KaKaoApproveDto> response = transmitter.exchange("https://kapi.kakao.com/v1/payment/ready",

@@ -37,7 +37,6 @@
 				<div class="container-login100-form-btn">
 					<button type="submit" class="login100-form-btn" style="margin-right: 25px;">Login</button>
 					<a href="https://kauth.kakao.com/oauth/authorize?client_id=485a62ce5a393a9978ea206241668428&redirect_uri=http://localhost:9090/auth/kakao/login_proc&response_type=code" class="login100-form-btn" style="background-image: Url('/assets/kakao_login_large.png'); background-position: center; background-size: cover;"></a>
-				<!-- /oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code -->
 				</div>
 				<br />
 

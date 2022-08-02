@@ -113,7 +113,7 @@ div {
 					<div class="modal-content">
 						<div class="modal-header">
 							<h3 class="modal-title" id="exampleModalLabel">리뷰 신고</h3>
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>

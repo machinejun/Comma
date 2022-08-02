@@ -104,7 +104,7 @@ p {
 								</a>
 								<p>누구나 호스트가 될 수 있습니다.</p>
 								<p>숙소를 등록하고 최고의 호스트가 되어보세요.</p>
-								<br> <a href="../project.html" class="custom-sm-btn" title=""> 호스트 되기 </a>
+								<br> <a href="/be-host" class="custom-sm-btn" title=""> 호스트 되기 </a>
 
 							</div>
 						</div>

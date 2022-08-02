@@ -118,7 +118,6 @@ let index = {
 			}).done(function(response) {
 				if (response.status == 200) {
 					alert("신고가 접수되었습니다.");
-					// document.getElementById("")
 				} else {
 					alert("신고가 접수되지 않았습니다.");
 				}

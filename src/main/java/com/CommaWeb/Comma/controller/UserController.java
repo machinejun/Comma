@@ -185,7 +185,7 @@ public class UserController {
 		User kakaoUser = User.builder().username("kakao_" + kakaoAccount.getProperties().getNickname())
 				.email(kakaoUserInfoResponse.getBody().getKakaoAccount().getEmail())
 				.password(kakaoPassword)
-				.phoneNumber("폰번호 재설정 필요")
+				.phoneNumber("휴대전화 번호에 대한 재설정이 필요합니다.")
 				.role(RoleType.GUEST)
 				.loginType(LoginType.KAKAO)
 				.build();

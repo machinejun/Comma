@@ -151,7 +151,8 @@ let index = {
 			}).done(function(response) {
 				if (response.status == 200) {
 					alert("신고가 접수되었습니다.");
-					document.getElementById("#report-modal-" + reviewId).remove();
+					document.getElementById("reason").value = "";
+					document.getElementById("close").click();
 				} else {
 					alert("신고가 접수되지 않았습니다.");
 				}

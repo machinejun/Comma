@@ -7,10 +7,15 @@ let index = {
 		$("#btn-update").bind("click", () => {
 			this.updateReview();
 		});
-
+		
 		$("#btn-delete").bind("click", () => {
 			this.deleteReview();
 		});
+
+		$("#btn-report-reply").bind("click", () => {
+			this.reportReply();
+		});
+		
 
 	},
 
@@ -87,7 +92,43 @@ let index = {
 				console.log(error);
 			});
 		}
+	},
+
+	reportReply: function() {
+		let replyId = $("#reply-id").val();
+		console.log(replyId);
+		
+		let data = {
+			reason: $("#reason").val()
+		}
+
+		if (data.reason == "" || data.reason.trim() == "") {
+			alert("사유를 입력하세요.")
+		} else {
+			$.ajax({
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(header, token)
+				},
+
+				type: "POST",
+				url: "/guest/report/" + replyId,
+				data: JSON.stringify(data),
+				contentType: "application/json; charset=utf-8",
+				dataType: "json"
+			}).done(function(response) {
+				if (response.status == 200) {
+					alert("신고가 접수되었습니다.");
+					// document.getElementById("")
+				} else {
+					alert("신고가 접수되지 않았습니다.");
+				}
+			}).fail(function(error) {
+				alert("신고가 접수되지 않았습니다.");
+				console.log(error);
+			});
+		}
 	}
+	
 }
 
 index.init();

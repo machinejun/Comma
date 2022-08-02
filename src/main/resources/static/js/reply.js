@@ -3,6 +3,12 @@ let header = $("meta[name='_csrf_header']").attr("content");
 
 let index = {
 
+	init: function() {
+		$("#btn-report-review").bind("click", () => {
+			this.reportReview();
+		})
+	},
+
 	addReply: function(reviewId) {
 		let houseId = $("#house-id").val();
 
@@ -63,7 +69,7 @@ let index = {
 				if (response.status == 200) {
 					//appendEditedReply(response.data);
 					alert("댓글이 수정되었습니다.");
-					location.href="/review/management/" + response.data.reviewId.houseId.id;
+					location.href = "/review/management/" + response.data.reviewId.houseId.id;
 				}
 
 			}).fail(function(error) {
@@ -119,6 +125,41 @@ let index = {
 
 		$('#reply--' + replyId).replaceWith(editForm);
 		$('#reply--' + replyId).focus();
+	},
+
+	reportReview: function() {
+		let reviewId = $("#review-id").val();
+		console.log(reviewId);
+
+		let data = {
+			reason: $("#reason").val()
+		}
+
+		if (data.reason == "" || data.reason.trim() == "") {
+			alert("사유를 입력하세요.")
+		} else {
+			$.ajax({
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(header, token)
+				},
+
+				type: "POST",
+				url: "/host/report/" + reviewId,
+				data: JSON.stringify(data),
+				contentType: "application/json; charset=utf-8",
+				dataType: "json"
+			}).done(function(response) {
+				if (response.status == 200) {
+					alert("신고가 접수되었습니다.");
+					document.getElementById("#report-modal-" + reviewId).remove();
+				} else {
+					alert("신고가 접수되지 않았습니다.");
+				}
+			}).fail(function(error) {
+				alert("신고가 접수되지 않았습니다.");
+				console.log(error);
+			});
+		}
 	}
 }
 

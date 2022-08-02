@@ -2,6 +2,7 @@ package com.CommaWeb.Comma.model;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +13,10 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import lombok.Data;
+
 @Entity
+@Data
 public class Report {
 	
 	@Id
@@ -24,6 +28,7 @@ public class Report {
 	private User user;
 	
 	@Lob
+	@Column(nullable = false)
 	private String reason;
 	
 	@ManyToOne

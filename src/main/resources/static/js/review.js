@@ -7,7 +7,7 @@ let index = {
 		$("#btn-update").bind("click", () => {
 			this.updateReview();
 		});
-		
+
 		$("#btn-delete").bind("click", () => {
 			this.deleteReview();
 		});
@@ -15,7 +15,7 @@ let index = {
 		$("#btn-report-reply").bind("click", () => {
 			this.reportReply();
 		});
-		
+
 
 	},
 
@@ -97,13 +97,15 @@ let index = {
 	reportReply: function() {
 		let replyId = $("#reply-id").val();
 		console.log(replyId);
-		
-		let data = {
-			reason: $("#reason").val()
-		}
 
-		if (data.reason == "" || data.reason.trim() == "") {
-			alert("사유를 입력하세요.")
+		let data = {
+			reportType: $("#report-type").val(),
+			detailText: $("#detail-text").val()
+		}
+		console.log("data : " + data.reportType);
+
+		if (data.reportType == "") {
+			alert("신고 유형을 선택하셔야 합니다.");
 		} else {
 			$.ajax({
 				beforeSend: function(xhr) {
@@ -118,6 +120,9 @@ let index = {
 			}).done(function(response) {
 				if (response.status == 200) {
 					alert("신고가 접수되었습니다.");
+					document.getElementById("report-type").value = "";
+					document.getElementById("detail-text").value = "";
+					document.getElementById("close").click();
 				} else {
 					alert("신고가 접수되지 않았습니다.");
 				}
@@ -127,7 +132,7 @@ let index = {
 			});
 		}
 	}
-	
+
 }
 
 index.init();

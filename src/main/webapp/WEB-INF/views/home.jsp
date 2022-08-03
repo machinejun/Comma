@@ -5,12 +5,10 @@
 	animation: box-ani 0.5s linear forwards;
 }
 
-@
-keyframes box-ani {from { transform:translate(0, 0);
+@keyframes box-ani {
+from { transform:translate(0, 0);
 	
-}
-
-to {
+}to {
 	transform: translate(0, -15px);
 }
 

@@ -108,7 +108,7 @@ div {
 
 			<!-- 신고 모달 -->
 			<div class="modal" id="report-modal-${review.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<input type="hidden" value="${review.id}" id="review-id">
+				<input type="hidden" value="${review.id}" id="review-id">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -118,25 +118,30 @@ div {
 							</button>
 						</div>
 
-						<form action="/host/report/${review.id}" method="post"></form>
 						<div class="modal-body">
-							<div class="row">
-								<div class="col-6">
-									<div class="form-group">
-										<label>리뷰 ID : ${review.id}</label>
-									</div>
+							<div>
+								<div class="col-12">
+									<h4>신고 유형</h4>
+									<select class="form-control selector" id="report-type">
+										<option value="">유형을 선택하세요.</option>
+										<option>비방 및 욕설 등 부적절한 언어</option>
+										<option>갈등 조장 및 허위사실 유포</option>
+										<option>무단 광고 및 홍보</option>
+										<option>기타</option>
+									</select>
 								</div>
+								<br>
 								<div class="col-12">
 									<div class="form-group">
-										<label>신고 사유</label>
-										<textarea id="reason" placeholder="호스트의 불쾌한 댓글, 비방, 욕설 등의 신고 사유를 입력해주세요." style="height: 300px;" class="form-control"></textarea>
+										<h4>상세 사유 및 설명</h4>
+										<textarea id="detail-text" placeholder="부적절한 신고 및 허위 신고의 경우 운영원칙에 따라 제재를 받을 수 있습니다." style="height: 250px;" class="form-control"></textarea>
 									</div>
 								</div>
 							</div>
 						</div>
 
 						<div class="modal-footer">
-							<button type="submit" id="btn-report-review" class="custom-report-btn" >신고하기</button>
+							<button type="submit" id="btn-report-review" class="custom-report-btn">신고하기</button>
 						</div>
 					</div>
 				</div>
@@ -159,8 +164,8 @@ div {
 						<li class="list-group-item d-flex justify-content-between" id="reply--${reply.id}">
 							<div>${reply.content}</div>
 							<div class="d-flex">
-								<a class="host-review-update" onclick="index.editText('${reply.id}', '${reply.content}', '${review.id}');" style="cursor: pointer; color: rgb(17, 56, 147)">수정</a> &nbsp;&nbsp; <a class="host-review-delete" style="color: red"
-									onclick="index.deleteReply(${reply.id});" style="cursor: pointer; color: rgb(203, 0, 0);">삭제</a>
+								<a class="host-review-update" onclick="index.editText('${reply.id}', '${reply.content}', '${review.id}');" style="cursor: pointer; color: rgb(17, 56, 147)">수정</a> &nbsp;&nbsp; <a class="host-review-delete"
+									style="color: red" onclick="index.deleteReply(${reply.id});" style="cursor: pointer; color: rgb(203, 0, 0);">삭제</a>
 							</div>
 						</li>
 					</c:forEach>

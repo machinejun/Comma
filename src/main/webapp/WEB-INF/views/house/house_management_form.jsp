@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/house/detail.css" rel="stylesheet">
 <style>
@@ -49,7 +48,6 @@
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 }
-
 </style>
 
 <div class="container">
@@ -71,16 +69,13 @@
 			<br>
 		</div>
 	</div>
-	<div></div>
 	<br> <br>
 
 	<div class="container">
 		<c:forEach var="house" items="${houseList}">
 			<div class="col-xl">
 				<div class="row">
-					<a data-toggle="modal" data-target="#info-modal-${house.id}"
-						style="cursor: pointer;"> <img class="custom-img"
-						src="http://localhost:9090/upload/${house.image.imageUrl}"
+					<a data-toggle="modal" data-target="#info-modal-${house.id}" style="cursor: pointer;"> <img class="custom-img" src="http://localhost:9090/upload/${house.image.imageUrl}"
 						style="width: 200px; height: 200px; object-fit: cover;"></a>
 					<div style="margin-left: 10px;">
 						<div class="col">
@@ -88,17 +83,12 @@
 						</div>
 						<p class="col">
 							등록일 :
-							<fmt:formatDate pattern="yyyy-MM-dd"
-								value="${house.creationDate}" />
+							<fmt:formatDate pattern="yyyy-MM-dd" value="${house.creationDate}" />
 						</p>
 					</div>
 					<div class="col" style="position: absolute; bottom: 5%; left: 18%">
-						<a
-							href="/house/update_form/${house.id}" style="margin-right: 5px; color: rgb(17, 56, 147)">수정</a>
-						<a
-							onclick="index.deleteHouse('${house.id}')" style="color: red; margin-right: 5px; color: rgb(203, 0, 0); cursor: pointer;">삭제</a>
-						<a
-							href="/review/management/${house.id}" style="color: black">리뷰 관리</a>
+						<a href="/house/update_form/${house.id}" style="margin-right: 5px; color: rgb(67, 0, 232)">수정</a> <a onclick="index.deleteHouse('${house.id}')"
+							style="color: red; margin-right: 5px; color: rgb(203, 0, 0); cursor: pointer;">삭제</a> <a href="/review/management/${house.id}" style="color: black">리뷰 관리</a>
 					</div>
 				</div>
 
@@ -116,8 +106,7 @@
 						<div class="modal-body row">
 							<div class="container">
 								<div class="col-sm-6">
-									<img src="http://localhost:9090/upload/${house.image.imageUrl}"
-										style="width: 350px; height: 350px; border-radius: 10px; margin-bottom: 10px; object-fit: cover;">
+									<img src="http://localhost:9090/upload/${house.image.imageUrl}" style="width: 350px; height: 350px; border-radius: 10px; margin-bottom: 10px; object-fit: cover;">
 								</div>
 								<div class="col-sm=6">
 									<h3>${house.name}</h3>

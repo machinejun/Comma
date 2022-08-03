@@ -11,7 +11,7 @@ import com.CommaWeb.Comma.dto.BestHouseDto;
 import com.CommaWeb.Comma.model.LoginType;
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
-import com.CommaWeb.Comma.repository.BestHoustDtoRepository;
+import com.CommaWeb.Comma.repository.BestHouseDtoRepository;
 import com.CommaWeb.Comma.repository.UserRepository;
 
 @Service
@@ -23,7 +23,7 @@ public class UserService {
 
 	
 	@Autowired
-	private BestHoustDtoRepository bestHoustDtoRepository;
+	private BestHouseDtoRepository bestHoustDtoRepository;
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;

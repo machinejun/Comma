@@ -74,7 +74,7 @@ img {
 							<tr>
 								<th scope="col">예약 id</th>
 								<th scope="col" style="width: 350px">숙소명</th>
-								<th scope="col" style="width: 300px">예약 일</th>
+								<th scope="col" style="width: 300px">예약일</th>
 								<th scope="col">상태</th>
 								<th scope="col" style="text-align: center;">결제</th>
 								<th scope="col" style="text-align: center;">리뷰쓰기</th>

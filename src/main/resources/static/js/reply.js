@@ -16,7 +16,7 @@ let index = {
 		console.log("reviewId : " + reviewId);
 
 		let data = {
-			content: $("#reply-content-" + reviewId).val()
+			content: xssCheck($("#reply-content-" + reviewId).val(), 1)
 		}
 
 		if (data.content == "" || data.content.trim() === "") {
@@ -47,10 +47,8 @@ let index = {
 	updateReply: function(reviewId, replyId) {
 
 		let data = {
-			content: $("#reply-edit-" + reviewId).val()
+			content: xssCheck($("#reply-edit-" + reviewId).val(), 1)
 		}
-
-		console.log("update : " + data.content);
 
 		if (data.content == "") {
 			alert("내용을 입력하세요.")
@@ -67,7 +65,6 @@ let index = {
 				dataType: "json"
 			}).done(function(response) {
 				if (response.status == 200) {
-					//appendEditedReply(response.data);
 					alert("댓글이 수정되었습니다.");
 					location.href = "/review/management/" + response.data.reviewId.houseId.id;
 				}
@@ -88,7 +85,6 @@ let index = {
 		if (deleteCheck) {
 			$.ajax({
 				beforeSend: function(xhr) {
-					console.log("xhr: " + xhr)
 					xhr.setRequestHeader(header, token)
 				},
 
@@ -132,11 +128,12 @@ let index = {
 		console.log(reviewId);
 
 		let data = {
-			reason: $("#reason").val()
+			reportType: $("#report-type").val(),
+			detailText: xssCheck($("#detail-text").val(), 1)
 		}
 
-		if (data.reason == "" || data.reason.trim() == "") {
-			alert("사유를 입력하세요.")
+		if (data.reportType == "") {
+			alert("신고 유형을 선택하셔야 합니다.");
 		} else {
 			$.ajax({
 				beforeSend: function(xhr) {
@@ -151,7 +148,8 @@ let index = {
 			}).done(function(response) {
 				if (response.status == 200) {
 					alert("신고가 접수되었습니다.");
-					document.getElementById("reason").value = "";
+					document.getElementById("report-type").value = "";
+					document.getElementById("detail-text").value = "";
 					document.getElementById("close").click();
 				} else {
 					alert("신고가 접수되지 않았습니다.");
@@ -196,9 +194,19 @@ function appendReply(reply) {
 									onclick="index.deleteReply(${reply.id});" style="cursor: pointer;">삭제</a>				
 			</div>
 		</li>`;
-	console.log("append 확인" + reply.reviewId.id);
+		
 	$("#reply-list-" + reply.reviewId.id).prepend(childElement);
 	$("#reply-content-" + reply.reviewId.id).val("");
+}
+
+function xssCheck(str, level) {
+    if (level == undefined || level == 0) {
+        str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g,"");
+    } else if (level != undefined && level == 1) {
+        str = str.replace(/\</g, "&lt;");
+        str = str.replace(/\>/g, "&gt;");
+    }
+    return str;
 }
 
 index.init();

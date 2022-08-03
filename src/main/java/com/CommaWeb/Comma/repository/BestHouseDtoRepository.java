@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 @Repository
 @RequiredArgsConstructor
-public class BestHoustDtoRepository {
+public class BestHouseDtoRepository {
 	
 	private final EntityManager entityManager;
 	

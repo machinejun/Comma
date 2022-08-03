@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <title>회원가입 페이지</title>
-<link rel="stylesheet"
-	href="/fonts/material-icon/css/material-design-iconic-font.min.css" />
+<link rel="stylesheet" href="/fonts/material-icon/css/material-design-iconic-font.min.css" />
 <link rel="stylesheet" href="/css/user/style.css" />
 <div class="main">
 	<section class="signup">
@@ -11,44 +9,30 @@
 			<div class="signup-content">
 				<div class="signup-form needs-validation">
 					<h2 class="form-title">회원가입</h2>
-					<form action="/auth/joinProc" method="post"
-						onsubmit="return joinCheck()" class="register-form"
-						id="register-form">
-						<input type="hidden" name="${_csrf.parameterName}"
-							value="${_csrf.token}">
+					<form action="/auth/joinProc" method="post" onsubmit="return joinCheck()" class="register-form" id="register-form">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<p id="usernameCheckResult"></p>
 						<div class="form-group">
-							<label for="name"><i
-								class="zmdi zmdi-account material-icons-name"></i></label> <input
-								type="text" name="username" id="username" placeholder="Username"
-								required />
+							<label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label> <input type="text" name="username" id="username" placeholder="Username" required />
 						</div>
 						<button type="button" id="btn-checkUsername" class="custom-sm-btn">중복확인</button>
 						<br />
 
 						<p id="passwordCheck" style="color: rgb(203, 0, 0)"></p>
 						<div class="form-group" data-validate="Password is required">
-							<label for="password"><i class="zmdi zmdi-lock-outline"></i></label>
-							<input type="password" name="password" id="password"
-								placeholder="Password" required />
+							<label for="password"><i class="zmdi zmdi-lock-outline"></i></label> <input type="password" name="password" id="password" placeholder="Password" required />
 						</div>
 						<div class="form-group">
-							<label for="re-password"><i
-								class="zmdi zmdi-lock-outline"></i></label> <input type="password"
-								name="re-password" id="re-password"
-								placeholder="Repeat your password" required />
+							<label for="re-password"><i class="zmdi zmdi-lock-outline"></i></label> <input type="password" name="re-password" id="re-password" placeholder="Repeat your password" required />
 						</div>
 
 						<div class="form-group">
-							<label for="email"><i class="zmdi zmdi-email"></i></label> <input
-								type="email" name="email" id="email" placeholder="Your Email" />
+							<label for="email"><i class="zmdi zmdi-email"></i></label> <input type="email" name="email" id="email" placeholder="Your Email" />
 						</div>
 
 						<p id="phoneNumberCheck"></p>
 						<div class="form-group">
-							<label for="email"><i class="zmdi zmdi-phone"></i></label> <input
-								type="text" name="phoneNumber" id="phoneNumber"
-								placeholder="Your Phone Number" />
+							<label for="email"><i class="zmdi zmdi-phone"></i></label> <input type="text" name="phoneNumber" id="phoneNumber" placeholder="Your Phone Number" />
 						</div>
 						<button type="submit" class="custom-btn">회원가입</button>
 					</form>
@@ -58,8 +42,7 @@
 					<figure>
 						<img src="/assets/images/img-01.png" style="margin-top: 50px;" />
 					</figure>
-					<br /> <br /> <a href="/auth/login_form"
-						class="signup-image-link">이미 회원이신가요?</a>
+					<br /> <br /> <a href="/auth/login_form" class="signup-image-link">이미 회원이신가요?</a>
 				</div>
 			</div>
 		</div>
@@ -100,24 +83,46 @@
 		});
 	});
 
-	$(document).ready(function() {
-		// keyup
-		// 사용자가 키보드의 키를 눌렀다가 떼었을 때 발생
-		$("#password, #re-password").keyup(function() {
-			let password = $("#password").val();
-			let passwordCheck = $("#re-password").val();
-			if (password != "" && passwordCheck != "") {
-				if (password != passwordCheck) {
-					$("#passwordCheck").text("비밀번호가 일치하지 않습니다.");
-					return false;
-				} else if (password == passwordCheck) {
-					$("#passwordCheck").text("비밀번호가 일치합니다.");
-					document.getElementById('passwordCheck').style.color = "blue";
-					
-				}
-			}
-		});
-	});
+	$(document)
+			.ready(
+					function() {
+						// 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.
+
+						// keyup
+						// 사용자가 키보드의 키를 눌렀다가 떼었을 때 발생
+						$("#password, #re-password")
+								.keyup(
+										function() {
+											let password = $("#password").val();
+											let passwordCheck = $(
+													"#re-password").val();
+											if (password.trim() != ""
+													&& passwordCheck.trim() != "") {
+												if (password != passwordCheck) {
+													$("#passwordCheck").text(
+															"비밀번호가 일치하지 않습니다.");
+													document
+															.getElementById('passwordCheck').style.color = "red";
+													return false;
+												} else if (password == passwordCheck) {
+
+													if (password.length < 8 || password.length > 16) {
+														$("#passwordCheck")
+																.text(
+																		"비밀번호는 8~16자여야 합니다.");
+														document
+														.getElementById('passwordCheck').style.color = "red";
+														return false;
+													} else {
+														$("#passwordCheck").text(
+														"");
+													}
+
+												}
+											}
+
+										});
+					});
 
 	function joinCheck() {
 		let password = $("#password").val();

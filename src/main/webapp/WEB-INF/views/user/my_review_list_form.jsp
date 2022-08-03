@@ -106,7 +106,6 @@ div {
 			</c:choose>
 		</div>
 	</div>
-	<div></div>
 	<br>
 
 	<c:forEach var="review" items="${reviews.content}">
@@ -167,35 +166,41 @@ div {
 
 					<!-- 신고 모달 -->
 					<div class="modal" id="report-modal-${reply.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<input type="hidden" value="${reply.id}" id="reply-id">
+						<input type="hidden" value="${reply.id}" id="reply-id">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
 									<h3 class="modal-title" id="exampleModalLabel">댓글 신고하기</h3>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
 
-									<div class="modal-body">
-										<div class="row">
-											<div class="col-6">
-												<div class="form-group">
-													<label>댓글 ID : ${reply.id}</label>
-												</div>
-											</div>
-											<div class="col-12">
-												<div class="form-group">
-													<label>신고 사유</label>
-													<textarea id="reason" placeholder="호스트의 불쾌한 댓글, 비방, 욕설 등의 신고 사유를 입력해주세요." style="height: 300px;" class="form-control"></textarea>
-												</div>
+								<div class="modal-body">
+									<div>
+										<div class="col-12">
+											<h4>신고 유형</h4>
+											<select class="form-control selector" id="report-type">
+												<option value="">유형을 선택하세요.</option>
+												<option>비방 및 욕설 등 부적절한 언어</option>
+												<option>갈등 조장 및 허위사실 유포</option>
+												<option>무단 광고 및 홍보</option>
+												<option>기타</option>
+											</select>
+										</div>
+										<br>
+										<div class="col-12">
+											<div class="form-group">
+												<h4>상세 사유 및 설명</h4>
+												<textarea id="detail-text" placeholder="부적절한 신고 및 허위 신고의 경우 운영원칙에 따라 제재를 받을 수 있습니다." style="height: 250px;" class="form-control"></textarea>
 											</div>
 										</div>
 									</div>
+								</div>
 
-									<div class="modal-footer">
-										<button type="button" id="btn-report-reply" class="custom-sm-btn">신고하기</button>
-									</div>
+								<div class="modal-footer">
+									<button type="button" id="btn-report-reply" class="custom-sm-btn">신고하기</button>
+								</div>
 							</div>
 						</div>
 					</div>

@@ -185,7 +185,7 @@ public class UserController {
 		User kakaoUser = User.builder().username("kakao_" + kakaoAccount.getProperties().getNickname())
 				.email(kakaoUserInfoResponse.getBody().getKakaoAccount().getEmail())
 				.password(kakaoPassword)
-				.phoneNumber("휴대전화 번호에 대한 재설정이 필요합니다.")
+				.phoneNumber("폰 번호 재설정 필요")
 				.role(RoleType.GUEST)
 				.loginType(LoginType.KAKAO)
 				.build();
@@ -232,6 +232,10 @@ public class UserController {
 		return "/user/admin_table";
 	}
 	
+	@GetMapping("/user/my-page")
+	public String getMyPage()  {
+		return "user/my_page_form";
+	}
 
 
 }

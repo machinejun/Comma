@@ -25,11 +25,17 @@ public class Report {
 	
 	@ManyToOne
 	@JoinColumn(name = "reporter")
-	private User user;
+	private User reporter; // 신고자
+	
+	@ManyToOne
+	@JoinColumn(name = "respondent")
+	private User respondent; // 피신고자
+	
+	@Column(nullable = false)
+	private String reportType; // 신고 유형
 	
 	@Lob
-	@Column(nullable = false)
-	private String reason;
+	private String detailText;
 	
 	@ManyToOne
 	@JoinColumn(name = "reviewId")

@@ -11,12 +11,11 @@
 	<form>
 		<div class="form-group">
 			<div class="form-group">
-			<input type="hidden" id="house-id" value="${reservation.houseId.id}">
-			<input type="hidden" id="guest-id" value="${principal.user.id}">
-				<input type="hidden" value="" id="house-id"> <label for="name"><b>숙소명</b></label> <input type="text" class="form-control" id="name" disabled="disabled" value="${reservation.houseId.name}"/>
+				<input type="hidden" id="house-id" value="${reservation.houseId.id}"> <input type="hidden" id="guest-id" value="${principal.user.id}"> <input type="hidden" value="" id="house-id"> <label
+					for="name"><b>숙소명</b></label> <input type="text" class="form-control" id="name" disabled="disabled" value="${reservation.houseId.name}" />
 			</div>
 			<div class="form-group">
-				<label for="name"><b>숙박 기간</b></label> <input type="text" class="form-control" id="name" disabled="disabled" value="${reservation.checkInDate} ~ ${reservation.checkOutDate}"/>
+				<label for="name"><b>숙박 기간</b></label> <input type="text" class="form-control" id="name" disabled="disabled" value="${reservation.checkInDate} ~ ${reservation.checkOutDate}" />
 			</div>
 
 			<label><b>만족도</b></label>
@@ -53,7 +52,7 @@ function postReview() {
      }
 
 	let data = {
-		content: document.querySelector("#content").value,
+		content: xssCheck(document.querySelector("#content").value, 1),
 		starScore: starScore
 	}
 	if(data.content == "" || data.content.trim() === "") {
@@ -93,5 +92,15 @@ $('.summernote').summernote({
 	toolbar : [],
 	placeholder : "숙소의 청결도, 위치, 호스트와의 의사소통에 대한 솔직한 후기를 남겨주세요."
 });
+
+function xssCheck(str, level) {
+    if (level == undefined || level == 0) {
+        str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g,"");
+    } else if (level != undefined && level == 1) {
+        str = str.replace(/\</g, "&lt;");
+        str = str.replace(/\>/g, "&gt;");
+    }
+    return str;
+}
 </script>
 <%@ include file="../layout/footer.jsp"%>

@@ -28,7 +28,7 @@
 				<div class="wrap-input100 validate-input"
 					data-validate="비밀번호를 입력하세요">
 					<input class="input100" type="password" id="password"
-						name="password" required placeholder="Password" value="1234" /> <span
+						name="password" required placeholder="Password" value="12345678" /> <span
 						class="focus-input100"></span> <span class="symbol-input100">
 						<i class="fa fa-lock" aria-hidden="true"></i>
 					</span>

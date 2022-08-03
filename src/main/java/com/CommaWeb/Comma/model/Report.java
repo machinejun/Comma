@@ -23,6 +23,7 @@ public class Report {
 	@JoinColumn(name = "reporter")
 	private User user;
 	
+	
 	@Lob
 	private String reason;
 	

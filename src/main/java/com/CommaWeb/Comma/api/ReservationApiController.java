@@ -127,5 +127,6 @@ public class ReservationApiController {
 				HttpMethod.POST, message, KaKaoApproveDto.class);
 		return response.getBody();
 	}
-
+	
+	
 }

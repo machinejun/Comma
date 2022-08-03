@@ -1,119 +1,104 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="../layout/header.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../layout/header.jsp"%>
 <link href="/css/customerServiceStyle/customerService.css" rel="stylesheet">
-  <!-- Page Content -->
- 
-<section class="notice">
-  <div class="page-title">
-        <div class="container">
-            <h3 class="font-weight-bold">고객센터</h3>
-        </div>
-    </div>
+<!-- Page Content -->
 
-    <!-- board seach area -->
-    <div id="board-search">
-        <div class="container">
-            <div class="search-window">
-                <form action="/" method="get">
-                    <div class="search-wrap">
-                        <label for="search" class="blind">공지사항 내용 검색</label>
-                        <input id="search" type="search" name="q" placeholder="검색어를 입력해주세요." value="">
-                        <button type="submit" class="btn btn-dark"  >검색</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-   
-  <!-- board list area -->
-    <div id="board-list">
-        <div class="container">
-            <table class="board-table">
-                <thead>
-                <tr>
-                    <th scope="col" class="th-num">번호</th>
-                    <th scope="col" class="th-title">제목</th>
-                    <th scope="col" class="th-date">등록일</th>
-                </tr>
-                </thead>
-                <tbody>
-	                <c:forEach var="board" items="${boards.content}">
-						<c:choose>
-							<c:when test="${board.secret eq 1 }">
-				                <tr>
-				                    <td>${board.id }</td>
-				                    <th>
-				                      <a onclick="showDetail(${principal.user}, ${board})"><i class="bi bi-lock-fill"></i>${board.title }</a>
-				                      <p>테스트</p>
-				                    </th>
-				                    <td>${board.createTime}</td>
-				                </tr>
-				            </c:when>
-				            <c:when test="${board.user.role eq 'ADMIN'}">
-				                <tr>
-				                    <td>${board.id }</td>
-				                    <th>
-				                      <a onclick="showDetail(${principal.user}, ${board})"><i class="bi bi-megaphone-fill"></i>${board.title }</a>
-				                      <p>테스트</p>
-				                    </th>
-				                    <td>${board.createTime}</td>
-				                </tr>
-				            </c:when>
-				            <c:otherwise>
-				            	<tr>
-				                    <td>${board.id }</td>
-				                    <th>
-				                      <a onclick="showDetail(${board.id}, ${board.secret}, ${board.password})" >${board.title }</a>
-				                      <p>테스트</p>
-				                    </th>				                    
-				                    <td>${board.createTime}</td>
-				                </tr>
-				            </c:otherwise>    
-	                	</c:choose>
+<section class="notice">
+	<div class="page-title">
+		<div class="container">
+			<h3 class="font-weight-bold">고객센터</h3>
+		</div>
+	</div>
+
+	<!-- board seach area -->
+	<div id="board-search">
+		<div class="container">
+			<div class="search-window">
+				<form action="/" method="get">
+					<div class="search-wrap">
+						<label for="search" class="blind">공지사항 내용 검색</label> <input id="search" type="search" name="q" placeholder="검색어를 입력해주세요." value="">
+						<button type="submit" class="btn btn-dark">검색</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- board list area -->
+	<div id="board-list">
+		<div class="container">
+			<table class="board-table">
+				<thead>
+					<tr>
+						<th scope="col" class="th-num">번호</th>
+						<th scope="col" class="th-title">제목</th>
+						<th scope="col" class="th-title">작성자</th>
+						<th scope="col" class="th-date">등록일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="board" items="${boards}">
+						<tr >			
+							<c:choose>
+								<c:when test="${board.secret eq 1 }">
+									<td>${board.id }</td>
+									<th><a onclick="showDetail(${principal.user}, ${board})"><i class="bi bi-lock-fill"></i>&nbsp;${board.title }</a></th>
+								</c:when>
+								<c:when test="${board.user.role eq 'ADMIN'}">
+									<td style="color: red;">공지사항</td>
+									<th style="color: red;"><a onclick="showDetail(${principal.user}, ${board})"><i class="bi bi-megaphone-fill"></i>&nbsp;${board.title }</a></th>
+								</c:when>
+								<c:otherwise>
+									<td>${board.id }</td>
+									<th ><a  onclick="showDetail(${board.id}, ${board.secret}, ${board.password})">&nbsp;${board.title }</a></th>
+								</c:otherwise>
+							</c:choose>
+							<td>${board.user.username}</td>
+							<td>${board.createTime}</td>
+						</tr>
 					</c:forEach>
-                </tbody>
-            </table>
-            
-            <!-- 페이지네이션 -->
-            <div style="text-align:center">
-            	<div class="pagination">
-            
-	                <div style="width:35%; margin: 5px;">      
-	                    <c:if test="${boards.first ne true}">
-	                    	<a class="abutton" href="/?page=0">first</a>
-	                		<a class="abutton" href="/?page=${boards.number - 1 }">◀</a>
-	                	</c:if>
-	                    
-	                </div>
-	
-	                <div style="width:30%; margin: 5px;">
-	                	<c:forEach var="num" items="${pageNums }">
-	                		<c:choose>
-								<c:when test="${num eq boards.number}">
-									<span class=""><a href="/?page=${num}" style="font-weight: bold; font-size: 18px; ">${num + 1}</a></span>
+				</tbody>
+			</table>
+
+			<!-- 페이지네이션 -->
+			<div style="text-align: center">
+				<div class="pagination">
+
+					<div style="width: 35%; margin: 5px;">
+						<c:if test="${pages.first ne true}">
+							<a class="abutton" href="/?page=0">first</a>
+							<a class="abutton" href="/?page=${pages.number - 1 }">◀</a>
+						</c:if>
+
+					</div>
+
+					<div style="width: 30%; margin: 5px;">
+						<c:forEach var="num" items="${pageNums }">
+							<c:choose>
+								<c:when test="${num eq pages.number}">
+									<span class=""><a href="/?page=${num}" style="font-weight: bold; font-size: 18px;">${num + 1}</a></span>
 								</c:when>
 								<c:otherwise>
 									<span class=""><a href="/?page=${num}">${num + 1}</a></span>
 								</c:otherwise>
 							</c:choose>
-	                   </c:forEach>
-	                </div>
-	
-	                <div style="width:35%; margin: 5px;">
-	                	<c:if test="${boards.last ne true}">
-	                		<a class="abutton" href="/?page=${boards.number + 1 }">▶</a>
-	                		<a class="abutton" href="/?page=${boards.totalPages -1 }">last</a>
-	                	</c:if>
-	                </div>
+						</c:forEach>
+					</div>
 
-            	</div>  
-        	</div> 
-            <button id="btn-write" class="custom-sm-btn float-right ${principal.username eq null ? isNotlogin : islogin}">SOS</button>
-            
-    	</div>
-    </div>
-</section>  
+					<div style="width: 35%; margin: 5px;">
+						<c:if test="${pages.last ne true}">
+							<a class="abutton" href="/?page=${pages.number + 1 }">▶</a>
+							<a class="abutton" href="/?page=${pages.totalPages -1 }">last</a>
+						</c:if>
+					</div>
 
-<script src="/js/customerService/board.js"></script>  
-<%@ include file="../layout/footer.jsp" %>
+				</div>
+			</div>
+			<button id="btn-write" class="custom-sm-btn float-right ${principal.username eq null ? isNotlogin : islogin}">SOS</button>
+
+		</div>
+	</div>
+</section>
+
+<script src="/js/customerService/board.js"></script>
+<%@ include file="../layout/footer.jsp"%>

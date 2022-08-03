@@ -118,7 +118,7 @@ nav {
 
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="#">숙소 보기</a></li>
-				<li class="nav-item"><a class="nav-link" href="/test/service">고객 센터</a></li>
+				<li class="nav-item"><a class="nav-link" href="/user/cs">고객 센터</a></li>
 			</ul>
 
 		</div>

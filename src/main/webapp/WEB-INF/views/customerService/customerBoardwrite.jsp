@@ -28,13 +28,18 @@ label {
 	position: relative;
 	bottom: 0
 }
+.form-control:focus {
+    	border-color: rgba(255,149,149,0.7);
+    	outline: 0;
+    	box-shadow: 0 0 10px rgba(255,149,149,0.5);
+	}
 </style>
 
 
 
 <div class="container">
 	<h2 id="pTranMsg" class="info-txt text-center">게시글 작성</h1>
-	<input type="hidden" id="userId" value="${principal.id}"></input>
+	<input type="hidden" id="userId" value="${principal.user.id}"></input>
 	<br/>
 	<div class="container">
 		<div class="container">

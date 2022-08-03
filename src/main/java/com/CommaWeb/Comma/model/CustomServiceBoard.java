@@ -49,7 +49,6 @@ public class CustomServiceBoard {
 	private Timestamp createTime;
 	
 	@OneToMany(mappedBy = "customServiceBoard", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@OrderBy(value = "role, id desc")
 	@JsonIgnoreProperties({"customServiceBoard","user"})
 	private List<CustomServiceReply> replys;
 	

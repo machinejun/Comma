@@ -26,11 +26,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class Reply implements Serializable {
-	/**
-	 * 
-	 * 호스트가 숙소 리뷰에 남기는 댓글
-	 */
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;

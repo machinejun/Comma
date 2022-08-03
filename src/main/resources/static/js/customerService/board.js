@@ -1,4 +1,6 @@
 let isCheck = 0;
+let token = $("meta[name='_csrf']").attr("content");
+let header = $("meta[name='_csrf_header']").attr("content");
 
 $(document).ready(function() {
 	//write.jsp
@@ -22,7 +24,7 @@ $(document).ready(function() {
 	
 	
 	$("#btn-write").bind("click", () => {
-		location.href="/test/service/write";
+		location.href="/user/cs/writeform";
 	});
 	// --- write
 	
@@ -60,18 +62,23 @@ function updateBoard(boardid){
 		secret: isCheck == 1 ? 1 : 0,
 		password: isCheck == 1 ? $("#write-password").val() : null 
 	}
-	console.log(data);
+	console.log(token);
 	
 	$.ajax({
+		beforeSend: function(xhr) {
+			console.log("xhr: " + xhr)
+			xhr.setRequestHeader(header, token)
+		},
+
 		type: "post",
-		url:"/api/board/update",
+		url:"/user/api/cs-write",
 		contentType: "application/json; charset=utf-8",
 		data: JSON.stringify(data),
 		dataType:"json"
 	}).done(function(response){
 		if(response.status == 200){
 			alert("게시글 작성 완료");
-			location.href="/";
+			location.href="/user/cs";
 		}else{
 			alert("게시글 작성 실패");
 		}
@@ -98,9 +105,7 @@ function deleteBoard(boardid){
 }
 
 
-function writeBoard(){
-	let userId=$("#userId").val();
-	
+function writeBoard(){	
 	let data={
 		title: $("#title").val(),
 		content: $("#content").val(),
@@ -110,8 +115,12 @@ function writeBoard(){
 	console.log(data);
 	
 	$.ajax({
+		beforeSend: function(xhr) {
+			console.log("xhr: " + xhr)
+			xhr.setRequestHeader(header, token)
+		},
 		type: "post",
-		url:"/api/board/write/" + userId,
+		url:"/user/api/cs-write",
 		contentType: "application/json; charset=utf-8",
 		data: JSON.stringify(data),
 		dataType:"json"

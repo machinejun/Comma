@@ -37,63 +37,65 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="board" items="${boards}">
-						<tr >			
-							<c:choose>
-								<c:when test="${board.secret eq 1 }">
-									<td>${board.id }</td>
-									<th><a onclick="showDetail(${principal.user}, ${board})"><i class="bi bi-lock-fill"></i>&nbsp;${board.title }</a></th>
-								</c:when>
-								<c:when test="${board.user.role eq 'ADMIN'}">
-									<td style="color: red;">공지사항</td>
-									<th style="color: red;"><a onclick="showDetail(${principal.user}, ${board})"><i class="bi bi-megaphone-fill"></i>&nbsp;${board.title }</a></th>
-								</c:when>
-								<c:otherwise>
-									<td>${board.id }</td>
-									<th ><a  onclick="showDetail(${board.id}, ${board.secret}, ${board.password})">&nbsp;${board.title }</a></th>
-								</c:otherwise>
-							</c:choose>
-							<td>${board.user.username}</td>
-							<td>${board.createTime}</td>
-						</tr>
-					</c:forEach>
+					<tr >
+						<c:forEach var="notice" items="${notices}">
+							<td style="color: red;">공지사항</td>
+							<th style="color: red;"><a onclick="showDetail(${principal.user}, ${notice})"><i class="bi bi-megaphone-fill"></i>&nbsp;${notice.title}</a></th>
+							<td>${notice.user.username}</td>
+							<td>${notice.createTime}</td>
+						</c:forEach>						
+						<c:forEach var="board" items="${boards}">		
+								<c:choose>
+									<c:when test="${board.secret eq 1 }">
+										<td>${board.id }</td>
+										<th><a onclick="showDetail(${principal.user}, ${board})"><i class="bi bi-lock-fill"></i>&nbsp;${board.title }</a></th>
+									</c:when>
+									<c:otherwise>
+										<td>${board.id }</td>
+										<th ><a  onclick="showDetail(${board.id}, ${board.secret}, ${board.password})">&nbsp;${board.title }</a></th>
+									</c:otherwise>
+								</c:choose>
+								<td>${board.user.username}</td>
+								<td>${board.createTime}</td>
+						</c:forEach>
+					</tr>
 				</tbody>
 			</table>
 
 			<!-- 페이지네이션 -->
-			<div style="text-align: center">
-				<div class="pagination">
-
-					<div style="width: 35%; margin: 5px;">
-						<c:if test="${pages.first ne true}">
-							<a class="abutton" href="/?page=0">first</a>
-							<a class="abutton" href="/?page=${pages.number - 1 }">◀</a>
-						</c:if>
-
-					</div>
-
-					<div style="width: 30%; margin: 5px;">
-						<c:forEach var="num" items="${pageNums }">
-							<c:choose>
-								<c:when test="${num eq pages.number}">
-									<span class=""><a href="/?page=${num}" style="font-weight: bold; font-size: 18px;">${num + 1}</a></span>
+            <div style="text-align:center">
+            	<div class="pagination">
+            
+	                <div style="width:35%; margin: 5px;">      
+	                    <c:if test="${boards.first ne true}">
+	                    	<a class="abutton" href="/?page=0">first</a>
+	                		<a class="abutton" href="/?page=${boards.number - 1 }">◀</a>
+	                	</c:if>
+	                    
+	                </div>
+	
+	                <div style="width:30%; margin: 5px;">
+	                	<c:forEach var="num" items="${pageNums }">
+	                		<c:choose>
+								<c:when test="${num eq boards.number}">
+									<span class=""><a href="/?page=${num}" style="font-weight: bold; font-size: 18px; ">${num + 1}</a></span>
 								</c:when>
 								<c:otherwise>
 									<span class=""><a href="/?page=${num}">${num + 1}</a></span>
 								</c:otherwise>
 							</c:choose>
-						</c:forEach>
-					</div>
+	                   </c:forEach>
+	                </div>
+	
+	                <div style="width:35%; margin: 5px;">
+	                	<c:if test="${boards.last ne true}">
+	                		<a class="abutton" href="/?page=${boards.number + 1 }">▶</a>
+	                		<a class="abutton" href="/?page=${boards.totalPages -1 }">last</a>
+	                	</c:if>
+	                </div>
 
-					<div style="width: 35%; margin: 5px;">
-						<c:if test="${pages.last ne true}">
-							<a class="abutton" href="/?page=${pages.number + 1 }">▶</a>
-							<a class="abutton" href="/?page=${pages.totalPages -1 }">last</a>
-						</c:if>
-					</div>
-
-				</div>
-			</div>
+            	</div>  
+        	</div>
 			<button id="btn-write" class="custom-sm-btn float-right ${principal.username eq null ? isNotlogin : islogin}">SOS</button>
 
 		</div>

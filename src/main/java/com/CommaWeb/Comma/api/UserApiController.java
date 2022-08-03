@@ -2,6 +2,7 @@ package com.CommaWeb.Comma.api;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -83,10 +84,11 @@ public class UserApiController {
 		return "<script>location.href='/user/beguest'</script>";
 	}
 	
-	@GetMapping("/user/adminTable")
-	public ArrayList<BestHouseDto> loadTableData(@RequestParam String month, @RequestParam int limit){
-		ArrayList<BestHouseDto> list = (ArrayList<BestHouseDto>) userService.loadHouseDtolist(month, limit);
-		return list;
+	@GetMapping("/test/user/adminTable")
+	public ResponseDto<List<BestHouseDto>> loadTableData(@RequestParam String month, @RequestParam int limit){
+		System.out.println("ㅋㅋㅋㅋ");
+		List<BestHouseDto> list = userService.loadHouseDtolist(month, limit);
+		return new ResponseDto<List<BestHouseDto>>(HttpStatus.OK.value(), list);
 	}
 
 }

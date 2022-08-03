@@ -1,5 +1,7 @@
 package com.CommaWeb.Comma.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,5 +25,10 @@ public class CSBoardService {
 	public Page<CustomServiceBoard> findByTitle(String title, Pageable pageable){
 		Page<CustomServiceBoard> pages = csBoardRepository.findByTitleContaining(title, pageable);
 		return pages;
+	}
+	
+	@Transactional(readOnly = true)
+	public List<CustomServiceBoard> loadNoticeBoards(){
+		return csBoardRepository.loadNoticeBoard();
 	}
 }

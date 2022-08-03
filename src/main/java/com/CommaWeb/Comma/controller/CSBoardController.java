@@ -27,11 +27,11 @@ public class CSBoardController {
 	public String intoCustomerService(@PageableDefault(size = 10, direction = Direction.DESC , page = 0, sort = "id") Pageable pageable,
 			String q, Model model) {
 		String st = (q == null) ? "" : q;
-		Page<CustomServiceBoard> pages = csBoardService.findByTitle(st, pageable);
-		List<CustomServiceBoard> boards = sortList(pages);
+		Page<CustomServiceBoard> boards = csBoardService.findByTitle(st, pageable);
+		List<CustomServiceBoard> noticeBoards = csBoardService.loadNoticeBoards(); 
+		model.addAttribute("notices", noticeBoards);
 		model.addAttribute("boards", boards);
-		model.addAttribute("pages", pages);
-		model.addAttribute("pageNums", makePageNumbers(pages));
+		model.addAttribute("pageNums", makePageNumbers(boards));
 		return "/customerService/customerService";
 	}
 	
@@ -52,39 +52,6 @@ public class CSBoardController {
 		return list;
 	}
 	
-	private List<CustomServiceBoard> sortList(Page<CustomServiceBoard> boards) {
-		System.out.println(boards.getContent());
-		CustomServiceBoard[] tempboads = new  CustomServiceBoard[boards.getContent().size()];
-		List<CustomServiceBoard> newboards = null;
-		for(int i  =0 ; i < boards.getContent().size() ; i++) {
-			if(boards.getContent().get(i).getUser().getRole() == RoleType.ADMIN) {
-				newboards.add(boards.getContent().get(i));
-			}
-			tempboads[i] = boards.getContent().get(i);
-			
-		}
-		int i = 0, j = 0;
-		CustomServiceBoard temp;
-		// 0 
-		for (i = tempboads.length - 1 ; i > 0; i--) {
-			for (j = 0; j < i; j++) {
-				if(tempboads[j].getUser().getRole() == RoleType.ADMIN) {
-					
-				}
-				else {
-					if(tempboads[j].getId() < tempboads[j + 1].getId()) {
-						temp = tempboads[j];
-						tempboads[j] = tempboads[j+1];
-						tempboads[j+1] = temp;
-				
-					}
-				}
-			}
-		}
-		List<CustomServiceBoard> list = Arrays.asList(tempboads);
-		System.out.println(list);
-		return list;
-	}
 	
  
 }

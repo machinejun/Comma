@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.CommaWeb.Comma.auth.PrincipalDetail;
 import com.CommaWeb.Comma.dto.ResponseDto;
+import com.CommaWeb.Comma.model.CSBoardType;
 import com.CommaWeb.Comma.model.CustomServiceBoard;
+import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.service.CSBoardService;
 
 @RestController
@@ -21,9 +23,12 @@ public class CSBoardApiController {
 	
 	@PostMapping("/cs-write")
 	public ResponseDto<Integer> writeBoard(@AuthenticationPrincipal PrincipalDetail principal ,@RequestBody CustomServiceBoard serviceBoard){
-		System.out.println(serviceBoard);
-		System.out.println(principal);
 		serviceBoard.setUser(principal.getUser());
+		if(principal.getUser().getRole() == RoleType.ADMIN) {
+			serviceBoard.setBoardType(CSBoardType.NOTICE);
+		}else {
+			serviceBoard.setBoardType(CSBoardType.NORMAL);
+		}
 		csBoardService.writeBoard(serviceBoard);
 		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);

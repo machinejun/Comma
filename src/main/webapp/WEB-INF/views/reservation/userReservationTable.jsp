@@ -95,22 +95,6 @@ img {
 										<c:when test="${reservation.approvalStatus eq 'WAITING'}">
 											<td style="text-align: center;">승인 대기중</td>
 								      	</c:when>
-<<<<<<< HEAD
-										<c:otherwise>
-											<td style="text-align: center;"></td>
-										</c:otherwise>
-									</c:choose>
-									<td style="text-align: center;"><c:if test="${reservation.approvalStatus eq 'COMPLETED'}">
-											<button onclick="location.href='/review/post_form/${reservation.id}'" class="btn" style="">리뷰 쓰러가기</button>
-										</c:if></td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-=======
-								      	<c:when test= "${reservation.approvalStatus eq 'WAITING'}">
-								      		<td style="text-align: center;">승인 대기중</td>
-    									</c:when>
 								      	<c:otherwise>
 								      		<td style="text-align: center;"></td>
 								      	</c:otherwise>
@@ -124,7 +108,7 @@ img {
 								  </c:forEach>
 							  </tbody>
 						</table>		
->>>>>>> 9c33d52 (오류 수정)
+
 				</div>
 
 

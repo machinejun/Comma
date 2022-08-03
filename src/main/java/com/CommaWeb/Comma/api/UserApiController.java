@@ -94,10 +94,10 @@ public class UserApiController {
 		return list;
 	}
 	
-	@DeleteMapping("/user/searchUsername?role=&q={q}")
-	public ResponseDto<Integer> deleteById(@PathVariable int id) {
-		userService.deleteById(id);
-		return new ResponseDto<>(HttpStatus.OK.value(), 1);
+	@DeleteMapping("/delete/user/{userId}")
+	public int deleteUser(@PathVariable int id) {
+		userService.deleteUser(id);
+		return id;
 	}
 
 }

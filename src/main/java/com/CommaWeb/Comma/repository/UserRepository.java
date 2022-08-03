@@ -22,4 +22,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Transactional
 	List<User> findByUsernameContaining(String name);
 
+	@Transactional
+	@Query(value= "delete from user where id= :id", nativeQuery = true)
+	Optional<User> deleteUserById(@Param(value= "id") int id);
 }

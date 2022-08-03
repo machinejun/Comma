@@ -41,8 +41,6 @@ h2::after {
 													</select>
 												  <input type="text" class="form-control" style="margin: 10px" name="q" value="${searchUser}" placeholder="검색어를 입력하세요" >
 												  <button  type="submit" class="custom-sm-btn" id="btn-search" style="font-size: 20px">검색</button>
-												  
-											
 										</form>								
 								</div>
 					
@@ -69,6 +67,13 @@ h2::after {
 									                    <td>${ user.phoneNumber }</td>
 									                    <td>${ user.role }</td>
 									                    <td>${ user.username }</td>
+									                    <!--
+									                    <c:if test= "${user.role eq 'GUEST' }">
+									                    	<td><button type="submit" onclick="location.href='/reserveTable/user';" class="custom-sm-btn" style="font-size: 17px">예약확인</button></td>
+									                    </c:if>
+									                    <c:if test= "${user.role eq 'HOST' }">
+									                    	<td><button type="submit" onclick="location.href='/house/management';" class="custom-sm-btn"  style="font-size: 17px">숙소정보</button></td>
+									                    </c:if>-->
 									                    <td><button type="button" class="custom-sm-btn" id="btn-delete" style="font-size: 17px">삭제하기</button></td>
 									                </tr>
 									         </c:forEach>						  
@@ -82,31 +87,28 @@ h2::after {
 </div>
 <script>
 let index = {
-		init : function(){
-			$("#btn-delete").bind("click", () => {
+		init: function(){
+			$("#btn-delete").bind("click",() => {
 				this.deleteById();
 			});
 		},
-		
-		deleteById: function() {
-			let q = $("#searchUser").text();
-			$.ajax({
-				type:"DELETE",
-				url:"/user/searchUsername?role=&q=" + q //?
-			})
-			.done(function(data){
-				if(data.status){
-					alert("삭제가 완료되었습니다.");
-					location.href = "/user/searchUsername?role=&q=";
-				}
-			})
-			.fail(function(){
-				alert("삭제 실패");
-			});
-		}
-		
+	deleteById: function() {
+		let id = $("#user.id");
+		$.ajax({
+			type:"DELETE",
+			url:"/delete/user/" + id
+		})
+		.done(function(data){
+			if(data.status){
+				alert("삭제가 완료되었습니다.");
+				location.href = "/";
+			}
+		})
+		.fail(function(){
+			alert("삭제 실패");
+		});
 	}
-	index.init();
+}
 </script>
 
 </body>

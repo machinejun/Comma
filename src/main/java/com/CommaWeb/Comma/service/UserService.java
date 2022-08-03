@@ -93,7 +93,6 @@ public class UserService {
 
 
 	@Transactional
-
 	public List<User> showAllUser() {
 		return userRepository.findAll();
 	}
@@ -128,8 +127,8 @@ public class UserService {
 	}
 	
 	@Transactional
-	public void deleteById(int id) {
-		userRepository.deleteById(id);
+	public void deleteUser(int id) {
+		userRepository.deleteUserById(id);
 	}
 
 }

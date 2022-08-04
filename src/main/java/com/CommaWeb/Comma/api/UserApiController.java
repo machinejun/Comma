@@ -94,10 +94,11 @@ public class UserApiController {
 		return list;
 	}
 	
-	@DeleteMapping("/delete/user/{userId}")
-	public int deleteUser(@PathVariable int id) {
+	@DeleteMapping("/{id}")
+	public ResponseDto<Integer> deleteUser(@PathVariable int id) {
+		// 유저 삭제 기능
 		userService.deleteUser(id);
-		return id;
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 
 }

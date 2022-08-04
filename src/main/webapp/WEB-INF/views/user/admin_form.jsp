@@ -74,7 +74,7 @@ h2::after {
 									                    <c:if test= "${user.role eq 'HOST' }">
 									                    	<td><button type="submit" onclick="location.href='/house/management';" class="custom-sm-btn"  style="font-size: 17px">숙소정보</button></td>
 									                    </c:if>-->
-									                    <td><button type="button" class="custom-sm-btn" id="btn-delete" style="font-size: 17px">삭제하기</button></td>
+									                    <td><button type="button" onclick="location.href='delete/${user.id}';" class="custom-sm-btn" id="btn-delete" style="font-size: 17px">삭제하기</button></td>
 									                </tr>
 									         </c:forEach>						  
 						        </tbody>
@@ -85,30 +85,8 @@ h2::after {
     	</div>
   	</div>
 </div>
-<script>
-let index = {
-		init: function(){
-			$("#btn-delete").bind("click",() => {
-				this.deleteById();
-			});
-		},
-	deleteById: function() {
-		let id = $("#user.id");
-		$.ajax({
-			type:"DELETE",
-			url:"/delete/user/" + id
-		})
-		.done(function(data){
-			if(data.status){
-				alert("삭제가 완료되었습니다.");
-				location.href = "/";
-			}
-		})
-		.fail(function(){
-			alert("삭제 실패");
-		});
-	}
-}
+<script src="/js/user/admin.js">
+
 </script>
 
 </body>

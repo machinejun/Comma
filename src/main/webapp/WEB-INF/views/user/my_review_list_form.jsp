@@ -123,7 +123,7 @@ div {
 					</div>
 
 				</div>
-				<div class="col" style="position: absolute; left: 85%;">
+				<div class="col" style="position: absolute; left: 90%;">
 					<a href="/review/update_form/${review.id}" style="margin-right: 10px;">수정</a> <a id="btn-delete" onclick="index.deleteReview(${review.id})" style="color: red; margin-right: 10px;">삭제</a>
 				</div>
 

@@ -106,92 +106,71 @@ div {
 		</div>
 	</div>
 	<br />
-	<c:forEach var="report" items="${reports}">
-		<input type="hidden" value="${report.id}" id="review-id">
-		<div class="col-xl">
-			<div class="row">
-				<div>
-					<div class="col">
-						<p>
-							신고일 :
-							<fmt:formatDate pattern="yyyy-MM-dd" value="${report.creationDate}" />
-						</p>
-					</div>
-					<div class="col">
-						<p>신고 대상 : ${report.respondent.username}</p>
-					</div>
-					<div class="col">
-						<p>신고 사유 : ${report.reportType}</p>
-					</div>
-					<div class="col">
-						<p>상세 사유 및 설명 :</p>
-						<div>${report.detailText}</div>
-					</div>
-				</div>
-				<div class="float-right">
-					<a data-toggle="modal" data-target="#report-modal-${report.id}" style="cursor: pointer; margin-left: 700px; color: rgb(67, 0, 232);">내용보기</a>
-				</div>
-			</div>
-			<hr>
 
-		</div>
+	<div class="container">
+		<br />
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="text-center">신고 번호</th>
+					<th class="text-center">신고 일자</th>
+					<th class="text-center">신고 회원</th>
+					<th class="text-center">신고 유형</th>
+					<th class="text-center">상세 사유 및 설명</th>
+				</tr>
+			</thead>
+			<tbody>
 
-		<div class="modal" id="report-modal-${report.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<input type="hidden" value="${reply.id}" id="reply-id">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h3 class="modal-title" id="exampleModalLabel">신고 내용</h3>
-						<button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
+				<c:forEach var="report" items="${reports}">
+					<input type="hidden" value="${report.id}" id="review-id">
+					<tr>
+						<td class="text-center">${report.id}</td>
+						<td class="text-center"><fmt:formatDate pattern="yyyy-MM-dd" value="${report.creationDate}" /></td>
+						<td class="text-center">${report.respondent.username}</td>
+						<td class="text-center">${report.reportType}</td>
+						<td class="text-center"><a data-toggle="modal" data-target="#report-modal-${report.id}" style="cursor: pointer;"><i class="bi bi-search"></i></a></td>
+					</tr>
 
-					<div class="modal-body">
-						<div>
-							<c:choose>
-								<c:when test="${empty report.replyId}">
-									<div class="col-12">
-										<h4>작성자</h4>
-										<span>${report.reviewId.guestId.id}</span>
+					<div class="modal" id="report-modal-${report.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<input type="hidden" value="${reply.id}" id="reply-id">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+
+								<div class="modal-body">
+									<div>
+										<c:choose>
+											<c:when test="${empty report.replyId}">
+												<div class="col-12">
+													<h4>상세 사유 및 설명</h4>
+													<textarea id="detail-text" style="height: 250px;" class="form-control" disabled>${report.reviewId.content}</textarea>
+												</div>
+											</c:when>
+											<c:otherwise>
+												<div class="col-12">
+													<div class="form-group">
+														<h4><b>상세 사유 및 설명</b></h4>
+														<textarea id="detail-text" style="height: 250px;" class="form-control" disabled>${report.replyId.content}</textarea>
+													</div>
+												</div>
+											</c:otherwise>
+										</c:choose>
 									</div>
-									<div class="col-12">
-										<h4>작성일</h4>
-										<span>${report.reviewId.creationDate}</span>
-									</div>
-									<div class="col-12">
-										<h4>신고 내용</h4>
-										<textarea id="detail-text" style="height: 250px;" class="form-control" disabled>${report.reviewId.content}</textarea>
-									</div>
-								</c:when>
-								<c:otherwise>
-									<div class="col-12">
-										<h4>작성일</h4>
-										<span>${report.replyId.creationDate}</span>
-									</div>
-									<div class="col-12">
-										<h4>작성자</h4>
-										<span>${report.replyId.reviewId.houseId.hostId.id}</span>
-									</div>
-									<div class="col-12">
-										<div class="form-group">
-											<h4>신고 내용</h4>
-											<textarea id="detail-text" style="height: 250px;" class="form-control" disabled>${report.replyId.content}</textarea>
-										</div>
-									</div>
-								</c:otherwise>
-							</c:choose>
+								</div>
+							</div>
 						</div>
 					</div>
+				</c:forEach>
 
-					<div class="modal-footer">
-						<button type="button" id="btn-report-reply" class="custom-sm-btn">신고하기</button>
-					</div>
-				</div>
-			</div>
-		</div>
+			</tbody>
+		</table>
+	</div>
 
-	</c:forEach>
+
 </div>
 
 <br>

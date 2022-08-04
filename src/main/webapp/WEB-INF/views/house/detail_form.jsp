@@ -17,8 +17,8 @@
 				<div class="col-md-6">
 					<h2 class="multiLine-title">${house.name}</h2>
 					<br>
-					<div class="fs-5 mb-5 d-flex ">
-						<span class="text-decoration-line-through flex-shrink-0">#${house.address}&nbsp;#${house.type}</span>
+					<div class="fs-5 mb-5 d-flex">
+						<span class="text-decoration-line-through flex-shrink-0" style="margin-top: 5px;">#${house.address}&nbsp;#${house.type}</span>
 					</div>
 					<br>
 					<div class="d-flex">
@@ -38,7 +38,11 @@
 					<br> <br>
 					<div class="d-flex" style="position: absolute; bottom: -17%;">
 						<button class="custom-btn flex-shrink-0" onclick="location.href='/user/bookForm/${house.id}'" type="button">예약하기</button>
-						<i class="bi ${not empty likeHouse.house ? exist : notExist}" style="margin-left: 25px; cursor: pointer;" id="like" onclick="clickHeart()"></i>&nbsp;&nbsp;&nbsp;&nbsp;
+						<div class="d-flex" style="margin-top: 5px;">
+							<i class="bi ${not empty likeHouse.house ? exist : notExist}" style="margin-left: 30px; cursor: pointer;" id="like" onclick="clickHeart()"></i>&nbsp;&nbsp;
+							<p id="like-count">${likeCount}</p>
+						</div>
+						&nbsp;&nbsp;&nbsp;&nbsp;
 
 					</div>
 				</div>
@@ -48,7 +52,7 @@
 	</div>
 
 	<!-- 숙소 설명 모달 -->
-	<div class="modal" id="info-modal">
+	<div class="modal" id="info-modal" >
 		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
 
@@ -238,8 +242,8 @@
 				data : JSON.stringify(data),
 				contentType : "application/json; charset=utf-8",
 				dataType : "json"
-			}).done(function() {
-				console.log("하트추가 성공");
+			}).done(function(response) {
+				$("#like-count").text(response.data);
 			}).fail(function(error) {
 				console.log(error);
 			});
@@ -256,8 +260,9 @@
 
 				url : "/api/house/wish-list/" + houseId,
 				type : "DELETE",
-			}).done(function() {
-				console.log("위시리스트 삭제");
+			}).done(function(response) {
+				$("#like-count").text(response.data);
+
 			}).fail(function() {
 			});
 			// 빈 하트로 바꾸기

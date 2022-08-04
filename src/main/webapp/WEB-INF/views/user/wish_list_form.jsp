@@ -67,6 +67,7 @@
 				</c:when>
 				<c:otherwise>
 					<h2>나의 위시리스트</h2>
+					<p class="card-text">나의 위시리스트를 확인하고 원하는 숙소를 예약해보세요.</p>
 				</c:otherwise>
 			</c:choose>
 		</div>
@@ -85,7 +86,7 @@
 						<a href="/house/detail/${house.house.id}"><img class="custom-img" src="http://localhost:9090/upload/${house.house.image.imageUrl}" style="width: 300px; height: 250px; object-fit: cover;"></a>
 						<div class="p-4">
 							<div class="container" style="position: relative; width: 240px;">
-								<h5 class="fw-bolder multiLine" style="position: absolute;">${house.house.name}</h5>
+								<h5 class="fw-bolder multiLine" style="position: absolute; margin-left: -3px;">${house.house.name}</h5>
 								<i class="bi ${not empty house ? exist : notExist}" style="margin-top: 10px; cursor: pointer; position: absolute; right: -5%" id="like-${house.house.id}" onclick="clickHeart(${house.house.id})"></i>
 								<p style="position: absolute; top: 45px">${house.house.type},&nbsp;${house.house.address}</p>
 							</div>
@@ -112,7 +113,6 @@
 		// 빈 하트를 눌렀을때
 		if ($("#like-" + houseId).attr("class") == "bi bi-suit-heart") {
 
-			console.log("위시리스트 추가 확인 : " + houseId);
 			$.ajax({
 				beforeSend : function(xhr) {
 					xhr.setRequestHeader(header, token)
@@ -133,8 +133,6 @@
 
 			// 채워진 하트를 눌렀을 때
 		} else if ($("#like-" + houseId).attr("class") == "bi bi-suit-heart-fill") {
-
-			console.log("위시리스트 삭제 확인 : " + houseId);
 
 			$.ajax({
 				beforeSend : function(xhr) {

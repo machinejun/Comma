@@ -79,7 +79,7 @@
 						style="width: 200px; height: 200px; object-fit: cover;"></a>
 					<div style="margin-left: 10px;">
 						<div class="col">
-							<h3>${house.name}</h3>
+							<h4>${house.name}</h4>
 						</div>
 						<p class="col">
 							등록일 :

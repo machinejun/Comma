@@ -80,6 +80,8 @@ public class HouseController {
 		LikeHouse likeHouseEntity = likeHouseService.checkWishList(houseId, principalDetail.getUser().getId());
 		// 숙소의 평균 평점
 		HouseScoreDto houseScoreDto = reviewService.getAvgStarScore(houseId) == null ? new HouseScoreDto() : reviewService.getAvgStarScore(houseId);
+		// 위시리스트 카운트
+		int likeCount = likeHouseService.getLikeCount(houseId);
 
 		model.addAttribute("house", houseEntity);
 		model.addAttribute("houseList", houseList);
@@ -87,6 +89,7 @@ public class HouseController {
 		model.addAttribute("likeHouse", likeHouseEntity);
 		model.addAttribute("reviewCount", reviewCount);
 		model.addAttribute("avgScore", houseScoreDto.getScore());
+		model.addAttribute("likeCount", likeCount);
 		return "house/detail_form";
 	}
 

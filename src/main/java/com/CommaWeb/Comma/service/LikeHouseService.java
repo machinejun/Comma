@@ -26,4 +26,9 @@ public class LikeHouseService {
 	public List<LikeHouse> getWishListById(int guestId) {
 		return likeHouseRepository.getWishListByGuestId(guestId);
 	}
+
+	@Transactional(readOnly = true)
+	public int getLikeCount(int houseId) {
+		return likeHouseRepository.getLikeCount(houseId);
+	}
 }

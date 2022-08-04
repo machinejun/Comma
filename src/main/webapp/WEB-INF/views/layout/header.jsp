@@ -54,12 +54,13 @@ code {
 }
 
 .nav-link {
-	font-family: 'SUIT-Medium';	
+	font-family: 'SUIT-Medium';
 	color: rgba(255, 149, 149, 1);
 	margin-left: 30px;
 }
+
 .nav-link:hover {
-   /* transform: translate(1px, -2%); */
+	/* transform: translate(1px, -2%); */
 	color: rgba(255, 100, 100, 0.9);
 }
 
@@ -89,7 +90,6 @@ nav {
 	font-size: 35px;
 	color: rgba(255, 100, 100, 0.9);
 }
-
 
 .list-group>.list-group-item {
 	position: relative;
@@ -137,9 +137,9 @@ nav {
 
 				</c:when>
 				<c:otherwise>
-					<a href="/auth/update_form" class="list-group-item list-group-item-action"> <span class="icon-user"></span>&nbsp;&nbsp;회원정보 수정
-					</a>
 					<a class="list-group-item list-group-item-action" href="/logout"> <span class="icon-drivers-license-o"></span>&nbsp;&nbsp;로그아웃
+					</a>
+					<a href="/user/my-page" class="list-group-item list-group-item-action"> <span class="icon-user"></span>&nbsp;&nbsp;마이페이지
 					</a>
 
 				</c:otherwise>
@@ -148,19 +148,10 @@ nav {
 			<sec:authorize access="hasRole('ROLE_GUEST')">
 				<a type="button" class="list-group-item list-group-item-action" href="/be-host"> <span class="icon-black-tie"></span>&nbsp;&nbsp;호스트 되기
 				</a>
-				<a class="list-group-item list-group-item-action" href="/reserveTable/user"> <span class="icon-suitcase"></span>&nbsp;&nbsp;예약 내역
-				</a>
-				<a type="button" href="/wish-list/${principal.user.id}" class="list-group-item list-group-item-action"> <span class="icon-gittip"></span>&nbsp;&nbsp;위시 리스트
-				</a>
-				<a type="button" href="/review/my-review-list/${principal.user.id}" class="list-group-item list-group-item-action"> <span class="icon-note"></span>&nbsp;&nbsp;리뷰 관리
-				</a>
+
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_HOST')">
 				<a type="button" class="list-group-item list-group-item-action" href="/be-guest"> <span class="icon-black-tie"></span>&nbsp;&nbsp;게스트 되기
-				</a>
-				<a type="button" class="list-group-item list-group-item-action" href="/reserveTable/host"> <span class="icon-users"></span>&nbsp;&nbsp;예약 관리
-				</a>
-				<a type="button" class="list-group-item list-group-item-action" href="/house/management"> <span class="icon-home"></span>&nbsp;&nbsp;숙소 관리
 				</a>
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_ADMIN')">

@@ -15,12 +15,12 @@ public interface HouseRepository extends JpaRepository<House, Integer> {
 	@Query(value = "SELECT * FROM house WHERE address = ? AND id <> ? LIMIT 4", nativeQuery = true)
 	Optional<List<House>> findAllByAddress(String address, int houseId);
 
-	@Query(value = "SELECT * FROM house WHERE hostId = ?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM house WHERE hostId = ?1 ORDER BY id DESC", nativeQuery = true)
 	List<House> findAllByHostId(@Param(value = "hostId") int hostId);
 
-	List<House> findAllByAddressAndType(String address, String type);
+	List<House> findAllByAddressAndTypeOrderByIdDesc(String address, String type);
 	
-	List<House> findAllByAddressOrType(String address, String type);
+	List<House> findAllByAddressOrTypeOrderByIdDesc(String address, String type);
 
 	@Query(value = "SELECT * FROM house ORDER BY starscore DESC LIMIT 3;", nativeQuery = true)
 	List<House> findAllByStarScore();

@@ -187,12 +187,12 @@ public class HouseService {
 
 	@Transactional
 	public List<House> searchHouseByAddressAndType(String address, String type) {
-		return houseRepository.findAllByAddressAndType(address, type);
+		return houseRepository.findAllByAddressAndTypeOrderByIdDesc(address, type);
 	}
 
 	@Transactional
 	public List<House> searchHouseByAddressOrType(String address, String type) {
-		return houseRepository.findAllByAddressOrType(address, type);
+		return houseRepository.findAllByAddressOrTypeOrderByIdDesc(address, type);
 	}
 
 	@Transactional

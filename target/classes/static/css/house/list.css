@@ -34,9 +34,9 @@ h2:after {
 	text-shadow: 0 0 0 #fdd826;
 }
 
-.selector {
+.custom-selector {
 	height: 47px;
-	width: 170px;
+	width: 180px;
 	border-radius: 10px;
 }
 
@@ -58,11 +58,10 @@ p, select {
 @keyframes box-ani {
 	from { transform:translate(0, 0);
 	
-}
-
-to {
+}to {
 	transform: translate(0, -15px);
 }
+
 }
 
 .custom-btn {

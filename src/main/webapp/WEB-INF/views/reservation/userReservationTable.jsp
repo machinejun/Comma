@@ -68,7 +68,7 @@ img {
 		<div class="row">
 			<div class="col-xs-12 col-md-12">
 				<div id="page-container">
-					<h2 style="font-family: SUIT-Medium;">${reservations[0].guestId.user.username}님 안녕하세요</h2>
+					<h2 style="font-family: SUIT-Medium;">${principal.user.username}님 안녕하세요</h2>
 					<table class="table">
 						<thead>
 							<tr>

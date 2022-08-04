@@ -31,4 +31,12 @@ public class CSBoardService {
 	public List<CustomServiceBoard> loadNoticeBoards(){
 		return csBoardRepository.loadNoticeBoard();
 	}
+	
+	@Transactional(readOnly = true)
+	public CustomServiceBoard findCSboardByid(int id) {
+		CustomServiceBoard board = csBoardRepository.findById(id).orElseThrow(() -> {
+			return new RuntimeException("해당 게시글를 찾을 수 없습니다.");
+		});
+		return board;
+	}
 }

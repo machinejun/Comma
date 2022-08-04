@@ -1,11 +1,7 @@
-let isCheck = 0;
 let token = $("meta[name='_csrf']").attr("content");
 let header = $("meta[name='_csrf_header']").attr("content");
 
 $(document).ready(function() {
-	//write.jsp
-	$("#write-password-box").hide();
-	
 	$('.summernote').summernote({
 		placeholder: '',
         tabsize: 2,
@@ -16,51 +12,18 @@ $(document).ready(function() {
 		  ]
        	
 	});
-	
-	
-	$("#secret-check").bind("click", () => {
-		showBox();
-	});
-	
-	
+		
 	$("#btn-write").bind("click", () => {
 		location.href="/user/cs/writeform";
 	});
-	// --- write
-	
-	// update.jsp
-	updateSecret();
-
 });
-
-function updateSecret(){
-	let isSecResult = $("#h-secret-check").val();
-	
-	if(isSecResult == 1){
-		$("#secret-check").prop('checked', true);
-		showBox();
-		isCheck = 1;
-	}
-}
-
-function showBox() {
-	if(isCheck == 0) {
-		$("#write-password-box").show();
-		isCheck = 1;
-	}else{
-		$("#write-password-box").hide();
-		isCheck = 0;
-	}		
-	
-}
 
 function updateBoard(boardid){
 	let data={
 		id: boardid,
 		title: $("#title").val(),
 		content: $("#content").val(),
-		secret: isCheck == 1 ? 1 : 0,
-		password: isCheck == 1 ? $("#write-password").val() : null 
+		secret: $("#secret-check").val() =="on" ? 1 : 0,
 	}
 	console.log(token);
 	
@@ -69,7 +32,6 @@ function updateBoard(boardid){
 			console.log("xhr: " + xhr)
 			xhr.setRequestHeader(header, token)
 		},
-
 		type: "post",
 		url:"/user/api/cs-write",
 		contentType: "application/json; charset=utf-8",
@@ -109,8 +71,7 @@ function writeBoard(){
 	let data={
 		title: $("#title").val(),
 		content: $("#content").val(),
-		secret: isCheck == 1 ? 1 : 0,
-		password: isCheck == 1 ? $("#write-password").val() : null 
+		secret: $("#secret-check").val() =="on" ? 1 : 0,
 	}
 	console.log(data);
 	
@@ -139,7 +100,7 @@ function formatDate(createdate){
 	let data = createdate.tolSOString.substring(0,10);
 	return data;
 }
-//writeReply(${principal.id},${board.id}})
+
 function writeReply(boardid){
 	let replydata={
 		content: $("#re_content").val(),
@@ -180,24 +141,6 @@ function addReply(data){
 	$("#reply-list-table").prepend(replyLi);
 }
 
-
-
-function showDetail(user, board){
-	
-	
-	let inputPW = "";
-	
-	if(secret != 1 || user.role == "ADMIN"){}
-	else{
-		inputPW = prompt('비밀번호를 입력하세요', 'password');
-		if(board.password != inputPW){
-			alert("잘못된 비밀번호 입니다.")
-			return;
-		}
-	}
-	alert("승인됨");
-	//location.href=`/board/detail/${id}`
-}
 
 function deleteReply(id){
 	console.log("reply-delet btn click >>>" + id);

@@ -73,13 +73,14 @@ section.notice {
   word-break: break-all;
   vertical-align: middle;
 }
-.board-table a:hover {
-  text-decoration: underline;
-  font-size: 20px;
-}
+
 .board-table th {
   text-align: center;
   height: 50px;
+}
+
+.cs-detail:hover {
+	color: red;
 }
 
 .board-table .th-num {

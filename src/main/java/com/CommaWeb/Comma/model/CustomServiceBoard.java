@@ -47,6 +47,9 @@ public class CustomServiceBoard {
 	@Enumerated(EnumType.STRING)
 	private CSBoardType boardType;
 	
+	@ColumnDefault("0")
+	private int count;
+	
 	@Lob
 	private String content;
 	
@@ -60,6 +63,5 @@ public class CustomServiceBoard {
 	@Column(length = 1)
 	@ColumnDefault("0")
 	private int secret;
-	
-	private String password;
+
 }

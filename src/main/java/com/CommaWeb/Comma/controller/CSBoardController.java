@@ -1,7 +1,6 @@
 package com.CommaWeb.Comma.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +8,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
+import com.CommaWeb.Comma.auth.PrincipalDetail;
+import com.CommaWeb.Comma.dto.csBoardDto.CSboardRequestDto;
 import com.CommaWeb.Comma.model.CustomServiceBoard;
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.service.CSBoardService;
@@ -52,6 +56,17 @@ public class CSBoardController {
 		return list;
 	}
 	
+	@GetMapping("/user/cs/detail/{id}")
+	public String showDetail(@PathVariable int id,@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
+		CustomServiceBoard csboard = csBoardService.findCSboardByid(id);
+		if(principalDetail.getUser().getRole() == RoleType.ADMIN || csboard.getUser().getId() == principalDetail.getUser().getId()) {
+			model.addAttribute("board", csboard);
+			return "/customerService/customerBoardDetail";
+		}else {
+			return "/advice/errorPage";
+		}
+		
+		
+	}
 	
- 
 }

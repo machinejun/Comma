@@ -11,9 +11,9 @@ import com.CommaWeb.Comma.model.CustomServiceBoard;
 
 public interface CSBoardRepository extends JpaRepository<CustomServiceBoard, Integer>{
 	
-	@Query(value = "SELECT * FROM customserviceboard WHERE title like %?% and boardType == 'NORMAL' order by id desc", nativeQuery = true)
+	@Query(value = "SELECT * FROM customserviceboard WHERE title like %?% and boardType = 'NORMAL' order by id desc", nativeQuery = true)
 	Page<CustomServiceBoard> findByTitleContaining(String title, Pageable pageable);
 	
-	@Query(value = "SELECT * FROM customserviceboard WHERE boardType == 'NOTICE' order by id desc", nativeQuery = true)
+	@Query(value = "SELECT * FROM customserviceboard WHERE boardType = 'NOTICE' order by id desc", nativeQuery = true)
 	List<CustomServiceBoard> loadNoticeBoard();
 }

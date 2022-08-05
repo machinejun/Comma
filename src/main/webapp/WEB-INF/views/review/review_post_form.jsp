@@ -52,7 +52,7 @@ function postReview() {
      }
 
 	let data = {
-		content: xssCheck(document.querySelector("#content").value, 1),
+		content: document.querySelector("#content").value,
 		starScore: starScore
 	}
 	if(data.content == "" || data.content.trim() === "") {
@@ -88,19 +88,10 @@ $(".custom-file-input").on(
 
 $('.summernote').summernote({
 	tabsize : 2,
-	height : 300,
+	height : 350,
 	toolbar : [],
 	placeholder : "숙소의 청결도, 위치, 호스트와의 의사소통에 대한 솔직한 후기를 남겨주세요."
 });
 
-function xssCheck(str, level) {
-    if (level == undefined || level == 0) {
-        str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g,"");
-    } else if (level != undefined && level == 1) {
-        str = str.replace(/\</g, "&lt;");
-        str = str.replace(/\>/g, "&gt;");
-    }
-    return str;
-}
 </script>
 <%@ include file="../layout/footer.jsp"%>

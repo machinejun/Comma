@@ -91,7 +91,4 @@ $('.summernote').summernote({
 	placeholder : "숙소의 청결도, 위치, 호스트와의 의사소통에 대한 솔직한 후기를 남겨주세요."
 });
 </script>
-<!-- 
-<script src="/js/review.js"></script>
- -->
 <%@ include file="../layout/footer.jsp"%>

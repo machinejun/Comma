@@ -78,6 +78,12 @@ public class UserController {
 	public String updateForm() {
 		return "user/update_user_form";
 	}
+	
+	@GetMapping("/join/complete/{userId}")
+	public String completeJoinForm(@PathVariable int userId, Model model) {
+		model.addAttribute("user", userService.getUserById(userId));
+		return "user/join_complete_form";
+	}
 
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
@@ -91,7 +97,7 @@ public class UserController {
 	@PostMapping("/auth/joinProc")
 	public String saveUser(User user) {
 		userService.saveUser(user);
-		return "redirect:/";
+		return "redirect:/join/complete/" + user.getId();
 	}
 
 	@GetMapping("/reservation-history/{guestId}")
@@ -172,7 +178,6 @@ public class UserController {
 		
 		HttpEntity<MultiValueMap<String, String>> kakaoUserInfoRequest = new HttpEntity<>(kakaoUserInfoHeaders);
 		
-		// HTTP 요청에 대한 응답
 		ResponseEntity<KakaoProfile> kakaoUserInfoResponse = kakaoUserInfoRestTemplate.exchange(
 				"https://kapi.kakao.com/v2/user/me",
 				HttpMethod.POST,
@@ -236,6 +241,5 @@ public class UserController {
 	public String getMyPage()  {
 		return "user/my_page_form";
 	}
-
 
 }

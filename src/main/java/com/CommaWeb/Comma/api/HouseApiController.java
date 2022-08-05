@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.CommaWeb.Comma.auth.PrincipalDetail;
 import com.CommaWeb.Comma.dto.ResponseDto;
 import com.CommaWeb.Comma.model.House;
-import com.CommaWeb.Comma.model.LikeHouse;
 import com.CommaWeb.Comma.model.Review;
 import com.CommaWeb.Comma.service.HouseService;
 import com.CommaWeb.Comma.service.LikeHouseService;

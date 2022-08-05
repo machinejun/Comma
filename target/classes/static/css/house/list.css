@@ -15,7 +15,7 @@
 	-webkit-box-orient: vertical;
 }
 
-h2, h3 {
+h2 {
     font-weight: 900;
     line-height: 1.1;
     color: rgba(255,149,149,0.7);
@@ -44,7 +44,7 @@ p, select {
 	font-family: 'SUIT-Medium';
 }
 
-.h4, .h5, .h6, h4, h5, h6 {
+.h4, .h5, .h6, h4, h5, h6, h3 {
     font-family: 'SUIT-Medium';
     font-weight: 500;
     line-height: 1.1;

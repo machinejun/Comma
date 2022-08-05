@@ -73,9 +73,11 @@
 		}).done(function(response) {
 			console.log(response);
 			if (response.data.username != null) {
+				document.getElementById('usernameCheckResult').style.color = "red";
 				$("#usernameCheckResult").text("이미 사용 중인 아이디입니다.");
 			} else {
 				usernameCheck = true;
+				document.getElementById('usernameCheckResult').style.color = "blue";
 				$("#usernameCheckResult").text("사용 가능한 아이디입니다.");
 			}
 		}).fail(function(error) {
@@ -86,8 +88,6 @@
 	$(document)
 			.ready(
 					function() {
-						// 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.
-
 						// keyup
 						// 사용자가 키보드의 키를 눌렀다가 떼었을 때 발생
 						$("#password, #re-password")
@@ -130,22 +130,26 @@
 		let phoneNumber = $("#phoneNumber").val();
 
 		if (usernameCheck == false) {
+			document.getElementById('usernameCheckResult').style.color = "red";
 			$("#usernameCheckResult").text("아이디 중복 체크를 해주세요.");
 			return false;
 		}
 
 		if (phoneNumber.indexOf("-") != -1) {
+			document.getElementById('phoneNumberCheck').style.color = "red";
 			$("#phoneNumberCheck").text("하이픈(-)을 제외한 번호를 입력해주세요.");
 			return false;
 		}
 
 		if (phoneNumber.length != 11) {
+			document.getElementById('phoneNumberCheck').style.color = "red";
 			$("#phoneNumberCheck").text("휴대폰 번호 11자리를 입력해주세요.");
 			return false;
 		}
 
 		if (phoneNumber.charAt(0) != 0 || phoneNumber.charAt(1) != 1
 				|| phoneNumber.charAt(2) != 0) {
+			document.getElementById('phoneNumberCheck').style.color = "red";
 			$("#phoneNumberCheck").text("휴대폰 번호의 형식은 010으로 시작해야 합니다.");
 			return false;
 		}

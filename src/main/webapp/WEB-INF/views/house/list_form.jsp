@@ -38,7 +38,7 @@
 				</select>
 			</div>
 
-			<div class="form-group col-sm-6" >
+			<div class="form-group col-sm-6">
 				<c:set var="searchedType" value="${searchedType}"></c:set>
 				<h4 style="text-align: right; margin-right: 10px;">숙소 유형</h4>
 				<select class="form-control custom-selector" name="type" onchange="this.form.submit()" style="width: 130px;">
@@ -62,8 +62,11 @@
 		</c:if>
 		<div class="row">
 			<c:forEach var="house" items="${houseList}">
+				<input type="hidden" value="${house.id}" id="house-id-${house.id}">
 				<div class="col-sm-4">
-					<a href="/house/detail/${house.id}"><img class="custom-img list-img" src="http://localhost:9090/upload/${house.image.imageUrl}" style="object-fit: cover;"></a>
+					<div>
+						<a href="/house/detail/${house.id}"><img class="custom-img list-img" src="http://localhost:9090/upload/${house.image.imageUrl}" style="object-fit: cover;"></a>
+					</div>
 					<div class="row">
 						<h4 class="d-flex" style="margin-left: 15px;">
 							<b class="multiLine">${house.name}</b>

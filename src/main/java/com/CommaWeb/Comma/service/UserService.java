@@ -19,15 +19,13 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
-	
 
-	
 	@Autowired
 	private BestHouseDtoRepository bestHoustDtoRepository;
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
-	
+
 	@Transactional
 	public int saveUser(User user) {
 		try {
@@ -35,8 +33,8 @@ public class UserService {
 			String encPassword = encoder.encode(rawPassword);
 			user.setPhoneNumber(changePhoneNumFormat(user.getPhoneNumber()));
 			user.setPassword(encPassword);
-			if(!user.getUsername().startsWith("kakao_")) {
-				user.setLoginType(LoginType.ORIGIN);				
+			if (!user.getUsername().startsWith("kakao_")) {
+				user.setLoginType(LoginType.ORIGIN);
 			}
 			user.setRole(RoleType.GUEST);
 			userRepository.save(user);
@@ -54,19 +52,18 @@ public class UserService {
 			return new IllegalArgumentException("존재하지 않는 회원입니다.");
 		});
 		System.out.println("update : " + userEntity);
-		if(userEntity.getLoginType() == LoginType.KAKAO) {
+		if (userEntity.getLoginType() == LoginType.KAKAO) {
 			userEntity.setEmail(user.getEmail());
-			userEntity.setPhoneNumber(user.getPhoneNumber());
-			
-		}else {
+			userEntity.setPhoneNumber(changePhoneNumFormat(user.getPhoneNumber()));
+
+		} else {
 			String rawPassword = user.getPassword();
 			String hashPassword = encoder.encode(rawPassword);
 			userEntity.setPassword(hashPassword);
 			userEntity.setEmail(user.getEmail());
-			userEntity.setPhoneNumber(user.getPhoneNumber());
+			userEntity.setPhoneNumber(changePhoneNumFormat(user.getPhoneNumber()));
 		}
 		return userEntity;
-		
 
 	}
 
@@ -75,56 +72,60 @@ public class UserService {
 		User checkUser = userRepository.findByUsername(username).orElseGet(() -> {
 			return new User();
 		});
-		
+
 		return checkUser;
 	}
-	
+
 	public User findByUserId(int id) {
 		return userRepository.findById(id).get();
 	}
-	
+
 	private String changePhoneNumFormat(String phoneNum) {
-		if(phoneNum.length() != 11) {
+		if (phoneNum.length() != 11) {
 			return phoneNum;
 		}
-		String newPhoneNum = phoneNum.substring(0, 3) + "-" + phoneNum.subSequence(3, 7) + "-" + phoneNum.subSequence(7, 11);
+		String newPhoneNum = phoneNum.substring(0, 3) + "-" + phoneNum.subSequence(3, 7) + "-"
+				+ phoneNum.subSequence(7, 11);
 		return newPhoneNum;
 	}
 
-
 	@Transactional
-
 	public List<User> showAllUser() {
 		return userRepository.findAll();
 	}
-	
+
 	@Transactional
-	public List<User> searchRoleAndUser(String role, String name){
+	public List<User> searchRoleAndUser(String role, String name) {
 		List<User> users = userRepository.findByRoleAndUserName(role, name);
 		return sortUserList(users);
 	}
-	
+
 	@Transactional
-	public List<User> searchUserOnly(String name){
+	public List<User> searchUserOnly(String name) {
 		List<User> users = userRepository.findByUsernameContaining(name);
 		return sortUserList(users);
 	}
-	
+
 	private List<User> sortUserList(List<User> users) {
-		users.sort( (o1, o2) -> {
-			if(o1.getId() < o2.getId()) {
+		users.sort((o1, o2) -> {
+			if (o1.getId() < o2.getId()) {
 				return 1;
-			}else if(o1.getId() > o2.getId()){
+			} else if (o1.getId() > o2.getId()) {
 				return -1;
-			}else {
+			} else {
 				return 0;
 			}
-		}); 
+		});
 		return users;
 	}
-	
-	public List<BestHouseDto> loadHouseDtolist(String month, int limit){
+
+	public List<BestHouseDto> loadHouseDtolist(String month, int limit) {
 		return bestHoustDtoRepository.findByMonthBestHouse(month, limit);
+	}
+
+	@Transactional(readOnly = true)
+	public User getUserById(int userId) {
+		 return userRepository.findById(userId).get();
 	}
 
 }

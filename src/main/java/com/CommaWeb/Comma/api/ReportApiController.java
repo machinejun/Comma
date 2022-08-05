@@ -37,6 +37,7 @@ public class ReportApiController {
 	@PostMapping("/host/report/{reviewId}")
 	public ResponseDto<Integer> reportReview(@PathVariable int reviewId, @AuthenticationPrincipal PrincipalDetail principalDetail,
 			@RequestBody Report report) {
+		
 		reportService.reportReview(principalDetail.getUser(), reviewId, report);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}

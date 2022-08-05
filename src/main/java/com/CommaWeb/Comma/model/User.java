@@ -51,10 +51,6 @@ public class User {
 	private LoginType loginType;
 	
 	@ColumnDefault("0")
-	private int reportCount;
-	
-	@Enumerated(EnumType.STRING)
-	private ReportType reportStatus;
-	
+	private int reportCount;	
 	
 }

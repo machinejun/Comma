@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.CommaWeb.Comma.model.Reply;
 import com.CommaWeb.Comma.model.Report;
+import com.CommaWeb.Comma.model.ReportType;
 import com.CommaWeb.Comma.model.Review;
 import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.repository.ReplyRepository;
@@ -16,35 +17,39 @@ import com.CommaWeb.Comma.repository.ReviewRepository;
 
 @Service
 public class ReportService {
-	
+
 	@Autowired
 	private ReportRepository reportRepository;
-	
+
 	@Autowired
 	private ReplyRepository replyRepository;
-	
+
 	@Autowired
 	private ReviewRepository reviewRepository;
 
 	@Transactional
-	public void reportReply(User user, int replyId, Report report) {		
+	public void reportReply(User user, int replyId, Report report) {
 		Reply replyEntity = replyRepository.findById(replyId).get();
-		
+
 		report.setReporter(user);
+		report.setReportStatus(ReportType.AWAIT);
 		report.setReplyId(replyEntity);
 		report.setRespondent(replyEntity.getReviewId().getHouseId().getHostId());
-		
-		reportRepository.save(report);		
+
+		reportRepository.save(report);
 	}
 
 	@Transactional
 	public void reportReview(User user, int reviewId, Report report) {
 		Review reviewEntity = reviewRepository.findById(reviewId).get();
-		
+
 		report.setReporter(user);
+		report.setReportStatus(ReportType.AWAIT);
 		report.setReviewId(reviewEntity);
 		report.setRespondent(reviewEntity.getGuestId());
 		
+		System.out.println("데이터 들어오나요?" + report);
+
 		reportRepository.save(report);
 	}
 
@@ -55,8 +60,8 @@ public class ReportService {
 
 	@Transactional(readOnly = true)
 	public List<Report> getAllReport() {
-		return reportRepository.findAll();
-		
+		return reportRepository.findAllOrderByIdDesc();
+
 	}
 
 }

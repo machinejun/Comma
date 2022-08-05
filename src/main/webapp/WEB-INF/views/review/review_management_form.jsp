@@ -108,7 +108,7 @@ div {
 
 			<!-- 신고 모달 -->
 			<div class="modal" id="report-modal-${review.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<input type="hidden" value="${review.id}" id="review-id">
+				<input type="hidden" value="${review.id}" id="review-id-${review.id}">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -141,7 +141,7 @@ div {
 						</div>
 
 						<div class="modal-footer">
-							<button type="submit" id="btn-report-review" class="custom-report-btn">신고하기</button>
+							<button id="btn-report-review" class="custom-report-btn" onclick="index.reportReview(${review.id})">신고하기</button>
 						</div>
 					</div>
 				</div>

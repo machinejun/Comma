@@ -12,4 +12,7 @@ public interface ReportRepository extends JpaRepository<Report, Integer>{
 	@Query(value = "SELECT * FROM report WHERE reporter = ? ", nativeQuery = true)
 	List<Report> findAllByReporter(int reporterId);
 
+	@Query(value = "SELECT * FROM report ORDER BY id DESC ", nativeQuery = true)
+	List<Report> findAllOrderByIdDesc();
+
 }

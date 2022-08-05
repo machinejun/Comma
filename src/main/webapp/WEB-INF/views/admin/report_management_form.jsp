@@ -90,6 +90,10 @@ div {
 #title {
 	background-color: white;
 }
+
+th, td {
+	text-align: center;
+}
 </style>
 
 <div class="container">
@@ -97,9 +101,12 @@ div {
 		style="background-color: rgba(255, 149, 149, 0.05);">
 		<input type="hidden" id="guest-id" value="${principal.user.id}">
 		<div class="m-4 m-lg-5">
-			<h2>회원 신고 관리</h2><br>
-			<p>회원의 신고 내역을 확인하고 승인 및 취소할 수 있습니다.<br>
-			신고된 회원은 신고 횟수에 따라 사이트의 기능이 제한됩니다.</p>
+			<h2>회원 신고 관리</h2>
+			<br>
+			<p>
+				회원의 신고 내역을 확인하고 승인 및 취소할 수 있습니다. <br>신고된 회원은 신고 횟수에 따라 사이트의 기능이
+				제한됩니다.
+			</p>
 		</div>
 	</div>
 	<br />
@@ -109,11 +116,14 @@ div {
 		<table class="table">
 			<thead>
 				<tr>
-					<th class="text-center">신고 번호</th>
-					<th class="text-center">신고 일자</th>
-					<th class="text-center">신고 회원</th>
-					<th class="text-center">신고 유형</th>
-					<th class="text-center">상세 사유 및 설명</th>
+					<th>신고 번호</th>
+					<th>신고 일자</th>
+					<th>신고 회원</th>
+					<th>피신고 회원</th>
+					<th>신고 리뷰/댓글</th>
+					<th>신고 유형</th>
+					<th>상세 사유 및 설명</th>
+					<th>승인 여부</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -121,16 +131,21 @@ div {
 				<c:forEach var="report" items="${reports}">
 					<input type="hidden" value="${report.id}" id="review-id">
 					<tr>
-						<td class="text-center">${report.id}</td>
-						<td class="text-center"><fmt:formatDate pattern="yyyy-MM-dd"
+						<td>${report.id}</td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd"
 								value="${report.creationDate}" /></td>
-						<td class="text-center">${report.respondent.username}</td>
-						<td class="text-center">${report.reportType}</td>
-						<td class="text-center"><a data-toggle="modal"
+						<td>${report.reporter.username}</td>
+						<td>${report.respondent.username}</td>
+						<td><a data-toggle="modal"
+							data-target="#report-modal-${report.id}" style="cursor: pointer;">내용보기</a></td>
+						<td>${report.reportType}</td>
+						<td><a data-toggle="modal"
 							data-target="#report-modal-${report.id}" style="cursor: pointer;"><i
 								class="bi bi-search"></i></a></td>
+						<td>${report.reportStatus}</td>
 					</tr>
 
+					<!-- 상세 사유 모달 -->
 					<div class="modal" id="report-modal-${report.id}" tabindex="-1"
 						aria-labelledby="exampleModalLabel" aria-hidden="true">
 						<input type="hidden" value="${reply.id}" id="reply-id">
@@ -165,11 +180,55 @@ div {
 												</div>
 											</c:otherwise>
 										</c:choose>
+
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+
+					<!-- 신고 리뷰, 댓글 모달 -->
+					<div class="modal" id="report-modal-${report.id}" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<input type="hidden" value="${reply.id}" id="reply-id">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" id="close" class="close"
+										data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+
+								<div class="modal-body">
+									<div>
+										<c:choose>
+											<c:when test="${empty report.replyId}">
+												<div class="col-12">
+													<h4>상세 사유 및 설명</h4>
+													<textarea id="detail-text" style="height: 250px;"
+														class="form-control" disabled>${report.reviewId.content}</textarea>
+												</div>
+											</c:when>
+											<c:otherwise>
+												<div class="col-12">
+													<div class="form-group">
+														<h4>
+															<b>상세 사유 및 설명</b>
+														</h4>
+														<textarea id="detail-text" style="height: 250px;"
+															class="form-control" disabled>${report.replyId.content}</textarea>
+													</div>
+												</div>
+											</c:otherwise>
+										</c:choose>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
 				</c:forEach>
 
 			</tbody>

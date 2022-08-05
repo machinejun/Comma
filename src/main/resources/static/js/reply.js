@@ -3,12 +3,6 @@ let header = $("meta[name='_csrf_header']").attr("content");
 
 let index = {
 
-	init: function() {
-		$("#btn-report-review").bind("click", () => {
-			this.reportReview();
-		})
-	},
-
 	addReply: function(reviewId) {
 		let houseId = $("#house-id").val();
 
@@ -123,14 +117,15 @@ let index = {
 		$('#reply--' + replyId).focus();
 	},
 
-	reportReview: function() {
-		let reviewId = $("#review-id").val();
+	reportReview: function(reviewId) {
 		console.log(reviewId);
 
 		let data = {
+			reviewId : reviewId,
 			reportType: $("#report-type").val(),
 			detailText: xssCheck($("#detail-text").val(), 1)
 		}
+		console.log(data);
 
 		if (data.reportType == "") {
 			alert("신고 유형을 선택하셔야 합니다.");

@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.CommaWeb.Comma.auth.PrincipalDetail;
@@ -38,12 +39,6 @@ public class CSBoardController {
 		model.addAttribute("pageNums", makePageNumbers(boards));
 		return "/customerService/customerService";
 	}
-	
-	@GetMapping("/user/cs/writeform")
-	public String writeCustomerBoard() {
-		return "/customerService/customerBoardwrite";
-	}
-	
 	private ArrayList<Integer> makePageNumbers(Page<CustomServiceBoard> pages) {
 		int nowPage = pages.getPageable().getPageNumber();
 		int startPage = Math.max(nowPage - 2, 0); //두 인트값 중에 큰 값을 반환 한다.
@@ -55,6 +50,22 @@ public class CSBoardController {
 		System.out.println(list);
 		return list;
 	}
+	
+	@GetMapping("/user/cs/writeform")
+	public String writeCustomerBoard() {
+		return "/customerService/customerBoardwrite";
+	}
+	
+	@GetMapping("/user/cs/updateform/{id}")
+	public String updateCustomerBoard(@PathVariable int id, Model model) {
+		CustomServiceBoard csboard = csBoardService.findCSboardByid(id);
+		model.addAttribute("board", csboard);
+		return "/customerService/customerBoardupdate";
+	}
+	
+	
+	
+	
 	
 	@GetMapping("/user/cs/detail/{id}")
 	public String showDetail(@PathVariable int id,@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {

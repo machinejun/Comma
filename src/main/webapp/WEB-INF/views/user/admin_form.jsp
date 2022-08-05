@@ -34,19 +34,13 @@ h2::after {
 								<div class="d-flex flex-row-reverse">
 										
 										<form class="form-inline"  action="/user/searchUsername" method="get">
-<<<<<<< HEAD
-													<select name="role" style="width: 130px; height: 40px; margin: 10px; margin-top: 12px; border-radius: 5px">
-=======
-													<select name="role" style="width: 130px; height: 40px; margin: 10px; margin-top: 12px; border-radius: 10px;">
->>>>>>> 8186c74defe72093a46e137bf42b95729b152a11
-														<option value="">전체</option>
+											<select name="role" style="width: 130px; height: 40px; margin: 10px; margin-top: 12px; border-radius: 5px">
+												<option value="">전체</option>
 														<option value="guest">GUEST</option>
 														<option value="host">HOST</option>
-													</select>
+											</select>
 												  <input type="text" class="form-control" style="margin: 10px" name="q" value="${searchUser}" placeholder="검색어를 입력하세요" >
-												  <button  type="submit" class="custom-sm-btn" id="btn-search" style="font-size: 20px">검색</button>
-												  
-											
+												  <button  type="submit" class="custom-sm-btn" id="btn-search" style="font-size: 20px">검색</button>														
 										</form>								
 								</div>
 					

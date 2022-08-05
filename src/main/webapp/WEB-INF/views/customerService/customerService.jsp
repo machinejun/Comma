@@ -50,11 +50,11 @@
 							<c:choose>
 								<c:when test="${board.secret eq 1 }">
 									<td>${board.id}</td>
-									<th><a class="cs-detail" onclick="location.href='/user/cs/detail/${notice.id}'"><i class="bi bi-lock-fill"></i>&nbsp;${board.title }</a></th>
+									<th><a class="cs-detail" onclick="location.href='/user/cs/detail/${board.id}'"><i class="bi bi-lock-fill"></i>&nbsp;${board.title }</a></th>
 								</c:when>
 								<c:otherwise>
 									<td>${board.id}</td>
-									<th><a class="cs-detail" onclick="location.href='/user/cs/detail/${notice.id}'">&nbsp;${board.title }</a></th>
+									<th><a class="cs-detail" onclick="location.href='/user/cs/detail/${board.id}'">&nbsp;${board.title }</a></th>
 								</c:otherwise>
 							</c:choose>
 							<td>${board.user.username}</td>

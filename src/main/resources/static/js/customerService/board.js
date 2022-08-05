@@ -1,6 +1,7 @@
 let token = $("meta[name='_csrf']").attr("content");
 let header = $("meta[name='_csrf_header']").attr("content");
 
+
 $(document).ready(function() {
 	$('.summernote').summernote({
 		placeholder: '',
@@ -9,13 +10,13 @@ $(document).ready(function() {
         theme: 'monokai',
          toolbar: [
 		    ['style', ['bold', 'italic', 'underline', 'clear']],
-		  ]
-       	
+		  ]	
 	});
 		
 	$("#btn-write").bind("click", () => {
 		location.href="/user/cs/writeform";
 	});
+	
 });
 
 function updateBoard(boardid){
@@ -23,17 +24,14 @@ function updateBoard(boardid){
 		id: boardid,
 		title: $("#title").val(),
 		content: $("#content").val(),
-		secret: $("#secret-check").val() =="on" ? 1 : 0,
+		secret: $("#secret-check").prop('checked') ? 1 : 0,
 	}
-	console.log(token);
-	
 	$.ajax({
 		beforeSend: function(xhr) {
-			console.log("xhr: " + xhr)
 			xhr.setRequestHeader(header, token)
 		},
-		type: "post",
-		url:"/user/api/cs-write",
+		type: "put",
+		url:"/user/api/cs-update",
 		contentType: "application/json; charset=utf-8",
 		data: JSON.stringify(data),
 		dataType:"json"
@@ -51,16 +49,18 @@ function updateBoard(boardid){
 }
 
 function deleteBoard(boardid){
+	console.log("delete 호출" + boardid);
 	$.ajax({
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader(header, token)
+		},
 		type: "delete",
-		url:`/api/board/remove/${boardid}`,
+		url:`/user/api/cs-delete?boardId=${boardid}`,
 		dataType:"json"
 	}).done(function(response){
-		if(response.data == "ok"){
-			location.href="/"
-			return
+		if(response.status == 200){
+			location.href="/user/cs"
 		}
-		alert("게시글 삭제 실패");
 	}).fail(function(){
 		alert("게시글 삭제 실패");
 	})
@@ -71,7 +71,7 @@ function writeBoard(){
 	let data={
 		title: $("#title").val(),
 		content: $("#content").val(),
-		secret: $("#secret-check").val() =="on" ? 1 : 0,
+		secret: $("#secret-check").prop('checked') ? 1 : 0,
 	}
 	console.log(data);
 	
@@ -88,7 +88,7 @@ function writeBoard(){
 	}).done(function(response){
 		if(response.status == 200){
 			alert("게시글 작성 완료");
-			location.href="/";
+			location.href="/user/cs";
 		}
 	}).fail(function(){
 		alert("게시글 작성 실패");
@@ -112,8 +112,11 @@ function writeReply(boardid){
 	}
 	
 	$.ajax({
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader(header, token)
+		},
 		type: "post",
-		url:`/api/reply/${boardid}`,
+		url:`/user/api/cs-write/reply?boardId=${boardid}`,
 		contentType: "application/json; charset=utf-8",
 		data: JSON.stringify(replydata),
 		dataType:"json"
@@ -128,33 +131,32 @@ function writeReply(boardid){
 	
 }
 function addReply(data){
-	let replyLi = `<li class="reply-list-${data.id}">
-								<hr/>
-								<div class="name time"  style="font-size: 20px; ">
-									<strong>${data.user.username}</strong><a  style="margin-left: 10px; color: blue;"><time>${data.createTime }</time></a>
+	let replyLi = `<li class="reply-list-${data.id }">
+								<hr />
+								<div class="name time" style="font-size: 20px;">
+									<strong>운영자</strong><a style="margin-left: 10px; color: blue;"><time>${data.createTime }</time></a>
 								</div>
-								<div class="comment_content" style="font-family: sans-serif;">${data.content }</div>
-								<div class="buttons" style="display: show; margin-top: 2px">
-									<a class="btn icon block reply" onclick="deleteReply(${data.id})"><span class="ico ico_reply"></span> 삭제</a>
-								</div>
+								<div class="comment_content" style="font-family: sans-serif;">${data.content}</div> 
+								<sec:authorize access="hasRole('ROLE_ADMIN')">
+									<button class="reply-dbtn custom-sm-btn" onclick="deleteReply(${data.id})"><span class="ico ico_reply"></span> 삭제</button>
+								</sec:authorize>
 							</li>`;
 	$("#reply-list-table").prepend(replyLi);
 }
 
 
 function deleteReply(id){
-	console.log("reply-delet btn click >>>" + id);
 	$.ajax({
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader(header, token)
+		},
 		type: "delete",
-		url:`/api/reply/remove/${id}`,
+		url:`/user/api/cs-delete/reply?replyId=${id}`,
 		dataType:"json"
 	}).done(function(response){
 		if(response.status == 200){
-			alert("댓글 삭제");
-			location.href=`/board/detail/${response.data}`;
-			return
+			window.location.reload();
 		}
-		alert("게시글 삭제 실패");
 	}).fail(function(){
 		alert("게시글 삭제 실패");
 	})

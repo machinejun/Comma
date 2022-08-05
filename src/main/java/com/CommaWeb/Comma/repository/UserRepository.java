@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +22,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Transactional
 	List<User> findByUsernameContaining(String name);
 
-	@Modifying
-	@Query(value= "delete from user where id= ?1", nativeQuery = true)
-	void deleteUserById(@Param(value= "id") int id);
+//	@Modifying
+//	@Query(value= "delete from user where id= ?1", nativeQuery = true)
+//	void deleteUserById(@Param(value= "id") int id);
+
+//	@Query(value = "SELECT * FROM user WHERE id = ?", nativeQuery = true)
+//	Page<User> findAllByUserId(int id, Pageable pageable);
 }

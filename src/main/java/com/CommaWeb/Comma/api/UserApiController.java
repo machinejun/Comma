@@ -94,7 +94,7 @@ public class UserApiController {
 		return list;
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/user/delete/{id}")
 	public ResponseDto<Integer> deleteUser(@PathVariable int id) {
 		// 유저 삭제 기능
 		userService.deleteUser(id);

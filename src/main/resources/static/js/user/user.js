@@ -3,13 +3,6 @@ let header = $("meta[name='_csrf_header']").attr("content");
 
 let index = {
 
-	init: function() {
-		$("#btn-update").bind("click", () => {
-			this.update();
-		})
-
-	},
-
 	update: function() {
 		let rePassword = $("#re-password").val();
 		let loginType = $("#loginType").val();

@@ -131,4 +131,9 @@ public class UserService {
 		userRepository.deleteById(id);
 	}
 
+//	@Transactional
+//	public Page<User> getAdminPageById(int id, Pageable pageable) {
+//		return userRepository.findAllByUserId(id, pageable);
+//	}
+
 }

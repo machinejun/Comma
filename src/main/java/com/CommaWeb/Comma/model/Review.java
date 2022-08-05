@@ -46,7 +46,7 @@ public class Review {
 	@JsonIgnoreProperties({ "reviews" })
 	private House houseId;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "guestId")
 	private User guestId;
 

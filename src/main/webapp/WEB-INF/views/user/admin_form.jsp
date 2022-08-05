@@ -74,7 +74,9 @@ h2::after {
 									                    <c:if test= "${user.role eq 'HOST' }">
 									                    	<td><button type="submit" onclick="location.href='/house/management';" class="custom-sm-btn"  style="font-size: 17px">숙소정보</button></td>
 									                    </c:if>-->
-									                    <td><button type="button" onclick="location.href='delete/${user.id}';" class="custom-sm-btn" id="btn-delete" style="font-size: 17px">삭제하기</button></td>
+									                    <c:if test="${user.role eq 'GUEST' || user.role eq 'HOST'}">
+									                    	<td><button type="button" onclick="index.deleteById('${user.id}')" class="custom-sm-btn" id="btn-delete" style="font-size: 17px">삭제하기</button></td>
+									                    </c:if>
 									                </tr>
 									         </c:forEach>						  
 						        </tbody>
@@ -85,9 +87,10 @@ h2::after {
     	</div>
   	</div>
 </div>
-<script src="/js/user/admin.js">
 
-</script>
+
+
+<script src="/js/user/admin.js"></script>
 
 </body>
 </html>

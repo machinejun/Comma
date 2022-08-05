@@ -232,6 +232,4 @@ public class UserController {
 		return "/user/admin_table";
 	}
 	
-	
-
 }

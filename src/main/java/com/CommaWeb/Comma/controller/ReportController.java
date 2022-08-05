@@ -14,14 +14,22 @@ import com.CommaWeb.Comma.service.ReportService;
 
 @Controller
 public class ReportController {
-	
+
 	@Autowired
 	private ReportService reportService;
 
+	// 나의 신고 내역 페이지
 	@GetMapping("/report-history")
-	public String getMyReportHistory(Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+	public String getMyReportHistoryForm(Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
 		List<Report> reports = reportService.getReportList(principalDetail.getUser().getId());
 		model.addAttribute("reports", reports);
 		return "user/report_history_form";
+	}
+
+	// 관리자 신고 내역 관리 페이지
+	@GetMapping("/admin/report-management")
+	public String getReportManagementForm(Model model) {
+		model.addAttribute("reports", reportService.getAllReport());
+		return "admin/report_management_form";
 	}
 }

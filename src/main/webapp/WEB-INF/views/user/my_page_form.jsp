@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/house/detail.css" rel="stylesheet">
 
@@ -18,15 +19,26 @@
 
 	<div class="p-4 p-lg-5 rounded-3">
 		<div class="m-4 m-lg-5">
-			<h2 class="display-5 fw-bold">마이페이지</h2>
-			<h4 style="color: rgb(89, 89, 89)">&nbsp;&nbsp;${principal.user.username}님,&nbsp;반갑습니다.</h4>
+			<c:choose>
+				<c:when test="${principal.user.role eq 'ADMIN'}">
+					<h2 class="display-5 fw-bold">관리자 페이지</h2>
+					<h4 style="color: rgb(89, 89, 89)">&nbsp;&nbsp;관리자님,&nbsp;반갑습니다.</h4>
+
+				</c:when>
+				<c:otherwise>
+					<h2 class="display-5 fw-bold">마이페이지</h2>
+					<h4 style="color: rgb(89, 89, 89)">&nbsp;&nbsp;${principal.user.username}님,&nbsp;반갑습니다.</h4>
+
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 	<br />
 	<div class="row gx-4 gx-lg-5">
 
 		<sec:authorize access="hasRole('ROLE_HOST') || hasRole('ROLE_GUEST')">
-			<div class="col-sm-4 mb-5" onclick="location.href='/auth/update_form'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5"
+				onclick="location.href='/auth/update_form'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-person-bounding-box my-icon"></i> <br> <br>
@@ -35,20 +47,22 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5" onclick="location.href='/report-history'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/report-history'"
+				style="cursor: pointer;">
 				<div class="card-body">
 					<div class="card h-100 my-card">
 						<i class="bi bi-bell my-icon"></i><br>
-						<h3 class="card-title" >신고 내역</h3>
+						<h3 class="card-title">신고 내역</h3>
 						<p class="card-text">나의 신고 내역을 확인하세요.</p>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5" onclick="location.href='/report-history'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/report-history'"
+				style="cursor: pointer;">
 				<div class="card-body">
 					<div class="card h-100 my-card">
 						<i class="bi bi-envelope-open my-icon"></i><br>
-						<h3 class="card-title" >쪽지함</h3>
+						<h3 class="card-title">쪽지함</h3>
 						<p class="card-text">다른 회원들과 쪽지를 주고 받아보세요.</p>
 					</div>
 				</div>
@@ -56,25 +70,31 @@
 		</sec:authorize>
 
 		<sec:authorize access="hasRole('ROLE_GUEST')">
-			<div class="col-sm-4 mb-5" onclick="location.href='/wish-list/${principal.user.id}'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5"
+				onclick="location.href='/wish-list/${principal.user.id}'"
+				style="cursor: pointer;">
 				<div class="card-body">
 					<div class="card h-100 my-card">
 						<i class="bi bi-bookmark-heart my-icon"></i><br>
-						<h3 class="card-title" >위시리스트</h3>
+						<h3 class="card-title">위시리스트</h3>
 						<p class="card-text">나의 위시리스트를 확인하고 원하는 숙소를 예약해보세요.</p>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5" onclick="location.href='/reserveTable/user'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5"
+				onclick="location.href='/reserveTable/user'"
+				style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
-						<i class="bi bi-card-checklist my-icon" ></i><br> <br>
+						<i class="bi bi-card-checklist my-icon"></i><br> <br>
 						<h3 class="card-title">예약 내역</h3>
 						<p class="card-text">나의 예약 정보와 결제 정보를 확인하세요.</p>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5" onclick="location.href='/review/my-review-list/${principal.user.id}'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5"
+				onclick="location.href='/review/my-review-list/${principal.user.id}'"
+				style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-pencil-square my-icon"></i><br> <br>
@@ -86,7 +106,9 @@
 		</sec:authorize>
 
 		<sec:authorize access="hasRole('ROLE_HOST')">
-			<div class="col-sm-4 mb-5" onclick="location.href='/reserveTable/host'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5"
+				onclick="location.href='/reserveTable/host'"
+				style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-card-checklist my-icon"></i><br> <br>
@@ -95,7 +117,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5" onclick="location.href='/house/management'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5"
+				onclick="location.href='/house/management'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-house-door my-icon"></i><br> <br>
@@ -107,21 +130,23 @@
 		</sec:authorize>
 
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
-			<div class="col-sm-6 mb-5" onclick="location.href='/house/management'" style="cursor: pointer;">
+			<div class="col-sm-6 mb-5"
+				onclick="location.href='/house/management'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-people my-icon"></i><br> <br>
 						<h3 class="card-title">회원 관리</h3>
-						<p class="card-text">.</p>
+						<p class="card-text">콤마 회원의 가입 현황을 확인하세요.</p>
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-6 mb-5" onclick="location.href='/house/management'" style="cursor: pointer;">
+			<div class="col-sm-6 mb-5"
+				onclick="location.href='/admin/report-management'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-people my-icon"></i><br> <br>
-						<h3 class="card-title">예약 통계</h3>
-						<p class="card-text">회원의 예약 현황을 확인하고</p>
+						<h3 class="card-title">신고 관리</h3>
+						<p class="card-text">회원의 신고 내역을 확인하고 승인 및 취소하세요.</p>
 					</div>
 				</div>
 			</div>

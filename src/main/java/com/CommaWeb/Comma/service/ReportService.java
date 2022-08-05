@@ -53,4 +53,10 @@ public class ReportService {
 		return reportRepository.findAllByReporter(reporterId);
 	}
 
+	@Transactional(readOnly = true)
+	public List<Report> getAllReport() {
+		return reportRepository.findAll();
+		
+	}
+
 }

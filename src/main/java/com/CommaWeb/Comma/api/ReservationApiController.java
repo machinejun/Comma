@@ -97,6 +97,7 @@ public class ReservationApiController {
 		paidDto.setGuestName(res.getGuestId().getUsername());
 		paidDto.setHostName(res.getHostId().getUsername());
 		paidDto.setHouseName(res.getHouseId().getName());
+		paidDto.setHouseId(res.getHouseId().getId());
 		KaKaoApproveDto approveDto = requestReadyForKaKaoPay(paidDto.getGuestName(), paidDto.getHostName(),
 				paidDto.getHouseName(), paidDto.getPrice());
 		paidDto.setTid(approveDto.getTid());

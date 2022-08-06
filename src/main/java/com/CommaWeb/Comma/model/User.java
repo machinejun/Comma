@@ -11,6 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,6 +45,7 @@ public class User {
 	private String phoneNumber;
 	
 	@CreationTimestamp
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Timestamp creationDate;
 	
 	@Enumerated(EnumType.STRING)

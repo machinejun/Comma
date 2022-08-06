@@ -28,6 +28,7 @@ import com.CommaWeb.Comma.dto.KaKaoPayResponseDto;
 import com.CommaWeb.Comma.dto.ResponsePaidDto;
 import com.CommaWeb.Comma.model.BookedDate;
 import com.CommaWeb.Comma.model.House;
+import com.CommaWeb.Comma.model.Payment;
 import com.CommaWeb.Comma.model.Reservation;
 import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.service.HouseService;
@@ -132,5 +133,18 @@ public class ReservationController {
 	@GetMapping("/user/advice")
 	public String showAdvice() {
 		return "/advice/reservationAdvice";
+	}
+	
+	private void recordPayment(ResponsePaidDto paidDto, KaKaoPayResponseDto payApproveDto) {
+		
+		Payment payment = Payment
+				.builder()
+				.aid(payApproveDto.getAid())
+				.approveAt(payApproveDto.getApproved_at())
+				.paymentMethod(payApproveDto.getPayment_method_type())
+				.total(payApproveDto.getAmount().getTotal())
+				.house(houseService.findById(paidDto.getHouseId()))
+				.build();
+		
 	}
 }

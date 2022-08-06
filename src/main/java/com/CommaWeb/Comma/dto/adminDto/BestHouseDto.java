@@ -1,4 +1,4 @@
-package com.CommaWeb.Comma.dto;
+package com.CommaWeb.Comma.dto.adminDto;
 
 import java.math.BigInteger;
 

@@ -3,11 +3,27 @@ let header = $("meta[name='_csrf_header']").attr("content");
 let houses = [];
 let chatDate= [];
 
-function loadDate(){
+function loadTab3Date(){
 	let month = $("#month-selecter").val();
 	let limit = $("#limit-selector").val();
-	console.log("month : " + month);
-	console.log("limit : " + limit);
+	$.ajax({
+		beforeSend: function(xhr) {
+			xhr.setRequestHeader(header, token)
+		},
+		type: "get",
+		url: `/test/user/adminTable?month=${month}&limit=${limit}`,
+		dataType: "json"
+	}).done(function(response) {
+		if(response.status == 200){
+			console.log(response.data)
+			loadTableData(response.data);
+		}
+	}).fail(function(response) {
+		
+	})
+}
+
+function loadTab1Date(){
 	$.ajax({
 		beforeSend: function(xhr) {
 			xhr.setRequestHeader(header, token)

@@ -11,6 +11,7 @@ public class ResponsePaidDto {
 	private int resId;
 	private String guestName;
 	private String hostName;
+	private int houseId;
 	private String houseName;
 	private int price;
 	private String tid;

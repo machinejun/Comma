@@ -17,6 +17,7 @@ import com.CommaWeb.Comma.dto.HostTableDto;
 import com.CommaWeb.Comma.dto.HouseWaitDto;
 import com.CommaWeb.Comma.model.BookedDate;
 import com.CommaWeb.Comma.model.House;
+import com.CommaWeb.Comma.model.Payment;
 import com.CommaWeb.Comma.model.Reservation;
 import com.CommaWeb.Comma.model.ReservationType;
 import com.CommaWeb.Comma.model.RoleType;
@@ -26,6 +27,7 @@ import com.CommaWeb.Comma.repository.HostTableRepository;
 import com.CommaWeb.Comma.repository.HouseRepository;
 import com.CommaWeb.Comma.repository.ReservationRepository;
 import com.CommaWeb.Comma.repository.UserRepository;
+import com.CommaWeb.Comma.repository.paymentRepository;
 
 @Service
 public class ReservationService {
@@ -47,6 +49,9 @@ public class ReservationService {
 
 	@Autowired
 	private HouseRepository houseRepository;
+	
+	@Autowired
+	private paymentRepository paymentRepository;
 
 	@Transactional
 	public void makeReservation(Reservation reservation) {
@@ -192,6 +197,12 @@ public class ReservationService {
 		res.setApprovalStatus(ReservationType.PAID);
 		return true;
 	}
+	
+	public void savePaymentRecord(Payment payment) {
+		paymentRepository.save(payment);
+	}
+	
+	
 
 
 }

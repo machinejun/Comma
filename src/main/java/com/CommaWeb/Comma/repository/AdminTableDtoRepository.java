@@ -8,13 +8,15 @@ import javax.persistence.Query;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 
-import com.CommaWeb.Comma.dto.BestHouseDto;
+import com.CommaWeb.Comma.dto.adminDto.BestHouseDto;
+import com.CommaWeb.Comma.dto.adminDto.HouseCountDto;
+import com.CommaWeb.Comma.dto.adminDto.MonthTableCountDto;
 
 import lombok.RequiredArgsConstructor;
 
 @Repository
 @RequiredArgsConstructor
-public class BestHoustDtoRepository {
+public class AdminTableDtoRepository {
 	
 	private final EntityManager entityManager;
 	
@@ -34,5 +36,23 @@ public class BestHoustDtoRepository {
 		Query query = entityManager.createNativeQuery(queryText);
 		JpaResultMapper jpaResultMapper = new JpaResultMapper();
 		return jpaResultMapper.list(query, BestHouseDto.class);	
+	}
+	
+	public List<MonthTableCountDto> loadMonthTableCount(String table){
+		String queryText ="select month(creationDate) as month , count(id) as count "
+				+ "from " + table + " "
+				+ "group by month(creationDate);";
+		Query query = entityManager.createNativeQuery(queryText);
+		JpaResultMapper jpaResultMapper = new JpaResultMapper();
+		return jpaResultMapper.list(query, MonthTableCountDto.class);
+	}
+	
+	public List<HouseCountDto> loadAddressHouseCount(){
+		String queryText ="select address, count(address) as count "
+				+ "from house "
+				+ "group by addres;";
+		Query query = entityManager.createNativeQuery(queryText);
+		JpaResultMapper jpaResultMapper = new JpaResultMapper();
+		return jpaResultMapper.list(query, HouseCountDto.class);
 	}
 }

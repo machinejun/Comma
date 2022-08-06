@@ -35,6 +35,7 @@ public class CustomServiceReply {
 	private String content;
 	
 	@CreationTimestamp
+	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
 	private Timestamp createTime;
 
 }

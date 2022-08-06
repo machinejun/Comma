@@ -2,6 +2,7 @@ package com.CommaWeb.Comma.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ public class Admin implements Serializable {
 	@Column(name = "userId")
 	private int userId;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "userId")
 	private User user;
 

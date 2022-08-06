@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/house/detail.css" rel="stylesheet">
 
@@ -37,8 +36,7 @@
 	<div class="row gx-4 gx-lg-5">
 
 		<sec:authorize access="hasRole('ROLE_HOST') || hasRole('ROLE_GUEST')">
-			<div class="col-sm-4 mb-5"
-				onclick="location.href='/auth/update_form'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/auth/update_form'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-person-bounding-box my-icon"></i> <br> <br>
@@ -47,8 +45,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5" onclick="location.href='/report-history'"
-				style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/report-history'" style="cursor: pointer;">
 				<div class="card-body">
 					<div class="card h-100 my-card">
 						<i class="bi bi-bell my-icon"></i><br>
@@ -57,8 +54,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5" onclick="location.href='/report-history'"
-				style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/report-history'" style="cursor: pointer;">
 				<div class="card-body">
 					<div class="card h-100 my-card">
 						<i class="bi bi-envelope-open my-icon"></i><br>
@@ -70,9 +66,7 @@
 		</sec:authorize>
 
 		<sec:authorize access="hasRole('ROLE_GUEST')">
-			<div class="col-sm-4 mb-5"
-				onclick="location.href='/wish-list/${principal.user.id}'"
-				style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/wish-list/${principal.user.id}'" style="cursor: pointer;">
 				<div class="card-body">
 					<div class="card h-100 my-card">
 						<i class="bi bi-bookmark-heart my-icon"></i><br>
@@ -81,9 +75,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5"
-				onclick="location.href='/reserveTable/user'"
-				style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/reserveTable/user'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-card-checklist my-icon"></i><br> <br>
@@ -92,9 +84,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5"
-				onclick="location.href='/review/my-review-list/${principal.user.id}'"
-				style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/review/my-review-list/${principal.user.id}'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-pencil-square my-icon"></i><br> <br>
@@ -106,9 +96,7 @@
 		</sec:authorize>
 
 		<sec:authorize access="hasRole('ROLE_HOST')">
-			<div class="col-sm-4 mb-5"
-				onclick="location.href='/reserveTable/host'"
-				style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/reserveTable/host'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-card-checklist my-icon"></i><br> <br>
@@ -117,8 +105,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5"
-				onclick="location.href='/house/management'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/house/management'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-house-door my-icon"></i><br> <br>
@@ -130,8 +117,7 @@
 		</sec:authorize>
 
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
-			<div class="col-sm-6 mb-5"
-				onclick="location.href='/house/management'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/admin/user-management'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-people my-icon"></i><br> <br>
@@ -140,12 +126,20 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-6 mb-5"
-				onclick="location.href='/admin/report-management'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/admin/report-management'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
-						<i class="bi bi-people my-icon"></i><br> <br>
+						<i class="bi bi-bell my-icon"></i><br> <br>
 						<h3 class="card-title">신고 관리</h3>
+						<p class="card-text">회원의 신고 내역을 확인하고 승인 및 취소하세요.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-4 mb-5" onclick="location.href='/admin/report-management'" style="cursor: pointer;">
+				<div class="card h-100 my-card">
+					<div class="card-body">
+						<i class="bi bi-bar-chart-line my-icon"></i><br> <br>
+						<h3 class="card-title">통계</h3>
 						<p class="card-text">회원의 신고 내역을 확인하고 승인 및 취소하세요.</p>
 					</div>
 				</div>

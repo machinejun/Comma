@@ -3,6 +3,7 @@ package com.CommaWeb.Comma.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -125,7 +126,13 @@ public class UserService {
 
 	@Transactional(readOnly = true)
 	public User getUserById(int userId) {
-		 return userRepository.findById(userId).get();
+		return userRepository.findById(userId).get();
+	}
+
+	@Modifying
+	@Transactional
+	public void deleteUser(int id) {
+		userRepository.deleteById(id);
 	}
 
 }

@@ -12,7 +12,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -87,6 +89,12 @@ public class UserApiController {
 	public ArrayList<BestHouseDto> loadTableData(@RequestParam String month, @RequestParam int limit){
 		ArrayList<BestHouseDto> list = (ArrayList<BestHouseDto>) userService.loadHouseDtolist(month, limit);
 		return list;
+	}
+	
+	@DeleteMapping("/user/delete/{id}")
+	public ResponseDto<Integer> deleteUser(@PathVariable int id) {
+		userService.deleteUser(id);
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 
 }

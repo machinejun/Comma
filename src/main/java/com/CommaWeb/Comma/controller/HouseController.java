@@ -45,7 +45,7 @@ public class HouseController {
 		// 지역별, 유형별 숙소 검색
 		List<House> houseList;
 
-		address = address == null ? "" : address;
+		address = (address == null) ? "" : address;
 		type = type == null ? "" : type;
 
 		if (address == "" && type == "") {

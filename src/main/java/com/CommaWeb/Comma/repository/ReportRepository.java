@@ -14,5 +14,7 @@ public interface ReportRepository extends JpaRepository<Report, Integer>{
 
 	@Query(value = "SELECT * FROM report ORDER BY id DESC ", nativeQuery = true)
 	List<Report> findAllOrderByIdDesc();
+	
+	// UPDATE report SET reportStatus = 'APPROVED' WHERE id = 3;
 
 }

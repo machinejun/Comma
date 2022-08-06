@@ -25,6 +25,7 @@
 	width: 150%;
 	overflow: hidden;
 }
+
 </style>
 
 <div class="section-container">
@@ -32,7 +33,9 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-8 col-md-offset-2">
 				<div class="text-center">
-					<h3>${user.username}님의&nbsp;회원가입이&nbsp;완료되었습니다.</h3>
+					<h3>
+						<b>"${user.username}"</b>님의&nbsp;회원가입이&nbsp;완료되었습니다.
+					</h3>
 					<p>콤마의 회원이 되신 것을 환영합니다.</p>
 					<br> <br>
 				</div>
@@ -42,28 +45,29 @@
 	<div class="container-signup d-flex justify-content-center">
 		<div class="signup-content">
 			<div class="signup-form needs-validation">
-				<p>Username</p>
+				<p>아이디</p>
 				<div class="form-group">
 					<label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label> <input type="text" name="username" id="username" value="${user.username}" disabled="disabled" />
 				</div>
 
-				<p>Username</p>
+				<p>가입 일자</p>
 				<div class="form-group">
-					<label for="name"><i class="zmdi zmdi-account material-icons-calender"></i></label> <input type="text" name="join Date" id="username" value="${user.creationDate}" disabled="disabled" />
+					<label for="name"><i class="zmdi zmdi-calendar"></i></label> <input type="text" name="join Date" id="username" value="${user.creationDate}" disabled="disabled" />
 				</div>
 
-				<p>Username</p>
+				<p>이메일</p>
 				<div class="form-group">
 					<label for="email"><i class="zmdi zmdi-email"></i></label> <input type="email" name="email" id="email" value="${user.email}" disabled="disabled" />
 				</div>
 
-				<p>Username</p>
+				<p>전화번호</p>
 				<div class="form-group">
 					<label for="email"><i class="zmdi zmdi-phone"></i></label> <input type="text" name="phoneNumber" id="phoneNumber" value="${user.phoneNumber}" disabled="disabled" />
 				</div>
-				<a class="custom-btn d-flex justify-content-center" href="/" style="margin-left: 80px;" class="custom-btn">홈으로</a>
+				<a class="custom-btn d-flex justify-content-center" type="button" href="/" style="margin-left: 80px;">홈으로</a>
 			</div>
 		</div>
 	</div>
 </div>
 
+<%@ include file="../layout/footer.jsp"%>

@@ -121,9 +121,8 @@ let index = {
 		console.log(reviewId);
 
 		let data = {
-			reviewId : reviewId,
-			reportType: $("#report-type").val(),
-			detailText: xssCheck($("#detail-text").val(), 1)
+			reportType: $("#report-type-" + reviewId).val(),
+			detailText: $("#detail-text-" + reviewId).val()
 		}
 		console.log(data);
 
@@ -143,9 +142,9 @@ let index = {
 			}).done(function(response) {
 				if (response.status == 200) {
 					alert("신고가 접수되었습니다.");
-					document.getElementById("report-type").value = "";
-					document.getElementById("detail-text").value = "";
-					document.getElementById("close").click();
+					document.getElementById("report-type-" + reviewId).value = "";
+					document.getElementById("detail-text-" + reviewId).value = "";
+					document.getElementById("close-" + reviewId).click();
 				} else {
 					alert("신고가 접수되지 않았습니다.");
 				}
@@ -189,19 +188,17 @@ function appendReply(reply) {
 									onclick="index.deleteReply(${reply.id});" style="cursor: pointer;">삭제</a>				
 			</div>
 		</li>`;
-		
+
 	$("#reply-list-" + reply.reviewId.id).prepend(childElement);
 	$("#reply-content-" + reply.reviewId.id).val("");
 }
 
 function xssCheck(str, level) {
-    if (level == undefined || level == 0) {
-        str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g,"");
-    } else if (level != undefined && level == 1) {
-        str = str.replace(/\</g, "&lt;");
-        str = str.replace(/\>/g, "&gt;");
-    }
-    return str;
+	if (level == undefined || level == 0) {
+		str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g, "");
+	} else if (level != undefined && level == 1) {
+		str = str.replace(/\</g, "&lt;");
+		str = str.replace(/\>/g, "&gt;");
+	}
+	return str;
 }
-
-index.init();

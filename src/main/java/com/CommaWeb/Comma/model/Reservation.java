@@ -2,6 +2,7 @@ package com.CommaWeb.Comma.model;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -33,12 +34,12 @@ public class Reservation {
 	@OrderBy(value = "desc")
 	private int id;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "guestId")
 	@JsonIgnoreProperties({"reservations"})
 	private User guestId;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "hostId")
 	@JsonIgnoreProperties({"reservations"})
 	private User hostId;

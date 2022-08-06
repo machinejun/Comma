@@ -86,4 +86,6 @@ p, select {
 }
 .custom-btn:hover {
     background: rgba(255,149,149,1);
+    color: white;
+    text-decoration: none;
 }

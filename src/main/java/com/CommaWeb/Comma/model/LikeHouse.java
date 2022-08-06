@@ -2,6 +2,7 @@ package com.CommaWeb.Comma.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,11 +27,11 @@ public class LikeHouse implements Serializable {
 	@Column(name="guest")
 	private int guestId;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name="guestId", referencedColumnName = "id")
 	private User guest;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name="houseId", referencedColumnName = "id")
 	private House house;
 }

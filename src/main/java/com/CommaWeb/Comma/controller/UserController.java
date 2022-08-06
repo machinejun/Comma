@@ -112,8 +112,8 @@ public class UserController {
 		return "user/wish_list_form";
 	}
 
-	// 관리자 페이지 호출
-	@GetMapping("/admin_form")
+	// 회원 관리 페이지 호출
+	@GetMapping("/admin/user-management")
 	public String adminForm(@RequestParam Map<String, String> map, Model model) {
 
 		String role = map.get("role") == null ? "" : map.get("role");

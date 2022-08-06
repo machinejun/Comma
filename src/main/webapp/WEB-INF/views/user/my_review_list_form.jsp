@@ -171,7 +171,7 @@ div {
 							<div class="modal-content">
 								<div class="modal-header">
 									<h3 class="modal-title" id="exampleModalLabel">댓글 신고하기</h3>
-									<button type="button" id="close" class="close" data-dismiss="modal" aria-label="Close">
+									<button type="button" id="close-${reply.id}" class="close" data-dismiss="modal" aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
@@ -180,7 +180,7 @@ div {
 									<div>
 										<div class="col-12">
 											<h4>신고 유형</h4>
-											<select class="form-control selector" id="report-type">
+											<select class="form-control selector" id="report-type-${reply.id}">
 												<option value="">유형을 선택하세요.</option>
 												<option>비방 및 욕설 등 부적절한 언어</option>
 												<option>갈등 조장 및 허위사실 유포</option>
@@ -192,14 +192,14 @@ div {
 										<div class="col-12">
 											<div class="form-group">
 												<h4>상세 사유 및 설명</h4>
-												<textarea id="detail-text" placeholder="부적절한 신고 및 허위 신고의 경우 운영원칙에 따라 제재를 받을 수 있습니다." style="height: 250px;" class="form-control"></textarea>
+												<textarea id="detail-text-${reply.id}" placeholder="부적절한 신고 및 허위 신고의 경우 운영원칙에 따라 제재를 받을 수 있습니다." style="height: 250px;" class="form-control"></textarea>
 											</div>
 										</div>
 									</div>
 								</div>
 
 								<div class="modal-footer">
-									<button type="button" id="btn-report-reply" class="custom-sm-btn">신고하기</button>
+									<button type="button" onclick="index.reportReply(${reply.id})" class="custom-sm-btn">신고하기</button>
 								</div>
 							</div>
 						</div>

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.CommaWeb.Comma.dto.adminDto.AdmintableDto;
-
 import com.CommaWeb.Comma.model.LoginType;
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
@@ -22,9 +21,9 @@ public class UserService {
 	private UserRepository userRepository;
 	
 
-	
 	@Autowired
 	private AdminTableDtoRepository adminTableDtoRepository;
+
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -92,9 +91,7 @@ public class UserService {
 		return newPhoneNum;
 	}
 
-
 	@Transactional
-
 	public List<User> showAllUser() {
 		return userRepository.findAll();
 	}

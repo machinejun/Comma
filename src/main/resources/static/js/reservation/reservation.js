@@ -244,7 +244,6 @@ function reserveHouse(guestId, hostId, houseId) {
 		contentType: "application/json; charset=utf-8",
 		data: JSON.stringify(data),
 		dataType: "json"
-
 	}).done(function(response){
 		if(response.status == 200){
 			location.href = "/user/advice";

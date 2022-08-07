@@ -235,6 +235,9 @@ public class UserController {
 	}
 	
 
-
+	@GetMapping("/test/map-api")
+	public String loadMapForm() {
+		return "/house/houseMap";
+	}
 
 }

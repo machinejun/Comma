@@ -50,7 +50,6 @@ $(function() {
 function startModal() {
 	if (istableShow == 0) {
 		showModal();
-		console.log(bookedDays);
 	} else {
 		closeModal();
 	}
@@ -204,10 +203,18 @@ function alreadyBookDates(date) {
 	for (i = 0; i < bookedDays.length; i++) {
 		let date;
 		if (m < 10) {
-			date = `${y}-0${(m + 1)}-${d}`;
-
+			if(d < 10){
+				date = `${y}-0${(m + 1)}-0${d}`;
+			}else{
+				date = `${y}-0${(m + 1)}-${d}`;
+			}
 		} else {
-			date = `${y}-${(m + 1)}-${d}`;
+			if(d < 10){
+				date = `${y}-${(m + 1)}-0${d}`;
+			}else{
+				date = `${y}-${(m + 1)}-${d}`;
+			}
+			
 		}
 		if ($.inArray(date, bookedDays) != -1) {
 			return [false];
@@ -227,11 +234,8 @@ function reserveHouse(guestId, hostId, houseId) {
 		request: $("#request").val(),
 		tempIdBox: tempBox
 	}
-	console.log(data);
-
 	$.ajax({
 		beforeSend: function(xhr) {
-			console.log("xhr: " + xhr)
 			xhr.setRequestHeader(header, token)
 		},
 
@@ -243,7 +247,6 @@ function reserveHouse(guestId, hostId, houseId) {
 
 	}).done(function(response){
 		if(response.status == 200){
-			console.log(response);
 			location.href = "/user/advice";
 		}
 	}).fail(function() {

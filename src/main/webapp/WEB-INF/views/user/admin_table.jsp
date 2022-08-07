@@ -28,40 +28,46 @@
 	position: relative;
 	margin-bottom: 30px;
 }
-.navi-btn{
+
+.navi-btn {
 	color: rgba(255, 149, 149, 0.7);
 }
-.navi-btn:hover{
+
+.navi-btn:hover {
 	color: rgba(255, 149, 149, 0.9);
 }
 
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
-    color: red;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-bottom-color: transparent;
-    cursor: default;
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
+	{
+	color: red;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-bottom-color: transparent;
+	cursor: default;
 }
 </style>
 <meta name="tableData" content="">
 <div class="container">
 	<div style="margin: 10px;">
-		<ul class="nav nav-tabs">
-			<li><a class="navi-btn" href="#monthUser" data-toggle="tab">월별 유저 가입 수</a></li>
-			<li><a class="navi-btn" href="#messages" data-toggle="tab">숙소 등록 증가율</a></li>
-			<li><a class="navi-btn" href="#houseCount" data-toggle="tab">숙소별 예약 수</a></li>
-			<li><a class="navi-btn" href="#settings" data-toggle="tab">지역별 숙소 현황</a></li>
+		<ul id="li-groub" class="nav nav-tabs">
+			<li><a class="navi-btn" href="#monthUser" data-toggle="tab">월
+					별 조회</a></li>
+			<li><a class="navi-btn" href="#addressHouse" data-toggle="tab">지역별
+					숙소 현황</a></li>
+			<li><a class="navi-btn" href="#houseCount" data-toggle="tab">최고의
+					숙소/호스트</a></li>
 		</ul>
 
 		<div class="tab-content">
-			<div class="tab-pane fade in active" id="houseCount">
-				<%@ include file="adminTableForm/resCountFromHouseForm.jsp"%>
-			</div>
-			<div class="tab-pane fade" id="monthUser">
+			<div class="tab-pane fade in active" id="monthUser">
 				<%@ include file="adminTableForm/MonthUserCountForm.jsp"%>
 			</div>
-			<div class="tab-pane fade" id="messages">Messages 메뉴</div>
-			<div class="tab-pane fade" id="settings">Settings 메뉴</div>
+			<div class="tab-pane fade" id="addressHouse">
+				<%@ include file="adminTableForm/HouseCountFromAddressForm.jsp"%>
+			</div>
+			<div class="tab-pane fade" id="houseCount">
+				<%@ include file="adminTableForm/resCountFromHouseForm.jsp"%>
+			</div>
 		</div>
 	</div>
 
@@ -74,10 +80,7 @@
 
 
 <script type="text/javascript" src="/js/main.0cf8b554.js"></script>
-</body>
 <script type="text/javascript" src="/js/home.js"></script>
-</body>
 <script type="text/javascript" src="/js/user/adminTable.js"></script>
-</body>
 </body>
 </html>

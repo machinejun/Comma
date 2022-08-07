@@ -48,7 +48,6 @@ public class ReservationApiController {
 	public ResponseDto<String> reserveHouse(@RequestBody Reservation reservation, @AuthenticationPrincipal PrincipalDetail principal) {
 		System.out.println(reservation);
 		reservationService.makeReservation(reservation);
-
 		return new ResponseDto<String>(HttpStatus.OK.value(), "OK");
 	}
 

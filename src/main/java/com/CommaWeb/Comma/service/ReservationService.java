@@ -33,7 +33,7 @@ import com.CommaWeb.Comma.repository.paymentRepository;
 public class ReservationService {
 	
 	// 리뷰 테스트 용
-	public static int REVIEW_TEST = 5;
+	public static int REVIEW_TEST = 0;
 	
 	@Autowired
 	private HostTableRepository hostTableRepository;

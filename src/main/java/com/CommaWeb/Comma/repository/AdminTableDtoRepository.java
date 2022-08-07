@@ -8,9 +8,7 @@ import javax.persistence.Query;
 import org.qlrm.mapper.JpaResultMapper;
 import org.springframework.stereotype.Repository;
 
-import com.CommaWeb.Comma.dto.adminDto.BestHouseDto;
-import com.CommaWeb.Comma.dto.adminDto.HouseCountDto;
-import com.CommaWeb.Comma.dto.adminDto.MonthTableCountDto;
+import com.CommaWeb.Comma.dto.adminDto.AdmintableDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,9 +18,9 @@ public class AdminTableDtoRepository {
 	
 	private final EntityManager entityManager;
 	
-	public List<BestHouseDto> findByMonthBestHouse(String month, int limit ){
+	public List<AdmintableDto> findByMonthBestHouse(String month, int limit ){
 		String cMonth = month.length() == 1 ? "0" + month : month;
-		String queryText = "select h.name, u.username, count(r.id) as numberOfReservation "
+		String queryText = "select h.name, u.username, count(r.id) as count "
 				+ "from house as h "
 				+ "inner join reservation as r "
 				+ "on h.id = r.houseId "
@@ -30,29 +28,29 @@ public class AdminTableDtoRepository {
 				+ "on h.hostId = u.id "
 				+ "where r.checkInDate like \"%-"+ cMonth +"-%\" "
 				+ "group by h.id "
-				+ "order by numberOfReservation desc "
+				+ "order by count desc "
 				+ "limit " + limit;
 		
 		Query query = entityManager.createNativeQuery(queryText);
 		JpaResultMapper jpaResultMapper = new JpaResultMapper();
-		return jpaResultMapper.list(query, BestHouseDto.class);	
+		return jpaResultMapper.list(query, AdmintableDto.class);	
 	}
 	
-	public List<MonthTableCountDto> loadMonthTableCount(String table){
+	public List<AdmintableDto> loadMonthTableCount(String table){
 		String queryText ="select month(creationDate) as month , count(id) as count "
 				+ "from " + table + " "
-				+ "group by month(creationDate);";
+				+ "group by month(creationDate) order by month;";
 		Query query = entityManager.createNativeQuery(queryText);
 		JpaResultMapper jpaResultMapper = new JpaResultMapper();
-		return jpaResultMapper.list(query, MonthTableCountDto.class);
+		return jpaResultMapper.list(query, AdmintableDto.class);
 	}
 	
-	public List<HouseCountDto> loadAddressHouseCount(){
+	public List<AdmintableDto> loadAddressHouseCount(){
 		String queryText ="select address, count(address) as count "
 				+ "from house "
-				+ "group by addres;";
+				+ "group by address order by count desc;";
 		Query query = entityManager.createNativeQuery(queryText);
 		JpaResultMapper jpaResultMapper = new JpaResultMapper();
-		return jpaResultMapper.list(query, HouseCountDto.class);
+		return jpaResultMapper.list(query, AdmintableDto.class);
 	}
 }

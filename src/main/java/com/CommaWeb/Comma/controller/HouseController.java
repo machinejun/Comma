@@ -123,5 +123,6 @@ public class HouseController {
 		model.addAttribute("houseList", houseService.findAllByHostId(principalDetail.getUser().getId()));
 		return "house/house_management_form";
 	}
+	
 
 }

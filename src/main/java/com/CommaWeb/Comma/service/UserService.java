@@ -7,9 +7,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.CommaWeb.Comma.dto.adminDto.BestHouseDto;
-import com.CommaWeb.Comma.dto.adminDto.HouseCountDto;
-import com.CommaWeb.Comma.dto.adminDto.MonthTableCountDto;
+import com.CommaWeb.Comma.dto.adminDto.AdmintableDto;
+
 import com.CommaWeb.Comma.model.LoginType;
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
@@ -125,15 +124,15 @@ public class UserService {
 		return users;
 	}
 	
-	public List<BestHouseDto> loadHouseDtolist(String month, int limit){
-		return adminTableDtoRepository.findByMonthBestHouse(month, limit);
+	public List<AdmintableDto> loadHouseDtolist(String month, String string){
+		return adminTableDtoRepository.findByMonthBestHouse(month, Integer.parseInt(string));
 	}
 	
-	public List<HouseCountDto> loadAddressHouseCount(){
+	public List<AdmintableDto> loadAddressHouseCount(){
 		return adminTableDtoRepository.loadAddressHouseCount();
 	}
 	
-	public List<MonthTableCountDto> loadMonthTableCount(String table){
+	public List<AdmintableDto> loadMonthTableCount(String table){
 		return adminTableDtoRepository.loadMonthTableCount(table);
 	}
 

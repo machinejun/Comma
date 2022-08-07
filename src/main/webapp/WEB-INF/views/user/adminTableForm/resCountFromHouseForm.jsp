@@ -30,7 +30,7 @@
 			<option selected value="5">5개</option>
 			<option value="10">10개</option>
 		</select>
-		<button class="custom-sm-btn" onclick="loadDate()">검색</button>
+		<button class="custom-sm-btn" onclick="loadIndexDate()">검색</button>
 	</div>
-	<canvas id="myChart" height="60" width="100"></canvas>
+	<canvas id="myChart_best"></canvas>
 </div>

@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <meta charset="UTF-8">
+<%@ include file="layout/header.jsp"%>
 	<title>Chatting</title>
 	<style>
 		*{
@@ -103,8 +104,8 @@
 </script>
 <body>
 	<div id="container" class="container" style="position: relative;">
-		<h1>채팅</h1>
-		<a onclick="showUserList()" style="color: orange; position: absolute;  right: 5%; top:10%; z-index: 4">유저목록</a>
+		<h1 style="font-family: 'SUIT-Medium'; color: rgba(255,149,149,0.7);">실시간 채팅</h1>
+		<a onclick="showUserList()" style="position: absolute;  right: 0%; top:17%; z-index: 4">유저목록</a>
 		<div id="chating" class="chating"  style="position: relative; overflow-x:hidden; ">
 			<div id="user-list" style="background-color: transparent; color: white; position: absolute ; z-index: 3;   right: -1%; display:none;">		
 				<ul >
@@ -140,22 +141,24 @@
 		<div id="yourName">
 			<table class="inputTable">
 				<tr>
-					<th>사용자명</th>
+					<th style="width: 80px;">사용자 명</th>
 					<input type="hidden" value="${principal.user.username}"/>
-					<th><input type="text" name="userName" id="userName"></th>
-					<th><button onclick="chatName()" id="startBtn">이름 등록</button></th>
+					<th><input type="text" name="userName" id="userName" style="margin-left:10px; width: 250px;"></th>
+					<th><button onclick="chatName()" id="startBtn " style="margin-left:30px; width: 80px;">이름 등록</button></th>
 				</tr>
 			</table>
 		</div>
 		<div id="yourMsg">
 			<table class="inputTable">
 				<tr>
-					<th>메시지</th>
-					<th><input id="chatting" placeholder="보내실 메시지를 입력하세요."></th>
-					<th><button onclick="send()" id="sendBtn">보내기</button></th>
+					<th style="width: 80px;">메시지</th>
+					<th><input id="chatting" placeholder="보내실 메시지를 입력하세요." style="margin-left:10px; width: 250px;"></th>
+					<th><button onclick="send()" id="sendBtn" style="margin-left:30px; width: 80px;">보내기</button></th>
 				</tr>
 			</table>
 		</div>
 	</div>
 </body>
+<br/><br/><br/><br/><br/>
 </html>
+<%@ include file="layout/footer.jsp"%>

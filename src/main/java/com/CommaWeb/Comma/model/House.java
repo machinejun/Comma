@@ -40,6 +40,8 @@ public class House {
 
 	@Column(nullable = false)
 	private String address;
+	
+	private String detailAddress;
 
 	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "hostId")

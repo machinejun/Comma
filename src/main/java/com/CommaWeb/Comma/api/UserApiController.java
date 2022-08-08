@@ -1,7 +1,8 @@
 package com.CommaWeb.Comma.api;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +14,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,8 +24,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.CommaWeb.Comma.auth.PrincipalDetail;
-import com.CommaWeb.Comma.dto.BestHouseDto;
 import com.CommaWeb.Comma.dto.ResponseDto;
+import com.CommaWeb.Comma.dto.adminDto.AdmintableDto;
+
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.service.UserService;
@@ -85,10 +88,29 @@ public class UserApiController {
 		return "<script>location.href='/user/beguest'</script>";
 	}
 	
-	@GetMapping("/user/adminTable")
-	public ArrayList<BestHouseDto> loadTableData(@RequestParam String month, @RequestParam int limit){
-		ArrayList<BestHouseDto> list = (ArrayList<BestHouseDto>) userService.loadHouseDtolist(month, limit);
-		return list;
+	// index=3&month=3&limit=10
+	// index=1
+	// index=2
+	@GetMapping("/test/user/adminTable")
+	public ResponseDto<Map<String, List<AdmintableDto>>> loadTableData(@RequestParam Map<String, String> data){
+		Map<String, List<AdmintableDto>> maps = new LinkedMultiValueMap<>();
+		switch (data.get("index")) {
+		case "0":
+			maps.put("user", userService.loadMonthTableCount("user"));
+			maps.put("house", userService.loadMonthTableCount("house"));
+			maps.put("reservation", userService.loadMonthTableCount("reservation"));
+			maps.put("review", userService.loadMonthTableCount("review"));
+			System.out.println(maps);
+			return new ResponseDto<Map<String, List<AdmintableDto>>>(HttpStatus.OK.value(), maps);
+		case "1":
+			maps.put("address", userService.loadAddressHouseCount());
+			System.out.println(maps);
+			return new ResponseDto<Map<String,List<AdmintableDto>>>(HttpStatus.OK.value(), maps);
+		default :
+			maps.put("best", userService.loadHouseDtolist(data.get("month"), data.get("limit")));
+			System.out.println(maps);
+			return new ResponseDto<Map<String, List<AdmintableDto>>>(HttpStatus.OK.value(), maps);
+		}
 	}
 	
 	@DeleteMapping("/user/delete/{id}")
@@ -96,5 +118,6 @@ public class UserApiController {
 		userService.deleteUser(id);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
+
 
 }

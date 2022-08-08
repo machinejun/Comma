@@ -1,6 +1,7 @@
 package com.CommaWeb.Comma.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +17,7 @@ import javax.persistence.OrderBy;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -60,6 +62,9 @@ public class Reservation {
 	
 	@ColumnDefault("0")
 	private int price;
+	
+	@CreationTimestamp
+	private Timestamp creationDate;
 	
 	private String request;
 	

@@ -28,6 +28,7 @@ import com.CommaWeb.Comma.dto.KaKaoPayResponseDto;
 import com.CommaWeb.Comma.dto.ResponsePaidDto;
 import com.CommaWeb.Comma.model.BookedDate;
 import com.CommaWeb.Comma.model.House;
+import com.CommaWeb.Comma.model.Payment;
 import com.CommaWeb.Comma.model.Reservation;
 import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.service.HouseService;
@@ -46,7 +47,7 @@ public class ReservationController {
 	@Autowired
 	private ReservationService reservationService;
 
-	
+	// 예약 페이지를 그려주는데 필요한 데이터를 보내주는 기능
 	@GetMapping("/user/bookForm/{houseid}")
 	public String reserveHouse(@PathVariable int houseid, Model model) {
 		House house = houseService.getHouseDetail(houseid);
@@ -68,7 +69,7 @@ public class ReservationController {
 		return "input";
 	}
 	
-	
+	// 호스트 예약 테이블을 그려주는데 필요한 데이터를 보내주는 기능
 	@GetMapping("/reserveTable/host")
 	public String reserveHostTable(@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
 		List<HouseWaitDto> count = reservationService.getWaitCount(principalDetail.getUser().getId());
@@ -79,6 +80,7 @@ public class ReservationController {
 		return "reservation/hostReserveTable";
 	}
 	
+	// 유저 예약 테이블을 그려주는데 필요한 데이터를 보내주는 기능
 	@GetMapping("/reserveTable/user")
 	public String reserveUserTable(@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
 		User user = userService.findByUserId(principalDetail.getUser().getId());
@@ -88,6 +90,7 @@ public class ReservationController {
 		return "reservation/userReservationTable";
 	}
 	
+	// 카카오 결제 완료 시 redirect 되는 주소
 	@GetMapping("/kakao/approve")
 	public String approve(@RequestParam String pg_token, Model model) {
 		ResponsePaidDto paidDto = (ResponsePaidDto) httpSession.getAttribute("kakao");
@@ -108,6 +111,7 @@ public class ReservationController {
 		}	
 	}
 	
+	// 카카오 결제 완료 승인을 카카오 페이에게 요청하는 기능
 	private ResponseEntity<KaKaoPayResponseDto> requestKakaoPaymentApprove(String pg_token, ResponsePaidDto paidDto) {
 		String pgtoken = pg_token;
 		RestTemplate transmitter = new RestTemplate();
@@ -129,8 +133,22 @@ public class ReservationController {
 		return response;
 	}
 	
+	// 예약완료시 예약에 관련된 어드바이스를 보여주는 기능
 	@GetMapping("/user/advice")
 	public String showAdvice() {
 		return "/advice/reservationAdvice";
+	}
+	
+	private void recordPayment(ResponsePaidDto paidDto, KaKaoPayResponseDto payApproveDto) {
+		
+		Payment payment = Payment
+				.builder()
+				.aid(payApproveDto.getAid())
+				.approveAt(payApproveDto.getApproved_at())
+				.paymentMethod(payApproveDto.getPayment_method_type())
+				.total(payApproveDto.getAmount().getTotal())
+				.house(houseService.findById(paidDto.getHouseId()))
+				.build();
+		
 	}
 }

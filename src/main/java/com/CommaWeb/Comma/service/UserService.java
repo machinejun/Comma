@@ -8,11 +8,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.CommaWeb.Comma.dto.BestHouseDto;
+import com.CommaWeb.Comma.dto.adminDto.AdmintableDto;
 import com.CommaWeb.Comma.model.LoginType;
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
-import com.CommaWeb.Comma.repository.BestHouseDtoRepository;
+import com.CommaWeb.Comma.repository.AdminTableDtoRepository;
 import com.CommaWeb.Comma.repository.UserRepository;
 
 @Service
@@ -22,7 +22,7 @@ public class UserService {
 	private UserRepository userRepository;
 
 	@Autowired
-	private BestHouseDtoRepository bestHoustDtoRepository;
+	private AdminTableDtoRepository adminTableDtoRepository;
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -120,8 +120,16 @@ public class UserService {
 		return users;
 	}
 
-	public List<BestHouseDto> loadHouseDtolist(String month, int limit) {
-		return bestHoustDtoRepository.findByMonthBestHouse(month, limit);
+	public List<AdmintableDto> loadHouseDtolist(String month, String string){
+		return adminTableDtoRepository.findByMonthBestHouse(month, Integer.parseInt(string));
+	}
+	
+	public List<AdmintableDto> loadAddressHouseCount(){
+		return adminTableDtoRepository.loadAddressHouseCount();
+	}
+	
+	public List<AdmintableDto> loadMonthTableCount(String table){
+		return adminTableDtoRepository.loadMonthTableCount(table);
 	}
 
 	@Transactional(readOnly = true)

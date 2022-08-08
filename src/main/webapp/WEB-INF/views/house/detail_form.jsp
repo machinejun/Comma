@@ -117,11 +117,11 @@
 			<c:forEach var="review" items="${reviews.content}">
 				<div class="row" id="review-content">
 					<!-- 게스트의 리뷰 -->
-					<div class="col-lg-4 mb-5 mb-lg-0" id="bodyContents" style="height: 240px; margin-right: 120px;">
+					<div class="col-lg-4 mb-5 mb-lg-0" id="bodyContents" style="height: 240px; margin-right: 150px;">
 						<input type="hidden" id="review-id" value="${review.id}">
 						<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></div>
 						<h3>${review.guestId.username}</h3>
-						<div class="review-multiLine">${review.content}</div>
+						<div class="review-multiLine" style="width: 230px;">${review.content}</div>
 						<div>
 							<br> <br>
 							<p class="underline-text">

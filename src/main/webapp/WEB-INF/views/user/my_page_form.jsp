@@ -140,7 +140,7 @@
 					<div class="card-body">
 						<i class="bi bi-bar-chart-line my-icon"></i><br> <br>
 						<h3 class="card-title">통계</h3>
-						<p class="card-text">콤마 데이터 분석</p>
+						<p class="card-text">콤마 회원과 숙소의 데이터 현황을 확인하세요.</p>
 					</div>
 				</div>
 			</div>

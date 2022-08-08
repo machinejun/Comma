@@ -38,7 +38,7 @@ th, td {
 						<div class="d-flex flex-row-reverse">
 							<form class="form-inline" action="/admin/user-management" method="get">
 								<input type="text" class="form-control" style="margin: 10px; height: 40px;" name="q" value="${searchUser}" placeholder="회원 검색">
-								<button type="submit" class="custom-sm-btn" id="btn-search" style="font-size: 17px">검색</button>
+								<button type="submit" class="custom-sm-btn" id="btn-search" style="font-size: 17px; width: 80px; margin-right: 10px;">검색</button>
 							</form>
 						</div>
 

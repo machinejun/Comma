@@ -32,11 +32,8 @@
 					<div class="fs-5 mb-5 d-flex">
 						<span class="text-decoration-line-through flex-shrink-0" style="margin-top: 5px;">#${house.address}&nbsp;#${house.type}</span>
 					</div>
-					<a style="cursor: pointer;" onclick="requestXYData(${house.id})">
-						지도보기 &nbsp;<i class="bi bi-search"></i>
-					</a>
-					<br />
-					<br />
+					<a style="cursor: pointer;" onclick="requestXYData(${house.id})"> 지도보기 &nbsp;<i class="bi bi-search"></i>
+					</a> <br /> <br />
 					<div class="map-container" style="margin-top: 20px; display: none;">
 						<div id="map" style="width: 505px; height: 400px; border-radius: 5px;"></div>
 					</div>
@@ -51,7 +48,7 @@
 					<div class="multiLine">${house.infoText}</div>
 
 					<br>
-					
+
 					<p class="underline-text">
 						<a data-toggle="modal" data-target="#info-modal" style="cursor: pointer;">더 보기</a>
 					</p>
@@ -240,9 +237,6 @@
 	</c:if>
 
 </section>
-
-
-
 
 <script src="/js/house/houseDetail.js"></script>
 <script src="/js/review.js"></script>

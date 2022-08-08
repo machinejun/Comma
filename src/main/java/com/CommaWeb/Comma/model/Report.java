@@ -37,7 +37,6 @@ public class Report {
 	@Column(nullable = false)
 	private String reportType; // 신고 유형
 
-	private User user;
 	
 	@Lob
 	private String detailText;

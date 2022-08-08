@@ -10,7 +10,7 @@
 .custom-sm-btn {
 	padding-left: 0px;
 	padding-right: 0px;
-	width: 140px;
+	width: 120px;
 	height: 30px;
 }
 </style>
@@ -32,12 +32,13 @@
 					<div class="fs-5 mb-5 d-flex">
 						<span class="text-decoration-line-through flex-shrink-0" style="margin-top: 5px;">#${house.address}&nbsp;#${house.type}</span>
 					</div>
-					<button class="custom-sm-btn" onclick="requestXYData(${house.id})">
+					<a style="cursor: pointer;" onclick="requestXYData(${house.id})">
 						지도보기 &nbsp;<i class="bi bi-search"></i>
-					</button>
+					</a>
 					<br />
-					<div class="map-container" style="margin-top: 10px; display: none;">
-						<div id="map" style="width: 505px; height: 400px; border: 3px solid red; border-radius: 5px;"></div>
+					<br />
+					<div class="map-container" style="margin-top: 20px; display: none;">
+						<div id="map" style="width: 505px; height: 400px; border-radius: 5px;"></div>
 					</div>
 					<div class="d-flex">
 						<h3>
@@ -50,6 +51,7 @@
 					<div class="multiLine">${house.infoText}</div>
 
 					<br>
+					
 					<p class="underline-text">
 						<a data-toggle="modal" data-target="#info-modal" style="cursor: pointer;">더 보기</a>
 					</p>
@@ -239,14 +241,9 @@
 
 </section>
 
-<<<<<<< HEAD let data = { id : $("#house-id").val() } // 빈 하트를 눌렀을때 if ($("#like").attr("class") == "bi bi-suit-heart") { $.ajax({ beforeSend : function(xhr) { xhr.setRequestHeader(header, token) }, url :
-"/api/house/wish-list", type : "POST", data : JSON.stringify(data), contentType : "application/json; charset=utf-8", dataType : "json" }).done(function(response) { $("#like-count").text(response.data);
-}).fail(function(error) { console.log(error); }); // 채워진 하트로 바꾸기 document.getElementById("like").className = "bi bi-suit-heart-fill"; // 채워진 하트를 눌렀을 때 } else if ($("#like").attr("class") == "bi bi-suit-heart-fill") { let
-houseId = $("#house-id").val(); $.ajax({ beforeSend : function(xhr) { xhr.setRequestHeader(header, token) }, url : "/api/house/wish-list/" + houseId, type : "DELETE", }).done(function(response) {
-$("#like-count").text(response.data); }).fail(function() { }); // 빈 하트로 바꾸기 document.getElementById("like").className = "bi bi-suit-heart"; } }
-</script>
-=======
+
+
+
 <script src="/js/house/houseDetail.js"></script>
->>>>>>> b35b6aace60eba75014ba9907582622d4dee4a8c
 <script src="/js/review.js"></script>
 <%@ include file="../layout/footer.jsp"%>

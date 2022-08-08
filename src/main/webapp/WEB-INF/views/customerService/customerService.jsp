@@ -99,7 +99,7 @@
 
 				</div>
 			</div>
-			<button id="btn-write" class="custom-sm-btn float-right ${principal.username eq null ? isNotlogin : islogin}">S.O.S</button>
+			<button id="btn-write" class="custom-sm-btn float-right ${principal.username eq null ? isNotlogin : islogin}">글쓰기</button>
 
 		</div>
 	</div>

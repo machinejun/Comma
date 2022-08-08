@@ -2,6 +2,18 @@
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/house/detail.css" rel="stylesheet">
 
+<style>
+.btn-search {
+	border-radius: 10px;
+	border: none;
+	background-color: rgba(255, 149, 149, 0.7);
+	color: white;
+	width: 70px;
+	height: 40px;
+	margin-top: 5px;
+}
+</style>
+
 <section>
 	<div class="container">
 		<h2>나의 숙소 등록</h2>
@@ -14,7 +26,7 @@
 				</div>
 				<br>
 				<div class="form-group">
-					<label><b>지역</b></label> <select class="form-control" name="address">
+					<label><b>지역 구분</b></label> <select class="form-control" name="address">
 						<option>서울</option>
 						<option>부산</option>
 						<option>대구</option>
@@ -27,6 +39,14 @@
 						<option>제주도</option>
 					</select>
 				</div>
+				<br>
+				<div class="form-group">
+					<label><b>상세 주소</b></label>
+				</div>
+				<div class=" form-group">
+				<input class="postcodify_address col-sm-6 form-control" id="main_address" name="detailAddress">&nbsp;&nbsp;<button id="postcodify_search_button" class="btn-search">검색</button><br>
+				</div>
+				<br>
 				<br>
 				<div class="form-group">
 					<label><b>숙소 유형</b></label> <select class="form-control" name="type">
@@ -59,6 +79,14 @@
 		</form>
 	</div>
 </section>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+<script>
+	$(function() {
+		$("#postcodify_search_button").postcodifyPopUp();
+	});
+</script>
 
 <script>
 	$(".custom-file-input").on(

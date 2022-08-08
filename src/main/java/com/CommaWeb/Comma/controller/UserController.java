@@ -216,7 +216,7 @@ public class UserController {
 		return "/advice/errorPage";
 	}
 
-	@GetMapping("/test/adminTable")
+	@GetMapping("/admin/show-statistics")
 	public String getAdminTable() {
 		return "/user/admin_table";
 	}

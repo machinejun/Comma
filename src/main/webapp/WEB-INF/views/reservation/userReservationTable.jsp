@@ -11,11 +11,11 @@
 }
 
 h2 {
-	color: rgba(255, 149, 149, 0.7);
+	color: black;
 }
 
 h2::after {
-	color: rgba(255, 149, 149, 0.7);
+	display: none;
 }
 
 .btn {
@@ -68,7 +68,8 @@ img {
 		<div class="row">
 			<div class="col-xs-12 col-md-12">
 				<div id="page-container">
-					<h2 style="font-family: SUIT-Medium;">${principal.user.username}님안녕하세요</h2>
+					<h2 style="font-family: SUIT-Medium;">${principal.user.username}님&nbsp;안녕하세요</h2>
+					<br>
 					<table class="table">
 						<thead>
 							<tr>

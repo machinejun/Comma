@@ -55,7 +55,7 @@ public class House {
 	@Column(nullable = false)
 	private String type; // 숙소 유형
 
-	@OneToOne(cascade = CascadeType.REMOVE)
+	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "imageId")
 	private Image image;
 

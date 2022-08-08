@@ -3,7 +3,7 @@
 <style>
 h2 {
 	font-family: 'SUIT-Medium';
-	color: rgba(255, 149, 149, 0.7);
+	color: black;
 }
 
 h2::after {
@@ -12,7 +12,7 @@ h2::after {
 
 .panel-default>.panel-heading {
 	color: rgba(255, 255, 255, 1);
-	background-color: rgba(255, 149, 149, 0.3);
+	background-color: transparent;
 	border-color: #ddd;
 }
 
@@ -65,7 +65,7 @@ label {
 	</div>
 
 	<button type="button" class="custom-sm-btn float-right" onclick="writeBoard()">
-		<span>글 작성</span>
+		<span>저장</span>
 	</button>
 	<br /> <br /> <br /> <br /> <br />
 </div>

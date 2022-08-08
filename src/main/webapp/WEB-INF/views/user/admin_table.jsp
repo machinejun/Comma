@@ -30,16 +30,16 @@
 }
 
 .navi-btn {
-	color: rgba(255, 149, 149, 0.7);
+	color: rgb(89, 89, 89, 0.5);
 }
 
 .navi-btn:hover {
-	color: rgba(255, 149, 149, 0.9);
+	color: rgb(89, 89, 89, 0.9);
 }
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover
 	{
-	color: red;
+	color: black;
 	background-color: #fff;
 	border: 1px solid #ddd;
 	border-bottom-color: transparent;

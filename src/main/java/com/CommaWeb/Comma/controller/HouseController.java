@@ -109,6 +109,7 @@ public class HouseController {
 
 	@PostMapping("/post")
 	public String postHouse(RequestPostDto requestPostDto, @AuthenticationPrincipal PrincipalDetail principalDetail) {
+		System.out.println(requestPostDto);
 		houseService.postHouse(requestPostDto, principalDetail.getUser());
 		return "redirect:/house/management";
 	}

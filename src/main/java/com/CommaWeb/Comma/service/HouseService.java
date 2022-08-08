@@ -77,6 +77,7 @@ public class HouseService {
 		House houseEntity = new House();
 		houseEntity.setName(requestPostDto.getName());
 		houseEntity.setAddress(requestPostDto.getAddress());
+		houseEntity.setDetailAddress(requestPostDto.getDetailAddress());
 		houseEntity.setInfoText(requestPostDto.getInfoText());
 		houseEntity.setType(requestPostDto.getType());
 		houseEntity.setOneDayPrice(requestPostDto.getOneDayPrice());

@@ -16,6 +16,7 @@ public class RequestPostDto {
 	private MultipartFile file;
 	private String name;
 	private String address;
+	private String detailAddress;
 	private String type;
 	private int capacity;
 	private int OneDayPrice;

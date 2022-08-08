@@ -104,13 +104,10 @@ public class HouseApiController {
 	private KakaoSearch requestXYLocation(House house) {
 		RestTemplate transmitter = new RestTemplate();
 		HttpHeaders header = new HttpHeaders();
-		header.add("Authorization", "KakaoAK 485a62ce5a393a9978ea206241668428");
-//		MultiValueMap<String, String> param = new LinkedMultiValueMap<>();
-//		param.add("query", "전북 삼성동 100");
-		
+		header.add("Authorization", "KakaoAK 485a62ce5a393a9978ea206241668428");		
 		HttpEntity<MultiValueMap<String, String>> message = new HttpEntity<>(header);
-		//String url = "https://dapi.kakao.com/v2/local/search/address.json?query=" + house.getDetailAddress();
-		String url = "https://dapi.kakao.com/v2/local/search/address.json?query=" + "경상남도 김해시 우암로 165";
+		String url = "https://dapi.kakao.com/v2/local/search/address.json?query=" + house.getDetailAddress();
+
 		ResponseEntity<KakaoSearch> response = transmitter.exchange(url,
 				HttpMethod.GET, message, KakaoSearch.class);
 		System.out.println(response);

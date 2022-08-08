@@ -57,9 +57,9 @@
 			<div class="col-sm-4 mb-5" onclick="location.href='/report-history'" style="cursor: pointer;">
 				<div class="card-body">
 					<div class="card h-100 my-card">
-						<i class="bi bi-envelope-open my-icon"></i><br>
-						<h3 class="card-title">쪽지함</h3>
-						<p class="card-text">다른 회원들과 쪽지를 주고 받아보세요.</p>
+						<i class="bi bi-chat-left-quote my-icon"></i><br>
+						<h3 class="card-title">채팅</h3>
+						<p class="card-text">접속한 회원들과 메시지를 주고받아보세요.</p>
 					</div>
 				</div>
 			</div>
@@ -135,12 +135,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5" onclick="location.href='/admin/report-management'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/admin/show-statistics'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-bar-chart-line my-icon"></i><br> <br>
 						<h3 class="card-title">통계</h3>
-						<p class="card-text">회원의 신고 내역을 확인하고 승인 및 취소하세요.</p>
+						<p class="card-text">콤마 데이터 분석</p>
 					</div>
 				</div>
 			</div>

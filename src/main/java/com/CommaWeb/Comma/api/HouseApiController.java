@@ -1,6 +1,5 @@
 package com.CommaWeb.Comma.api;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.ui.Model;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.CommaWeb.Comma.auth.PrincipalDetail;
-import com.CommaWeb.Comma.dto.KaKaoApproveDto;
 import com.CommaWeb.Comma.dto.ResponseDto;
 import com.CommaWeb.Comma.dto.kakaoSearch.Document;
 import com.CommaWeb.Comma.dto.kakaoSearch.KakaoSearch;

@@ -1,17 +1,17 @@
 let isMapVisiable = false;
 let oldId;
 function requestXYData(id) {
-	
-	if(isMapVisiable == true){
+
+	if (isMapVisiable == true) {
 		showMapContainer();
 		return;
 	}
-	
-	if(id == oldId){
+
+	if (id == oldId) {
 		showMapContainer();
 		return;
 	}
-	
+
 	oldId = id;
 	$.ajax({
 		beforeSend: function(xhr) {
@@ -29,46 +29,41 @@ function requestXYData(id) {
 	});
 }
 
-function showMapContainer(){
-	if(isMapVisiable == true){
+function showMapContainer() {
+	if (isMapVisiable == true) {
 		$(".map-container").fadeOut();
-		isMapVisiable= false;
-	}else{
+		isMapVisiable = false;
+	} else {
 		$(".map-container").fadeIn();
-		isMapVisiable= true;
+		isMapVisiable = true;
 	}
-	
+
 }
 
 function clickHeart() {
 	let token = $("meta[name='_csrf']").attr("content");
 	let header = $("meta[name='_csrf_header']").attr("content");
-
 	let data = {
 		id: $("#house-id").val()
 	}
-
 	// 빈 하트를 눌렀을때
 	if ($("#like").attr("class") == "bi bi-suit-heart") {
-
 		$.ajax({
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader(header, token)
 			},
-
 			url: "/api/house/wish-list",
 			type: "POST",
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
-		}).done(function() {
-			console.log("하트추가 성공");
+		}).done(function(response) {
+			$("#like-count").text(response.data);
 		}).fail(function(error) {
 			console.log(error);
 		});
 		// 채워진 하트로 바꾸기
 		document.getElementById("like").className = "bi bi-suit-heart-fill";
-
 		// 채워진 하트를 눌렀을 때
 	} else if ($("#like").attr("class") == "bi bi-suit-heart-fill") {
 		let houseId = $("#house-id").val();
@@ -76,19 +71,16 @@ function clickHeart() {
 			beforeSend: function(xhr) {
 				xhr.setRequestHeader(header, token)
 			},
-
 			url: "/api/house/wish-list/" + houseId,
 			type: "DELETE",
-		}).done(function() {
-			console.log("위시리스트 삭제");
+		}).done(function(response) {
+			$("#like-count").text(response.data);
 		}).fail(function() {
 		});
 		// 빈 하트로 바꾸기
 		document.getElementById("like").className = "bi bi-suit-heart";
 	}
-
 }
-
 function drawMap(locationX, locationY) {
 
 	var container = document.getElementById('map');

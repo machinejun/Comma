@@ -32,11 +32,8 @@
 					<div class="fs-5 mb-5 d-flex">
 						<span class="text-decoration-line-through flex-shrink-0" style="margin-top: 5px;">#${house.address}&nbsp;#${house.type}</span>
 					</div>
-					<a style="cursor: pointer;" onclick="requestXYData(${house.id})">
-						지도보기 &nbsp;<i class="bi bi-search"></i>
-					</a>
-					<br />
-					<br />
+					<a style="cursor: pointer;" onclick="requestXYData(${house.id})"> 지도보기 &nbsp;<i class="bi bi-search"></i>
+					</a> <br /> <br />
 					<div class="map-container" style="margin-top: 20px; display: none;">
 						<div id="map" style="width: 505px; height: 400px; border-radius: 5px;"></div>
 					</div>
@@ -51,7 +48,7 @@
 					<div class="multiLine">${house.infoText}</div>
 
 					<br>
-					
+
 					<p class="underline-text">
 						<a data-toggle="modal" data-target="#info-modal" style="cursor: pointer;">더 보기</a>
 					</p>
@@ -123,11 +120,11 @@
 			<c:forEach var="review" items="${reviews.content}">
 				<div class="row" id="review-content">
 					<!-- 게스트의 리뷰 -->
-					<div class="col-lg-4 mb-5 mb-lg-0" id="bodyContents" style="height: 240px; margin-right: 120px;">
+					<div class="col-lg-4 mb-5 mb-lg-0" id="bodyContents" style="height: 240px; margin-right: 150px;">
 						<input type="hidden" id="review-id" value="${review.id}">
 						<div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"></div>
 						<h3>${review.guestId.username}</h3>
-						<div class="review-multiLine">${review.content}</div>
+						<div class="review-multiLine" style="width: 230px;">${review.content}</div>
 						<div>
 							<br> <br>
 							<p class="underline-text">
@@ -243,9 +240,6 @@
 	</c:if>
 
 </section>
-
-
-
 
 <script src="/js/house/houseDetail.js"></script>
 <script src="/js/review.js"></script>

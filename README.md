@@ -187,7 +187,7 @@
 ![관리자](https://user-images.githubusercontent.com/96460131/181155327-950b3b21-2568-4d37-bb3f-bc7d8db105b1.png)
 
 ## Detail page
-<<<<<<< HEAD
+
 - Error Page
 ![image](https://user-images.githubusercontent.com/99931188/181435642-2ca681cd-6bed-4c49-9517-6c1da0beffcb.png)
 
@@ -204,7 +204,7 @@
 
 
 
-=======
+
 
 
 | 에러 페이지 |호스트 모드|게스트 모드 |
@@ -217,4 +217,4 @@
 
 ![image](https://user-images.githubusercontent.com/99931188/181436220-a8603903-4f86-4a25-bf52-c8caa03c690d.png)
 
->>>>>>> feature_junic
+

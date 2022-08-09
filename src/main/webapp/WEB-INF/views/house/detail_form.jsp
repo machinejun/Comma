@@ -58,10 +58,12 @@
 					<br> <br>
 					<div class="d-flex" style="position: absolute; bottom: -17%;">
 						<button class="custom-btn flex-shrink-0" onclick="location.href='/user/bookForm/${house.id}'" type="button">예약하기</button>
-						<div class="d-flex" style="margin-top: 5px;">
-							<i class="bi ${not empty likeHouse.house ? exist : notExist}" style="margin-left: 30px; cursor: pointer;" id="like" onclick="clickHeart()"></i>&nbsp;&nbsp;
-							<p id="like-count">${likeCount}</p>
-						</div>
+						<c:if test="${principal ne null}">
+							<div class="d-flex" style="margin-top: 5px;">
+								<i class="bi ${not empty likeHouse.house ? exist : notExist}" style="margin-left: 30px; cursor: pointer;" id="like" onclick="clickHeart()"></i>&nbsp;&nbsp;
+								<p id="like-count">${likeCount}</p>
+							</div>
+						</c:if>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 
 					</div>
@@ -93,6 +95,7 @@
 	</div>
 
 	<div class="container px-4 px-lg-5 my-5">
+
 		<input type="hidden" value="${principal.user.id}" id="principal-id" />
 		<hr>
 		<!-- 평균 별점 -->

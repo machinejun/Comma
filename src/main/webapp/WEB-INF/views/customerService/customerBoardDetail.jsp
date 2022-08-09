@@ -11,17 +11,20 @@ h3 {
 
 h6 {
 	text-align: right;
-	color: black;
+	color: rgba(60, 60, 60, 0.8);
 }
 
+
 .csdetail-content {
-	border-radius: 10px;
 	padding-top: 20px;
 	padding-left: 10px;
 	padding-bottom: 20px;
 	width: 100%;
-	background-color: rgba(255, 149, 149, 0.1);
-	width: 100%;
+	color: black;
+	background-color: white;
+	border-bottom: 2px solid rgba(208, 205, 205, 0.5);
+	border-top: 2px solid rgba(208, 205, 205, 0.5);
+	min-height: 540px;
 	padding-bottom: 20px;
 }
 
@@ -31,7 +34,7 @@ h6 {
 }
 
 .btn-groub>a {
-	color: rgba(255, 149, 149, 0.7);
+	color: rgba(60, 60, 60, 0.8);
 }
 
 .reply_view {
@@ -49,7 +52,7 @@ h6 {
 <section class="detail">
 	<div class="page-title">
 		<div class="container">
-			<h3 class="csdetial-title">title : ${board.title }</h3>
+			<h3 class="csdetial-title">${board.title }</h3>
 			<h6 class="csdetial-title">조회수 : ${board.count }</h6>
 			<h6 class="csdetial-title">작성자 : ${board.user.username }</h6>
 		</div>

@@ -75,7 +75,7 @@
 	function chatName(){
 		var userName = $("#userName").val();
 		if(userName == null || userName.trim() == ""){
-			alert("사용자 이름을 입력해주세요.");
+			alert("닉네임을 입력해주세요.");
 			$("#userName").focus();
 		}else{
 			wsOpen();
@@ -105,35 +105,35 @@
 <body>
 	<div id="container" class="container" style="position: relative;">
 		<h1 style="font-family: 'SUIT-Medium'; color: rgba(255,149,149,0.7);">실시간 채팅</h1>
-		<a onclick="showUserList()" style="position: absolute;  right: 0%; top:17%; z-index: 4">유저목록</a>
+		<!--  <a onclick="showUserList()" style="position: absolute;  right: 0%; top:17%; z-index: 4">유저목록</a> -->
 		<div id="chating" class="chating"  style="position: relative; overflow-x:hidden; ">
 			<div id="user-list" style="background-color: transparent; color: white; position: absolute ; z-index: 3;   right: -1%; display:none;">		
 				<ul >
-					<li style="width: 100px; list-style:none; text-align: center">sample1</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample2</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample3</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample4</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample5</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample6</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample7</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample8</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample9</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample10</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample11</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample12</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample13</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample14</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample15</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample16</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample17</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample18</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample19</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample20</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample21</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample22</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample23</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample24</li>
-					<li style="width: 100px; list-style:none; text-align: center">sample25</li>
+						<li style="width: 100px; list-style:none; text-align: center">${principal.user.username}</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample2</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample3</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample4</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample5</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample6</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample7</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample8</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample9</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample10</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample11</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample12</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample13</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample14</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample15</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample16</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample17</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample18</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample19</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample20</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample21</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample22</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample23</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample24</li>
+						<li style="width: 100px; list-style:none; text-align: center">sample25</li>
 				</ul>
 			</div>
 		</div>
@@ -141,10 +141,10 @@
 		<div id="yourName">
 			<table class="inputTable">
 				<tr>
-					<th style="width: 80px;">사용자 명</th>
+					<th style="width: 80px;">닉네임</th>
 					<input type="hidden" value="${principal.user.username}"/>
 					<th><input type="text" name="userName" id="userName" style="margin-left:10px; width: 250px;"></th>
-					<th><button onclick="chatName()" id="startBtn " style="margin-left:30px; width: 80px;">이름 등록</button></th>
+					<th><button onclick="chatName()" id="startBtn " style="margin-left:50px; width: 80px;">등록</button></th>
 				</tr>
 			</table>
 		</div>

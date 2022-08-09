@@ -25,13 +25,13 @@
 			margin-bottom: 20px;
 		}
 		.chating{
-			background-color: #000;
+			background-color: rgba(255, 149, 149, 0.03);
 			width: 500px;
 			height: 500px;
 			overflow: auto;
 		}
 		.chating p{
-			color: #fff;
+			color: #000;
 			text-align: left;
 		}
 		input{

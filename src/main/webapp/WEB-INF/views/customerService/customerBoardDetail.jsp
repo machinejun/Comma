@@ -24,7 +24,7 @@ h6 {
 	background-color: white;
 	border-bottom: 2px solid rgba(208, 205, 205, 0.5);
 	border-top: 2px solid rgba(208, 205, 205, 0.5);
-	min-height: 540px;
+	min-height: 250px;
 	padding-bottom: 20px;
 }
 
@@ -100,7 +100,7 @@ h6 {
 							<li class="reply-list-${reply.id }">
 								<hr />
 								<div class="name time" style="font-size: 20px;">
-									<strong>운영자</strong><a style="margin-left: 10px; color: blue;"><time>${reply.createTime }</time></a>
+									<strong>운영자</strong><a style="margin-left: 10px; color: blue;"><fmt:formatDate pattern="yyyy.MM.dd hh:mm" value="${reply.createTime}" /></a>
 								</div>
 								<div class="comment_content" style="font-family: sans-serif;">${reply.content }</div> 
 								<sec:authorize access="hasRole('ROLE_ADMIN')">

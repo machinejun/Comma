@@ -35,7 +35,7 @@
 	<br />
 	<div class="row gx-4 gx-lg-5">
 
-		<sec:authorize access="hasRole('ROLE_HOST') || hasRole('ROLE_GUEST')">
+		<sec:authorize access="hasRole('ROLE_GUEST')">
 			<div class="col-sm-4 mb-5" onclick="location.href='/auth/update_form'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
@@ -54,18 +54,6 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5" onclick="location.href='/report-history'" style="cursor: pointer;">
-				<div class="card-body">
-					<div class="card h-100 my-card">
-						<i class="bi bi-chat-left-quote my-icon"></i><br>
-						<h3 class="card-title">채팅</h3>
-						<p class="card-text">접속한 회원들과 메시지를 주고받아보세요.</p>
-					</div>
-				</div>
-			</div>
-		</sec:authorize>
-
-		<sec:authorize access="hasRole('ROLE_GUEST')">
 			<div class="col-sm-4 mb-5" onclick="location.href='/wish-list/${principal.user.id}'" style="cursor: pointer;">
 				<div class="card-body">
 					<div class="card h-100 my-card">
@@ -96,7 +84,25 @@
 		</sec:authorize>
 
 		<sec:authorize access="hasRole('ROLE_HOST')">
-			<div class="col-sm-4 mb-5" onclick="location.href='/reserveTable/host'" style="cursor: pointer;">
+			<div class="col-sm-6 mb-5" onclick="location.href='/auth/update_form'" style="cursor: pointer;">
+				<div class="card h-100 my-card">
+					<div class="card-body">
+						<i class="bi bi-person-bounding-box my-icon"></i> <br> <br>
+						<h3 class="card-title">내 정보 수정</h3>
+						<p class="card-text">비밀번호를 주기적으로 변경하고 계정을 안전하게 보호하세요.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 mb-5" onclick="location.href='/report-history'" style="cursor: pointer;">
+				<div class="card-body">
+					<div class="card h-100 my-card">
+						<i class="bi bi-bell my-icon"></i><br>
+						<h3 class="card-title">신고 내역</h3>
+						<p class="card-text">나의 신고 내역을 확인하세요.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 mb-5" onclick="location.href='/reserveTable/host'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-card-checklist my-icon"></i><br> <br>
@@ -105,7 +111,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5" onclick="location.href='/house/management'" style="cursor: pointer;">
+			<div class="col-sm-6 mb-5" onclick="location.href='/house/management'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-house-door my-icon"></i><br> <br>

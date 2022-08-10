@@ -32,11 +32,15 @@ public class ReviewController {
 
 	@Autowired
 	private ReservationService reservationService;
+	
 
 	// 리뷰 작성 폼 호출
 	@GetMapping("/post_form/{reservationId}")
 	public String getReviewForm(@PathVariable int reservationId,
 			@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
+		if(principalDetail.getUser().getReportCount() > 2) {
+			return "redirect:/reserveTable/user";
+		}
 		model.addAttribute("reservation", reservationService.findByResId(reservationId));
 		return "review/review_post_form";
 	}

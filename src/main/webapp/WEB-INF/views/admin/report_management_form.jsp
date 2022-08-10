@@ -93,6 +93,7 @@ div {
 th, td {
 	text-align: center;
 }
+
 </style>
 
 <div class="container">
@@ -102,7 +103,9 @@ th, td {
 			<h2>회원 신고 관리</h2>
 			<br>
 			<p>
-				회원의 신고 내역을 확인하고 승인 및 취소하세요. <br>신고된 회원은 신고 횟수에 따라 사이트의 기능이 제한됩니다.
+				회원의 신고 내역을 확인하고 승인 및 취소하세요. <br>신고된 회원은 신고 횟수에 따라 사이트의 기능이 제한됩니다.<br><br>
+				3회 이상 : 리뷰, 댓글 작성 제한<br>
+				5회 이상 : 계정 삭제
 			</p>
 		</div>
 	</div>
@@ -136,7 +139,7 @@ th, td {
 						<td><a data-toggle="modal" data-target="#report-modal-${report.id}" style="cursor: pointer; color: rgb(102, 102, 102);">내용보기</a></td>
 						<td>${report.reportType}</td>
 						<td><a data-toggle="modal" data-target="#report-detail-${report.id}" style="cursor: pointer;"><i class="bi bi-search"></i></a></td>
-						<td style="font-weight: bold; ${report.reportStatus eq 'APPROVED' ? 'color: blue;' : 'color: red;'}" id="report-status-${report.id}">${report.reportStatus}</td>
+						<td id="reportStatus" style="font-weight: bold; ${report.reportStatus eq 'APPROVED' ? 'color: blue;' : 'color: red;'}" id="report-status-${report.id}">${report.reportStatus}</td>
 						<td style="cursor: pointer;"><a style="color: rgb(0, 0, 153);" onclick="index.approveReport(${report.id})">승인</a>&nbsp;&nbsp;<a onclick="index.cancelReport(${report.id})" style="color: rgb(204, 0, 0);">취소</a></td>
 					</tr>
 

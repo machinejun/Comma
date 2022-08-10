@@ -7,7 +7,7 @@
 	<div class="container">
 		<h2>나의 숙소 정보 수정</h2>
 		<br> <br>
-		<form action="/house/update/${house.id}" enctype="multipart/form-data" method="post">
+		<form action="/host/update-house/${house.id}" enctype="multipart/form-data" method="post">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<div class="form-group">
 				<div class="form-group">

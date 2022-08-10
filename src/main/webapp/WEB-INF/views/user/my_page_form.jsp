@@ -36,7 +36,7 @@
 	<div class="row gx-4 gx-lg-5">
 
 		<sec:authorize access="hasRole('ROLE_GUEST')">
-			<div class="col-sm-4 mb-5" onclick="location.href='/auth/update_form'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/user/update_form'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-person-bounding-box my-icon"></i> <br> <br>
@@ -45,7 +45,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5" onclick="location.href='/report-history'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/user/report-history'" style="cursor: pointer;">
 				<div class="card-body">
 					<div class="card h-100 my-card">
 						<i class="bi bi-bell my-icon"></i><br>
@@ -72,7 +72,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5" onclick="location.href='/review/my-review-list/${principal.user.id}'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/guest/my-review-list/${principal.user.id}'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-pencil-square my-icon"></i><br> <br>
@@ -84,7 +84,7 @@
 		</sec:authorize>
 
 		<sec:authorize access="hasRole('ROLE_HOST')">
-			<div class="col-sm-6 mb-5" onclick="location.href='/auth/update_form'" style="cursor: pointer;">
+			<div class="col-sm-6 mb-5" onclick="location.href='/user/update_form'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-person-bounding-box my-icon"></i> <br> <br>
@@ -93,7 +93,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-6 mb-5" onclick="location.href='/report-history'" style="cursor: pointer;">
+			<div class="col-sm-6 mb-5" onclick="location.href='/user/report-history'" style="cursor: pointer;">
 				<div class="card-body">
 					<div class="card h-100 my-card">
 						<i class="bi bi-bell my-icon"></i><br>
@@ -111,7 +111,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-6 mb-5" onclick="location.href='/house/management'" style="cursor: pointer;">
+			<div class="col-sm-6 mb-5" onclick="location.href='/host/house-management'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-house-door my-icon"></i><br> <br>

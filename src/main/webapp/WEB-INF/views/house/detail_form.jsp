@@ -183,19 +183,19 @@
 				<c:when test="${reviewCount ne 0}">
 					<c:choose>
 						<c:when test="${reviews.first}">
-							<li class="page-item disabled"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
+							<li class="page-item disabled"><a class="page-link" href="/user/house-detail/${house.id}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="page-item"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
+							<li class="page-item"><a class="page-link" href="/user/house-detail/${house.id}?page=${reviews.pageable.pageNumber - 1}"><b>&lt;</b></a></li>
 						</c:otherwise>
 					</c:choose>
 
 					<c:choose>
 						<c:when test="${reviews.last}">
-							<li class="page-item disabled"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
+							<li class="page-item disabled"><a class="page-link" href="/user/house-detail/${house.id}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="page-item"><a class="page-link" href="/house/detail/${house.id}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
+							<li class="page-item"><a class="page-link" href="/user/house-detail/${house.id}?page=${reviews.pageable.pageNumber + 1}"><b>&gt;</b></a></li>
 						</c:otherwise>
 					</c:choose>
 				</c:when>
@@ -214,7 +214,7 @@
 					<c:set var="avgScore" value="${house.starScore * 20}"></c:set>
 					<div class="col mb-5">
 						<div class="custom-card h-100">
-							<a href="/house/detail/${house.id}"> <img class="custom-card-img" src="http://localhost:9090/upload/${house.image.imageUrl}" style="width: 240px; height: 160px; object-fit: cover;"></a>
+							<a href="/user/house-detail/${house.id}"> <img class="custom-card-img" src="http://localhost:9090/upload/${house.image.imageUrl}" style="width: 240px; height: 160px; object-fit: cover;"></a>
 							<div class="card-body">
 								<div class="text-center">
 									<h4 class="multiLine" style="margin-left: 10px;">

@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.CommaWeb.Comma.auth.PrincipalDetail;
 import com.CommaWeb.Comma.dto.HouseScoreDto;
@@ -26,7 +25,6 @@ import com.CommaWeb.Comma.service.LikeHouseService;
 import com.CommaWeb.Comma.service.ReviewService;
 
 @Controller
-@RequestMapping("/house")
 public class HouseController {
 
 	@Autowired
@@ -39,7 +37,7 @@ public class HouseController {
 	private LikeHouseService likeHouseService;
 
 	// 숙소 리스트 페이지 호출
-	@GetMapping("/list")
+	@GetMapping("/user/house-list")
 	public String getHouseList(Model model, String address, String type) {
 
 		// 지역별, 유형별 숙소 검색
@@ -64,7 +62,7 @@ public class HouseController {
 	}
 
 	// 숙소 상세정보 페이지 호출
-	@GetMapping("/detail/{houseId}")
+	@GetMapping("/user/house-detail/{houseId}")
 	public String getHouseDetail(@PathVariable int houseId, Model model,
 			@AuthenticationPrincipal PrincipalDetail principalDetail,
 			@PageableDefault(size = 3, sort = "id", direction = Direction.DESC) Pageable pageable) {
@@ -97,34 +95,34 @@ public class HouseController {
 	}
 
 	// 숙소 등록 페이지 호출
-	@GetMapping("/post_form")
+	@GetMapping("/host/post_form")
 	public String getPostingForm() {
 		return "house/post_form";
 	}
 
 	// 숙소 글 수정 페이지 호출
-	@GetMapping("/update_form/{houseId}")
+	@GetMapping("/host/update_form/{houseId}")
 	public String getUpdateForm(@PathVariable int houseId, Model model) {
 		House houseEntity = houseService.getHouseDetail(houseId);
 		model.addAttribute("house", houseEntity);
 		return "house/update_house_form";
 	}
 
-	@PostMapping("/post")
+	@PostMapping("/host/post-house")
 	public String postHouse(RequestPostDto requestPostDto, @AuthenticationPrincipal PrincipalDetail principalDetail) {
 		houseService.postHouse(requestPostDto, principalDetail.getUser());
 		return "redirect:/house/management";
 	}
 
-	@PostMapping("/update/{houseId}")
+	@PostMapping("/host/update-house/{houseId}")
 	public String updateHouse(@PathVariable int houseId, RequestPostDto requestPostDto,
 			@AuthenticationPrincipal PrincipalDetail principalDetail) {
 		houseService.updateHouse(houseId, requestPostDto);
-		return "redirect:/house/management";
+		return "redirect:/host/house-management";
 	}
 
 	// 숙소 관리 폼 호출 (호스트)
-	@GetMapping("/management")
+	@GetMapping("/host/house-management")
 	public String getHouseManagementForm(@AuthenticationPrincipal PrincipalDetail principalDetail , Model model) {
 		model.addAttribute("houseList", houseService.findAllByHostId(principalDetail.getUser().getId()));
 		return "house/house_management_form";

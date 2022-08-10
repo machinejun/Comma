@@ -55,7 +55,7 @@ public class UserApiController {
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 
-	@PostMapping("/auth/username-check")
+	@PostMapping("/user/username-check")
 	public ResponseDto<User> joinCheck(@RequestBody User user) {
 		User userEntity = userService.checkUsername(user.getUsername());
 		return new ResponseDto<>(HttpStatus.OK.value(), userEntity);

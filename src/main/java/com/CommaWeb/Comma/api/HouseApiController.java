@@ -47,14 +47,14 @@ public class HouseApiController {
 	@Autowired
 	private LikeHouseService likeHouseService;
 
-	@PutMapping("/{houseId}")
+	@PutMapping("/update/{houseId}")
 	public House updateHouse(@PathVariable int houseId, @RequestBody House house) {
 		// 숙소 정보 수정 기능
 		houseService.updateHouse(houseId, house);
 		return house;
 	}
 
-	@DeleteMapping("/{houseId}")
+	@DeleteMapping("/delete/{houseId}")
 	public ResponseDto<Integer> deleteHouse(@PathVariable int houseId) {
 		// 숙소 삭제 기능
 		houseService.deleteHouse(houseId);
@@ -82,7 +82,7 @@ public class HouseApiController {
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), likeCount);
 	}
 
-	@GetMapping("/{houseId}")
+	@GetMapping("/review-list/{houseId}")
 	public Page<Review> getReviewPage(@PathVariable int houseId, Model model,
 			@PageableDefault(size = 3, sort = "id", direction = Direction.DESC) Pageable pageable) {
 

@@ -19,7 +19,7 @@ public class ReportController {
 	private ReportService reportService;
 
 	// 나의 신고 내역 페이지
-	@GetMapping("/report-history")
+	@GetMapping("/user/report-history")
 	public String getMyReportHistoryForm(Model model, @AuthenticationPrincipal PrincipalDetail principalDetail) {
 		List<Report> reports = reportService.getReportList(principalDetail.getUser().getId());
 		model.addAttribute("reports", reports);

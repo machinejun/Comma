@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.CommaWeb.Comma.auth.PrincipalDetail;
@@ -16,6 +17,7 @@ import com.CommaWeb.Comma.model.Report;
 import com.CommaWeb.Comma.service.ReportService;
 
 @RestController
+@RequestMapping("/api/report")
 public class ReportApiController {
 
 	@Autowired
@@ -25,7 +27,7 @@ public class ReportApiController {
 	 * 
 	 * 게스트가 호스트의 댓글을 신고한다.
 	 */
-	@PostMapping("/guest/report/{replyId}")
+	@PostMapping("/reply/{replyId}")
 	public ResponseDto<Integer> reportReply(@PathVariable int replyId,
 			@AuthenticationPrincipal PrincipalDetail principalDetail, @RequestBody Report report) {
 		reportService.reportReply(principalDetail.getUser(), replyId, report);
@@ -36,7 +38,7 @@ public class ReportApiController {
 	 * 
 	 * 호스트가 게스트의 리뷰를 신고한다.
 	 */
-	@PostMapping("/host/report/{reviewId}")
+	@PostMapping("/review/{reviewId}")
 	public ResponseDto<Integer> reportReview(@PathVariable int reviewId,
 			@AuthenticationPrincipal PrincipalDetail principalDetail, @RequestBody Report report) {
 

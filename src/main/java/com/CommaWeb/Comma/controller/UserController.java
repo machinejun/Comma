@@ -64,12 +64,12 @@ public class UserController {
 		return "home";
 	}
 
-	@GetMapping("/user/login_form")
+	@GetMapping("/auth/login_form")
 	public String loginForm() {
 		return "user/login_form";
 	}
 
-	@GetMapping("/user/join_form")
+	@GetMapping("/auth/join_form")
 	public String joinForm(User user) {
 		return "user/join_form";
 	}
@@ -94,7 +94,7 @@ public class UserController {
 		return "redirect:/";
 	}
 
-	@PostMapping("/user/joinProc")
+	@PostMapping("/auth/joinProc")
 	public String saveUser(User user) {
 		userService.saveUser(user);
 		return "redirect:/user/join-complete/" + user.getId();
@@ -136,7 +136,7 @@ public class UserController {
 		return "admin/admin_form";
 	}
 
-	@GetMapping("/user/kakao/login_proc")
+	@GetMapping("/auth/kakao/login_proc")
 	public String kakaoCallback(@RequestParam String code) {
 
 		RestTemplate restTemplate = new RestTemplate();

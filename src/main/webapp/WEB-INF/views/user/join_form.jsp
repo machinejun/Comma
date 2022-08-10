@@ -9,7 +9,7 @@
 			<div class="signup-content">
 				<div class="signup-form needs-validation">
 					<h2 class="form-title">회원가입</h2>
-					<form action="/user/joinProc" method="post" onsubmit="return joinCheck()" class="register-form" id="register-form">
+					<form action="/auth/joinProc" method="post" onsubmit="return joinCheck()" class="register-form" id="register-form">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 						<p id="usernameCheckResult"></p>
 						<div class="form-group">
@@ -42,7 +42,7 @@
 					<figure>
 						<img src="/assets/images/img-01.png" style="margin-top: 50px;" />
 					</figure>
-					<br /> <br /> <a href="/user/login_form" class="signup-image-link">이미 회원이신가요?</a>
+					<br /> <br /> <a href="/auth/login_form" class="signup-image-link">이미 회원이신가요?</a>
 				</div>
 			</div>
 		</div>

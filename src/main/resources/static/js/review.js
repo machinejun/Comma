@@ -76,7 +76,7 @@ let index = {
 			}).done(function(response) {
 				if (response.status == 200) {
 					alert("리뷰가 삭제되었습니다.");
-					location.href = "/review/my-review-list/" + guestId;
+					location.href = "/guest/my-review-list/" + guestId;
 				} else {
 					alert("리뷰가 삭제되지 않았습니다.");
 				}

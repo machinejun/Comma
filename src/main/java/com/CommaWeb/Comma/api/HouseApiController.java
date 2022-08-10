@@ -57,6 +57,7 @@ public class HouseApiController {
 	@DeleteMapping("/delete/{houseId}")
 	public ResponseDto<Integer> deleteHouse(@PathVariable int houseId) {
 		// 숙소 삭제 기능
+		System.out.println("delete: " + houseId);
 		houseService.deleteHouse(houseId);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}

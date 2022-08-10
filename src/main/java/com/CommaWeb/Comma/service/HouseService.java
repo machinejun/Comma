@@ -11,6 +11,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -67,9 +68,9 @@ public class HouseService {
 	}
 
 	@Transactional
+	@Modifying
 	public void deleteHouse(int houseId) {
 		houseRepository.deleteById(houseId);
-
 	}
 
 	@Transactional

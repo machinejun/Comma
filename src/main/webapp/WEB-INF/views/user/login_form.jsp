@@ -11,7 +11,7 @@
 				<img src="/assets/images/img-01.png" alt="IMG" />
 			</div>
 
-			<form class="login100-form validate-form" action="/user/loginProc"
+			<form class="login100-form validate-form" action="/auth/loginProc"
 				method="post" class="needs-validation" novalidate>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"> 
 				<span class="login100-form-title"> Member Login </span>
@@ -42,7 +42,7 @@
 
 				<div class="text-center p-t-50">
 					<h4>
-						<a class="txt2" href="/user/join_form" style="font-size: 15px;"> 계정이 없으신가요? </a><br>
+						<a class="txt2" href="/auth/join_form" style="font-size: 15px;"> 계정이 없으신가요? </a><br>
 					</h4>
 				</div>
 			</form>

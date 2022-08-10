@@ -111,7 +111,7 @@ public class HouseController {
 	@PostMapping("/host/post-house")
 	public String postHouse(RequestPostDto requestPostDto, @AuthenticationPrincipal PrincipalDetail principalDetail) {
 		houseService.postHouse(requestPostDto, principalDetail.getUser());
-		return "redirect:/house/management";
+		return "redirect:/host/house-management";
 	}
 
 	@PostMapping("/host/update-house/{houseId}")

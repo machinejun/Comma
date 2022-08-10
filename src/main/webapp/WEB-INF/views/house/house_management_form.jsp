@@ -87,7 +87,7 @@
 						</p>
 					</div>
 					<div class="col" style="position: absolute; bottom: 5%; left: 18%">
-						<a href="/house/update_form/${house.id}" style="margin-right: 5px; color: rgb(67, 0, 232)">수정</a> <a onclick="index.deleteHouse('${house.id}')"
+						<a href="/host/update_form/${house.id}" style="margin-right: 5px; color: rgb(67, 0, 232)">수정</a> <a onclick="index.deleteHouse('${house.id}')"
 							style="color: red; margin-right: 5px; color: rgb(203, 0, 0); cursor: pointer;">삭제</a> <a href="/host/review-management/${house.id}" style="color: black">리뷰 관리</a>
 					</div>
 				</div>

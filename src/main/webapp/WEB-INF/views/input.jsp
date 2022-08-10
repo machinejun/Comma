@@ -8,7 +8,7 @@
 		
 	}
 	.text-center > h2 {
-		color: rgba(255,149,149,0.7);
+		color: rgba(60,60,60, 0.5);
 		font-family: 'SUIT-Medium'; 	
 	}
 	.text-center > h2::after {
@@ -25,7 +25,7 @@
 		width: 900px;
 	}
 	.ui-datepicker-title{
-		color: rgba(255,149,149,0.7);
+		color: black;
 	}
 	#bookingDate{
 		color: #838383;
@@ -48,7 +48,7 @@
 	}
 	
 	span {
-		color: rgba(255,149,149,0.7);
+		color: black;
 	}
 	#check-default-btn{
 		margin-top: 20px;
@@ -140,7 +140,7 @@
                         <span class="fa-icon">
                           <i class="fa fa fa-map-o" aria-hidden="true"></i>
                         </span>
-                        ${house.address}
+                        ${house.detailAddress}
                       </li>
                     </ul>
 

@@ -30,6 +30,8 @@ let index = {
 				if (response.status == 200) {
 					appendReply(response.data);
 					alert("댓글이 등록되었습니다.");
+				} else {
+					alert("회원님은 신고 횟수가 3회 이상으로 댓글을 작성하실 수 없습니다.");
 				}
 			}).fail(function(error) {
 				alert("댓글이 등록되지 않았습니다.");

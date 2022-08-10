@@ -101,7 +101,15 @@ img {
 										</c:otherwise>
 									</c:choose>
 									<td style="text-align: center;"><c:if test="${reservation.approvalStatus eq 'COMPLETED'}">
-											<button onclick="location.href='/review/post_form/${reservation.id}'" class="btn" style="">리뷰 쓰러가기</button>
+
+											<c:choose>
+												<c:when test="${principal.user.reportCount > 2}">
+													<button onclick="alert('회원님은 신고횟수가 3회 이상으로 리뷰를 작성하실 수 없습니다.')" class="btn" style="">리뷰 쓰러가기</button>
+												</c:when>
+												<c:otherwise>
+													<button onclick="location.href='/review/post_form/${reservation.id}'" class="btn" style="">리뷰 쓰러가기</button>
+												</c:otherwise>
+											</c:choose>
 										</c:if></td>
 								</tr>
 							</c:forEach>

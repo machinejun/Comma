@@ -11,8 +11,8 @@ import com.CommaWeb.Comma.model.House;
 
 public interface HouseRepository extends JpaRepository<House, Integer> {
 
-	// 현재 조회 중인 숙소 제외 같은 지역 숙소 리스트 가져오기
-	@Query(value = "SELECT * FROM house WHERE address = ? AND id <> ? LIMIT 4", nativeQuery = true)
+	// 현재 조회 중인 숙소 제외 같은 지역 숙소 리스트 별점 높은 순으로 가져오기
+	@Query(value = "SELECT * FROM house WHERE address = ? AND id <> ? ORDER BY starScore DESC LIMIT 4", nativeQuery = true)
 	Optional<List<House>> findAllByAddress(String address, int houseId);
 
 	@Query(value = "SELECT * FROM house WHERE hostId = ?1 ORDER BY id DESC", nativeQuery = true)

@@ -64,22 +64,22 @@ public class UserController {
 		return "home";
 	}
 
-	@GetMapping("/auth/login_form")
+	@GetMapping("/user/login_form")
 	public String loginForm() {
 		return "user/login_form";
 	}
 
-	@GetMapping("/auth/join_form")
+	@GetMapping("/user/join_form")
 	public String joinForm(User user) {
 		return "user/join_form";
 	}
 
-	@GetMapping("/auth/update_form")
+	@GetMapping("/user/update_form")
 	public String updateForm() {
 		return "user/update_user_form";
 	}
 
-	@GetMapping("/join/complete/{userId}")
+	@GetMapping("/user/join-complete/{userId}")
 	public String completeJoinForm(@PathVariable int userId, Model model) {
 		model.addAttribute("user", userService.getUserById(userId));
 		return "user/join_complete_form";
@@ -94,19 +94,14 @@ public class UserController {
 		return "redirect:/";
 	}
 
-	@PostMapping("/auth/joinProc")
+	@PostMapping("/user/joinProc")
 	public String saveUser(User user) {
 		userService.saveUser(user);
-		return "redirect:/join/complete/" + user.getId();
-	}
-
-	@GetMapping("/reservation-history/{guestId}")
-	public String reservationHistory(@PathVariable int guestId) {
-		return "user/reservation_history_form";
+		return "redirect:/user/join-complete/" + user.getId();
 	}
 
 	// 위시리스트 페이지 호출
-	@GetMapping("/wish-list/{guestId}")
+	@GetMapping("/guest/wish-list/{guestId}")
 	public String getWishList(@PathVariable int guestId, Model model) {
 		model.addAttribute("wishList", likeHouseService.getWishListById(guestId));
 		return "user/wish_list_form";
@@ -141,7 +136,7 @@ public class UserController {
 		return "admin/admin_form";
 	}
 
-	@GetMapping("/auth/kakao/login_proc")
+	@GetMapping("/user/kakao/login_proc")
 	public String kakaoCallback(@RequestParam String code) {
 
 		RestTemplate restTemplate = new RestTemplate();

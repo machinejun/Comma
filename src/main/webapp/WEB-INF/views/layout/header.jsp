@@ -118,7 +118,7 @@ nav {
 
 			<ul class="navbar-nav">
 
-				<li class="nav-item"><a class="nav-link" href="/house/list">숙소 보기</a></li>
+				<li class="nav-item"><a class="nav-link" href="/user/house-list">숙소 보기</a></li>
 				<li class="nav-item"><a class="nav-link" href="/user/cs">고객 센터</a></li>
 				<li class="nav-item"><a class="nav-link" href="/chat">실시간 채팅</a></li>
 			</ul>
@@ -132,9 +132,9 @@ nav {
 			<input id="isUserTable" type="hidden" value=0 />
 			<c:choose>
 				<c:when test="${empty principal}">
-					<a href="/auth/login_form" class="list-group-item list-group-item-action"> <span class="icon-drivers-license-o"></span>&nbsp;&nbsp;로그인
+					<a href="/user/login_form" class="list-group-item list-group-item-action"> <span class="icon-drivers-license-o"></span>&nbsp;&nbsp;로그인
 					</a>
-					<a href="/auth/join_form" class="list-group-item list-group-item-action"> <span class="icon-user-plus"></span>&nbsp;&nbsp;회원가입
+					<a href="/user/join_form" class="list-group-item list-group-item-action"> <span class="icon-user-plus"></span>&nbsp;&nbsp;회원가입
 					</a>
 
 				</c:when>

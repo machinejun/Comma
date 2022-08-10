@@ -64,7 +64,7 @@
 			</c:choose>
 			<br>
 			<div style="position: absolute; left: 46%">
-				<a class="custom-btn" href="/house/post_form">숙소 등록하기</a>
+				<a class="custom-btn" href="/host/post_form">숙소 등록하기</a>
 			</div>
 			<br>
 		</div>
@@ -88,7 +88,7 @@
 					</div>
 					<div class="col" style="position: absolute; bottom: 5%; left: 18%">
 						<a href="/house/update_form/${house.id}" style="margin-right: 5px; color: rgb(67, 0, 232)">수정</a> <a onclick="index.deleteHouse('${house.id}')"
-							style="color: red; margin-right: 5px; color: rgb(203, 0, 0); cursor: pointer;">삭제</a> <a href="/review/management/${house.id}" style="color: black">리뷰 관리</a>
+							style="color: red; margin-right: 5px; color: rgb(203, 0, 0); cursor: pointer;">삭제</a> <a href="/host/review-management/${house.id}" style="color: black">리뷰 관리</a>
 					</div>
 				</div>
 

@@ -22,7 +22,7 @@ import com.CommaWeb.Comma.service.HouseService;
 import com.CommaWeb.Comma.service.ReviewService;
 
 @RestController
-@RequestMapping("/review")
+@RequestMapping("/api/review")
 public class ReviewApiController {
 
 	@Autowired
@@ -43,7 +43,7 @@ public class ReviewApiController {
 	}
 	
 	// 리뷰 수정 기능
-	@PutMapping("/{reviewId}")
+	@PutMapping("/update/{reviewId}")
 	public ResponseDto<Review> updateReview(@PathVariable int reviewId,
 			@RequestBody Review review) {
 		Review reviewEntity = reviewService.updateReview(reviewId, review);
@@ -52,7 +52,7 @@ public class ReviewApiController {
 	
 	
 	// 리뷰 삭제 기능
-	@DeleteMapping("/{reviewId}")
+	@DeleteMapping("/delete/{reviewId}")
 	public ResponseDto<Integer> deleteReview(@PathVariable int reviewId) {
 		reviewService.deleteReview(reviewId);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);

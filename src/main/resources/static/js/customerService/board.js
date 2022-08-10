@@ -31,7 +31,7 @@ function updateBoard(boardid){
 			xhr.setRequestHeader(header, token)
 		},
 		type: "put",
-		url:"/user/api/cs-update",
+		url:"/api/cs-update",
 		contentType: "application/json; charset=utf-8",
 		data: JSON.stringify(data),
 		dataType:"json"
@@ -55,7 +55,7 @@ function deleteBoard(boardid){
 			xhr.setRequestHeader(header, token)
 		},
 		type: "delete",
-		url:`/user/api/cs-delete?boardId=${boardid}`,
+		url:`/api/cs-delete?boardId=${boardid}`,
 		dataType:"json"
 	}).done(function(response){
 		if(response.status == 200){
@@ -81,7 +81,7 @@ function writeBoard(){
 			xhr.setRequestHeader(header, token)
 		},
 		type: "post",
-		url:"/user/api/cs-write",
+		url:"/api/cs-write",
 		contentType: "application/json; charset=utf-8",
 		data: JSON.stringify(data),
 		dataType:"json"
@@ -116,7 +116,7 @@ function writeReply(boardid){
 			xhr.setRequestHeader(header, token)
 		},
 		type: "post",
-		url:`/user/api/cs-write/reply?boardId=${boardid}`,
+		url:`/api/cs-write/reply?boardId=${boardid}`,
 		contentType: "application/json; charset=utf-8",
 		data: JSON.stringify(replydata),
 		dataType:"json"

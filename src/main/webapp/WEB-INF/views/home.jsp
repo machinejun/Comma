@@ -132,7 +132,7 @@ p {
 			<c:forEach var="house" items="${houses}">
 				<%!int number = 1;%>
 				<div class="ranking-list col-xs-12 col-md-4">
-					<a href="/house/detail/${house.id}"> <img class="custom-img" src="http://localhost:9090/upload/${house.image.imageUrl}" class="
+					<a href="/user/house-detail/${house.id}"> <img class="custom-img" src="http://localhost:9090/upload/${house.image.imageUrl}" class="
 						reveal img-responsive
 						reveal-contentimage-center" style="width: 210px; height: 210px; object-fit: cover;"></a>
 					<h3 style="color: rgba(255, 149, 149, 0.7);">

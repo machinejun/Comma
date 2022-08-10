@@ -65,7 +65,7 @@
 				<input type="hidden" value="${house.id}" id="house-id-${house.id}">
 				<div class="col-sm-4">
 					<div>
-						<a href="/house/detail/${house.id}"><img class="custom-img list-img" src="http://localhost:9090/upload/${house.image.imageUrl}" style="object-fit: cover;"></a>
+						<a href="/user/house-detail/${house.id}"><img class="custom-img list-img" src="http://localhost:9090/upload/${house.image.imageUrl}" style="object-fit: cover;"></a>
 					</div>
 					<div class="row">
 						<h4 class="d-flex" style="margin-left: 15px;">

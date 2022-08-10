@@ -42,7 +42,7 @@ let index = {
 				},
 
 				type: "PUT",
-				url: "/review/" + reviewId,
+				url: "/api/review/update/" + reviewId,
 				data: JSON.stringify(data),
 				contentType: "application/json; charset=utf-8",
 				dataType: "json"
@@ -67,13 +67,12 @@ let index = {
 
 		if (deleteCheck) {
 			$.ajax({
-
 				beforeSend: function(xhr) {
 					xhr.setRequestHeader(header, token)
 				},
 
 				type: "DELETE",
-				url: "/review/" + reviewId,
+				url: "/api/review/delete/" + reviewId,
 			}).done(function(response) {
 				if (response.status == 200) {
 					alert("리뷰가 삭제되었습니다.");
@@ -106,7 +105,7 @@ let index = {
 				},
 
 				type: "POST",
-				url: "/guest/report/" + replyId,
+				url: "/api/report/reply/" + replyId,
 				data: JSON.stringify(data),
 				contentType: "application/json; charset=utf-8",
 				dataType: "json"

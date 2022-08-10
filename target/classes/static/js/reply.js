@@ -22,7 +22,7 @@ let index = {
 				},
 
 				type: "POST",
-				url: "/review/reply/" + reviewId,
+				url: "/api/review/reply/" + reviewId,
 				data: JSON.stringify(data),
 				contentType: "application/json; charset=utf-8",
 				dataType: "json"
@@ -55,7 +55,7 @@ let index = {
 				},
 
 				type: "PUT",
-				url: "/review/reply/" + replyId,
+				url: "/api/review/reply/" + replyId,
 				data: JSON.stringify(data),
 				contentType: "application/json; charset=utf-8",
 				dataType: "json"
@@ -85,7 +85,7 @@ let index = {
 				},
 
 				type: "DELETE",
-				url: "/review/reply/" + replyId,
+				url: "/api/review/reply/" + replyId,
 			}).done(function(response) {
 				if (response.status == 200) {
 					alert("댓글이 삭제되었습니다.");
@@ -137,7 +137,7 @@ let index = {
 				},
 
 				type: "POST",
-				url: "/host/report/" + reviewId,
+				url: "/api/report/review/" + reviewId,
 				data: JSON.stringify(data),
 				contentType: "application/json; charset=utf-8",
 				dataType: "json"

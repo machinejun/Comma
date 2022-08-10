@@ -46,19 +46,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 				.and()
 				.authorizeRequests()
-				.antMatchers("/auth/**","/join/complete/**", "/oauth/**", "/", "/js/**",
+				.antMatchers("/user/**","/oauth/**", "/", "/js/**",
 						"/css/**", "/assets/**", "/images/**",
-						"/test/**", "/fonts/**", "/upload/**", "/user/**")
+						"/test/**", "/fonts/**", "/upload/**")
 				.permitAll()
 				.anyRequest()
 				.authenticated()
 			.and()
 				.formLogin()
-				.loginPage("/auth/login_form")
-				.loginProcessingUrl("/auth/loginProc")
+				.loginPage("/user/login_form")
+				.loginProcessingUrl("/user/loginProc")
 				.defaultSuccessUrl("/")
 				.failureHandler(new AuthenticationFailureHandler() {
-					
 					@Override
 					public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 							AuthenticationException exception) throws IOException, ServletException {

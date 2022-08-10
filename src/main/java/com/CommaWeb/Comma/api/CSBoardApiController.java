@@ -22,7 +22,7 @@ import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.service.CSBoardService;
 
 @RestController
-@RequestMapping("/user/api")
+@RequestMapping("/api")
 public class CSBoardApiController {
 	@Autowired
 	private CSBoardService csBoardService;

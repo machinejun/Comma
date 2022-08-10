@@ -44,7 +44,7 @@ public class ReservationApiController {
 
 	
 	// 예약을 하는 기능
-	@PostMapping("/")
+	@PostMapping("/book")
 	public ResponseDto<String> reserveHouse(@RequestBody Reservation reservation, @AuthenticationPrincipal PrincipalDetail principal) {
 		System.out.println(reservation);
 		reservationService.makeReservation(reservation);
@@ -55,15 +55,16 @@ public class ReservationApiController {
 	@GetMapping("/detail")
 	public List<HostTableDto> getHouseReservation(@RequestParam(value ="hostId") int hostId, @RequestParam(value ="houseId") int houseId,
 			@RequestParam(value = "month") int month) {
-		List<HostTableDto> result = reservationService.getTableInfo(hostId, houseId, month);
+		List<HostTableDto> result;
+		if(String.valueOf(houseId).equals(""))  {
+			result = reservationService.getTableInfo(hostId, month);
+		}else {
+			result = reservationService.getTableInfo(hostId, houseId, month);
+		}
+		
 		return result;
 	}
 
-	@GetMapping("/detail")
-	public List<HostTableDto> getHouseReservation(@RequestParam(value ="hostId") int hostId, @RequestParam(value = "month") int month) {
-		List<HostTableDto> result = reservationService.getTableInfo(hostId, month);
-		return result;
-	}
 	
 	// 호스트 측 예약 취소 기능
 	@DeleteMapping("/delete/{reservationId}")

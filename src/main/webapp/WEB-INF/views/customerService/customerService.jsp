@@ -2,6 +2,8 @@
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/customerServiceStyle/customerService.css" rel="stylesheet">
 <!-- Page Content -->
+<c:set var="isMine" value=""/>
+<c:set var="isNotMine" value="hrefDisabled"/>
 
 <section class="notice">
 	<div class="page-title">
@@ -71,8 +73,8 @@
 
 					<div style="width: 35%; margin: 5px;">
 						<c:if test="${boards.first ne true}">
-							<a class="abutton" href="/?page=0">first</a>
-							<a class="abutton" href="/?page=${boards.number - 1 }">◀</a>
+							<a class="abutton" href="/user/cs?page=0">first</a>
+							<a class="abutton" href="/user/cs?page=${boards.number - 1 }">◀</a>
 						</c:if>
 
 					</div>
@@ -81,10 +83,10 @@
 						<c:forEach var="num" items="${pageNums }">
 							<c:choose>
 								<c:when test="${num eq boards.number}">
-									<span class=""><a href="/?page=${num}" style="font-weight: bold; font-size: 18px;">${num + 1}</a></span>
+									<span class=""><a href="/user/cs?page=${num}" style="font-weight: bold; font-size: 18px;">${num + 1}</a></span>
 								</c:when>
 								<c:otherwise>
-									<span class=""><a href="/?page=${num}">${num + 1}</a></span>
+									<span class=""><a href="/user/cs?page=${num}">${num + 1}</a></span>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
@@ -92,8 +94,8 @@
 
 					<div style="width: 35%; margin: 5px;">
 						<c:if test="${boards.last ne true}">
-							<a class="abutton" href="/?page=${boards.number + 1 }">▶</a>
-							<a class="abutton" href="/?page=${boards.totalPages -1 }">last</a>
+							<a class="abutton" href="/user/cs?page=${boards.number + 1 }">▶</a>
+							<a class="abutton" href="/user/cs?page=${boards.totalPages -1 }">last</a>
 						</c:if>
 					</div>
 
@@ -104,6 +106,5 @@
 		</div>
 	</div>
 </section>
-
 <script src="/js/customerService/board.js"></script>
 <%@ include file="../layout/footer.jsp"%>

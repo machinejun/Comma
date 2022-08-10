@@ -75,7 +75,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5" onclick="location.href='/reserveTable/user'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/guest/reserveTable'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-card-checklist my-icon"></i><br> <br>
@@ -96,7 +96,7 @@
 		</sec:authorize>
 
 		<sec:authorize access="hasRole('ROLE_HOST')">
-			<div class="col-sm-4 mb-5" onclick="location.href='/reserveTable/host'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/host/reserveTable'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-card-checklist my-icon"></i><br> <br>

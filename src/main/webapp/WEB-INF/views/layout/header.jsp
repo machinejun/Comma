@@ -148,12 +148,12 @@ nav {
 			</c:choose>
 
 			<sec:authorize access="hasRole('ROLE_GUEST')">
-				<a type="button" class="list-group-item list-group-item-action" href="/be-host"> <span class="icon-black-tie"></span>&nbsp;&nbsp;호스트 되기
+				<a type="button" class="list-group-item list-group-item-action" href="/guest/be-host"> <span class="icon-black-tie"></span>&nbsp;&nbsp;호스트 되기
 				</a>
 
 			</sec:authorize>
 			<sec:authorize access="hasRole('ROLE_HOST')">
-				<a type="button" class="list-group-item list-group-item-action" href="/be-guest"> <span class="icon-black-tie"></span>&nbsp;&nbsp;게스트 되기
+				<a type="button" class="list-group-item list-group-item-action" href="/host/be-guest"> <span class="icon-black-tie"></span>&nbsp;&nbsp;게스트 되기
 				</a>
 			</sec:authorize>
 

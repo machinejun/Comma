@@ -14,7 +14,7 @@ $(document).ready(function() {
 	});
 		
 	$("#btn-write").bind("click", () => {
-		location.href="/user/cs/writeform";
+		location.href="/guest/cs-write";
 	});
 	
 });

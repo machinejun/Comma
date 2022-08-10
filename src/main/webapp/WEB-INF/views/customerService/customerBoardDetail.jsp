@@ -68,7 +68,7 @@ h6 {
 				<div class="btn-groub">
 					<a class="detail-a" href="/user/cs">[목록으로]</a>
 					<c:if test="${principal.user.id eq board.user.id }">
-						<a class="detail-a" href="/user/cs/updateform/${board.id}">[수정]</a>
+						<a class="detail-a" href="/guest/cs-update/${board.id}">[수정]</a>
 						<a class="detail-a" onclick="deleteBoard(${board.id})">[삭제]</a>
 					</c:if>
 				</div>

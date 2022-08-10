@@ -54,7 +54,7 @@
 					</p>
 					<br> <br>
 					<div class="d-flex" style="position: absolute; bottom: -17%;">
-						<button class="custom-btn flex-shrink-0" onclick="location.href='/user/bookForm/${house.id}'" type="button">예약하기</button>
+						<button class="custom-btn flex-shrink-0" onclick="location.href='/guest/bookForm/${house.id}'" type="button">예약하기</button>
 						<c:if test="${principal ne null}">
 							<div class="d-flex" style="margin-top: 5px;">
 								<i class="bi ${not empty likeHouse.house ? exist : notExist}" style="margin-left: 30px; cursor: pointer;" id="like" onclick="clickHeart()"></i>&nbsp;&nbsp;

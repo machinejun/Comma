@@ -61,7 +61,7 @@ public class UserApiController {
 		return new ResponseDto<>(HttpStatus.OK.value(), userEntity);
 	}
 
-	@GetMapping("/be-host")
+	@GetMapping("/guest/be-host")
 	public String beHost(@AuthenticationPrincipal PrincipalDetail principalDetail) {
 		User hostEntity = new User();
 		principalDetail.getUser().setRole(RoleType.HOST);
@@ -76,7 +76,7 @@ public class UserApiController {
 
 	}
 
-	@GetMapping("/be-guest")
+	@GetMapping("/host/be-guest")
 	public String beguest(@AuthenticationPrincipal PrincipalDetail principalDetail) {
 		principalDetail.getUser().setRole(RoleType.GUEST);
 
@@ -91,7 +91,7 @@ public class UserApiController {
 	// index=3&month=3&limit=10
 	// index=1
 	// index=2
-	@GetMapping("/test/user/adminTable")
+	@GetMapping("/admin/adminTable")
 	public ResponseDto<Map<String, List<AdmintableDto>>> loadTableData(@RequestParam Map<String, String> data){
 		Map<String, List<AdmintableDto>> maps = new LinkedMultiValueMap<>();
 		switch (data.get("index")) {

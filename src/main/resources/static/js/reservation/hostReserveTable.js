@@ -79,7 +79,7 @@ function checkHouseReservation(hostId, houseId) {
 	console.log(month);
 	$.ajax({
 		type: "GET",
-		url: `/api/reservation/house/${houseId}/${hostId}?month=${month}`,
+		url: `/api/reservation/detail?houseId=${houseId}&hostId=${hostId}&month=${month}`,
 		contentType: "application/json; charset=utf-8",
 		dataType: "json"
 	}).done(function(response) {
@@ -94,7 +94,7 @@ function checkReservation(hostId) {
 	console.log(month);
 	$.ajax({
 		type: "GET",
-		url: `/api/reservation/house/${hostId}?month=${month}`,
+		url: `/api/reservation/detail?hostId=${hostId}?month=${month}`,
 		contentType: "application/json; charset=utf-8",
 		dataType: "json"
 	}).done(function(response) {

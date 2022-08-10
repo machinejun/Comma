@@ -83,7 +83,7 @@ function cancelAndAlert(reservationId) {
 function showResDetail(resId) {
 	$.ajax({
 		type: "get",
-		url: `/api/reservation/detail?resId=${resId}`,
+		url: `/api/reservation/detail/${resId}`,
 		dataType: "json"
 	}).done(function(response) {
 		console.log(response)
@@ -202,7 +202,7 @@ function payForKakao(iresId) {
 					xhr.setRequestHeader(header, token)
 				},
 		type: "post",
-		url: `/api/reservation/kakao`,
+		url: `/api/reservation/kakao-pay`,
 		contentType: "application/json; charset=utf-8",
 		dataType: "json",
 		data: JSON.stringify(data)

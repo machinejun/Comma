@@ -52,17 +52,15 @@ public class ReservationApiController {
 	}
 	
 	// 호스트 예약관리 테이블에 정보를 가져오는 기능
-	@GetMapping("/house/{houseId}/{hostId}")
-	public List<HostTableDto> getHouseReservation(@PathVariable int hostId, @PathVariable int houseId,
-			@RequestParam int month) {
-		System.out.println(">> " + hostId + "+" + houseId);
-
+	@GetMapping("/detail")
+	public List<HostTableDto> getHouseReservation(@RequestParam(value ="hostId") int hostId, @RequestParam(value ="houseId") int houseId,
+			@RequestParam(value = "month") int month) {
 		List<HostTableDto> result = reservationService.getTableInfo(hostId, houseId, month);
 		return result;
 	}
 
-	@GetMapping("/house/{hostId}")
-	public List<HostTableDto> getHouseReservation(@PathVariable int hostId, @RequestParam int month) {
+	@GetMapping("/detail")
+	public List<HostTableDto> getHouseReservation(@RequestParam(value ="hostId") int hostId, @RequestParam(value = "month") int month) {
 		List<HostTableDto> result = reservationService.getTableInfo(hostId, month);
 		return result;
 	}
@@ -83,15 +81,15 @@ public class ReservationApiController {
 	}
 	
 	// 예약에 대한 디테일 정보를 가져오는 기능
-	@GetMapping("/detail")
-	public Reservation showResDetail(@RequestParam int resId) {
+	@GetMapping("/detail/{resId}")
+	public Reservation showResDetail(@PathVariable int resId) {
 		Reservation res = reservationService.findByResId(resId);
 		System.out.println(res);
 		return res;
 	}
 	
 	// 결제를 요청하는 기능
-	@PostMapping("/kakao")
+	@PostMapping("/kakao-pay")
 	public KaKaoApproveDto payForKaKao(@RequestBody ResponsePaidDto paidDto) {
 		System.out.println(paidDto);
 		Reservation res = reservationService.findByResId(paidDto.getResId());
@@ -124,8 +122,8 @@ public class ReservationApiController {
 		param.add("quantity", "1");
 		param.add("total_amount", String.valueOf(price));
 		param.add("tax_free_amount", "0");
-		param.add("approval_url", "http://localhost:9090/kakao/approve");
-		param.add("cancel_url", "http://localhost:9090/user/cancel");
+		param.add("approval_url", "http://localhost:9090/guest/kakao/approve");
+		param.add("cancel_url", "http://localhost:9090/user/error");
 		param.add("fail_url", "http://localhost:9090/user/error");
 
 		HttpEntity<MultiValueMap<String, String>> message = new HttpEntity<>(param, header);

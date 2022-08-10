@@ -53,19 +53,19 @@ public class CSBoardController {
 		return list;
 	}
 
-	@GetMapping("/user/cs/writeform")
+	@GetMapping("/guest/cs-write")
 	public String writeCustomerBoard() {
 		return "/customerService/customerBoardwrite";
 	}
 
-	@GetMapping("/user/cs/updateform/{id}")
+	@GetMapping("/guest/cs-update/{id}")
 	public String updateCustomerBoard(@PathVariable int id, Model model) {
 		CustomServiceBoard csboard = csBoardService.findCSboardByid(id);
 		model.addAttribute("board", csboard);
 		return "/customerService/customerBoardupdate";
 	}
 
-	@GetMapping("/user/cs/detail/{id}")
+	@GetMapping("/guest/cs/detail/{id}")
 	public String showDetail(@PathVariable int id, @AuthenticationPrincipal PrincipalDetail principalDetail,
 			Model model) {
 		CustomServiceBoard csboard = csBoardService.findCSboardByid(id);

@@ -136,7 +136,7 @@ public class UserController {
 		return "admin/admin_form";
 	}
 
-	@GetMapping("/user/kakao/login_proc")
+	@GetMapping("/auth/kakao/login_proc")
 	public String kakaoCallback(@RequestParam String code) {
 
 		RestTemplate restTemplate = new RestTemplate();

@@ -64,7 +64,7 @@ function updateReview() {
 	} else if (starScore == 0) {
 		alert("별점을 선택하세요.");
 	} else {
-		fetch("/review/" + reviewId, {
+		fetch("/api/review/update/" + reviewId, {
 			method: "put",
 			headers: {
 				"X-XSRF-TOKEN": token,
@@ -75,7 +75,7 @@ function updateReview() {
 		.then(res => {
 			if(res.status == 200) {
 			alert("리뷰 수정이 완료되었습니다.");
-			location.href = "/review/my-review-list/" + guestId;
+			location.href = "/guest/my-review-list/" + guestId;
 			} else {
 			alert("리뷰 수정이 완료되지 않았습니다.");
 			}

@@ -36,7 +36,6 @@ public class CSBoardApiController {
 			serviceBoard.setBoardType(CSBoardType.NORMAL);
 		}
 		csBoardService.writeBoard(serviceBoard);
-		
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 	

@@ -21,9 +21,9 @@ public class CSBoardService {
 	@Autowired
 	private CSReplyRepository csReplyRepository;
  	
-	public boolean writeBoard(CustomServiceBoard customServiceBoard) {
+	@Transactional
+	public void writeBoard(CustomServiceBoard customServiceBoard) {
 		csBoardRepository.save(customServiceBoard);
-		return true;
 	}
 	
 	@Transactional(readOnly = true)

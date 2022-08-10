@@ -77,7 +77,10 @@ public class HouseController {
 		// 숙소 리뷰의 총 개수
 		int reviewCount = houseService.getReviewCount(houseId);
 		// 조회한 사용자가 해당 숙소를 위시리스트에 넣었는지
-		LikeHouse likeHouseEntity = likeHouseService.checkWishList(houseId, principalDetail.getUser().getId());
+		LikeHouse likeHouseEntity = null;
+		if(principalDetail != null) {
+			likeHouseEntity = likeHouseService.checkWishList(houseId, principalDetail.getUser().getId());
+		}
 		// 숙소의 평균 평점
 		HouseScoreDto houseScoreDto = reviewService.getAvgStarScore(houseId) == null ? new HouseScoreDto() : reviewService.getAvgStarScore(houseId);
 		// 위시리스트 카운트

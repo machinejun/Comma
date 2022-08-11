@@ -116,7 +116,7 @@ function addDetailPage(response) {
 		    </tr>
 		    <tr>
 		      <th scope="row">예약자</th>
-		      <td >${response.guestId.user.username}</td>
+		      <td >${response.guestId.name}</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">인원</th>
@@ -129,6 +129,10 @@ function addDetailPage(response) {
 		    <tr>
 		      <th scope="row">가격</th>
 		      <td >${response.price}</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">주소</th>
+		      <td >${response.houseId.detailAddress}</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">요청사항</th>
@@ -145,19 +149,15 @@ function addDetailPage(response) {
 		    </tr>
 		    <tr>
 		      <th scope="row">호스트</th>
-		      <td >${response.hostId.user.username}</td>
+		      <td >${response.hostId.name}</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">전화번호</th>
-		      <td >${response.hostId.user.phoneNumber}</td>
+		      <td >${response.hostId.phoneNumber}</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">E-mail</th>
-		      <td >${response.hostId.user.email}</td>
-		    </tr>
-		    <tr>
-		      <th scope="row">주소</th>
-		      <td >${response.houseId.address}</td>
+		      <td >${response.hostId.email}</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">승인</th>

@@ -2,12 +2,22 @@
 <link href="/css/style.css" rel="stylesheet">
 <%@ include file="../layout/header.jsp"%>
 <link href="/css/house/detail.css" rel="stylesheet">
-
+<style>
+.btn-search {
+	border-radius: 10px;
+	border: none;
+	background-color: rgba(255, 149, 149, 0.7);
+	color: white;
+	width: 70px;
+	height: 40px;
+	margin-top: 5px;
+}
+</style>
 <section>
 	<div class="container">
 		<h2>나의 숙소 정보 수정</h2>
 		<br> <br>
-		<form action="/host/update-house/${house.id}" enctype="multipart/form-data" method="post">
+		<form action="/host/house-update/${house.id}" enctype="multipart/form-data" method="post">
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 			<div class="form-group">
 				<div class="form-group">
@@ -31,6 +41,14 @@
 						<option ${selectedAddress eq '제주도' ? selected : notSelected}>제주도</option>
 					</select>
 				</div>
+				<br>
+
+				<div class="form-group">
+					<label><b>상세 주소</b></label>
+				</div>
+					<input class="postcodify_address col-sm-6 form-control" value="${house.detailAddress}" id="main_address" name="detailAddress">&nbsp;&nbsp;
+					<button id="post_button" class="btn-search">검색</button>
+					<br>
 				<br>
 				<div class="form-group">
 					<c:set var="selectedtype" value="${house.type}"></c:set>
@@ -62,13 +80,21 @@
 				</div>
 			</div>
 			<br>
-			<button type="submit" onsubmit="checkImageChange(${house.image.imageUrl})" class="custom-btn" id="btn-update">수정</button>
+			<button type="submit"  class="custom-btn" id="btn-update">수정</button>
 		</form>
 	</div>
 </section>
 <br>
-
 <script>
+	function opendetailAddress() {
+		//$("#post_button").postcodifyPopUp();
+	});
+	
+	$("#post_button").bind("click", function() {
+		$("#post_button").postcodifyPopUp();
+	});
+	
+	
 	$(".custom-file-input").on(
 			"change",
 			function() {
@@ -84,4 +110,6 @@
 	});
 </script>
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 <%@ include file="../layout/footer.jsp"%>

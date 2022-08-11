@@ -47,12 +47,7 @@ public class HouseApiController {
 	@Autowired
 	private LikeHouseService likeHouseService;
 
-	@PutMapping("/update/{houseId}")
-	public House updateHouse(@PathVariable int houseId, @RequestBody House house) {
-		// 숙소 정보 수정 기능
-		houseService.updateHouse(houseId, house);
-		return house;
-	}
+	
 
 	@DeleteMapping("/delete/{houseId}")
 	public ResponseDto<Integer> deleteHouse(@PathVariable int houseId) {

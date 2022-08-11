@@ -50,7 +50,7 @@ public class UserApiController {
 		System.out.println("newUser" + newUser);
 
 		Authentication authentication = authenticationManager
-				.authenticate(new UsernamePasswordAuthenticationToken(newUser.getUsername(), kakaoPassword));
+				.authenticate(new UsernamePasswordAuthenticationToken(newUser.getUsername(), user.getPassword()));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}

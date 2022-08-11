@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.CommaWeb.Comma.auth.PrincipalDetail;
 import com.CommaWeb.Comma.dto.HouseScoreDto;
@@ -124,6 +125,16 @@ public class HouseController {
 	// 숙소 관리 폼 호출 (호스트)
 	@GetMapping("/host/house-management")
 	public String getHouseManagementForm(@AuthenticationPrincipal PrincipalDetail principalDetail , Model model) {
+		model.addAttribute("houseList", houseService.findAllByHostId(principalDetail.getUser().getId()));
+		return "house/house_management_form";
+	}
+	
+	@PostMapping("/host/house-update/{houseId}")
+	public String updateHouse(@PathVariable int houseId, @RequestBody House house,
+			@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
+		// 숙소 정보 수정 기능
+		System.out.println("집정보 수정" + house);
+		houseService.updateHouse(houseId, house);
 		model.addAttribute("houseList", houseService.findAllByHostId(principalDetail.getUser().getId()));
 		return "house/house_management_form";
 	}

@@ -83,7 +83,7 @@
 				<input type="hidden" value="${house.house.id}" id="house-id">
 				<div class="col mb-5" style="margin: 30px;">
 					<div class="h-100">
-						<a href="/house/detail/${house.house.id}"><img class="custom-img" src="http://localhost:9090/upload/${house.house.image.imageUrl}" style="width: 300px; height: 250px; object-fit: cover;"></a>
+						<a href="/user/house-detail/${house.house.id}"><img class="custom-img" src="http://localhost:9090/upload/${house.house.image.imageUrl}" style="width: 300px; height: 250px; object-fit: cover;"></a>
 						<div class="p-4">
 							<div class="container" style="position: relative; width: 240px;">
 								<h5 class="fw-bolder multiLine" style="position: absolute; margin-left: -3px;">${house.house.name}</h5>

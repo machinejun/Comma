@@ -38,7 +38,6 @@ public class ReviewApiController {
 		review.setHouseId(houseService.findById(houseId));
 		
 		Review reviewEntity = reviewService.postReview(review, principalDetail.getUser());
-		System.out.println("리뷰 들어왔니? :" +reviewEntity);
 		return new ResponseDto<Review>(HttpStatus.OK.value(), reviewEntity);
 	}
 	

@@ -43,7 +43,7 @@
 				<div class="form-group">
 					<label><b>상세 주소</b></label>
 				</div>
-				<div class=" form-group">
+				<div class="form-group">
 				<input class="postcodify_address col-sm-6 form-control" id="main_address" name="detailAddress">&nbsp;&nbsp;<button id="postcodify_search_button" class="btn-search">검색</button><br>
 				</div>
 				<br>

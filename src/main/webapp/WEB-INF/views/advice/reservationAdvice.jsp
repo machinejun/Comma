@@ -7,7 +7,7 @@ h2{
 	margin-top: 5%;
 	margin-bottom: 2%;
 	margin-left: 40%;
-	color: rgba(255, 149, 149, 0.7);
+	color: rgba(80, 80, 80);
 	font-family: 'SUIT-Medium';
 }
 h2::after{
@@ -19,7 +19,7 @@ span{
 	
 }
 p {
-	color: rgba(255, 149, 149, 0.9);
+	color: black;
 	font-size: 25px;
 	font-weight: bold;
 }
@@ -41,7 +41,7 @@ p {
 
 <h2>예약 서비스 이용안내</h2>
 <div class="container">
-	<p>예약서비스는 아래와 같이 할 수 있어요</p>
+	<p>예약 서비스는 아래와 같이 할 수 있어요</p>
 	<br/>
 	<ol>
 		<li><span>사용자 메뉴에서 예약 내역 클릭해 주세요</span><br/> <img src="/assets/advice.jpg"></li>

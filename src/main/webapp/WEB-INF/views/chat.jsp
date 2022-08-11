@@ -20,7 +20,7 @@
 		.container h1{
 			text-align: left;
 			padding: 5px 5px 5px 15px;
-			color: #FFBB00;
+			color: black;
 			border-left: 3px solid #FFBB00;
 			margin-bottom: 20px;
 		}
@@ -40,6 +40,12 @@
 		}
 		#yourMsg{
 			display: none;
+		}
+		h2 {
+			color : black;
+		}
+		h2:after {
+			content: none;
 		}
 	</style>
 </head>
@@ -100,7 +106,7 @@
 </script>
 <body>
 	<div id="container" class="container" style="position: relative;">
-		<h1 style="font-family: 'SUIT-Medium';">실시간 채팅</h1>
+		<h2 >실시간 채팅</h2>
 		<!--  <a onclick="showUserList()" style="position: absolute;  right: 0%; top:17%; z-index: 4">유저목록</a> -->
 		<div id="chating" class="chating"  style="position: relative; overflow-x:hidden; ">
 			<div id="user-list" style="background-color: transparent; color: white; position: absolute ; z-index: 3;   right: -1%; display:none;">		
@@ -138,7 +144,7 @@
 			<table class="inputTable">
 				<tr>
 					<th style="width: 80px;">닉네임</th>
-					<input type="hidden" value="${principal.user.username}"/>
+					<input type="hidden" value="${principal.user.username}">
 					<th><input type="text" name="userName" id="userName" style="margin-left:10px; width: 250px;"></th>
 					<th><button onclick="chatName()" id="startBtn " style="margin-left:50px; width: 80px;">등록</button></th>
 				</tr>

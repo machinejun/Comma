@@ -61,7 +61,7 @@ function postReview() {
 		alert("별점을 선택하세요.");
 	} else {
 		console.log(data.starScore);
-		fetch("/review/post/" + houseId, {
+		fetch("/api/review/post/" + houseId, {
 			method: "post",
 			headers: {
 				"X-XSRF-TOKEN": token,
@@ -72,7 +72,7 @@ function postReview() {
 		.then(res => {
 			if(res.status == 200) {
 				alert("리뷰 등록이 완료되었습니다.");				
-				location.href = "/review/my-review-list/" + guestId;			
+				location.href = "/guest/my-review-list/" + guestId;			
 			}
 		});
 	}

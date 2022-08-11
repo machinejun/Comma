@@ -50,10 +50,9 @@ public class ReportApiController {
 	 * 
 	 * 관리자가 접수된 신고를 승인
 	 */
-	@PutMapping("/admin/report-approve/{reportId}")
+	@PutMapping("/approve/{reportId}")
 	public ResponseDto<Report> approveReport(@PathVariable int reportId, @RequestBody ApproveDto approveDto) {
 		Report reportEntity = reportService.setReportStatus(approveDto);
-		System.out.println("승인 111111" + approveDto.getApprove());
 		return new ResponseDto<Report>(HttpStatus.OK.value(), reportEntity);
 	}
 
@@ -61,10 +60,9 @@ public class ReportApiController {
 	 * 
 	 * 관리자가 접수된 신고를 취소
 	 */
-	@PutMapping("/admin/report-cancel/{reportId}")
+	@PutMapping("/cancel/{reportId}")
 	public ResponseDto<Integer> canceleReport(@PathVariable int reportId, @RequestBody ApproveDto approveDto) {
 		reportService.setReportStatus(approveDto);
-		System.out.println("1111111111111" + approveDto.getApprove());
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
 	}
 

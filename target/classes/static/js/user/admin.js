@@ -43,13 +43,14 @@ let index = {
 				},
 
 				type: "PUT",
-				url: "/admin/report-approve/" + reportId,
+				url: "/api/report/approve/" + reportId,
 				data: JSON.stringify(data),
 				contentType: "application/json; charset=utf-8",
 				dataType: "json"
 
 			}).done(function(response) {
 				if (response.status == 200) {
+					location.reload();
 					$("#report-status-" + reportId).text("");
 					$("#report-status-" + reportId).text(response.data.reportStatus);
 					document.getElementById('report-status-' + reportId).style.color = 'blue';
@@ -76,7 +77,7 @@ let index = {
 			},
 
 			type: "PUT",
-			url: "/admin/report-cancel/" + reportId,
+			url: "/api/report/cancel/" + reportId,
 			data: JSON.stringify(data),
 			contentType: "application/json; charset=utf-8",
 			dataType: "json"
@@ -95,4 +96,3 @@ let index = {
 	}
 }
 
-index.init();

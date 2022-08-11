@@ -35,10 +35,12 @@
 				<div class="form-group">
 					<c:set var="selectedtype" value="${house.type}"></c:set>
 					<label><b>숙소 유형</b></label> <select class="form-control" name="type">
-						<option ${selectedtype eq '호텔' ? selected : notSelected}>호텔</option>
-						<option ${selectedtype eq '모텔' ? selected : notSelected}>모텔</option>
-						<option ${selectedtype eq '펜션' ? selected : notSelected}>펜션</option>
+						<option ${selectedtype eq '오피스텔' ? selected : notSelected}>오피스텔</option>
+						<option ${selectedtype eq '단독 주택' ? selected : notSelected}>단독 주택</option>
+						<option ${selectedtype eq '다세대 주택' ? selected : notSelected}>다세대 주택</option>
+						<option ${selectedtype eq '아파트' ? selected : notSelected}>아파트</option>
 						<option ${selectedtype eq '게스트 하우스' ? selected : notSelected}>게스트 하우스</option>
+						<option ${selectedtype eq '기타' ? selected : notSelected}>기타</option>
 					</select>
 				</div>
 				<br>

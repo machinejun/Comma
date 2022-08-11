@@ -113,7 +113,7 @@ public class UserApiController {
 		}
 	}
 	
-	@DeleteMapping("/user/delete/{id}")
+	@DeleteMapping("/admin/user/delete/{id}")
 	public ResponseDto<Integer> deleteUser(@PathVariable int id) {
 		userService.deleteUser(id);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);

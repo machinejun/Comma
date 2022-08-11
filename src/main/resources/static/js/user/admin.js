@@ -14,7 +14,7 @@ let index = {
 				},
 
 				type: "DELETE",
-				url: "/user/delete/" + userId,
+				url: "/admin/user/delete/" + userId,
 			})
 				.done(function(data) {
 					if (data.status) {

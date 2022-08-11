@@ -50,10 +50,12 @@
 				<br>
 				<div class="form-group">
 					<label><b>숙소 유형</b></label> <select class="form-control" name="type">
-						<option>호텔</option>
-						<option>모텔</option>
-						<option>펜션</option>
+						<option>오피스텔</option>
+						<option>단독 주택</option>
+						<option>다세대 주택</option>
+						<option>아파트</option>
 						<option>게스트 하우스</option>
+						<option>기타</option>
 					</select>
 				</div>
 				<br>

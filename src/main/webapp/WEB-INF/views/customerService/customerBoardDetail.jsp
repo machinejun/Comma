@@ -99,10 +99,10 @@ h6 {
 						<c:forEach var="reply" items="${board.replys}">
 							<li class="reply-list-${reply.id }">
 								<hr />
-								<div class="name time" style="font-size: 20px;">
-									<strong>운영자</strong><a style="margin-left: 10px; color: blue;"><fmt:formatDate pattern="yyyy.MM.dd hh:mm" value="${reply.createTime}" /></a>
+								<div class="name time" style="font-size: 20px; color: black;">
+									<strong>운영자</strong><a style="margin-left: 10px; color: grey;"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${reply.createTime}" /></a>
 								</div>
-								<div class="comment_content" style="font-family: sans-serif;">${reply.content }</div> 
+								<div class="comment_content" style="font-family: sans-serif; color:black;">${reply.content }</div> 
 								<sec:authorize access="hasRole('ROLE_ADMIN')">
 									<button class="reply-dbtn custom-sm-btn" onclick="deleteReply(${reply.id})">삭제</button>
 								</sec:authorize>

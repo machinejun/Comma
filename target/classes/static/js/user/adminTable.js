@@ -3,9 +3,7 @@ let header = $("meta[name='_csrf_header']").attr("content");
 
 
 let index = 0;
-const ctx2;
-const ctx1;
-const ctx;
+
  
 $("#li-groub li").click(function() {
 	index = $(this).index()
@@ -21,15 +19,16 @@ function loadIndexDate() {
 			xhr.setRequestHeader(header, token)
 		},
 		type: "get",
-		url: `/test/user/adminTable?index=${index}&month=${month}&limit=${limit}`,
+		url: `/admin/adminTable?index=${index}&month=${month}&limit=${limit}`,
 		dataType: "json"
 	}).done(function(response) {
+		console.log(response);
 		if (response.status == 200) {
 			alert("데이터 받음");
 			classifyData(response.data);
 		}
 	}).fail(function(response) {
-
+		alert('통신 실패');
 	})
 }
 
@@ -114,22 +113,9 @@ function makelistTwoAndThreeModel(type, data) {
 
 
 function drawChartOneItemTable(columnlist, countlist, labelName, maxValue) {
-	ctx1 = document.getElementById('myChart_address').getContext('2d');
-	
-	if(index == 2){
-		if(ctx2 == null || ctx2 == undefined){
-			ctx2 = document.getElementById('myChart_best').getContext('2d');
-		}else{
-			ctx2.getContext("2d").clearRect(0, 0, ctx2.width, ctx2.height);
-		}	
-	}else if(index == 1){
-		if(ctx1 == null || ctx2 == undefined){
-			ctx1 = document.getElementById('myChart_best').getContext('2d');
-		}else{
-			ctx1.getContext("2d").clearRect(0, 0, ctx1.width, ctx1.height);
-		}
-	}
-		
+	const ctx1 = document.getElementById('myChart_address').getContext('2d');
+	const ctx2 = document.getElementById('myChart_best').getContext('2d');
+	 
 	const myChart = new Chart(index == 1 ? ctx1 : ctx2, {
 		type: 'bar',
 		data: {
@@ -168,12 +154,8 @@ function drawChartOneItemTable(columnlist, countlist, labelName, maxValue) {
 
 
 function drawChartMonthTable(month, userCount, houseCount, reservationCount, reviewCount, maxValue) {
-	if(ctx == null || ctx == undefined){
-		ctx = document.getElementById('myChart_best').getContext('2d');
-	}else{
-		ctx.getContext("2d").clearRect(0, 0, ctx.width, ctx.height);
-	}
-	
+	const ctx = document.getElementById('myChart_month').getContext('2d');
+
 	const myChart = new Chart(ctx, {
 		type: 'bar',
 		data: {

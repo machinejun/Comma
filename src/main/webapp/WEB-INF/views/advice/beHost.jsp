@@ -7,7 +7,7 @@ h2{
 	margin-top: 5%;
 	margin-bottom: 2%;
 	margin-left: 40%;
-	color: rgba(255, 149, 149, 0.7);
+	color: rgba(70, 70, 70);
 	font-family: 'SUIT-Medium';
 }
 h2::after{
@@ -19,9 +19,13 @@ span{
 	
 }
 p {
-	color: rgba(255, 149, 149, 0.9);
+	color: rgba(70, 70, 70);
 	font-size: 25px;
 	font-weight: bold;
+}
+
+li > span {
+	color: rgba(70, 70, 70);
 }
 .container{
 	position: relative;
@@ -45,7 +49,7 @@ p {
 		<br/>
 		<li><span>예약을 관리해보세요 !!!</span>  <br/> 예약 관리 모드에서는 사용자님과 게스트와의 예약을 관리할 수 있습니다.</li>
 		<br/>
-		<li><span>좋은 리뷰에 사용자님의 마음을 표시해보세요 !!!</span><br/> 리뷰 관리 모드에서는 게스트의 리뷰에 댓글을 달수 있습니다.</li>
+		<li><span>좋은 리뷰에 호스트님의 마음을 표시해보세요 !!!</span><br/> 리뷰 관리 모드에서는 게스트의 리뷰에 댓글을 달수 있습니다.</li>
 	</ul>
 	<br/>
 	<br/>

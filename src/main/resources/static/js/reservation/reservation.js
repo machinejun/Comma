@@ -244,11 +244,8 @@ function reserveHouse(guestId, hostId, houseId) {
 		contentType: "application/json; charset=utf-8",
 		data: JSON.stringify(data),
 		dataType: "json"
-	}).done(function(response){
-		console.log(reponse);
-		if(response.status == 200){
-			location.href = "/guest/advice";
-		}
+	}).done(function(){
+		location.href = "/guest/advice";
 	}).fail(function() {
 		AlertMessage("통신 오류", `예약에 실패하였습니다.`);
 	})

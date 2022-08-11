@@ -89,7 +89,7 @@ p {
 								<p>EVERYWHERE, WEHNEVER</p>
 
 								<p>편안한 숙소에서 휴식을 취해보세요.</p>
-								<br> <a href="/house/list" class="custom-sm-btn" title=""> 숙소 보러가기 </a>
+								<br> <a href="/user/house-list" class="custom-sm-btn" title=""> 숙소 보러가기 </a>
 							</div>
 						</div>
 						<div class="item">

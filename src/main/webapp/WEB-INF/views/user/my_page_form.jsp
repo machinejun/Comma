@@ -54,7 +54,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5" onclick="location.href='/wish-list/${principal.user.id}'" style="cursor: pointer;">
+			<div class="col-sm-4 mb-5" onclick="location.href='/guest/wish-list/${principal.user.id}'" style="cursor: pointer;">
 				<div class="card-body">
 					<div class="card h-100 my-card">
 						<i class="bi bi-bookmark-heart my-icon"></i><br>
@@ -102,7 +102,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 mb-5" onclick="location.href='/host/reserveTable'" style="cursor: pointer;">
+			<div class="col-sm-6 mb-5" onclick="location.href='/host/reserveTable'" style="cursor: pointer;">
 				<div class="card h-100 my-card">
 					<div class="card-body">
 						<i class="bi bi-card-checklist my-icon"></i><br> <br>

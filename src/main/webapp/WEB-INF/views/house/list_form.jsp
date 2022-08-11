@@ -17,7 +17,7 @@
 	</div>
 
 	<div class="container d-flex justify-content-end" style="width: 1050px;">
-		<form class="form-inline" action="/house/list" method="get">
+		<form class="form-inline" action="/user/house-list" method="get">
 			<c:set var="searchedAddress" value="${searchedAddress}"></c:set>
 			<c:set var="selected" value="selected"></c:set>
 			<c:set var="notSelected" value=""></c:set>
@@ -43,10 +43,12 @@
 				<h4 style="text-align: right; margin-right: 10px;">숙소 유형</h4>
 				<select class="form-control custom-selector" name="type" onchange="this.form.submit()" style="width: 130px;">
 					<option value="">전체</option>
-					<option ${searchedType eq '호텔' ? selected : notSelected}>호텔</option>
-					<option ${searchedType eq '모텔' ? selected : notSelected}>모텔</option>
-					<option ${searchedType eq '펜션' ? selected : notSelected}>펜션</option>
+					<option ${searchedType eq '오피스텔' ? selected : notSelected}>오피스텔</option>
+					<option ${searchedType eq '단독 주택' ? selected : notSelected}>단독 주택</option>
+					<option ${searchedType eq '다세대 주택' ? selected : notSelected}>다세대 주택</option>
+					<option ${searchedType eq '아파트' ? selected : notSelected}>아파트</option>
 					<option ${searchedType eq '게스트 하우스' ? selected : notSelected}>게스트 하우스</option>
+					<option ${searchedType eq '기타' ? selected : notSelected}>기타</option>
 				</select>
 			</div>
 		</form>

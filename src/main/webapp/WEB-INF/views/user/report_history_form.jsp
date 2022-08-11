@@ -117,6 +117,7 @@ div {
 					<th class="text-center">신고 회원</th>
 					<th class="text-center">신고 유형</th>
 					<th class="text-center">상세 사유 및 설명</th>
+					<th class="text-center">승인 상태</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -129,6 +130,7 @@ div {
 						<td class="text-center">${report.respondent.username}</td>
 						<td class="text-center">${report.reportType}</td>
 						<td class="text-center"><a data-toggle="modal" data-target="#report-modal-${report.id}" style="cursor: pointer;"><i class="bi bi-search"></i></a></td>
+						<td class="text-center" style="font-weight: bold; ${report.reportStatus eq 'CANCELED' ? 'color: red;' : 'color: blue;'}" >${report.reportStatus}</td>
 					</tr>
 
 					<div class="modal" id="report-modal-${report.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

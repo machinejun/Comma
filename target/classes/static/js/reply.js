@@ -62,7 +62,7 @@ let index = {
 			}).done(function(response) {
 				if (response.status == 200) {
 					alert("댓글이 수정되었습니다.");
-					location.href = "/review/management/" + response.data.reviewId.houseId.id;
+					location.href = "/host/review-management/" + response.data.reviewId.houseId.id;
 				}
 
 			}).fail(function(error) {
@@ -89,7 +89,7 @@ let index = {
 			}).done(function(response) {
 				if (response.status == 200) {
 					alert("댓글이 삭제되었습니다.");
-					location.href = "/review/management/" + houseId;
+					location.href = "/host/review-management/" + houseId;
 				} else {
 					alert("댓글이 삭제되지 않았습니다.")
 				}

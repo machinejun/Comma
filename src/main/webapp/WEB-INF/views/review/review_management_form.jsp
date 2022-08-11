@@ -186,19 +186,19 @@ div {
 			<c:set var="isAbled" value=""></c:set>
 			<c:set var="isNowPage" value="active"></c:set>
 
-			<li class="page-item ${reviews.first ? isDisabled : isAbled}"><a class="page-link" href="/review/management/${houseId}?page=${reviews.number - 1}">Prev</a></li>
+			<li class="page-item ${reviews.first ? isDisabled : isAbled}"><a class="page-link" href="/host/review-management/${houseId}?page=${reviews.number - 1}">Prev</a></li>
 
 			<c:forEach var="num" items="${pageNumbers}">
 				<c:choose>
 					<c:when test="${reviews.number + 1 eq num}">
-						<li class="page-item active"><a class="page-link" href="/review/management/${houseId}?page=${num - 1}">${num}</a></li>
+						<li class="page-item active"><a class="page-link" href="/host/review-management/${houseId}?page=${num - 1}">${num}</a></li>
 					</c:when>
 					<c:otherwise>
-						<li class="page-item"><a class="page-link" href="/review/management/${houseId}?page=${num - 1}">${num}</a></li>
+						<li class="page-item"><a class="page-link" href="/host/review-management/${houseId}?page=${num - 1}">${num}</a></li>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
-			<li class="page-item ${reviews.last ? isDisabled : isAbled}"><a class="page-link" href="/review/management/${houseId}?page=${reviews.number + 1}">Next</a></li>
+			<li class="page-item ${reviews.last ? isDisabled : isAbled}"><a class="page-link" href="/host/review-management/${houseId}?page=${reviews.number + 1}">Next</a></li>
 
 		</ul>
 	</c:if>

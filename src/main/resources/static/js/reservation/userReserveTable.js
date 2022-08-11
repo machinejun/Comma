@@ -60,17 +60,19 @@ function cancelAndAlert(reservationId) {
 		if (result.isConfirmed) {
 			$.ajax({
 				beforeSend: function(xhr) {
-					console.log("xhr: " + xhr)
 					xhr.setRequestHeader(header, token)
 				},
-
 				type: "delete",
 				url: `/api/reservation/delete/${reservationId}`,
 				contentType: "application/json; charset=utf-8",
 				dataType: "json"
 			}).done(function(response) {
-				closeModal();
-				location.reload();
+				console.log(response);
+				if(response.status == 200){
+					closeModal();
+					location.reload();
+				}
+				
 			}).fail(function() {
 				alertMessage("error", "예약 취소에 실패하였습니다", "error");
 				return;

@@ -68,9 +68,10 @@ public class ReservationApiController {
 	
 	// 호스트 측 예약 취소 기능
 	@DeleteMapping("/delete/{reservationId}")
-	public int deleteReservation(@PathVariable int reservationId) {
+	public ResponseDto<Integer> deleteReservation(@PathVariable int reservationId) {
+		System.out.println(reservationId);
 		reservationService.cancelReservation(reservationId);
-		return reservationId;
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), reservationId);
 	}
 	
 	// 호스트 예약 승인 기능

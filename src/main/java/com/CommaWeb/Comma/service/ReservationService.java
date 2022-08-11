@@ -151,8 +151,13 @@ public class ReservationService {
 
 	@Transactional
 	public void cancelReservation(int id) {
+		Reservation res = reservationRepository.findById(id).get();
+		res.setHostId(null);
+		res.setGuestId(null);
+		res.setHouseId(null);
 		bookedDateRepository.deleteAllByResId(id);
 		reservationRepository.deleteById(id);
+		System.out.println("clear");
 	}
 
 	@Modifying

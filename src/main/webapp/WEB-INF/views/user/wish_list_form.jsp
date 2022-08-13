@@ -142,7 +142,8 @@
 				url : "/api/house/wish-list/" + houseId,
 				type : "DELETE",
 			}).done(function() {
-				console.log("위시리스트 삭제");
+				console.log("11111111111");
+				location.reload();
 			}).fail(function() {
 			});
 			// 빈 하트로 바꾸기

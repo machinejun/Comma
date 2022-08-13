@@ -1,5 +1,6 @@
 
 
+
 # Project - Comma
 
 </br>
@@ -20,48 +21,61 @@
 
 ## 기능 
 
-#### 공통기능
+#### 공통 기능
 
-1.  회원가입/ 로그인/ 회원 정보 수정
-2.  카카오 로그인
-3.  호스트/게스트 모드 전환
-4.  숙소 조회
+1.  회원가입 / 로그인/ 회원 정보 수정
+2.  소셜 로그인 (카카오)
+3.  호스트 /게스트 모드 전환
+4.  숙소 리스트 조회(검색) / 숙소 상세 조회
+5.  회원 신고
+6. 고객센터
 
-#### 게스트 모드 기능
+#### 게스트 기능
 
 1. 예약 하기
-   - 체크인/ 체크아웃 날짜, 인원수, 요청사항 작성
-2. 찜 하기
-   - 관심있는 숙소를 따로 관리할 수 있는 페이지
-3. 리뷰 작성/조회/수정 하기
-   - 평점, 텍스트, 이미지등을 넣어서 리뷰를 작성
+   - 숙박 일정 지정(체크인/체크아웃 날짜 설정), 인원수, 요청 사항 작성
+2. 위시리스트
+   - 관심 있는 숙소를 추가/삭제하여 따로 관리할 수 있음
+3. 리뷰 작성/조회/수정
+   - 별점과 텍스트를 넣은 리뷰 작성
+   -  리뷰 작성은 COMPLETED된 예약 건에 한해서 작성 가능
 4. 자신의 예약 현황 보기
-   - 자신의 예약 시스템을 관리 할 수 있는 공간(결제, 예약 취소, 리뷰 작성)
-   - 게스트 예약(Waiting 상태) -> 호스트 승인(approved 상태) -> 게스트 결제(paid 상태)
-   - -> 현재 날짜가 checkout 날짜를 지나게 되면(completed 상태) -> 리뷰작성 가능
+   - 자신의 예약 내역을 관리 할 수 있는 공간(결제, 예약 취소, 리뷰 작성)
+   - 숙소 예약(WAITING) -> 호스트의 승인(APPROVED) -> 게스트 결제 완료(PAID)
+   - -> 현재 날짜가 체크아웃 날짜를 지나게 되면(COMPLETED 상태) -> 리뷰 작성 가능
 5. 리뷰 관리
-   - 자신이 작성한 리뷰를 수정, 삭제
-
+   - 자신이 작성한 리뷰 리스트 조회, 수정, 삭제
+   - 자신의 리뷰에 대한 호스트 댓글 조회
+   - 호스트 댓글에 부적절한 내용 있을 시 신고 가능 (해당 댓글과 작성자 신고 접수)
+   
 #### 호스트 기능
 
 1. 숙소 등록
-   - 자신의 숙소를 페이지에 업로드
 2. 숙소 정보 수정, 삭제
 3. 예약 관리
-   - 자신이 등록한 숙소에 대한 예약들을 조회 숙소별, 월별로 조회
+   - 자신이 등록한 숙소에 대한 예약 조회 (숙소별, 월별 조회)
    - 게스트가 신청한 예약에 대해서 승인, 취소 할 수 있는 공간
 4. 리뷰 관리
    - 자신이 등록한 숙소에 대해 작성된 리뷰들을 조회
-   - 게스트들이 작성한 리뷰에 대해 답글 작성
-   - 자신이 작성한 답글에 대해서 수정, 삭제
+   - 게스트들이 작성한 리뷰에 대한 답글 작성
+   - 자신이 작성한 답글 수정/삭제
+   - 게스트의 리뷰 중 부적절한 내용 포함 시 신고 가능 (해당 리뷰와 작성자 신고 접수)
 
 #### 관리자 기능
 
 1. 전체 유저 정보 조회
+2. 회원 신고 관리
+	- 신고된 회원과 게시물 조회
+	- 사유 및 신고 게시물 확인 후 승인/취소 처리
+	- 신고 승인시 해당 회원의 신고 횟수 + 1
+3.  회원 및 숙소 데이터 현황 조회
+	- 월별 데이터 증감 현황 조회
+	- 지역별 숙소 등록 수 조회
+	- 월별 숙소 예약 건수 별 TOP5/TOP10 조회
 
 </br>
 
-## 사용한 기술
+## 사용 기술
 <div align="center">
    <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
    <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
@@ -77,40 +91,43 @@
    <img src="https://img.shields.io/badge/maven-181717?style=for-the-badge&logo=apachemaven&logoColor=white">
 </div>
 
-## ERD 다이어그램
+## ERD
 
-![image](https://user-images.githubusercontent.com/99931188/181579722-6554cdbf-1ed2-42ba-b4e1-a8087371d3e9.png)
+![erd](https://user-images.githubusercontent.com/96460131/184461899-e04ab4d2-9d78-4e16-9603-aafa2f34a715.png)
 
-## git flow 전략
-   - Main : 탬플릿 결정, 완성본, md 
-   - Developer : 통합, 통합 테스트
-   - Feature_** : 각자의 기능 구현 완료 후 Developer에 Merge 
+## Git flow 전략
+   - main : 프로젝트 version별 완성 단위, 최종으로 배포
+   - developer : 개발을 진행하는 중심적인 브랜치, feature 브랜치에서 기능 완성 단위로 merge
+   - feature-** : 팀원 개개인의 기능 단위 개발
 
 ## 페이지 구성
 
 </br>
 
-| 메인 | 리스트 |
+| 메인 | 숙소 리스트 |
 |--|--|
-| ![메인](https://user-images.githubusercontent.com/96460131/181459606-47496bc1-556c-4da7-b50a-f2972366961b.gif) | ![리스트상세보기](https://user-images.githubusercontent.com/96460131/181457881-03bd1737-976b-4555-9c41-fe203ec563c7.gif) |
+| ![메인](https://user-images.githubusercontent.com/96460131/184464058-eae8f097-1bc7-4042-9e44-67ea13fe98fb.gif) | ![리스트](https://user-images.githubusercontent.com/96460131/184464689-646d1397-033b-4223-9d10-272a3a68003a.gif) |
 
 ### 로그인
-- 처음 접속하는 소셜 유저에게는 폰 번호를 받을 수 있도록 바로 회원정보 수정 페이지로 이동
+- 처음 접속하는 소셜 유저에게는 폰 번호를 받을 수 있도록 최초 로그인 시 회원정보 수정 페이지로 이동
 - 이후 접속시 일반 로그인과 동일하게 홈 화면으로 이동
 
 | 일반 로그인 | 소셜 로그인 |
 |--|--|
-|![로그인](https://user-images.githubusercontent.com/96460131/181457030-820771eb-48d8-4b8e-a9cb-f9902ddd3a3a.gif)  | ![소셜로그인](https://user-images.githubusercontent.com/96460131/181501469-eac0a891-edb8-4415-9332-f82dd0edf876.gif) |
+|![로그인](https://user-images.githubusercontent.com/96460131/184464450-599a4b3c-3177-49f1-867f-4e59d421e81a.gif)  | ![소셜로그인](https://user-images.githubusercontent.com/96460131/181501469-eac0a891-edb8-4415-9332-f82dd0edf876.gif) |
+
+<br>
 
 |회원가입|회원정보 수정|
 |--|--|
-| ![회원가입](https://user-images.githubusercontent.com/96460131/181457008-0c1b10d3-0327-43c2-902e-cfd844f8e67e.gif) | ![회원정보수정](https://user-images.githubusercontent.com/96460131/181501578-0bf6555b-4443-4cd0-b396-0e7f552a45cc.gif) |
+| ![회원가입](https://user-images.githubusercontent.com/96460131/184464377-51ff4f79-9bc2-480b-9ae8-7d807a7edf0d.gif) | ![회원정보수정](https://user-images.githubusercontent.com/96460131/184464553-0ec27e85-8389-452a-83af-cc302b5fd4ea.gif) |
 
-</br>
+<br>
 
 |숙소 검색| 숙소 상세 조회 |
 |--|--|
-| ![검색](https://user-images.githubusercontent.com/96460131/181458415-63de6e23-8575-446c-8b59-e145c37c87dd.gif) | ![숙소상세보기](https://user-images.githubusercontent.com/96460131/181459768-2de60307-bdb6-4832-a079-ed96b368bc62.gif) |
+| ![리스트_검색](https://user-images.githubusercontent.com/96460131/184464276-33b851a3-4194-46a3-99e5-229379de6a23.gif) | ![숙소상세조회](https://user-images.githubusercontent.com/96460131/184464820-600df3c0-4f27-45ba-bd8c-b7a0cf4cdeb3.gif) |
+|지역 카테고리별, 유형별 검색|상세 주소, 숙소 리뷰 조회, 같은 지역 카테고리인 숙소 별점 순 4개 추천|
 
 </br>
 

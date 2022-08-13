@@ -164,7 +164,7 @@
 
 | 위시리스트 추가 | 위시리스트 삭제 |
 |--|--|
-| ![위시리스트추가](https://user-images.githubusercontent.com/96460131/181657351-e290ee03-335b-437f-ab02-a7330ee4bad6.gif) | ![위시리스트삭제](https://user-images.githubusercontent.com/96460131/181657366-5103f714-ac01-450e-a86c-00736a183afe.gif) |
+| ![위시리스트_추가](https://user-images.githubusercontent.com/96460131/184466025-ad25d465-beed-49d2-b5f9-8dfb8281caf8.gif)| ![위시리스트_삭제](https://user-images.githubusercontent.com/96460131/184466034-9fbe2319-3ef9-48f0-9900-84c1dbac57b5.gif) |
 
 
 

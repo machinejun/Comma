@@ -100,28 +100,17 @@
 </section>
 <br>
 <script>
-	function opendetailAddress() {
-		//$("#post_button").postcodifyPopUp();
-	});
-	
-	$("#post_button").bind("click", function() {
-		$("#post_button").postcodifyPopUp();
-	});
-	
-	
-	$(".custom-file-input").on(
-			"change",
-			function() {
-				var fileName = $(this).val().split("\\").pop();
-				$(this).siblings(".custom-file-label").addClass("selected")
-						.html(fileName);
-			});
+$(function() {
+	$("#postcodify_search_button").postcodifyPopUp();
+});
 
-	$('.summernote').summernote({
-		tabsize : 2,
-		height : 300,
-		toolbar : []
-	});
+$(".custom-file-input").on(
+		"change",
+		function() {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected")
+					.html(fileName);
+		});
 </script>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>

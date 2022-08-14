@@ -133,6 +133,7 @@ public class HouseController {
 	public String updateHouse(@PathVariable int houseId, RequestPostDto requestPostDto,
 			@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
 		// 숙소 정보 수정 기능
+		System.out.println(requestPostDto);
 		houseService.updateHouse(houseId, requestPostDto);
 		model.addAttribute("houseList", houseService.findAllByHostId(principalDetail.getUser().getId()));
 		return "house/house_management_form";

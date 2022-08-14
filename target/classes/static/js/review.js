@@ -8,9 +8,6 @@ let index = {
 			this.updateReview();
 		});
 
-		$("#btn-delete").bind("click", () => {
-			this.deleteReview();
-		});
 	},
 
 	updateReview: function() {

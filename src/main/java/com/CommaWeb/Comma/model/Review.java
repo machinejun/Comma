@@ -39,9 +39,9 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "houseId")
-	@JsonIgnoreProperties({ "reviews" })
+	@JsonIgnoreProperties({ "reviews", "hostId" })
 	private House houseId;
 
 	@ManyToOne(cascade = CascadeType.REMOVE)

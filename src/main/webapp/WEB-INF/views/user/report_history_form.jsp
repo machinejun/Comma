@@ -171,8 +171,6 @@ div {
 			</tbody>
 		</table>
 	</div>
-
-
 </div>
 
 <br>

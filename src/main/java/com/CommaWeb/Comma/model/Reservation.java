@@ -46,9 +46,9 @@ public class Reservation {
 	@JsonIgnoreProperties({"reservations"})
 	private User hostId;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "houseId")
-	@JsonIgnoreProperties({"reservations","hostId"})
+	@JsonIgnoreProperties({"hostId"})
 	private House houseId;
 
 	@Column(nullable = false)

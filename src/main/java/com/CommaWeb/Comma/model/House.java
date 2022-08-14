@@ -69,7 +69,7 @@ public class House {
 	private Timestamp creationDate;
 
 	@OneToMany(mappedBy = "houseId", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({ "houseId" })
+	@JsonIgnoreProperties({ "houseId", "guestId", "replies" })
 	private List<Review> reviews;
 
 	@Override

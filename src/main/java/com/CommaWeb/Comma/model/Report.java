@@ -36,16 +36,15 @@ public class Report {
 
 	@Column(nullable = false)
 	private String reportType; // 신고 유형
-
 	
 	@Lob
 	private String detailText;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "reviewId")
 	private Review reviewId;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "replyId")
 	private Reply replyId;
 

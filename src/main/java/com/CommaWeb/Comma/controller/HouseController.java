@@ -130,11 +130,10 @@ public class HouseController {
 	}
 	
 	@PostMapping("/host/house-update/{houseId}")
-	public String updateHouse(@PathVariable int houseId, @RequestBody House house,
+	public String updateHouse(@PathVariable int houseId, RequestPostDto requestPostDto,
 			@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
 		// 숙소 정보 수정 기능
-		System.out.println("집정보 수정" + house);
-		houseService.updateHouse(houseId, house);
+		houseService.updateHouse(houseId, requestPostDto);
 		model.addAttribute("houseList", houseService.findAllByHostId(principalDetail.getUser().getId()));
 		return "house/house_management_form";
 	}

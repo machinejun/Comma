@@ -1,5 +1,10 @@
+
+
 # project - Comma
-Comma "Anyone Be Host, Be Guest"
+
+**"Anyone Be Host, Be Guest"**
+
+<br>
 
 ## 프로젝트 기간
 <h3>v.0.1.0</h3>
@@ -22,35 +27,31 @@ Comma "Anyone Be Host, Be Guest"
 
 ## 프로젝트 소개
 
-&nbsp;누구든 대학 시절 방학 때 또는 코로나로 인해 비대면으로 수업이 전환이 되었을 때 계약한 방을 오랜기간 비워두어 매월 월세가 꾸준하게 빠져나간 경험이 있을 겁입니다. 
-또한 출장, 면접, 대회참여 등 타 지역에서 몇일 동안 숙박을 해야할 상황이 생겼을 때 혼자서 기존의 숙박업소를 사용하는 것이 금액적이나 또는 상황적으로 부담스럽게 느낀 경험들이 
-많이들 있을 것입니다.
+&nbsp;&nbsp;타지에서 대학 생활을 했던 사람이라면, 방학 때 또는 코로나로  수업이 비대면으로 전환 되었을 때 불가피하게 자취방을 오랜기간 비워두었던 경험이 있을 것입니다.
+&nbsp;&nbsp;또한 출장, 면접, 대회 참여 등 타지역에서 잠시 숙박을 해야할 상황이 생겼을 때 혼자 숙박 업소를 이용하는 것이 금액적으로나 상황적으로 부담스럽게 느낀 경험이 다수 있을 거라 생각했습니다.
 <br>
-<br>
-&nbsp;필요에 따라서 자신의 방을 타인에게 잠시 대여할 수도 있고 타인의 방을 몇일 동안 대여 할 수도 있는 서비스가 있다면 2가지의 곤란한 상황을 서로에게 도움을 줄 수 있는 방향으로 묶어 낼 수 있을것이라는 생각을 하였고 저희 프로젝트의 메인 키워드를 "Anyone Be host, Be Guest"로 설정하였습니다.<br><br>
-&nbsp;저희 프로젝트는 전문적인 숙박서비스를 제공한는 숙박업소가 아닌 일반적인 이용자를 대상으로 하였으며, 누구든 호스트가 되어 자신의 공간을 남에게 빌려줄 수 있는 서비스를 구현하고자 하였습니다. 이러한 시스템과 유사한 에어비앤비를 모티브로 하여 <b>"누구든 호스트, 누구든 게스트"</b>가 될 수 있는 웹 사이트를 만들게 되었습니다.
+&nbsp;&nbsp;필요에 따라서 자신의 방을 타인에게 대여해줄 수도 있고, 타인의 방을 대여 할 수도 있는 서비스가 있다면 위의 2가지의 곤란한 상황을 서로에게 도움을 줄 수 있는 방향으로 묶어 낼 수 있을 것이라는 생각을 하여 이번 프로젝트를 진행하게 되었고, 사이트의 메인 키워드를 <b>"Anyone Be Host, Be Guest"</b>로 설정하였습니다.<br>
+&nbsp;&nbsp;콤마(Comma)에서는 전문적인 숙박 서비스를 제공하는 숙박업소가 아닌 일반적인 이용자도 숙박 서비스를 제공할 수 있는, 누구든 호스트가 되어 자신의 공간을 남에게 빌려줄 수 있는 서비스를 구현하고자 하였습니다. 이러한 시스템과 유사한 에어비앤비를 모티브로 하여 <b>"누구든 호스트, 누구든 게스트"</b>가 될 수 있는 웹 사이트를 만들게 되었습니다.
 
 <br>
 
-## 서비스 구현
+## 서비스 구현 흐름 (숙박 예약 서비스)
 
 <img src="https://user-images.githubusercontent.com/99931188/184539538-69160046-fafc-454c-be4e-4860e1e127f5.png">
 
-&nbsp;기존의 우리가 알고 있는 숙박 서비스는 전문적인 숙업업소를 대상으로 하며 숙박업소의 방이라는 물품을 <b>"구매"</b> 하는 방향으로 서비스가 전개되어진다고 생각했습니다.
-일반적으로 예약시 결제를 진행하는 기존의 흐름과 달리 저희의 서비스 대상은 숙박 업체가 아니라 바로 우리 옆에 있는 친구들이기에 기존의 서비스 흐름과 같은 <b>"구매"</b> 와 다르게 
-친구와의 <b>"약속"</b>과 같이 아래의 흐름처럼 예약을 진행하기로 하였습니다.<br>
+&nbsp;&nbsp;기존의 우리가 알고 있는 숙박 서비스는 전문적인 숙업업소를 대상으로 하며 숙박업소의 방이라는 물품을 <b>"구매"</b>하는 방향으로 서비스가 전개되어진다고 생각했습니다. 일반적으로 예약시 결제를 진행하는 기존의 흐름과 달리 저희의 서비스 대상은 숙박 업체가 아니라 바로 우리 옆에 있는 친구들이기에 기존의 서비스 흐름과 같은 <b>"구매"</b>와 다르게 친구와의 <b>"약속"</b>과 같이 아래의 흐름처럼 예약을 진행하기로 하였습니다.<br>
 
--- 우리가 생각한 약속의 흐름
-1. 내가 시간이 되는가 묻는다.  -> 게스트 예약 
-2. 친구가 가능하다고 대답한다.  -> 호스트 승인
-3. 그 날을 약속날짜로 정한다. -> 결제
+* 콤마(Comma)에서의 약속의 흐름
+1. 내가 시간이 되는가 묻는다.  →  게스트 예약 
+2. 친구가 가능하다고 대답한다.  →  호스트 승인
+3. 그 날을 약속 날짜로 정한다. →  결제
 <br>
 
 ## 기능 
 
 * <b>공통 기능</b>
 
-1.  로그인 / 소셜 로그인 (카카오 로그인 API)
+1.  로그인 / 소셜 로그인 (카카오 로그인 API, OAuth 2.0)
 2.  회원가입 / 회원정보 수정
 	- 회원가입 / 회원 정보 수정 시 validation 처리
 		- 아이디 중복 확인
@@ -173,7 +174,7 @@ jQuery, Jasper, jstl, security-tag, Lombok, jdbc, qlrm, datepicker, summernote
 <br>
 
 ## ERD
-![image](https://user-images.githubusercontent.com/99931188/184560641-67d51be8-797b-44c6-80a4-ffdbefc8e5eb.png)
+<img width="901" alt="erd" src="https://user-images.githubusercontent.com/96460131/184562383-0da75925-721e-4b95-b227-756bf605ad03.png">
 
 
 ## Git flow 전략
@@ -186,7 +187,9 @@ jQuery, Jasper, jstl, security-tag, Lombok, jdbc, qlrm, datepicker, summernote
 
 ## 페이지 구성
 
-</br>
+<br>
+
+## 공통
 
 | 메인 | 숙소 리스트 |
 |--|--|
@@ -211,7 +214,15 @@ jQuery, Jasper, jstl, security-tag, Lombok, jdbc, qlrm, datepicker, summernote
 | ![리스트_검색](https://user-images.githubusercontent.com/96460131/184464276-33b851a3-4194-46a3-99e5-229379de6a23.gif) | ![숙소상세조회](https://user-images.githubusercontent.com/96460131/184464820-600df3c0-4f27-45ba-bd8c-b7a0cf4cdeb3.gif) |
 |지역 카테고리별, 유형별 검색|상세 주소, 숙소 리뷰 조회, 같은 지역 카테고리인 숙소 별점 순 4개 추천|
 
-</br>
+<br>
+
+|고객센터 게시판 메인|문의글 상세 조회|
+|--|--|
+| ![고객센터_게시판](https://user-images.githubusercontent.com/96460131/184563663-eda350aa-5ae4-41ee-bfdd-29649dcfffa4.jpg)|![고객센터_관리자_댓글](https://user-images.githubusercontent.com/96460131/184563691-76299333-cb68-443d-a246-e09688ef5318.jpg)|
+|관리자가 작성시 공지사항으로 등록되어 최상단 정렬|일반 문의글/비밀글 작성 (비밀글 작성시 작성자, 관리자만 조회 가능)|
+
+
+<br>
 
 ## 게스트
 
@@ -238,9 +249,7 @@ jQuery, Jasper, jstl, security-tag, Lombok, jdbc, qlrm, datepicker, summernote
 
 
 
-
 ### 위시리스트
-- 하트 아이콘 클릭시 추가, 삭제
 
 | 위시리스트 추가 | 위시리스트 삭제 |
 |--|--|
@@ -248,7 +257,7 @@ jQuery, Jasper, jstl, security-tag, Lombok, jdbc, qlrm, datepicker, summernote
 
 
 
-</br>
+<br>
 
 ## 호스트
 
@@ -267,32 +276,36 @@ jQuery, Jasper, jstl, security-tag, Lombok, jdbc, qlrm, datepicker, summernote
 | ![댓글달기](https://user-images.githubusercontent.com/96460131/181455213-0518ff6b-9aed-44e5-8219-57804da10943.gif) | ![댓글수정](https://user-images.githubusercontent.com/96460131/181656397-885c8895-02de-4fc9-8dc5-dc54b4defb27.gif) | ![댓글삭제](https://user-images.githubusercontent.com/96460131/181470956-83113b58-66ac-4353-bfae-29431a96c18a.gif) |
 
 
-### 예약 내역 관리
-- WAITING 상태인 게스트의 예약 승인 처리, 예약 취소 
+### 예약 관리
 
 |예약 승인|예약 취소|
 |--|--|
 | ![예약승인](https://user-images.githubusercontent.com/96460131/181657823-fdcc40aa-54c5-4871-bd5d-c3a825bfcbb0.gif) | ![예약취소](https://user-images.githubusercontent.com/96460131/181657812-37422562-f387-4722-953a-4badb71c63a4.gif) |
 
 
-
-</br>
+<br>
 
 ## 관리자
 
-### 회원 조회
-![관리자](https://user-images.githubusercontent.com/96460131/181155327-950b3b21-2568-4d37-bb3f-bc7d8db105b1.png)
+### 회원 및 회원 신고 관리
+
+|회원 관리|신고 관리|
+|--|--|
+| ![관리자_회원관리](https://user-images.githubusercontent.com/96460131/184563158-33d27cd8-f11f-49f2-a1d0-77200680ad71.jpg)|![관리자_회원신고관리](https://user-images.githubusercontent.com/96460131/184562516-89e3a252-21e0-420d-844b-6a4ebec08473.jpg)|
+
+### 데이터 통계
+
+|월별 데이터 증감 조회|지역별 숙소 조회|인기 숙소/호스트 조회|
+|--|--|--|
+|![관리자_그래프1](https://user-images.githubusercontent.com/96460131/184562641-c93fc353-0019-45f1-8c0a-4bf3d50b75c1.jpg)|![관리자_그래프3](https://user-images.githubusercontent.com/96460131/184562739-5dd25d41-30ad-409c-9248-d370dfda8898.jpg)|![관리자_그래프2](https://user-images.githubusercontent.com/96460131/184562653-30ace0e5-85cd-4805-8123-17e68ed9a749.jpg)|
+
+<br>
 
 ## Detail page
 
 
 | 에러 페이지 |호스트 모드|게스트 모드 |
 |--|--|--|
-| ![에러페이지](https://user-images.githubusercontent.com/96460131/181458756-73942d34-6f6a-4fe4-8f1d-4b7c1af0bc43.gif) | ![호스트되기](https://user-images.githubusercontent.com/96460131/181458686-7cecac67-bf97-4146-9de2-ee73851cf9e7.gif) | ![게스트되기](https://user-images.githubusercontent.com/96460131/181458714-3fc76e9f-6afb-47b3-b8eb-0d90034213cc.gif) |
+| ![에러페이지](https://user-images.githubusercontent.com/96460131/184562430-7fcbab77-4826-4f9d-9383-d723496ba6cb.jpg) | ![호스트되기](https://user-images.githubusercontent.com/96460131/181458686-7cecac67-bf97-4146-9de2-ee73851cf9e7.gif) | ![게스트되기](https://user-images.githubusercontent.com/96460131/181458714-3fc76e9f-6afb-47b3-b8eb-0d90034213cc.gif) |
 
-<br/>
-
-- 예약 안내
-
-![image](https://user-images.githubusercontent.com/99931188/181436220-a8603903-4f86-4a25-bf52-c8caa03c690d.png)
 

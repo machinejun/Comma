@@ -36,7 +36,6 @@ public class ReviewApiController {
 	public ResponseDto<Review> postReview(@RequestBody Review review, @PathVariable int houseId,
 			@AuthenticationPrincipal PrincipalDetail principalDetail) {
 		review.setHouseId(houseService.findById(houseId));
-		
 		Review reviewEntity = reviewService.postReview(review, principalDetail.getUser());
 		return new ResponseDto<Review>(HttpStatus.OK.value(), reviewEntity);
 	}

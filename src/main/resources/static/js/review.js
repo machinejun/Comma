@@ -60,7 +60,7 @@ let index = {
 	deleteReview: function(reviewId) {
 		let guestId = $("#guest-id").val();
 		let deleteCheck = confirm("삭제하시겠습니까?");
-		console.log(reviewId);
+		console.log("들어오나?" + reviewId);
 
 		if (deleteCheck) {
 			$.ajax({

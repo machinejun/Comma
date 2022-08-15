@@ -43,7 +43,6 @@ public class ReviewService {
 		double avgStarScore = starScoreRepository.getAvgStarScoreByHouse(houseEntity.getId()).get(0).getScore();
 		System.out.println(avgStarScore);
 		houseEntity.setStarScore(avgStarScore);
-		System.out.println("postReive: " + houseEntity);
 		review.setGuestId(user);
 
 		return reviewEntity;
@@ -102,7 +101,7 @@ public class ReviewService {
 
 	@Transactional
 	public void deleteReview(int reviewId) {
-		reviewRepository.deleteById(reviewId);
+		reviewRepository.deleteReview(reviewId);
 	}
 
 	@Transactional

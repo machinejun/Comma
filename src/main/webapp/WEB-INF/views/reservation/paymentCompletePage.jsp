@@ -45,8 +45,8 @@ h2::after {
 			    	<td>
 			    		<ul style="list-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 0px; margin-bottom: 0px;">
 			    			<li>숙 소    명: ${kakao.item_name }</li>
-			    			<li>숙소   주소: ${reservation.houseId.address}</li>
-			    			<li>호스트 번호: ${reservation.hostId.user.phoneNumber}</li>
+			    			<li>숙소   주소: ${reservation.houseId.detailAddress}</li>
+			    			<li>호스트 번호: ${reservation.hostId.phoneNumber}</li>
 			    		</ul>
 					</td>
 			    </tr>

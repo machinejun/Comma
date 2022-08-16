@@ -19,9 +19,9 @@ public class StarScoreRepository {
 	private final EntityManager entityManager;
 	
 	public List<HouseScoreDto> getAvgStarScoreByHouse(int houseId) {
-		String sql = "SELECT houseId, ROUND(AVG(starScore), 1) AS score\r\n"
-				+ "FROM review\r\n"
-				+ "WHERE houseId = "+houseId+"\r\n"
+		String sql = "SELECT houseId, ROUND(AVG(starScore), 1) AS score "
+				+ "FROM review "
+				+ "WHERE houseId = "+houseId+" "
 				+ "GROUP BY houseId ";
 		
 		Query nativeQuery = entityManager.createNativeQuery(sql);

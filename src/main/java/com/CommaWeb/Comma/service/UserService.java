@@ -12,8 +12,9 @@ import com.CommaWeb.Comma.dto.adminDto.AdmintableDto;
 import com.CommaWeb.Comma.model.LoginType;
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
-import com.CommaWeb.Comma.repository.AdminTableDtoRepository;
+import com.CommaWeb.Comma.repository.QlrmRepository;
 import com.CommaWeb.Comma.repository.UserRepository;
+import com.CommaWeb.Comma.repository.queryStorage.AdminTableQueryStorage;
 
 @Service
 public class UserService {
@@ -22,7 +23,10 @@ public class UserService {
 	private UserRepository userRepository;
 
 	@Autowired
-	private AdminTableDtoRepository adminTableDtoRepository;
+	private QlrmRepository qlrmRepository;
+	
+	@Autowired
+	private AdminTableQueryStorage queryStorage;
 
 	@Autowired
 	private BCryptPasswordEncoder encoder;
@@ -121,15 +125,15 @@ public class UserService {
 	}
 
 	public List<AdmintableDto> loadHouseDtolist(String month, String string){
-		return adminTableDtoRepository.findByMonthBestHouse(month, Integer.parseInt(string));
+		return qlrmRepository.returnDataList(queryStorage.findByMonthBestHouse(month, Integer.parseInt(string)), AdmintableDto.class);
 	}
 	
 	public List<AdmintableDto> loadAddressHouseCount(){
-		return adminTableDtoRepository.loadAddressHouseCount();
+		return qlrmRepository.returnDataList(queryStorage.loadAddressHouseCount(), AdmintableDto.class);
 	}
 	
 	public List<AdmintableDto> loadMonthTableCount(String table){
-		return adminTableDtoRepository.loadMonthTableCount(table);
+		return qlrmRepository.returnDataList(queryStorage.loadMonthTableCount(table), AdmintableDto.class);
 	}
 
 	@Transactional(readOnly = true)

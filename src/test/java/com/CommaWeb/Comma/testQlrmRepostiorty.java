@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.CommaWeb.Comma.dto.adminDto.AdmintableDto;
-import com.CommaWeb.Comma.repository.AdminTableDtoRepository;
 import com.CommaWeb.Comma.repository.QlrmRepository;
+import com.CommaWeb.Comma.repository.queryStorage.AdminTableQueryStorage;
 
 @SpringBootTest
 public class testQlrmRepostiorty {
@@ -19,7 +19,7 @@ public class testQlrmRepostiorty {
 	QlrmRepository testRepository;
 
 	@Autowired
-	AdminTableDtoRepository targetRepository;
+	AdminTableQueryStorage targetRepository;
 
 	String queryText = "select address, count(address) as count\r\n" + "from house\r\n"
 			+ "group by address order by count desc";

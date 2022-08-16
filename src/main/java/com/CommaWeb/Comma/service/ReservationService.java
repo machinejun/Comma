@@ -23,11 +23,12 @@ import com.CommaWeb.Comma.model.ReservationType;
 import com.CommaWeb.Comma.model.RoleType;
 import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.repository.BookedDateRepository;
-import com.CommaWeb.Comma.repository.HostTableRepository;
 import com.CommaWeb.Comma.repository.HouseRepository;
+import com.CommaWeb.Comma.repository.QlrmRepository;
 import com.CommaWeb.Comma.repository.ReservationRepository;
 import com.CommaWeb.Comma.repository.UserRepository;
 import com.CommaWeb.Comma.repository.paymentRepository;
+import com.CommaWeb.Comma.repository.queryStorage.HostTableQueryStorage;
 
 @Service
 public class ReservationService {
@@ -36,7 +37,10 @@ public class ReservationService {
 	public static int REVIEW_TEST = 0;
 	
 	@Autowired
-	private HostTableRepository hostTableRepository;
+	private HostTableQueryStorage queryStorage;
+	
+	@Autowired
+	private QlrmRepository qlrmRepository;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -127,7 +131,7 @@ public class ReservationService {
 	public List<HostTableDto> getTableInfo(int hostId, int houseId, int month) {
 		List<Reservation> reservation = reservationRepository.findByHostId(hostId);
 		changeCompletedType(reservation);
-		return hostTableRepository.getlist(hostId, houseId, month);
+		return qlrmRepository.returnDataList(queryStorage.getlist(hostId, houseId, month), HostTableDto.class);
 	}
 	
 	@Modifying
@@ -135,7 +139,7 @@ public class ReservationService {
 	public List<HostTableDto> getTableInfo(int hostId, int month) {
 		List<Reservation> reservation = reservationRepository.findByHostId(hostId);
 		changeCompletedType(reservation);
-		return hostTableRepository.getlist(hostId, month);
+		return qlrmRepository.returnDataList(queryStorage.getlist(hostId, month), HostTableDto.class);
 	}
 
 	@Transactional(readOnly = true)
@@ -146,7 +150,7 @@ public class ReservationService {
 
 	@Transactional(readOnly = true)
 	public List<HouseWaitDto> getWaitCount(int hostid) {
-		return hostTableRepository.getWaitCount(hostid);
+		return qlrmRepository.returnDataList(queryStorage.getWaitCount(hostid), HouseWaitDto.class);
 	}
 
 	@Transactional

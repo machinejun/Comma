@@ -64,7 +64,7 @@ function updateReview() {
 	} else if (starScore == 0) {
 		alert("별점을 선택하세요.");
 	} else {
-		fetch("/review/" + reviewId, {
+		fetch("/api/review/update/" + reviewId, {
 			method: "put",
 			headers: {
 				"X-XSRF-TOKEN": token,
@@ -75,7 +75,7 @@ function updateReview() {
 		.then(res => {
 			if(res.status == 200) {
 			alert("리뷰 수정이 완료되었습니다.");
-			location.href = "/review/my-review-list/" + guestId;
+			location.href = "/guest/my-review-list/" + guestId;
 			} else {
 			alert("리뷰 수정이 완료되지 않았습니다.");
 			}
@@ -91,7 +91,4 @@ $('.summernote').summernote({
 	placeholder : "숙소의 청결도, 위치, 호스트와의 의사소통에 대한 솔직한 후기를 남겨주세요."
 });
 </script>
-<!-- 
-<script src="/js/review.js"></script>
- -->
 <%@ include file="../layout/footer.jsp"%>

@@ -5,12 +5,10 @@
 	animation: box-ani 0.5s linear forwards;
 }
 
-@
-keyframes box-ani {from { transform:translate(0, 0);
+@keyframes box-ani {
+from { transform:translate(0, 0);
 	
-}
-
-to {
+}to {
 	transform: translate(0, -15px);
 }
 
@@ -91,7 +89,8 @@ p {
 								<p>EVERYWHERE, WEHNEVER</p>
 
 								<p>편안한 숙소에서 휴식을 취해보세요.</p>
-								<br> <a href="/house/list" class="custom-sm-btn" title=""> 숙소 보러가기 </a>
+								<br> <a href="user/house-list" class="custom-sm-btn" title=""> 숙소 보러가기 </a>
+
 							</div>
 						</div>
 						<div class="item">
@@ -104,7 +103,7 @@ p {
 								</a>
 								<p>누구나 호스트가 될 수 있습니다.</p>
 								<p>숙소를 등록하고 최고의 호스트가 되어보세요.</p>
-								<br> <a href="../project.html" class="custom-sm-btn" title=""> 호스트 되기 </a>
+								<br> <a href="guest/be-host" class="custom-sm-btn" title=""> 호스트 되기 </a>
 
 							</div>
 						</div>
@@ -134,7 +133,7 @@ p {
 			<c:forEach var="house" items="${houses}">
 				<%!int number = 1;%>
 				<div class="ranking-list col-xs-12 col-md-4">
-					<a href="/house/detail/${house.id}"> <img class="custom-img" src="http://localhost:9090/upload/${house.image.imageUrl}" class="
+					<a href="/user/house-detail/${house.id}"> <img class="custom-img" src="http://localhost:9090/upload/${house.image.imageUrl}" class="
 						reveal img-responsive
 						reveal-contentimage-center" style="width: 210px; height: 210px; object-fit: cover;"></a>
 					<h3 style="color: rgba(255, 149, 149, 0.7);">

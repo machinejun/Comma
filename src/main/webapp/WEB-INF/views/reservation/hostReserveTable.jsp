@@ -19,20 +19,20 @@
 .btn{
 	width: 180px;
 	height: 40px;
-	color:rgba(255,149,149,0.7) ;
+	color: rgba(0,0,0,0.5); ;
 	font-weight: bold;
 	font-size: 15px; 
 	padding: 5px;
 	background-color: white;
-	border-left: 1.5px solid rgba(255,149,149,0.55); 
-	border-top: 1.5px solid rgba(255,149,149,0.55); 
+	border-left: 1.5px solid rgba(0,0,0,0.5); 
+	border-top: 1.5px solid rgba(0,0,0,0.5); 
 	margin-right: 10px;
 	margin-top: 10px;
 	margin-bottom: 0;
 	
 }
 .btn:hover {
-	color: rgba(255,149,149,0.9);
+	color: black;
 }
 .btn-box{
 	padding-left: 60px;
@@ -47,10 +47,10 @@
 	height: 30px; 
 	border: 0px; 
 	background-color: transparent;
-	color: rgba(255,149,149,0.65); 
+	color: black; 
 	position: absolute; 
 	left: 15px; 
-	border-bottom: 1.5px solid rgba(255,149,149,0.55); 
+	border-bottom: 1.5px solid black; 
 	top: 45px;
 }
 .table-in-btn{
@@ -72,8 +72,6 @@
 						<select id="month" class="form-select" aria-label="Default select example" style="">
 							     <% LocalDate now = LocalDate.now();
 							     	int month = now.getMonthValue();%>
-							     	
-							     
 							     	
 							     <% for( int i = 1; i < month; i++){ %>
 							     		<option value="<%= i %>"><%= i %>월</option>
@@ -122,5 +120,3 @@
 <script type="text/javascript" src="/js/main.0cf8b554.js"></script></body>
 <script type="text/javascript" src="/js/home.js"></script></body>
 <script type="text/javascript" src="/js/reservation/hostReserveTable.js"></script></body>
-</body>
-</html>

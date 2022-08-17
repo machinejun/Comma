@@ -60,17 +60,19 @@ function cancelAndAlert(reservationId) {
 		if (result.isConfirmed) {
 			$.ajax({
 				beforeSend: function(xhr) {
-					console.log("xhr: " + xhr)
 					xhr.setRequestHeader(header, token)
 				},
-
 				type: "delete",
 				url: `/api/reservation/delete/${reservationId}`,
 				contentType: "application/json; charset=utf-8",
 				dataType: "json"
 			}).done(function(response) {
-				closeModal();
-				location.reload();
+				console.log(response);
+				if(response.status == 200){
+					closeModal();
+					location.reload();
+				}
+				
 			}).fail(function() {
 				alertMessage("error", "예약 취소에 실패하였습니다", "error");
 				return;
@@ -83,7 +85,7 @@ function cancelAndAlert(reservationId) {
 function showResDetail(resId) {
 	$.ajax({
 		type: "get",
-		url: `/api/reservation/detail?resId=${resId}`,
+		url: `/api/reservation/detail/${resId}`,
 		dataType: "json"
 	}).done(function(response) {
 		console.log(response)
@@ -116,7 +118,7 @@ function addDetailPage(response) {
 		    </tr>
 		    <tr>
 		      <th scope="row">예약자</th>
-		      <td >${response.guestId.user.username}</td>
+		      <td >${response.guestId.name}</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">인원</th>
@@ -129,6 +131,10 @@ function addDetailPage(response) {
 		    <tr>
 		      <th scope="row">가격</th>
 		      <td >${response.price}</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">주소</th>
+		      <td >${response.houseId.detailAddress}</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">요청사항</th>
@@ -145,19 +151,15 @@ function addDetailPage(response) {
 		    </tr>
 		    <tr>
 		      <th scope="row">호스트</th>
-		      <td >${response.hostId.user.username}</td>
+		      <td >${response.hostId.name}</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">전화번호</th>
-		      <td >${response.hostId.user.phoneNumber}</td>
+		      <td >${response.hostId.phoneNumber}</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">E-mail</th>
-		      <td >${response.hostId.user.email}</td>
-		    </tr>
-		    <tr>
-		      <th scope="row">주소</th>
-		      <td >${response.houseId.address}</td>
+		      <td >${response.hostId.email}</td>
 		    </tr>
 		    <tr>
 		      <th scope="row">승인</th>
@@ -202,7 +204,7 @@ function payForKakao(iresId) {
 					xhr.setRequestHeader(header, token)
 				},
 		type: "post",
-		url: `/api/reservation/kakao`,
+		url: `/api/reservation/kakao-pay`,
 		contentType: "application/json; charset=utf-8",
 		dataType: "json",
 		data: JSON.stringify(data)

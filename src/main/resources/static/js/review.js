@@ -8,10 +8,6 @@ let index = {
 			this.updateReview();
 		});
 
-		$("#btn-delete").bind("click", () => {
-			this.deleteReview();
-		});
-
 	},
 
 	updateReview: function() {
@@ -43,7 +39,7 @@ let index = {
 				},
 
 				type: "PUT",
-				url: "/review/" + reviewId,
+				url: "/api/review/update/" + reviewId,
 				data: JSON.stringify(data),
 				contentType: "application/json; charset=utf-8",
 				dataType: "json"
@@ -64,21 +60,20 @@ let index = {
 	deleteReview: function(reviewId) {
 		let guestId = $("#guest-id").val();
 		let deleteCheck = confirm("삭제하시겠습니까?");
-		console.log(reviewId);
+		console.log("들어오나?" + reviewId);
 
 		if (deleteCheck) {
 			$.ajax({
-
 				beforeSend: function(xhr) {
 					xhr.setRequestHeader(header, token)
 				},
 
 				type: "DELETE",
-				url: "/review/" + reviewId,
+				url: "/api/review/delete/" + reviewId,
 			}).done(function(response) {
 				if (response.status == 200) {
 					alert("리뷰가 삭제되었습니다.");
-					location.href = "/review/my-review-list/" + guestId;
+					location.href = "/guest/my-review-list/" + guestId;
 				} else {
 					alert("리뷰가 삭제되지 않았습니다.");
 				}
@@ -87,7 +82,46 @@ let index = {
 				console.log(error);
 			});
 		}
+	},
+
+	reportReply: function(replyId) {
+		console.log(replyId);
+
+		let data = {
+			reportType: $("#report-type-" + replyId).val(),
+			detailText: $("#detail-text-" + replyId).val()
+		}
+		console.log("data : " + data);
+
+		if (data.reportType == "") {
+			alert("신고 유형을 선택하셔야 합니다.");
+		} else {
+			$.ajax({
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(header, token)
+				},
+
+				type: "POST",
+				url: "/api/report/reply/" + replyId,
+				data: JSON.stringify(data),
+				contentType: "application/json; charset=utf-8",
+				dataType: "json"
+			}).done(function(response) {
+				if (response.status == 200) {
+					alert("신고가 접수되었습니다.");
+					document.getElementById("report-type-" + replyId).value = "";
+					document.getElementById("detail-text-" + replyId).value = "";
+					document.getElementById("close-" + replyId).click();
+				} else {
+					alert("신고가 접수되지 않았습니다.");
+				}
+			}).fail(function(error) {
+				alert("신고가 접수되지 않았습니다.");
+				console.log(error);
+			});
+		}
 	}
+
 }
 
 index.init();

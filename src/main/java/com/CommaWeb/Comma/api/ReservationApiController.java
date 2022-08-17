@@ -44,35 +44,34 @@ public class ReservationApiController {
 
 	
 	// 예약을 하는 기능
-	@PostMapping("/")
+	@PostMapping("/book")
 	public ResponseDto<String> reserveHouse(@RequestBody Reservation reservation, @AuthenticationPrincipal PrincipalDetail principal) {
 		System.out.println(reservation);
 		reservationService.makeReservation(reservation);
-
 		return new ResponseDto<String>(HttpStatus.OK.value(), "OK");
 	}
 	
 	// 호스트 예약관리 테이블에 정보를 가져오는 기능
-	@GetMapping("/house/{houseId}/{hostId}")
-	public List<HostTableDto> getHouseReservation(@PathVariable int hostId, @PathVariable int houseId,
-			@RequestParam int month) {
-		System.out.println(">> " + hostId + "+" + houseId);
-
-		List<HostTableDto> result = reservationService.getTableInfo(hostId, houseId, month);
+	@GetMapping("/detail")
+	public List<HostTableDto> getHouseReservation(@RequestParam(value ="hostId") int hostId, @RequestParam(value ="houseId") int houseId,
+			@RequestParam(value = "month") int month) {
+		List<HostTableDto> result;
+		if(String.valueOf(houseId).equals(""))  {
+			result = reservationService.getTableInfo(hostId, month);
+		}else {
+			result = reservationService.getTableInfo(hostId, houseId, month);
+		}
+		
 		return result;
 	}
 
-	@GetMapping("/house/{hostId}")
-	public List<HostTableDto> getHouseReservation(@PathVariable int hostId, @RequestParam int month) {
-		List<HostTableDto> result = reservationService.getTableInfo(hostId, month);
-		return result;
-	}
 	
 	// 호스트 측 예약 취소 기능
 	@DeleteMapping("/delete/{reservationId}")
-	public int deleteReservation(@PathVariable int reservationId) {
+	public ResponseDto<Integer> deleteReservation(@PathVariable int reservationId) {
+		System.out.println(reservationId);
 		reservationService.cancelReservation(reservationId);
-		return reservationId;
+		return new ResponseDto<Integer>(HttpStatus.OK.value(), reservationId);
 	}
 	
 	// 호스트 예약 승인 기능
@@ -84,15 +83,15 @@ public class ReservationApiController {
 	}
 	
 	// 예약에 대한 디테일 정보를 가져오는 기능
-	@GetMapping("/detail")
-	public Reservation showResDetail(@RequestParam int resId) {
+	@GetMapping("/detail/{resId}")
+	public Reservation showResDetail(@PathVariable int resId) {
 		Reservation res = reservationService.findByResId(resId);
 		System.out.println(res);
 		return res;
 	}
 	
 	// 결제를 요청하는 기능
-	@PostMapping("/kakao")
+	@PostMapping("/kakao-pay")
 	public KaKaoApproveDto payForKaKao(@RequestBody ResponsePaidDto paidDto) {
 		System.out.println(paidDto);
 		Reservation res = reservationService.findByResId(paidDto.getResId());
@@ -102,6 +101,7 @@ public class ReservationApiController {
 		paidDto.setGuestName(res.getGuestId().getUsername());
 		paidDto.setHostName(res.getHostId().getUsername());
 		paidDto.setHouseName(res.getHouseId().getName());
+		paidDto.setHouseId(res.getHouseId().getId());
 		KaKaoApproveDto approveDto = requestReadyForKaKaoPay(paidDto.getGuestName(), paidDto.getHostName(),
 				paidDto.getHouseName(), paidDto.getPrice());
 		paidDto.setTid(approveDto.getTid());
@@ -124,8 +124,8 @@ public class ReservationApiController {
 		param.add("quantity", "1");
 		param.add("total_amount", String.valueOf(price));
 		param.add("tax_free_amount", "0");
-		param.add("approval_url", "http://localhost:9090/kakao/approve");
-		param.add("cancel_url", "http://localhost:9090/user/cancel");
+		param.add("approval_url", "http://localhost:9090/guest/kakao/approve");
+		param.add("cancel_url", "http://localhost:9090/user/error");
 		param.add("fail_url", "http://localhost:9090/user/error");
 
 		HttpEntity<MultiValueMap<String, String>> message = new HttpEntity<>(param, header);
@@ -133,5 +133,6 @@ public class ReservationApiController {
 				HttpMethod.POST, message, KaKaoApproveDto.class);
 		return response.getBody();
 	}
-
+	
+	
 }

@@ -22,7 +22,7 @@ import com.CommaWeb.Comma.service.HouseService;
 import com.CommaWeb.Comma.service.ReviewService;
 
 @RestController
-@RequestMapping("/review")
+@RequestMapping("/api/review")
 public class ReviewApiController {
 
 	@Autowired
@@ -37,12 +37,11 @@ public class ReviewApiController {
 			@AuthenticationPrincipal PrincipalDetail principalDetail) {
 		review.setHouseId(houseService.findById(houseId));
 		Review reviewEntity = reviewService.postReview(review, principalDetail.getUser());
-		System.out.println("리뷰 들어왔니? :" +reviewEntity);
 		return new ResponseDto<Review>(HttpStatus.OK.value(), reviewEntity);
 	}
 	
 	// 리뷰 수정 기능
-	@PutMapping("/{reviewId}")
+	@PutMapping("/update/{reviewId}")
 	public ResponseDto<Review> updateReview(@PathVariable int reviewId,
 			@RequestBody Review review) {
 		Review reviewEntity = reviewService.updateReview(reviewId, review);
@@ -51,7 +50,7 @@ public class ReviewApiController {
 	
 	
 	// 리뷰 삭제 기능
-	@DeleteMapping("/{reviewId}")
+	@DeleteMapping("/delete/{reviewId}")
 	public ResponseDto<Integer> deleteReview(@PathVariable int reviewId) {
 		reviewService.deleteReview(reviewId);
 		return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
@@ -61,6 +60,9 @@ public class ReviewApiController {
 	@PostMapping("/reply/{reviewId}")
 	public ResponseDto<Reply> addReply(@PathVariable int reviewId, @RequestBody Reply reply,
 			@AuthenticationPrincipal PrincipalDetail principalDetail) {
+		if(principalDetail.getUser().getReportCount() > 2) {
+			return new ResponseDto<Reply>(HttpStatus.FORBIDDEN.value(), null);
+		}
 		Reply replyEntity = reviewService.addReply(reviewId, reply, principalDetail.getUser());
 		return new ResponseDto<Reply>(HttpStatus.OK.value(), replyEntity);
 	}

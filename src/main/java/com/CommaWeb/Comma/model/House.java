@@ -40,8 +40,10 @@ public class House {
 
 	@Column(nullable = false)
 	private String address;
+	
+	private String detailAddress;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "hostId")
 	private User hostId;
 
@@ -53,7 +55,7 @@ public class House {
 	@Column(nullable = false)
 	private String type; // 숙소 유형
 
-	@OneToOne(cascade = CascadeType.REMOVE)
+	@OneToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	@JoinColumn(name = "imageId")
 	private Image image;
 
@@ -67,7 +69,7 @@ public class House {
 	private Timestamp creationDate;
 
 	@OneToMany(mappedBy = "houseId", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties({ "houseId" })
+	@JsonIgnoreProperties({ "houseId", "guestId", "replies" })
 	private List<Review> reviews;
 
 	@Override

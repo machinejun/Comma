@@ -39,7 +39,7 @@ import com.CommaWeb.Comma.service.UserService;
 
 @Controller
 public class UserController {
-	
+
 	@Value("${kakao.key}")
 	private String kakaoPassword;
 
@@ -51,7 +51,7 @@ public class UserController {
 
 	@Autowired
 	private HouseService houseService;
-	
+
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	@Autowired
@@ -74,9 +74,15 @@ public class UserController {
 		return "user/join_form";
 	}
 
-	@GetMapping("/auth/update_form")
+	@GetMapping("/user/update_form")
 	public String updateForm() {
 		return "user/update_user_form";
+	}
+
+	@GetMapping("/user/join-complete/{userId}")
+	public String completeJoinForm(@PathVariable int userId, Model model) {
+		model.addAttribute("user", userService.getUserById(userId));
+		return "user/join_complete_form";
 	}
 
 	@GetMapping("/logout")
@@ -91,30 +97,19 @@ public class UserController {
 	@PostMapping("/auth/joinProc")
 	public String saveUser(User user) {
 		userService.saveUser(user);
-		return "redirect:/";
-	}
-
-	@GetMapping("/reservation-history/{guestId}")
-	public String reservationHistory(@PathVariable int guestId) {
-		return "user/reservation_history_form";
+		return "redirect:/user/join-complete/" + user.getId();
 	}
 
 	// 위시리스트 페이지 호출
-	@GetMapping("/wish-list/{guestId}")
+	@GetMapping("/guest/wish-list/{guestId}")
 	public String getWishList(@PathVariable int guestId, Model model) {
 		model.addAttribute("wishList", likeHouseService.getWishListById(guestId));
 		return "user/wish_list_form";
 	}
 
-	// 관리자페이지 호출
-	@GetMapping("/admin_form")
-	public String adminForm() {
-		return "user/admin_form";
-	}
-
-	// 유저 검색
-	@GetMapping("/user/searchUsername")
-	public String searchUsername(@RequestParam Map<String, String> map, Model model) {
+	// 회원 관리 페이지 호출
+	@GetMapping("/admin/user-management")
+	public String adminForm(@RequestParam Map<String, String> map, Model model) {
 
 		String role = map.get("role") == null ? "" : map.get("role");
 		String q = map.get("q") == null ? "" : map.get("q");
@@ -137,9 +132,10 @@ public class UserController {
 			}
 
 		}
-		return "user/admin_form";
+
+		return "admin/admin_form";
 	}
-	
+
 	@GetMapping("/auth/kakao/login_proc")
 	public String kakaoCallback(@RequestParam String code) {
 
@@ -147,91 +143,87 @@ public class UserController {
 		// 헤더
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
-		
+
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
-		
+
 		params.add("grant_type", "authorization_code");
 		params.add("client_id", "485a62ce5a393a9978ea206241668428");
 		params.add("redirect_uri", "http://localhost:9090/auth/kakao/login_proc");
 		params.add("code", code);
-		
-		HttpEntity<MultiValueMap<String, String>> tokenRequest = new HttpEntity<MultiValueMap<String,String>>(params, headers);
-		
-		ResponseEntity<OAuthToken> response = restTemplate.exchange(
-				"https://kauth.kakao.com/oauth/token",
-						HttpMethod.POST,
-						tokenRequest,
-						OAuthToken.class);
-		
+
+		HttpEntity<MultiValueMap<String, String>> tokenRequest = new HttpEntity<MultiValueMap<String, String>>(params,
+				headers);
+
+		ResponseEntity<OAuthToken> response = restTemplate.exchange("https://kauth.kakao.com/oauth/token",
+				HttpMethod.POST, tokenRequest, OAuthToken.class);
+
 		System.out.println(response);
-		
+
 		RestTemplate kakaoUserInfoRestTemplate = new RestTemplate();
 
 		HttpHeaders kakaoUserInfoHeaders = new HttpHeaders();
 		kakaoUserInfoHeaders.add("Authorization", "Bearer " + response.getBody().getAccessToken());
-		
+
 		HttpEntity<MultiValueMap<String, String>> kakaoUserInfoRequest = new HttpEntity<>(kakaoUserInfoHeaders);
-		
-		// HTTP 요청에 대한 응답
+
 		ResponseEntity<KakaoProfile> kakaoUserInfoResponse = kakaoUserInfoRestTemplate.exchange(
-				"https://kapi.kakao.com/v2/user/me",
-				HttpMethod.POST,
-				kakaoUserInfoRequest,
-				KakaoProfile.class);
+				"https://kapi.kakao.com/v2/user/me", HttpMethod.POST, kakaoUserInfoRequest, KakaoProfile.class);
 
 		KakaoProfile kakaoAccount = kakaoUserInfoResponse.getBody();
 		System.out.println(kakaoAccount);
-		
+
 		User kakaoUser = User.builder().username("kakao_" + kakaoAccount.getProperties().getNickname())
-				.email(kakaoUserInfoResponse.getBody().getKakaoAccount().getEmail())
-				.password(kakaoPassword)
-				.phoneNumber("폰번호 재설정 필요")
-				.role(RoleType.GUEST)
-				.loginType(LoginType.KAKAO)
-				.build();
-		
+				.email(kakaoUserInfoResponse.getBody().getKakaoAccount().getEmail()).password(kakaoPassword)
+				.phoneNumber("폰 번호 재설정 필요").role(RoleType.GUEST).loginType(LoginType.KAKAO).build();
+
 		System.out.println("kakaoUser" + kakaoUser);
-		
-		if(userService.checkUsername(kakaoUser.getUsername()).getUsername() == null) {
+
+		if (userService.checkUsername(kakaoUser.getUsername()).getUsername() == null) {
 			userService.saveUser(kakaoUser);
-			Authentication authentication = authenticationManager.authenticate(
-					new UsernamePasswordAuthenticationToken(kakaoUser.getUsername(), kakaoPassword));
+			Authentication authentication = authenticationManager
+					.authenticate(new UsernamePasswordAuthenticationToken(kakaoUser.getUsername(), kakaoPassword));
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			return "redirect:/auth/update_form/";
 		}
-		
+
 		detailService.loadUserByUsername(kakaoUser.getUsername());
-		
-		
-		Authentication authentication = authenticationManager.				
-				authenticate(
-				new UsernamePasswordAuthenticationToken(kakaoUser.getUsername(), kakaoPassword));
-		
+
+		Authentication authentication = authenticationManager
+				.authenticate(new UsernamePasswordAuthenticationToken(kakaoUser.getUsername(), kakaoPassword));
+
 		SecurityContextHolder.getContext().setAuthentication(authentication);
-		
-		return "redirect:/";			
+
+		return "redirect:/";
 	}
-	
+
 	@GetMapping("/user/behost")
 	public String behost() {
 		return "/advice/beHost";
 	}
-	
+
 	@GetMapping("/user/beguest")
 	public String beguest() {
 		return "/advice/beGuest";
 	}
-	
+
 	@GetMapping("/user/error")
 	public String error() {
 		return "/advice/errorPage";
 	}
-	
-	@GetMapping("/test/adminTable")
+
+	@GetMapping("/admin/show-statistics")
 	public String getAdminTable() {
 		return "/user/admin_table";
 	}
-	
 
+	@GetMapping("/user/my-page")
+	public String getMyPage() {
+		return "user/my_page_form";
+	}
+
+	@GetMapping("/test/map-api")
+	public String loadMapForm() {
+		return "/house/houseMap";
+	}
 
 }

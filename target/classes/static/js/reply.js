@@ -10,7 +10,7 @@ let index = {
 		console.log("reviewId : " + reviewId);
 
 		let data = {
-			content: $("#reply-content-" + reviewId).val()
+			content: xssCheck($("#reply-content-" + reviewId).val(), 1)
 		}
 
 		if (data.content == "" || data.content.trim() === "") {
@@ -22,7 +22,7 @@ let index = {
 				},
 
 				type: "POST",
-				url: "/review/reply/" + reviewId,
+				url: "/api/review/reply/" + reviewId,
 				data: JSON.stringify(data),
 				contentType: "application/json; charset=utf-8",
 				dataType: "json"
@@ -30,6 +30,8 @@ let index = {
 				if (response.status == 200) {
 					appendReply(response.data);
 					alert("댓글이 등록되었습니다.");
+				} else {
+					alert("회원님은 신고 횟수가 3회 이상으로 댓글을 작성하실 수 없습니다.");
 				}
 			}).fail(function(error) {
 				alert("댓글이 등록되지 않았습니다.");
@@ -41,10 +43,8 @@ let index = {
 	updateReply: function(reviewId, replyId) {
 
 		let data = {
-			content: $("#reply-edit-" + reviewId).val()
+			content: xssCheck($("#reply-edit-" + reviewId).val(), 1)
 		}
-
-		console.log("update : " + data.content);
 
 		if (data.content == "") {
 			alert("내용을 입력하세요.")
@@ -55,15 +55,14 @@ let index = {
 				},
 
 				type: "PUT",
-				url: "/review/reply/" + replyId,
+				url: "/api/review/reply/" + replyId,
 				data: JSON.stringify(data),
 				contentType: "application/json; charset=utf-8",
 				dataType: "json"
 			}).done(function(response) {
 				if (response.status == 200) {
-					//appendEditedReply(response.data);
 					alert("댓글이 수정되었습니다.");
-					location.href="/review/management/" + response.data.reviewId.houseId.id;
+					location.href = "/host/review-management/" + response.data.reviewId.houseId.id;
 				}
 
 			}).fail(function(error) {
@@ -82,16 +81,15 @@ let index = {
 		if (deleteCheck) {
 			$.ajax({
 				beforeSend: function(xhr) {
-					console.log("xhr: " + xhr)
 					xhr.setRequestHeader(header, token)
 				},
 
 				type: "DELETE",
-				url: "/review/reply/" + replyId,
+				url: "/api/review/reply/" + replyId,
 			}).done(function(response) {
 				if (response.status == 200) {
 					alert("댓글이 삭제되었습니다.");
-					location.href = "/review/management/" + houseId;
+					location.href = "/host/review-management/" + houseId;
 				} else {
 					alert("댓글이 삭제되지 않았습니다.")
 				}
@@ -119,6 +117,44 @@ let index = {
 
 		$('#reply--' + replyId).replaceWith(editForm);
 		$('#reply--' + replyId).focus();
+	},
+
+	reportReview: function(reviewId) {
+		console.log(reviewId);
+
+		let data = {
+			reportType: $("#report-type-" + reviewId).val(),
+			detailText: $("#detail-text-" + reviewId).val()
+		}
+		console.log(data);
+
+		if (data.reportType == "") {
+			alert("신고 유형을 선택하셔야 합니다.");
+		} else {
+			$.ajax({
+				beforeSend: function(xhr) {
+					xhr.setRequestHeader(header, token)
+				},
+
+				type: "POST",
+				url: "/api/report/review/" + reviewId,
+				data: JSON.stringify(data),
+				contentType: "application/json; charset=utf-8",
+				dataType: "json"
+			}).done(function(response) {
+				if (response.status == 200) {
+					alert("신고가 접수되었습니다.");
+					document.getElementById("report-type-" + reviewId).value = "";
+					document.getElementById("detail-text-" + reviewId).value = "";
+					document.getElementById("close-" + reviewId).click();
+				} else {
+					alert("신고가 접수되지 않았습니다.");
+				}
+			}).fail(function(error) {
+				alert("신고가 접수되지 않았습니다.");
+				console.log(error);
+			});
+		}
 	}
 }
 
@@ -154,9 +190,17 @@ function appendReply(reply) {
 									onclick="index.deleteReply(${reply.id});" style="cursor: pointer;">삭제</a>				
 			</div>
 		</li>`;
-	console.log("append 확인" + reply.reviewId.id);
+
 	$("#reply-list-" + reply.reviewId.id).prepend(childElement);
 	$("#reply-content-" + reply.reviewId.id).val("");
 }
 
-index.init();
+function xssCheck(str, level) {
+	if (level == undefined || level == 0) {
+		str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g, "");
+	} else if (level != undefined && level == 1) {
+		str = str.replace(/\</g, "&lt;");
+		str = str.replace(/\>/g, "&gt;");
+	}
+	return str;
+}

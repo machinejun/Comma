@@ -11,12 +11,11 @@
 	<form>
 		<div class="form-group">
 			<div class="form-group">
-			<input type="hidden" id="house-id" value="${reservation.houseId.id}">
-			<input type="hidden" id="guest-id" value="${principal.user.id}">
-				<input type="hidden" value="" id="house-id"> <label for="name"><b>숙소명</b></label> <input type="text" class="form-control" id="name" disabled="disabled" value="${reservation.houseId.name}"/>
+				<input type="hidden" id="house-id" value="${reservation.houseId.id}"> <input type="hidden" id="guest-id" value="${principal.user.id}"> <input type="hidden" value="" id="house-id"> <label
+					for="name"><b>숙소명</b></label> <input type="text" class="form-control" id="name" disabled="disabled" value="${reservation.houseId.name}" />
 			</div>
 			<div class="form-group">
-				<label for="name"><b>숙박 기간</b></label> <input type="text" class="form-control" id="name" disabled="disabled" value="${reservation.checkInDate} ~ ${reservation.checkOutDate}"/>
+				<label for="name"><b>숙박 기간</b></label> <input type="text" class="form-control" id="name" disabled="disabled" value="${reservation.checkInDate} ~ ${reservation.checkOutDate}" />
 			</div>
 
 			<label><b>만족도</b></label>
@@ -62,7 +61,7 @@ function postReview() {
 		alert("별점을 선택하세요.");
 	} else {
 		console.log(data.starScore);
-		fetch("/review/post/" + houseId, {
+		fetch("/api/review/post/" + houseId, {
 			method: "post",
 			headers: {
 				"X-XSRF-TOKEN": token,
@@ -73,7 +72,7 @@ function postReview() {
 		.then(res => {
 			if(res.status == 200) {
 				alert("리뷰 등록이 완료되었습니다.");				
-				location.href = "/review/my-review-list/" + guestId;			
+				location.href = "/guest/my-review-list/" + guestId;			
 			}
 		});
 	}
@@ -89,9 +88,10 @@ $(".custom-file-input").on(
 
 $('.summernote').summernote({
 	tabsize : 2,
-	height : 300,
+	height : 350,
 	toolbar : [],
 	placeholder : "숙소의 청결도, 위치, 호스트와의 의사소통에 대한 솔직한 후기를 남겨주세요."
 });
+
 </script>
 <%@ include file="../layout/footer.jsp"%>

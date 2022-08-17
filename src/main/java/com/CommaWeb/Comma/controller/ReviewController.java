@@ -21,7 +21,6 @@ import com.CommaWeb.Comma.service.ReservationService;
 import com.CommaWeb.Comma.service.ReviewService;
 
 @Controller
-@RequestMapping("/review")
 public class ReviewController {
 
 	@Autowired
@@ -32,25 +31,29 @@ public class ReviewController {
 
 	@Autowired
 	private ReservationService reservationService;
+	
 
 	// 리뷰 작성 폼 호출
-	@GetMapping("/post_form/{reservationId}")
+	@GetMapping("/guest/review/post_form/{reservationId}")
 	public String getReviewForm(@PathVariable int reservationId,
 			@AuthenticationPrincipal PrincipalDetail principalDetail, Model model) {
+		if(principalDetail.getUser().getReportCount() > 2) {
+			return "redirect:/reserveTable/user";
+		}
 		model.addAttribute("reservation", reservationService.findByResId(reservationId));
 		return "review/review_post_form";
 	}
 
 	// 리뷰 수정 폼 호출
-	@GetMapping("/update_form/{reviewId}")
+	@GetMapping("/guest/review/update_form/{reviewId}")
 	public String getReviewUpdateForm(@PathVariable int reviewId, Model model) {
 		Review reviewEntity = reviewService.getReviewDetail(reviewId);
 		model.addAttribute("reviewEntity", reviewEntity);
 		return "review/review_update_form";
 	}
 
-	// 리뷰 관리 폼 호출 (호스트)
-	@GetMapping("/management/{houseId}")
+	// 리뷰 관리 폼 호출
+	@GetMapping("/host/review-management/{houseId}")
 	public String getMyHouseReviewList(@PathVariable int houseId, Model model,
 			@PageableDefault(size = 5, sort = "creationDate", direction = Direction.DESC) Pageable pageable) {
 		Page<Review> reviews = reviewService.getReviewPageByHouseId(houseId, pageable);
@@ -77,8 +80,8 @@ public class ReviewController {
 		return "review/review_management_form";
 	}
 
-	// 내가 작성한 리뷰 목록 폼 호출 (게스트)
-	@GetMapping("/my-review-list/{guestId}")
+	// 내가 작성한 리뷰 목록 폼 호출
+	@GetMapping("/guest/my-review-list/{guestId}")
 	public String getMyReviewList(@PathVariable int guestId, Model model,
 			@PageableDefault(size = 5, sort = "creationDate", direction = Direction.DESC) Pageable pageable) {
 		Page<Review> reviews = reviewService.getReviewListByGuestId(guestId, pageable);

@@ -11,11 +11,11 @@
 }
 
 h2 {
-	color: rgba(255, 149, 149, 0.7);
+	color: black;
 }
 
 h2::after {
-	color: rgba(255, 149, 149, 0.7);
+	display: none;
 }
 
 .btn {
@@ -68,13 +68,14 @@ img {
 		<div class="row">
 			<div class="col-xs-12 col-md-12">
 				<div id="page-container">
-					<h2 style="font-family: SUIT-Medium;">${reservations[0].guestId.user.username}님 안녕하세요</h2>
+					<h2 style="font-family: SUIT-Medium;">${principal.user.username}님&nbsp;안녕하세요</h2>
+					<br>
 					<table class="table">
 						<thead>
 							<tr>
 								<th scope="col">예약 id</th>
 								<th scope="col" style="width: 350px">숙소명</th>
-								<th scope="col" style="width: 300px">예약 일</th>
+								<th scope="col" style="width: 300px">예약일</th>
 								<th scope="col">상태</th>
 								<th scope="col" style="text-align: center;">결제</th>
 								<th scope="col" style="text-align: center;">리뷰쓰기</th>
@@ -86,7 +87,7 @@ img {
 								<tr>
 									<td scope="row">${reservation.id}</td>
 									<td class="detail-show-btn"><a onclick="showResDetail(${reservation.id})">${reservation.houseId.name}</a></td>
-									<td>${reservation.checkInDate}~ ${reservation.checkOutDate}</td>
+									<td>${reservation.checkInDate}~${reservation.checkOutDate}</td>
 									<td>${reservation.approvalStatus}</td>
 									<c:choose>
 										<c:when test="${reservation.approvalStatus eq 'APPROVED'}">
@@ -94,74 +95,34 @@ img {
 										</c:when>
 										<c:when test="${reservation.approvalStatus eq 'WAITING'}">
 											<td style="text-align: center;">승인 대기중</td>
-								      	</c:when>
+										</c:when>
 										<c:otherwise>
 											<td style="text-align: center;"></td>
 										</c:otherwise>
 									</c:choose>
 									<td style="text-align: center;"><c:if test="${reservation.approvalStatus eq 'COMPLETED'}">
-											<button onclick="location.href='/review/post_form/${reservation.id}'" class="btn" style="">리뷰 쓰러가기</button>
+
+											<c:choose>
+												<c:when test="${principal.user.reportCount > 2}">
+													<button onclick="alert('회원님은 신고횟수가 3회 이상으로 리뷰를 작성하실 수 없습니다.')" class="btn" style="">리뷰 쓰러가기</button>
+												</c:when>
+												<c:otherwise>
+													<button onclick="location.href='/guest/review/post_form/${reservation.id}'" class="btn" style="">리뷰 쓰러가기</button>
+												</c:otherwise>
+											</c:choose>
 										</c:if></td>
 								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 				</div>
-
-
 			</div>
 		</div>
 	</div>
-					<h2 style="font-family: SUIT-Medium;">${reservations[0].guestId.user.username} 님 안녕하세요</h2>
-					<table class="table">
-						<thead>
-							<tr>
-							  <th scope="col">예약 id</th>
-							  <th scope="col" style="width: 350px">숙소명</th>
-							  <th scope="col" style="width: 300px">예약 일</th>										
-							  <th scope="col">상태</th>
-							  <th scope="col" style="text-align: center;">결제</th>
-							  <th scope="col" style="text-align: center;">리뷰쓰기</th>
-							 </tr>
-						</thead>
-						<tbody id="table-body">
-						    <c:forEach var="reservation" items="${reservations}">								  
-							<tr>
-							  <td  scope="row">${reservation.id}</td>
-							  <td class="detail-show-btn"><a onclick="showResDetail(${reservation.id})">${reservation.houseId.name}</a></td>
-							  <td>${reservation.checkInDate} ~ ${reservation.checkOutDate}</td>
-							  <td>${reservation.approvalStatus}</td>
-							  <c:choose>
-							      <c:when test="${reservation.approvalStatus eq 'APPROVED'}">
-							        <td style="text-align: center;"><a type="button" style="border-color: white;" onclick="payForKakao(${reservation.id})" ><img src="/assets/payment_small.png"></img></a></td>
-							      </c:when>
-							      <c:when test= "${reservation.approvalStatus eq 'WAITING'}">
-						      		<td style="text-align: center;">승인 대기중</td>
-    							      </c:when>
-							      <c:otherwise>
-								<td style="text-align: center;"></td>
-							      </c:otherwise>
-							      </c:choose>
-								 <td style="text-align: center;">
-							      <c:if test="${reservation.approvalStatus eq 'COMPLETED'}">								      	
-								 <button onclick="location.href='/review/post_form/${reservation.id}'" class="btn" style="">리뷰 쓰러가기</button>
-							      </c:if>
-								 </td>
-							  </tr>
-						       </c:forEach>
-						</tbody>
-					</table>		
-				</div>	
-			</div>	
-    		</div>
-  	</div>
 </div>
-
 <div id="userTableDetail" class="detail"></div>
-
+</body>
 <script type="text/javascript" src="/js/main.0cf8b554.js"></script>
 <script type="text/javascript" src="/js/home.js"></script>
-</body>
 
-</body>
 </html>

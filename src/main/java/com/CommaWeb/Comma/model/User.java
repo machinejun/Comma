@@ -10,7 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,6 +43,7 @@ public class User {
 	private String phoneNumber;
 	
 	@CreationTimestamp
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Timestamp creationDate;
 	
 	@Enumerated(EnumType.STRING)
@@ -48,5 +51,8 @@ public class User {
 	
 	@Enumerated(EnumType.STRING)
 	private LoginType loginType;
+	
+	@ColumnDefault("0")
+	private int reportCount;	
 	
 }

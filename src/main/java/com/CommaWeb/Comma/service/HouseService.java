@@ -11,6 +11,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -67,9 +68,9 @@ public class HouseService {
 	}
 
 	@Transactional
+	@Modifying
 	public void deleteHouse(int houseId) {
 		houseRepository.deleteById(houseId);
-
 	}
 
 	@Transactional
@@ -77,6 +78,7 @@ public class HouseService {
 		House houseEntity = new House();
 		houseEntity.setName(requestPostDto.getName());
 		houseEntity.setAddress(requestPostDto.getAddress());
+		houseEntity.setDetailAddress(requestPostDto.getDetailAddress());
 		houseEntity.setInfoText(requestPostDto.getInfoText());
 		houseEntity.setType(requestPostDto.getType());
 		houseEntity.setOneDayPrice(requestPostDto.getOneDayPrice());
@@ -151,6 +153,7 @@ public class HouseService {
 
 		houseEntity.setName(requestPostDto.getName());
 		houseEntity.setAddress(requestPostDto.getAddress());
+		houseEntity.setDetailAddress(requestPostDto.getDetailAddress());
 		houseEntity.setInfoText(requestPostDto.getInfoText());
 		houseEntity.setType(requestPostDto.getType());
 		houseEntity.setOneDayPrice(requestPostDto.getOneDayPrice());
@@ -187,12 +190,12 @@ public class HouseService {
 
 	@Transactional
 	public List<House> searchHouseByAddressAndType(String address, String type) {
-		return houseRepository.findAllByAddressAndType(address, type);
+		return houseRepository.findAllByAddressAndTypeOrderByIdDesc(address, type);
 	}
 
 	@Transactional
 	public List<House> searchHouseByAddressOrType(String address, String type) {
-		return houseRepository.findAllByAddressOrType(address, type);
+		return houseRepository.findAllByAddressOrTypeOrderByIdDesc(address, type);
 	}
 
 	@Transactional

@@ -1,7 +1,9 @@
 package com.CommaWeb.Comma.model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,6 +17,7 @@ import javax.persistence.OrderBy;
 import javax.persistence.Transient;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -33,19 +36,19 @@ public class Reservation {
 	@OrderBy(value = "desc")
 	private int id;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "guestId")
 	@JsonIgnoreProperties({"reservations"})
 	private User guestId;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "hostId")
 	@JsonIgnoreProperties({"reservations"})
 	private User hostId;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "houseId")
-	@JsonIgnoreProperties({"reservations","hostId"})
+	@JsonIgnoreProperties({"hostId"})
 	private House houseId;
 
 	@Column(nullable = false)
@@ -59,6 +62,9 @@ public class Reservation {
 	
 	@ColumnDefault("0")
 	private int price;
+	
+	@CreationTimestamp
+	private Timestamp creationDate;
 	
 	private String request;
 	

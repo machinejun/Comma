@@ -7,7 +7,7 @@ h2{
 	margin-top: 5%;
 	margin-bottom: 2%;
 	margin-left: 40%;
-	color: rgba(255, 149, 149, 0.7);
+	color: rgba(70, 70, 70);
 	font-family: 'SUIT-Medium';
 }
 h2::after{
@@ -19,9 +19,13 @@ span{
 	
 }
 p {
-	color: rgba(255, 149, 149, 0.9);
+	color: rgba(70, 70, 70);
 	font-size: 25px;
 	font-weight: bold;
+}
+
+li > span {
+	color: rgba(70, 70, 70);
 }
 .container{
 	position: relative;
@@ -47,7 +51,7 @@ p {
 		<br/>
 		<li><span>위시리스트를 만들어보세요 !!!</span>  <br/> 마음에 드는 숙소를 위시리스트에 담아서 빠르게 숙소를 조회/예약 할 수 있습니다.</li>
 		<br/>
-		<li><span>좋은 리뷰로 사용자님의 마음을 표시해보세요 !!!</span><br/>좋은 리뷰는 호스트에게 힘이됩니다. 숙소에대한 리뷰를 작성할 수 있습니다.</li>
+		<li><span>좋은 리뷰로 게스트님의 마음을 표시해보세요 !!!</span><br/>좋은 리뷰는 호스트에게 힘이됩니다. 숙소에 대한 리뷰를 작성할 수 있습니다.</li>
 	</ul>
 	<br/>
 	<br/>

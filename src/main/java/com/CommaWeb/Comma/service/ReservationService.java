@@ -27,7 +27,7 @@ import com.CommaWeb.Comma.repository.HouseRepository;
 import com.CommaWeb.Comma.repository.QlrmRepository;
 import com.CommaWeb.Comma.repository.ReservationRepository;
 import com.CommaWeb.Comma.repository.UserRepository;
-import com.CommaWeb.Comma.repository.paymentRepository;
+import com.CommaWeb.Comma.repository.PaymentRepository;
 import com.CommaWeb.Comma.repository.queryStorage.HostTableQueryStorage;
 
 @Service
@@ -55,7 +55,7 @@ public class ReservationService {
 	private HouseRepository houseRepository;
 	
 	@Autowired
-	private paymentRepository paymentRepository;
+	private PaymentRepository paymentRepository;
 
 	@Transactional
 	public void makeReservation(Reservation reservation) {

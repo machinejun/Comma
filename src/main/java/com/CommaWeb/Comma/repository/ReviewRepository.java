@@ -13,9 +13,6 @@ import com.CommaWeb.Comma.model.Review;
 
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 
-	// select * from review where houseId = 'houseId';
-	// List<Review> findAllByHouseId(int houseId);
-
 	@Query(value = "SELECT * FROM review WHERE houseId = ?", nativeQuery = true)
 	Page<Review> findAllByHouseId(int houseId, Pageable pageable);
 

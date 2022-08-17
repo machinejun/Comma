@@ -120,7 +120,9 @@ nav {
 
 				<li class="nav-item"><a class="nav-link" href="/user/house-list">숙소 보기</a></li>
 				<li class="nav-item"><a class="nav-link" href="/user/cs">고객 센터</a></li>
+				<!-- 
 				<li class="nav-item"><a class="nav-link" href="/chat">실시간 채팅</a></li>
+				 -->
 			</ul>
 
 		</div>

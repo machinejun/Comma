@@ -11,7 +11,6 @@ import org.springframework.data.repository.query.Param;
 import com.CommaWeb.Comma.dto.HostTableDto;
 import com.CommaWeb.Comma.model.Reservation;
 
-
 public interface ReservationRepository extends JpaRepository<Reservation, Integer>{
 	
 	@Query(value = "SELECT * FROM reservation WHERE guestId = ?1 order by id desc", nativeQuery = true)

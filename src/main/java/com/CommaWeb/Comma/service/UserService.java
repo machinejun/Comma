@@ -23,7 +23,7 @@ public class UserService {
 	private UserRepository userRepository;
 
 	@Autowired
-	private QlrmRepository qlrmRepository;
+	private QlrmRepository<AdmintableDto> qlrmRepository;
 	
 	@Autowired
 	private AdminTableQueryStorage queryStorage;

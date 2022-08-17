@@ -14,9 +14,10 @@ import com.CommaWeb.Comma.model.Reply;
 import com.CommaWeb.Comma.model.Review;
 import com.CommaWeb.Comma.model.User;
 import com.CommaWeb.Comma.repository.HouseRepository;
+import com.CommaWeb.Comma.repository.QlrmRepository;
 import com.CommaWeb.Comma.repository.ReplyRepository;
 import com.CommaWeb.Comma.repository.ReviewRepository;
-import com.CommaWeb.Comma.repository.StarScoreRepository;
+import com.CommaWeb.Comma.repository.queryStorage.StarScoreQueryStorage;
 
 @Service
 public class ReviewService {
@@ -26,9 +27,12 @@ public class ReviewService {
 
 	@Autowired
 	private ReplyRepository replyRepository;
+	
+	@Autowired
+	private QlrmRepository<HouseScoreDto> qlrmRepository;
 
 	@Autowired
-	private StarScoreRepository starScoreRepository;
+	private StarScoreQueryStorage queryStorage;
 
 	@Autowired
 	private HouseRepository houseRepository;
@@ -40,8 +44,10 @@ public class ReviewService {
 		Review reviewEntity = reviewRepository.save(review);
 
 		House houseEntity = houseRepository.findById(review.getHouseId().getId()).get();
-		double avgStarScore = starScoreRepository.getAvgStarScoreByHouse(houseEntity.getId()).get(0).getScore();
-		System.out.println(avgStarScore);
+		double avgStarScore = qlrmRepository
+				.returnDataList(queryStorage.getAvgStarScoreByHouse(houseEntity.getId()), HouseScoreDto.class)
+				.get(0).getScore();
+
 		houseEntity.setStarScore(avgStarScore);
 		review.setGuestId(user);
 
@@ -76,7 +82,7 @@ public class ReviewService {
 	@Transactional
 	public HouseScoreDto getAvgStarScore(int houseId) {
 		try {
-			return starScoreRepository.getAvgStarScoreByHouse(houseId).get(0);
+			return qlrmRepository.returnDataList(queryStorage.getAvgStarScoreByHouse(houseId), HouseScoreDto.class).get(0);
 		} catch (IndexOutOfBoundsException e) {
 			return null;
 		}

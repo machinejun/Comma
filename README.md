@@ -1,4 +1,5 @@
 
+
 # project - Comma
 
 **"Anyone Be Host, Be Guest"**
@@ -169,7 +170,6 @@
 <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
 
 <br>
-
    
 * <b>그 외 라이브러리</b>
 
@@ -317,27 +317,8 @@ jQuery, Jasper, jstl, security-tag, Lombok, jdbc, qlrm, datepicker, summernote
 
 ## Detail page
 
-- Error Page
-![image](https://user-images.githubusercontent.com/99931188/181435642-2ca681cd-6bed-4c49-9517-6c1da0beffcb.png)
-
-#### 호스트 모드 이용 안내
-![image](https://user-images.githubusercontent.com/99931188/181435818-569bc8b9-4a8c-41ef-a79f-be3dfc2ed8b7.png)
-
-#### 게스트 모드 이용 안내
-![image](https://user-images.githubusercontent.com/99931188/181435937-9514bdc1-2a91-486f-adca-d67d2c25c5e3.png)
-
-#### 예약 안내
-![image](https://user-images.githubusercontent.com/99931188/181436220-a8603903-4f86-4a25-bf52-c8caa03c690d.png)
-
-
-
-
-
-
 
 
 | 에러 페이지 |호스트 모드 전환|게스트 모드 전환|
 |--|--|--|
 | ![bandicam 2022-08-16 09-55-23-122](https://user-images.githubusercontent.com/96460131/184765892-fec7a01c-c576-492f-b94c-baec75f63b50.jpg) | ![호스트되기](https://user-images.githubusercontent.com/96460131/181458686-7cecac67-bf97-4146-9de2-ee73851cf9e7.gif) | ![게스트되기](https://user-images.githubusercontent.com/96460131/181458714-3fc76e9f-6afb-47b3-b8eb-0d90034213cc.gif) |
-
-

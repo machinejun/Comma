@@ -24,6 +24,8 @@
 	* 숙소 상세 주소 등록 및 조회 (도로명 API / 카카오맵 API)
 
 <br>
+<br>
+
 
 ## 프로젝트 소개
 
@@ -38,9 +40,14 @@
 
 콤마(Comma)에서는 전문적인 숙박 서비스를 제공하는 숙박업소가 아닌 일반적인 이용자도 숙박 서비스를 제공할 수 있는, 누구든 호스트가 되어 자신의 공간을 남에게 빌려줄 수 있는 서비스를 구현하고자 하였습니다. 이러한 시스템과 유사한 에어비앤비를 모티브로 하여 <b>"누구든 호스트, 누구든 게스트"</b>가 될 수 있는 웹 사이트를 만들게 되었습니다.
 
+
 <br>
 
-## 서비스 구현 흐름 (숙박 예약 서비스)
+## 프로젝트 개발 전략
+
+<br>
+
+### 메인 서비스 흐름 (숙박 예약 서비스)
 
 <img src="https://user-images.githubusercontent.com/99931188/184539538-69160046-fafc-454c-be4e-4860e1e127f5.png">
 
@@ -51,6 +58,26 @@
 2. 친구가 가능하다고 대답한다.  →  호스트 승인
 3. 그 날을 약속 날짜로 정한다. →  결제
 <br>
+
+### ERD 
+
+<img width="901" alt="erd" src="https://user-images.githubusercontent.com/96460131/184562383-0da75925-721e-4b95-b227-756bf605ad03.png">
+
+### 주소 설계 & API 설계
+
+![image](https://user-images.githubusercontent.com/99931188/185771554-0e4a3325-eaf1-4dbd-a0a7-a22e3c01abdd.png)
+![image](https://user-images.githubusercontent.com/99931188/185771571-256686aa-e9ba-49e3-b14a-6bbe41d8642e.png)
+
+
+
+### Git flow 전략
+![image](https://user-images.githubusercontent.com/99931188/184559433-b350841a-69c7-45d8-bf4f-b316cd47e7a3.png)
+
+   - <b>main : </b>프로젝트 version별 완성 단위, 최종으로 배포
+   - <b>developer : </b>개발을 진행하는 중심적인 브랜치, feature 브랜치에서 기능 완성 단위로 merge
+   - <b>feature-** : </b>팀원 개개인의 기능 단위 개발
+<br>
+
 
 ## 기능 
 
@@ -177,17 +204,7 @@ jQuery, Jasper, jstl, security-tag, Lombok, jdbc, qlrm, datepicker, summernote
    
 <br>
 
-## ERD
-<img width="901" alt="erd" src="https://user-images.githubusercontent.com/96460131/184562383-0da75925-721e-4b95-b227-756bf605ad03.png">
 
-
-## Git flow 전략
-![image](https://user-images.githubusercontent.com/99931188/184559433-b350841a-69c7-45d8-bf4f-b316cd47e7a3.png)
-
-   - <b>main : </b>프로젝트 version별 완성 단위, 최종으로 배포
-   - <b>developer : </b>개발을 진행하는 중심적인 브랜치, feature 브랜치에서 기능 완성 단위로 merge
-   - <b>feature-** : </b>팀원 개개인의 기능 단위 개발
-<br>
 
 ## 페이지 구성
 
